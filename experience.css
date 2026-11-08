@@ -158,3 +158,9 @@ body.lotus-v2.lotus-v2 .hero-business-actions a:hover{background:linear-gradient
 @media(max-width:760px){body.lotus-v2 [data-home-film] .hero-photograph>img,body.lotus-v2 [data-home-film] .hero-photograph>video{object-position:92% center}}
 /* Public field guide sits beside product discovery, without replacing the catalogue. */
 .manual-guide-actions{display:flex;flex-direction:column;align-items:flex-start;gap:18px}.manual-guide-link{font-size:12px;min-height:44px;padding:12px 18px}.manual-guide-banner{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;margin:12px 0 28px;border-top:1px solid #cabd9e;border-bottom:1px solid #cabd9e}.manual-guide-banner strong{font-size:18px;font-weight:500}.manual-guide-banner p{font-size:13px;line-height:1.8;margin:8px 0 0;color:#625b4d}.manual-guide-banner .button{flex-shrink:0}@media(max-width:700px){.manual-guide-banner{flex-direction:column;align-items:flex-start;gap:16px}.manual-guide-actions{gap:14px}}
+
+/* Owner approved below-image disclosure for process 01 and 02. */
+.lotus-process .process-panel figure:has(.process-media-caption){display:grid;grid-template-columns:minmax(0,1fr)}
+.lotus-process .process-panel figure:has(.process-media-caption)>img{grid-area:1/1;min-width:0;width:100%}
+.lotus-process .process-panel figure:has(.process-media-caption)>[data-process-video]{position:static;grid-area:1/1;min-width:0;width:100%;height:100%;align-self:stretch}
+.lotus-process .process-panel figcaption.process-media-caption{display:block;position:static;grid-area:2/1;padding:10px 12px;margin:0;background:#203d32;color:#f4f0e6;text-shadow:none;font-size:11px;line-height:1.6;overflow-wrap:anywhere}
