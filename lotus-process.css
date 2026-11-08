@@ -1,0 +1,55 @@
+/* The Lotus Way: tactile chapter controls, scoped to this section only. */
+.process-enhanced .process-interaction-hint{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 0 12px;font-size:12px;color:#535c52;letter-spacing:.04em}
+.process-enhanced .process-interaction-hint[hidden]{display:none}
+.process-enhanced .process-position{font:11px ui-monospace,monospace;letter-spacing:.13em;color:#6c705e;white-space:nowrap}
+.process-enhanced .process-controls{gap:8px;margin-bottom:26px;isolation:isolate}
+.process-enhanced .process-controls::before,.process-enhanced .process-controls::after{display:none}
+.process-enhanced .process-controls button{position:relative;display:flex;flex-direction:column;align-items:stretch;justify-content:space-between;gap:15px;min-height:136px;min-width:0;padding:17px 17px 14px;border:1px solid #b8bcae;border-radius:2px;background:linear-gradient(145deg,#fffef8,#eeeee5);color:#29372c;box-shadow:0 2px 0 #d7d9cf,0 4px 9px #26342406;cursor:pointer;text-align:left;transition:background .2s,border-color .2s,box-shadow .2s,transform .2s,color .2s;-webkit-tap-highlight-color:transparent}
+.process-enhanced .process-controls .process-number{font:11px ui-monospace,monospace;color:#737763;letter-spacing:.12em;margin:0}
+.process-enhanced .process-controls strong{font-size:17px;font-weight:500;line-height:1.4;letter-spacing:.02em;white-space:nowrap}
+.process-enhanced .process-action{display:flex;align-items:center;justify-content:space-between;gap:5px;font-size:10px;letter-spacing:.06em;color:#626a59}
+.process-enhanced .process-action b{display:grid;place-items:center;width:24px;height:24px;border:1px solid #b4b8a7;border-radius:50%;font-size:15px;font-weight:400;line-height:1;transition:background .2s,transform .2s}
+.process-enhanced .process-controls button[aria-selected=true]{background:linear-gradient(135deg,#304637,#172b20);border-color:#253d2d;color:#fffef3;box-shadow:inset 0 1px 0 #8e9f7b55,0 2px 0 #13241a,0 6px 14px #20362421}
+.process-enhanced .process-controls button[aria-selected=true] .process-number{color:#d7c293}
+.process-enhanced .process-controls button[aria-selected=true] .process-action{color:#e1d8bb}
+.process-enhanced .process-controls button[aria-selected=true] .process-action b{background:#d8c38f;color:#24382a;border-color:#d8c38f;transform:rotate(45deg)}
+.process-enhanced .process-controls button[aria-selected=true]::after{content:'';position:absolute;height:3px;left:17px;right:17px;bottom:-2px;background:#bda476}
+@media(hover:hover){.process-enhanced .process-controls button:not([aria-selected=true]):hover{border-color:#63755d;background:#fdfcf4;transform:translateY(-3px);box-shadow:0 3px 0 #c8cebd,0 9px 18px #20362412}.process-enhanced .process-controls button:hover .process-action b{background:#e5e7da;transform:translate(2px,-2px)}.process-enhanced .process-controls button[aria-selected=true]:hover .process-action b{background:#e4d3ac;transform:rotate(45deg)}}
+.process-enhanced .process-controls button:active{transform:translateY(1px);box-shadow:0 1px 0 #c8cebd}
+.process-enhanced .process-controls button:focus-visible,.process-enhanced .process-panel:focus-visible{outline:3px solid #a16b29;outline-offset:4px}
+.process-enhanced .process-panel:not([hidden]){animation:process-reveal .36s cubic-bezier(.2,.7,.3,1) both}
+.process-enhanced .process-panel figure{overflow:hidden;border-radius:2px}
+.process-enhanced .process-panel img{transition:transform .6s}
+@keyframes process-reveal{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:1001px) and (max-width:1200px){.process-enhanced .process-controls button{padding:14px 10px}.process-enhanced .process-controls strong{font-size:15px}}
+@media(max-width:700px){.lotus-v2 .process-enhanced .process-controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:24px}.lotus-v2 .process-enhanced .process-controls button{display:grid;grid-template-columns:22px minmax(0,1fr);align-items:center;gap:10px 8px;min-height:94px;padding:14px}.lotus-v2 .process-enhanced .process-controls strong{font-size:15px;white-space:nowrap}.process-enhanced .process-action{grid-column:1/-1}.process-enhanced .process-controls .process-number{font-size:10px}.process-enhanced .process-interaction-hint{font-size:11px;gap:8px}.process-enhanced .process-position{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.process-enhanced .process-panel:not([hidden]){animation:none}.process-enhanced .process-controls button,.process-enhanced .process-action b,.process-enhanced .process-panel img{transition:none}.process-enhanced .process-controls button:hover{transform:none}}
+
+.process-panel figure{position:relative}.process-panel [data-process-video]{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.process-panel [data-process-video][hidden]{display:none}.process-panel figcaption{z-index:2}
+/* Refined chapter navigation: quiet aqua, editorial spacing, no raised tiles. */
+body.lotus-v2 .lotus-process .process-controls{gap:0;padding:0;border-top:1px solid #acc8c4;border-bottom:1px solid #acc8c4;background:#fafbf7;margin-bottom:32px}
+body.lotus-v2 .lotus-process .process-controls button{min-height:156px;padding:22px 20px 19px;gap:21px;border:0!important;border-right:1px solid #d4e0da!important;border-radius:0;background:transparent!important;color:#173f3d!important;box-shadow:none!important;transform:none!important;transition:background .3s ease,color .3s ease}
+body.lotus-v2 .lotus-process .process-controls button:last-child{border-right:0!important}
+body.lotus-v2 .lotus-process .process-controls button[aria-selected=true]{background:linear-gradient(160deg,#eefbf8,#d8f2ed)!important;color:#173f3d!important}
+body.lotus-v2 .lotus-process .process-controls button:hover{background:#edf5f1!important}
+body.lotus-v2 .lotus-process .process-controls button[aria-selected=true]::after{left:20px;right:20px;top:0;bottom:auto;height:3px;background:#399f97!important}
+body.lotus-v2 .lotus-process .process-controls .process-number{font:10px ui-monospace,monospace;letter-spacing:.18em;color:#4d6c67!important}
+body.lotus-v2 .lotus-process .process-controls strong{font-family:'Yu Mincho','Hiragino Mincho ProN',serif;font-size:19px;font-weight:500;line-height:1.5;letter-spacing:.04em;white-space:nowrap}
+body.lotus-v2 .lotus-process .process-action{font-size:10px;letter-spacing:.09em;color:#40615b!important}
+body.lotus-v2 .lotus-process .process-action b{width:auto;height:auto;border:0!important;border-radius:0;background:none!important;color:#287e77!important;font-size:20px;transform:none!important;transition:transform .25s ease}
+body.lotus-v2 .lotus-process .process-controls button:hover .process-action b{transform:translateX(3px)!important}
+body.lotus-v2 .lotus-process .process-controls button:focus-visible{outline:2px solid #145d57!important;outline-offset:-6px}
+@media(min-width:1001px) and (max-width:1200px){body.lotus-v2 .lotus-process .process-controls button{padding-inline:14px}body.lotus-v2 .lotus-process .process-controls strong{font-size:16px}}
+@media(max-width:700px){body.lotus-v2 .lotus-process .process-controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}body.lotus-v2 .lotus-process .process-controls button{min-height:116px;padding:17px 16px;grid-template-columns:20px minmax(0,1fr);gap:16px 8px}body.lotus-v2 .lotus-process .process-controls button:nth-child(2){border-right:0!important}body.lotus-v2 .lotus-process .process-controls button:nth-child(-n+2){border-bottom:1px solid #d4e0da!important}body.lotus-v2 .lotus-process .process-controls strong{font-size:16px}body.lotus-v2 .lotus-process .process-controls button[aria-selected=true]::after{left:16px;right:16px}}
+@media(prefers-reduced-motion:reduce){body.lotus-v2 .lotus-process .process-controls button,body.lotus-v2 .lotus-process .process-action b{transition:none}body.lotus-v2 .lotus-process .process-controls button:hover .process-action b{transform:none!important}}
+/* Tiffany metal chapters with fine champagne inlay, preserving the editorial grid. */
+body.lotus-v2.lotus-v2 .lotus-process .process-controls{border-color:#b8aa78;background:#d5e6dc}
+body.lotus-v2.lotus-v2 .lotus-process .process-controls button{background:linear-gradient(125deg,#8fd2c5,#c0e5d7 35%,#83cabb 65%,#a7dbcb)!important;color:#143d33!important;border-right-color:#a8b79a!important;box-shadow:inset 0 1px 0 #edfff5c2!important}
+body.lotus-v2.lotus-v2 .lotus-process .process-controls button[aria-selected=true]{background:linear-gradient(120deg,#55ac9d 0%,#94d5bd 32%,#c3e8d1 48%,#7bc6ac 52%,#58ad97 100%)!important;color:#0b3026!important;box-shadow:inset 0 1px 0 #eadca6,inset 0 -1px 0 #9b7b43!important}
+body.lotus-v2.lotus-v2 .lotus-process .process-controls button[aria-selected=true]::after{height:3px;background:linear-gradient(90deg,#97713a,#f5df9d,#9c753b)!important}
+body.lotus-v2.lotus-v2 .lotus-process .process-controls button:hover{background:linear-gradient(125deg,#a8dfcf,#d2edde 40%,#91d2bd)!important}
+body.lotus-v2.lotus-v2 .lotus-process .process-controls .process-number,body.lotus-v2.lotus-v2 .lotus-process .process-action{color:#285244!important}
+body.lotus-v2.lotus-v2 .lotus-process .process-action b{color:#254f40!important}
+body.lotus-v2.lotus-v2 .lotus-process .process-controls button[aria-selected=true] .process-action b{background:linear-gradient(135deg,#b99b57,#f3dc9d,#ad8d47)!important;color:#203e30!important}
+
+body.lotus-v2.lotus-v2 .lotus-process .process-controls .process-number,body.lotus-v2.lotus-v2 .lotus-process .process-action{color:#103a2e!important}

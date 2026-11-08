@@ -1,0 +1,12 @@
+.cf-panel{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:2px;background:#152f30;padding:5px;aspect-ratio:calc(var(--cols)/var(--rows));border:1px solid #799b8e}.cf-panel i{background:#426d66;border:1px solid #91ada3;min-width:0}.cf-hero-art{position:absolute;inset:0;background:#0e2329;display:flex;align-items:center;justify-content:flex-end;gap:3%;padding:8%;opacity:.6}.cf-hero-art .cf-panel{width:38%;transform:perspective(1000px) rotateY(-12deg)}.conference-fidelity{padding-block:50px}.conference-fidelity h2{font-size:clamp(28px,4vw,42px);line-height:1.5}.cf-disclosure{font-size:14px;line-height:1.8;border-left:3px solid #637f6e;padding-left:14px;max-width:50em}.cf-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:28px}.cf-cards article{border:1px solid #c3cbbc;background:#e9ede3;padding:20px;display:flex;flex-direction:column;gap:14px}.cf-cards article>span{font-size:12px}.cf-cards strong{font-size:20px}.cf-cards small{font-size:13px}.cf-cards .cf-panel{margin-block:auto;min-height:70px}.cf-strip{margin-top:22px;padding:24px;border:1px solid #c3cbbc;background:#f1f1e8}.cf-strip h3{font-size:21px;margin:0 0 12px}.cf-strip small{font-size:12px;line-height:1.8}.cf-strip .cf-panel{margin-top:22px;max-width:800px}.cf-strip p{margin:0 0 8px}@media(max-width:700px){.cf-cards{grid-template-columns:1fr 1fr;gap:10px}.cf-cards article{padding:12px;gap:12px}.cf-cards strong{font-size:16px}.cf-cards .cf-panel{min-height:0;gap:1px;padding:3px}.cf-panel i{border:0}.cf-strip{padding:18px}.cf-hero-art{opacity:.35}.cf-hero-art .cf-panel{width:55%}}
+.cf-hero-label{font-size:12px!important;line-height:1.7!important;color:#dce6d7!important;margin-top:12px!important}
+/* Keep comparison art behind the existing contrast overlay and all readable text. */
+.page-case-conference-led .cx-intro{isolation:isolate}
+.page-case-conference-led .cf-hero-art{z-index:-2;pointer-events:none}
+.page-case-conference-led .cx-intro>.shell{position:relative;z-index:1}
+.page-case-conference-led .cx-intro-bottom{flex-wrap:wrap}
+.page-case-conference-led .cf-hero-label{flex-basis:100%;order:3}
+/* A 31-column band must fit its container without intrinsic aspect-ratio expansion. */
+.cf-strip{min-width:0}.cf-strip .cf-panel{box-sizing:border-box;width:100%;max-width:100%;min-width:0;min-height:0;grid-template-columns:repeat(31,minmax(0,1fr));gap:1px;padding:3px;overflow:hidden}.cf-strip .cf-panel i{min-width:0;min-height:0}
+
+.cf-strip .cf-panel{min-height:16px;height:clamp(16px,2.6vw,32px);aspect-ratio:auto}

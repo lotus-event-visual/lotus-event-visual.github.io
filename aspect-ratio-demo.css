@@ -1,0 +1,15 @@
+.lotus-aspect-demo{margin:28px 0;padding:24px 0;border-block:1px solid #b9c4b8;color:#24392e;min-width:0}
+.lotus-aspect-demo h3{font-size:clamp(21px,2.5vw,28px);font-weight:500;line-height:1.5;margin:0 0 10px}
+.lotus-aspect-intro{font-size:15px;line-height:1.8;margin:0 0 20px;max-width:48em}
+.lotus-aspect-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;max-width:520px;margin-bottom:18px}
+.lotus-aspect-controls button{font:inherit;font-size:15px;line-height:1.5;min-height:52px;padding:12px 16px;border:1px solid #68796d;border-radius:3px;background:#f3f1ec;color:#24392e;cursor:pointer;overflow-wrap:anywhere}
+.lotus-aspect-controls button[aria-pressed="true"]{background:#243e35;color:#fffdf7;border-color:#243e35;font-weight:600}
+.lotus-aspect-controls button:focus-visible{outline:3px solid #9a5f2c;outline-offset:4px}
+.lotus-aspect-panel{min-width:0;max-width:800px}
+.lotus-aspect-panel h4{font-size:16px;font-weight:500;line-height:1.6;margin:20px 0 0}
+.lotus-aspect-demo .lotus-aspect-panel figure{margin:10px 0 18px}
+.lotus-aspect-demo .lotus-aspect-panel img{display:block;width:100%;height:auto;border-radius:4px}
+.lotus-aspect-demo .lotus-aspect-panel figcaption{font-size:14px;line-height:1.8;color:#3e5546}
+.lotus-aspect-note{font-size:13px;line-height:1.85;margin:12px 0 0;max-width:58em;color:#4b6051}
+.lotus-aspect-demo [hidden]{display:none!important}
+@media(max-width:430px){.lotus-aspect-controls{grid-template-columns:minmax(0,1fr)}.lotus-aspect-controls button{text-align:left}.lotus-aspect-demo{padding-block:20px}.lotus-aspect-intro{font-size:14px}}

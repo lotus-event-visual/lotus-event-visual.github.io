@@ -1,0 +1,32 @@
+/* Equipment menu: keep imagery and asymmetry, make each destination distinct. */
+#equipment-guide.guide-showroom{border-top:2px solid #5c695c;padding-top:30px;padding-bottom:64px}
+#equipment-guide .showroom-heading{padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid #c5cbbf}
+#equipment-guide .showroom-heading .eyebrow{color:#4c594a;font-weight:600;letter-spacing:.15em}
+#equipment-guide .showroom-heading>.text-link{padding:12px 17px;border:1px solid #9fa995;background:#e9ecdf;min-height:46px}
+#equipment-guide .showroom-grid{gap:20px 26px;align-items:stretch}
+#equipment-guide .showroom-grid>a{border:1px solid #bcc5b4;background:#fafbf6;padding:0 22px 24px;transition:border-color .2s ease,background-color .2s ease}
+#equipment-guide .showroom-grid figure{margin:0 -22px 22px;padding:20px;border-bottom:1px solid #cbd1c3}
+#equipment-guide .showroom-grid img{height:135px}
+#equipment-guide .showroom-grid .showroom-feature img{height:360px}
+#equipment-guide .showroom-grid .showroom-stage{height:175px}
+#equipment-guide .showroom-grid>a>span{font-size:11px;font-weight:600;color:#53604e;letter-spacing:.12em}
+#equipment-guide .showroom-grid h3{font-size:23px;font-weight:500;line-height:1.55;margin:10px 42px 0 0}
+#equipment-guide .showroom-grid p{margin-top:12px;padding-right:40px}
+#equipment-guide .showroom-grid>a>b{right:18px;bottom:22px;width:34px;height:34px;display:grid;place-items:center;background:#e9eddf;border:1px solid #b8c1ac;border-radius:50%;font-size:21px;line-height:1}
+#equipment-guide .showroom-grid>a:hover{border-color:#65775a;background:#f1f5e8}
+#equipment-guide a:focus-visible{outline:3px solid #52663f;outline-offset:4px}
+#equipment-guide .showroom-credit{margin-top:16px}
+@media(max-width:700px){
+ #equipment-guide.guide-showroom{padding-top:24px;padding-bottom:46px}
+ #equipment-guide .showroom-heading{padding-bottom:22px;margin-bottom:22px}
+ #equipment-guide .showroom-heading>.text-link{margin-top:20px}
+ #equipment-guide .showroom-grid{gap:20px}
+ #equipment-guide .showroom-grid>a{padding:0 18px 23px}
+ #equipment-guide .showroom-grid figure{margin:0 -18px 19px;padding:18px}
+ #equipment-guide .showroom-grid .showroom-feature img{height:240px}
+ #equipment-guide .showroom-grid img{height:160px}
+ #equipment-guide .showroom-grid .showroom-stage{height:180px}
+ #equipment-guide .showroom-grid h3{font-size:21px}
+ #equipment-guide .showroom-grid>a>b{right:15px;bottom:20px}
+}
+@media(prefers-reduced-motion:reduce){#equipment-guide .showroom-grid>a{transition:none}}

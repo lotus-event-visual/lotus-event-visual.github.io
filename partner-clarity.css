@@ -1,0 +1,25 @@
+
+.page-partners .page-intro{padding-top:36px;padding-bottom:60px}
+.page-partners .intro-grid{display:grid;align-items:start;gap:48px}
+.page-partners .page-intro .eyebrow{font-family:inherit;font-size:15px;font-weight:600;letter-spacing:.04em;margin-bottom:22px}
+.page-partners .page-intro h1{font-size:clamp(32px,3.4vw,48px);line-height:1.5;letter-spacing:-.035em}
+.page-partners .page-intro h1 span{display:block}
+.page-partners .page-intro .lead{font-size:16px;line-height:1.95;margin-top:24px}
+.partner-entry-links{display:flex;flex-wrap:wrap;gap:10px 24px;margin-top:22px}
+.partner-entry-links a{font-size:14px;min-height:44px}
+.partner-role-map{background:#e3e8dd;padding:28px;border:1px solid #ccd5c5;border-radius:4px;color:#243c2c}
+.partner-role-map figcaption{font-size:22px;font-weight:600;line-height:1.5;margin-bottom:18px}
+.partner-request{background:#f7f8f3;border:1px solid #c3cfba;padding:15px 18px}
+.partner-request strong{display:block;font-size:17px}
+.partner-request p{font-size:14px;line-height:1.7;margin-top:4px}
+.partner-flow-arrow{display:flex;align-items:center;gap:12px;padding:10px 18px;font-size:13px}
+.partner-flow-arrow span{font-size:24px;line-height:1}
+.partner-delivery{background:#294332;color:#fff;padding:20px}
+.partner-delivery h2{font-size:22px;line-height:1.4;letter-spacing:0;margin:0 0 16px}
+.partner-delivery dl{display:grid;gap:14px}
+.partner-delivery dl>div{border-top:1px solid #77907c;padding-top:12px}
+.partner-delivery dt{font-size:17px;font-weight:600}
+.partner-delivery dd{margin:4px 0 0;font-size:14px;line-height:1.7;color:#eff4eb}
+.partner-map-note{font-size:13px;line-height:1.7;margin-top:14px}
+@media(max-width:900px){.page-partners .intro-grid{gap:28px}.page-partners .page-intro h1{font-size:36px}.partner-role-map{padding:22px}}
+@media(max-width:700px){.page-partners .page-intro{padding-top:24px;padding-bottom:38px}.page-partners .intro-grid{grid-template-columns:1fr;gap:28px}.page-partners .page-intro .eyebrow{font-size:14px;margin-bottom:16px}.page-partners .page-intro h1{font-size:clamp(26px,7.6vw,36px);line-height:1.5}.page-partners .page-intro .lead{font-size:14px;margin-top:18px}.partner-entry-links{margin-top:14px;gap:8px 20px}.partner-role-map{padding:20px}.partner-role-map figcaption{font-size:21px}.partner-delivery{padding:18px}.partner-delivery h2{font-size:21px}}
