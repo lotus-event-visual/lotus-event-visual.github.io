@@ -1,2 +1,9 @@
 /* H33 equipment guide film (Friday 2026-11-09) */
 .guide-film{margin:24px 0 32px;min-width:0}.guide-film video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#0b0d10;object-fit:cover}.guide-film figcaption{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:10px;font-size:13px;line-height:1.7;color:#5d625b}.guide-film-badge{display:inline-block;padding:2px 10px;border:1px solid #8a8f86;border-radius:999px;font-size:12px;color:#2a2f2a;background:#fff}@media(prefers-reduced-motion:reduce){.guide-film video{animation:none}}
+/* Guide top simplified (owner 19:29) */
+.product-top .guide-intro h1.guide-kicker{font-size:14px;line-height:1.5;letter-spacing:.14em;font-weight:500;margin:0 0 20px;color:#5d625b}
+.guide-hook{font-size:clamp(30px,4.2vw,54px);line-height:1.35;font-weight:600;letter-spacing:-.01em;margin:0 0 20px;color:#1f2a24}
+.guide-hook-sub{font-size:16px;line-height:1.9;color:#4c524b;margin:0}
+.guide-intro-media{min-width:0}.guide-intro-media .guide-film{margin:0 0 20px}
+.guide-purpose-end{margin-top:48px}
+@media(max-width:720px){.guide-intro-media{margin-top:28px}}

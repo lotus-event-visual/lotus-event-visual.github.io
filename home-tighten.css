@@ -1,0 +1,11 @@
+/* Owner 19:31: tighter spacing on the home page */
+.home-hero .hero-inner .hero-business-actions{margin-top:28px}
+.home-hero .hero-inner .hero-guide-entry{margin-top:16px}
+.home-hero .hero-inner .hero-process-link{margin-top:12px;padding-top:16px}
+.home-hero .hero-inner{padding-top:56px;padding-bottom:28px}
+main>.fr-numbers{padding-top:32px!important}
+main>.fr-try,main>.fr-day,main>.fr-journal,main>.fr-services,main>.fr-contact{padding-top:40px!important;padding-bottom:16px!important}
+main>section .fr-head{margin-bottom:20px}
+main>section .fr-head h2{margin-bottom:10px}
+@media(max-width:720px){.home-hero .hero-inner .hero-business-actions{margin-top:20px}main>.fr-try,main>.fr-day,main>.fr-journal,main>.fr-services,main>.fr-contact{padding-top:32px!important}}
+.home-hero.gentle-hero{min-height:0!important;height:auto!important}.home-hero .hero-inner{min-height:0!important;height:auto!important}
