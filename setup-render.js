@@ -156,7 +156,8 @@ function lift(x,z,top){ // scissor-type aerial work platform, generic
 }
 function cases(x,z,n){for(let i=0;i<n;i++)box(x+i*.75,0,z+(i%2)*.3,.65,.75,.55,i%3?'#1e1f22':'#26282c')}
 function render(){
- const s=state();S=s;seed=11+s.cols*7+s.rows*3+(s.name.length*13);setupCam(s);
+ const s=state();S=s;
+ if(window.SR3D&&window.SR3D.ready&&!window.SR3D.failed){try{window.SR3D.update(s)}catch(e){console.warn(e);window.SR3D.failed=true;cv.parentNode.classList.remove('is-3d');return render()}const lb=root.querySelector('.sr-label');if(lb)lb.textContent=describe(s);cap.textContent=describe(s)+'。人物は身長 1.7m。ドラッグで視点を動かせます。';if(toPrint&&toPrint.checked)syncPrint();return}seed=11+s.cols*7+s.rows*3+(s.name.length*13);setupCam(s);
  const cw=cv.width,ch=cv.height;ctx.clearRect(0,0,cw,ch);ctx.fillStyle='#111';ctx.fillRect(0,0,cw,ch);
  room(s);
  let r;if(s.type==='projector')r=projector(s);else if(s.type==='monitor')r=monitors(s);else if(s.type==='none')r=null;else r=led(s);
@@ -198,7 +199,7 @@ function describe(s){
 function syncPrint(){
  let host=document.getElementById('setup-render-print');const sheet=document.querySelector('#estimate-sheet .project-sheet-heading');if(!sheet)return;
  if(!host){host=document.createElement('figure');host.id='setup-render-print';host.className='setup-render-print';sheet.after(host)}
- host.innerHTML='';const im=new Image();im.alt='設営の様子を描いた図：'+describe(S);im.src=cv.toDataURL('image/jpeg',.86);host.append(im);host.hidden=false;
+ host.innerHTML='';const im=new Image();im.alt='設営の様子を描いた図：'+describe(S);im.src=(window.SR3D?window.SR3D.snapshot(describe(S)):cv).toDataURL('image/jpeg',.86);host.append(im);host.hidden=false;
 }
 modeBtns.forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.srMode;modeBtns.forEach(x=>x.setAttribute('aria-pressed',x===b));render()}));
 const sug=root.querySelector('.sr-suggest'),nm=root.querySelector('[name=sr-name]'),pn=$('project-name');
@@ -208,8 +209,9 @@ function setv(id,v,ev){const e=$(id);if(!e)return;e.value=String(v);e.dispatchEv
 function apply(l){const btn=document.querySelector('[data-screen-type="led"]');if(($('screen-type')||{}).value!=='led'&&btn)btn.click();const cm=document.querySelector('[data-quantity-mode="size"]');if(cm&&cm.getAttribute('aria-pressed')!=='true')cm.click();setv('stage-installation',l.inst,'change');setv('stage-cols',l.c[0]);setv('stage-rows',l.c[1]);setv('stage-cols',l.c[0],'change');sides=l.side;const note=$('estimate-note');if(note){const line='設営イメージ：'+VEN[venueSel.value]+'・'+(l.c[0]*.5)+'×'+(l.c[1]*.5)+'m'+(l.side?'＋左右'+(l.side[0]*.5)+'×'+(l.side[1]*.5)+'m（サイドは別途相談）':'');note.value=note.value.replace(/^設営イメージ：.*$/m,'').trim();note.value=(note.value?note.value+'\n':'')+line;note.dispatchEvent(new Event('input',{bubbles:true}))}last='';render();root.querySelector('.sr-frame').scrollIntoView({behavior:'smooth',block:'center'})}
 venueSel.addEventListener('change',()=>{sides=null;suggest();render()});suggest();
 root.querySelector('.sr-draw').addEventListener('click',()=>{render();cv.scrollIntoView({behavior:'smooth',block:'nearest'})});
-save.addEventListener('click',()=>{const a=document.createElement('a');a.download='LOTUS-setup'+(S&&S.name?'-'+S.name.replace(/[\\/:*?"<>|\s]+/g,'_'):'')+'.png';a.href=cv.toDataURL('image/png');a.click()});
+save.addEventListener('click',()=>{const a=document.createElement('a');a.download='LOTUS-setup'+(S&&S.name?'-'+S.name.replace(/[\\/:*?"<>|\s]+/g,'_'):'')+'.png';a.href=(window.SR3D?window.SR3D.snapshot(describe(S)):cv).toDataURL('image/png');a.click()});
 if(toPrint)toPrint.addEventListener('change',()=>{if(toPrint.checked)syncPrint();else{const h=document.getElementById('setup-render-print');if(h)h.remove()}});
 setInterval(()=>{const s=JSON.stringify(state());if(s!==last){last=s;render()}},700);
+window.addEventListener('sr3d-ready',()=>{last='';render()});
 render();
 })();
