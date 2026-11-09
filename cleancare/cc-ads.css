@@ -1,0 +1,101 @@
+/* クリーンケア 広告バナー・メニュー選択・お見積り帯  Friday 2026-11-10 */
+body.cc-fun{--ad-red:#E0533A;--ad-org:#F28C3A;--ad-cream:#FFF7EC;--ad-yel:#FFE27A;--ad-ink:#1F3247}
+
+/* ── 無料お見積り帯 ── */
+.ad-quote{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px 26px;align-items:center;background:#fff;border:1px solid #EFE4D6;border-radius:24px;padding:18px 18px 18px 26px;box-shadow:0 14px 40px rgba(31,50,71,.08);margin:0 0 26px}
+.ad-quote .q-ic{width:58px;height:58px;border-radius:18px;background:var(--ad-cream);display:grid;place-items:center}
+.ad-quote .q-ic svg{width:32px;height:32px}
+.ad-quote p{margin:0;color:var(--ad-ink)!important;font-weight:800;font-size:clamp(17px,1.9vw,22px);line-height:1.5}
+.ad-quote p small{display:block;font-size:13px;font-weight:600;color:#5C6F82!important;letter-spacing:.02em}
+.ad-quote p em{font-style:normal;background:linear-gradient(transparent 62%,var(--ad-yel) 62%)}
+.ad-quote a{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(180deg,#EC6448,var(--ad-red));color:#fff!important;text-decoration:none;font-weight:800;font-size:clamp(17px,1.8vw,21px);padding:18px 26px 18px 32px;border-radius:18px;box-shadow:0 6px 0 #B53E28,0 14px 28px rgba(224,83,58,.28);white-space:nowrap;transition:transform .15s,box-shadow .15s}
+.ad-quote a:hover{transform:translateY(2px);box-shadow:0 4px 0 #B53E28,0 10px 20px rgba(224,83,58,.25)}
+.ad-quote a i{font-style:normal;width:26px;height:26px;border-radius:50%;background:#fff;color:var(--ad-red);display:grid;place-items:center;font-size:15px}
+
+/* ── バナースライダー ── */
+.ad-wrap{position:relative;margin:0 0 8px}
+.ad-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:24px;box-shadow:0 18px 50px rgba(31,50,71,.12)}
+.ad-track::-webkit-scrollbar{display:none}
+.ad{flex:0 0 100%;scroll-snap-align:start;position:relative;display:block;aspect-ratio:1500/620;overflow:hidden;text-decoration:none;background:var(--ad-cream);isolation:isolate}
+.ad>img{position:absolute;inset:0;width:62%;height:100%;object-fit:cover;z-index:-2}
+.ad::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(255,247,236,0) 30%,rgba(255,247,236,.92) 50%,var(--ad-cream) 60%)}
+.ad::after{content:"";position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,226,122,.55),rgba(255,226,122,0) 70%);z-index:-1}
+.ad .rb{position:absolute;left:0;right:0;top:0;background:var(--ad-ink);color:#fff;font-weight:800;text-align:center;padding:10px 16px;font-size:clamp(13px,1.45vw,19px);letter-spacing:.06em}
+.ad .rb b{background:var(--ad-yel);color:var(--ad-ink);padding:2px 12px;border-radius:999px;margin-right:6px}
+.ad .tx{position:absolute;right:4.5%;top:15%;width:47%;display:flex;flex-direction:column;align-items:flex-start}
+.ad .kick{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
+.ad .kick span{background:#fff;border:2px solid var(--ad-ink);color:var(--ad-ink);font-weight:800;font-size:clamp(11px,1.15vw,15px);padding:3px 12px;border-radius:8px}
+.ad .big{margin:0;font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;color:var(--ad-ink)!important;font-size:clamp(24px,3.9vw,56px);line-height:1.18;letter-spacing:.01em;text-shadow:0 3px 0 #fff,0 0 1px #fff}
+.ad .big::after{display:none!important}
+.ad .big em{font-style:normal;color:var(--ad-red)}
+.ad .price{display:flex;align-items:flex-end;gap:8px;margin:6px 0 2px;line-height:1}
+.ad .price b{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:800;font-size:clamp(46px,8.2vw,118px);letter-spacing:-.02em;background:linear-gradient(180deg,var(--ad-org) 10%,var(--ad-red) 70%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 #fff) drop-shadow(0 6px 10px rgba(224,83,58,.22))}
+.ad .price span{font-weight:800;color:var(--ad-ink);font-size:clamp(18px,2.6vw,36px);padding-bottom:.3em;line-height:1.1}
+.ad .price span small{display:block;font-size:.42em;font-weight:700;color:#5C6F82;letter-spacing:.02em}
+.ad .price .from{font-size:clamp(14px,1.8vw,24px)}
+.ad .note{margin:0 0 12px;color:var(--ad-ink)!important;font-weight:700;font-size:clamp(12px,1.25vw,16px)}
+.ad .note mark{background:var(--ad-yel);color:inherit;padding:1px 8px;border-radius:6px}
+.ad .go{display:flex;justify-content:space-between;align-items:center;width:min(100%,430px);background:linear-gradient(180deg,#EF6A4C,var(--ad-red));color:#fff;font-weight:800;font-size:clamp(14px,1.6vw,21px);padding:clamp(10px,1.1vw,16px) 26px;border-radius:999px;box-shadow:0 5px 0 #B53E28}
+.ad:hover .go{filter:brightness(1.05)}
+.ad.navy{background:#EAF1F6}.ad.navy::before{background:linear-gradient(90deg,rgba(234,241,246,0) 30%,rgba(234,241,246,.92) 50%,#EAF1F6 60%)}
+.ad.green{background:#EEF5EE}.ad.green::before{background:linear-gradient(90deg,rgba(238,245,238,0) 30%,rgba(238,245,238,.92) 50%,#EEF5EE 60%)}
+.ad-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:var(--ad-ink);font-size:22px;font-weight:800;box-shadow:0 6px 18px rgba(31,50,71,.18);cursor:pointer;z-index:3;display:grid;place-items:center}
+.ad-nav.prev{left:-18px}.ad-nav.next{right:-18px}
+.ad-dots{display:flex;justify-content:center;gap:10px;margin:16px 0 0}
+.ad-dots button{width:10px;height:10px;border-radius:999px;border:0;background:#CBD6DE;padding:0;cursor:pointer;transition:width .25s,background .25s}
+.ad-dots button[aria-current="true"]{width:30px;background:var(--ad-red)}
+
+/* サブバナー(横長 2 枚) */
+.ad-sub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:22px 0 0}
+.ad-sub a{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding:20px 22px;border-radius:20px;text-decoration:none;color:var(--ad-ink);overflow:hidden;border:1px solid #EFE4D6;background:linear-gradient(120deg,#FFF7EC,#FFFDF9)}
+.ad-sub a.b2{background:linear-gradient(120deg,#EAF4F1,#F9FCFB);border-color:#DCEBE5}
+.ad-sub .ic{width:62px;height:62px;border-radius:18px;background:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(31,50,71,.08)}
+.ad-sub .ic svg{width:34px;height:34px}
+.ad-sub b{display:block;font-size:clamp(16px,1.6vw,20px);font-weight:800;color:var(--ad-ink)}
+.ad-sub small{display:block;font-size:13.5px;color:#5C6F82;line-height:1.6;margin-top:2px}
+.ad-sub strong{font-family:"M PLUS Rounded 1c",sans-serif;font-size:clamp(22px,2.4vw,30px);color:var(--ad-red);white-space:nowrap}
+.ad-sub strong em{font-style:normal;font-size:.5em;color:var(--ad-ink);margin-left:2px}
+
+/* ── メニューから選ぶ(場所/お悩み タブ) ── */
+.ad-pick{margin-top:clamp(40px,6vw,72px)}
+.ad-tabs{display:inline-flex;background:#fff;border:1px solid #ECE6DD;border-radius:999px;padding:5px;gap:4px;margin:0 0 22px;box-shadow:0 6px 18px rgba(31,50,71,.06)}
+.ad-tabs button{border:0;background:transparent;border-radius:999px;padding:11px 22px;font-weight:800;font-size:15px;color:#5C6F82;cursor:pointer;font-family:inherit}
+.ad-tabs button[aria-selected="true"]{background:var(--ad-ink);color:#fff}
+.ad-panel[hidden]{display:none!important}
+.ad-places{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;list-style:none;padding:0;margin:0}
+.ad-places a{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:24px 14px 20px;border-radius:20px;background:#fff;border:1px solid #ECE6DD;text-decoration:none;color:var(--ad-ink);transition:transform .15s,box-shadow .15s;height:100%}
+.ad-places a:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(31,50,71,.1)}
+.ad-places .ic{width:72px;height:72px;border-radius:50%;background:var(--ad-cream);display:grid;place-items:center}
+.ad-places .ic svg{width:38px;height:38px}
+.ad-places b{font-size:16.5px;font-weight:800}
+.ad-places small{font-size:13px;color:#5C6F82;line-height:1.6}
+.ad-places .yen{font-weight:800;color:var(--ad-red);font-size:14px}
+.ad-places .tag{position:absolute;top:12px;left:12px;background:var(--ad-red);color:#fff;font-size:11.5px;font-weight:800;padding:3px 10px;border-radius:999px;letter-spacing:.04em}
+.ad-places .tag.n{background:var(--ad-ink)}
+
+@media(max-width:860px){
+ .ad{aspect-ratio:auto;min-height:0;display:flex;flex-direction:column}
+ .ad>img{position:relative;width:100%;height:auto;aspect-ratio:16/9}
+ .ad::before{display:none}
+ .ad .rb{position:relative;order:-1}
+ .ad .tx{position:relative;right:auto;top:auto;width:auto;padding:16px 18px 22px}
+ .ad .go{width:100%}
+ .ad-nav{display:none}
+ .ad-quote{grid-template-columns:auto minmax(0,1fr);padding:18px}
+ .ad-quote a{grid-column:1/-1;justify-content:center}
+ .ad-sub{grid-template-columns:minmax(0,1fr)}
+ .ad-places{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:420px){.ad-sub a{grid-template-columns:auto minmax(0,1fr)}.ad-sub strong{grid-column:2}.ad-tabs button{padding:10px 16px;font-size:14px}}
+/* 共通ボタン装飾の打ち消し */
+body.cc-fun .ad .rb{color:#fff!important}
+body.cc-fun .ad .rb b{color:var(--ad-ink)!important}
+body.cc-fun .ad .note{color:var(--ad-ink)!important}
+html body#top.cc-fun .ad-wrap .ad-nav{background:#fff!important;color:var(--ad-ink)!important;border:0!important;border-radius:50%!important;width:48px!important;height:48px!important;min-height:0!important;padding:0!important;box-shadow:0 6px 18px rgba(31,50,71,.18)!important;font-size:24px!important;line-height:1!important}
+html body#top.cc-fun .ad-wrap .ad-nav:hover{background:var(--ad-red)!important;color:#fff!important}
+html body#top.cc-fun .ad-dots button{width:10px!important;height:10px!important;min-height:0!important;border-radius:999px!important;border:0!important;background:#CBD6DE!important;padding:0!important;box-shadow:none!important}
+html body#top.cc-fun .ad-dots button[aria-current="true"]{width:30px!important;background:var(--ad-red)!important}
+html body#top.cc-fun .ad-tabs button{min-height:0!important;box-shadow:none!important;border:0!important;background:transparent!important;color:#5C6F82!important;border-radius:999px!important}
+html body#top.cc-fun .ad-tabs button[aria-selected="true"]{background:var(--ad-ink)!important;color:#fff!important}
+body.cc-fun .ad-places b{color:var(--ad-ink)!important}body.cc-fun .ad-places small{color:#5C6F82!important}body.cc-fun .ad-sub b{color:var(--ad-ink)!important}
+@media(max-width:860px){body.cc-fun .ad-places a{padding-top:40px}}
