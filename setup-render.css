@@ -29,4 +29,4 @@ html body#top .setup-render .sr-sug:hover,html body#top .setup-render .sr-sug:fo
 .sr-frame.is-3d canvas:not(.sr-3d){display:none}
 .sr-label{display:none}
 .sr-frame.is-3d .sr-label{display:block;position:absolute;left:0;right:0;bottom:0;padding:12px 20px;background:linear-gradient(0deg,rgba(8,9,11,.85),rgba(8,9,11,0));color:#eee9df;font-size:13px;letter-spacing:.02em;pointer-events:none}
-.sr-frame.is-3d .sr-label::before{content:"LOTUS.  SETUP VIEW";color:#c9a35a;font-weight:700;font-size:11px;letter-spacing:.18em;margin-right:16px}
+.sr-frame.is-3d .sr-label::before{content:"LOTUS VISUAL  SETUP VIEW";color:#c9a35a;font-weight:700;font-size:11px;letter-spacing:.18em;margin-right:16px}

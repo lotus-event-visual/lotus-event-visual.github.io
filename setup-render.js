@@ -183,7 +183,7 @@ function render(){
  }
  // label strip
  ctx.fillStyle='rgba(10,11,13,.82)';ctx.fillRect(0,ch-62,cw,62);ctx.fillStyle='#c9a35a';ctx.font='600 15px "Helvetica Neue",Arial,sans-serif';ctx.textAlign='left';ctx.textBaseline='middle';
- ctx.fillText('LOTUS.  SETUP VIEW',26,ch-31);
+ ctx.fillText('LOTUS VISUAL  SETUP VIEW',26,ch-31);
  ctx.fillStyle='#eee9df';ctx.font='500 17px "Hiragino Sans","Noto Sans JP",sans-serif';
  ctx.fillText(describe(s),220,ch-31);
  cap.textContent=describe(s)+'。人物は身長 1.7m で描いています。';

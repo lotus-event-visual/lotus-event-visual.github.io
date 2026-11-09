@@ -184,10 +184,10 @@ function stageDeck(s,v,x0,x1,z){if(v.stage<.2)return;const w=x1-x0+6,dm=new THRE
 function crowd(s,v,zs,ze,xs){const n0=[];for(let z=zs;z<ze;z+=.9)for(let x=-xs;x<=xs;x+=.62){if(Math.random()<.08)continue;n0.push([x+(Math.random()-.5)*.25,z+(Math.random()-.5)*.25])}
  const n=Math.min(n0.length,5200);const body=new THREE.InstancedMesh(new THREE.CapsuleGeometry(.21,1.0,3,8),M.crowd,n);const head=new THREE.InstancedMesh(G.sph,M.crowd,n);
  const pc=['#ff3c7a','#38b6ff','#ffffff','#ffd23c','#b04cff'],pick=pc[(s.name||'x').length%pc.length];
- const plMat=new THREE.MeshBasicMaterial({color:new THREE.Color(pick).multiplyScalar(4),toneMapped:false});const pens=new THREE.InstancedMesh(new THREE.CylinderGeometry(.018,.018,.32,6),plMat,n);
+ const plMat=new THREE.MeshBasicMaterial({color:new THREE.Color(pick).multiplyScalar(2.2),toneMapped:false});const pens=new THREE.InstancedMesh(new THREE.CylinderGeometry(.018,.018,.32,6),plMat,n);
  const m=new THREE.Matrix4(),q=new THREE.Quaternion(),sc=new THREE.Vector3(1,1,1);
  for(let i=0;i<n;i++){const [x,z]=n0[i],hh=.9+Math.random()*.12;m.compose(new THREE.Vector3(x,hh*.78,z),q,new THREE.Vector3(1,hh,1));body.setMatrixAt(i,m);m.compose(new THREE.Vector3(x,hh*1.5+.06,z),q,new THREE.Vector3(.11,.12,.11));head.setMatrixAt(i,m);
-  const e=new THREE.Euler((Math.random()-.5)*.6,0,(Math.random()-.5)*.8);m.compose(new THREE.Vector3(x+(Math.random()-.5)*.3,hh*1.5+.45+Math.random()*.2,z),new THREE.Quaternion().setFromEuler(e),sc);pens.setMatrixAt(i,m)}
+  const e=new THREE.Euler((Math.random()-.5)*.6,0,(Math.random()-.5)*.8);const on=Math.random()<.32;m.compose(new THREE.Vector3(x+(Math.random()-.5)*.3,hh*1.5+.45+Math.random()*.2,z),new THREE.Quaternion().setFromEuler(e),on?sc:new THREE.Vector3(0,0,0));pens.setMatrixAt(i,m)}
  world.add(body,head,pens);penlights=pens;}
 
 /* ---------- build ---------- */
@@ -203,7 +203,7 @@ function build(s){
  if(!show&&!bright){for(let x=-v.w/3;x<=v.w/3;x+=v.w/3){const wl=new THREE.SpotLight(0xfff1dd,600,v.h*3,.7,.6,2);wl.position.set(x,v.h-2,8);wl.target.position.set(x*.4,0,2);world.add(wl,wl.target)}}
  scene.environmentIntensity=bright?1:show?.12:.35;
  renderer.toneMappingExposure=bright?1.0:show?1.05:1.15;
- bloom.strength=bright?.35:show?1.0:.6;bloom.threshold=bright?.95:.8;
+ bloom.strength=bright?.25:show?.62:.45;bloom.radius=show?.38:.3;bloom.threshold=bright?.96:.88;
 
  // screens layout
  const isLED=s.type==='led'||!s.type;const W=s.w,H=s.h,z=0,stage=v.stage;
@@ -247,8 +247,8 @@ function build(s){
  // camera framing
  const span=Math.max(x1-x0,6),topY=y0+H;const aspect=camera.aspect;const fovR=THREE.MathUtils.degToRad(camera.fov);
  const dist=Math.max((span*1.18)/(2*Math.tan(fovR/2)*aspect),(topY+1)/(Math.tan(fovR/2))*.95,7);
- const cy=Math.min(Math.max(1.7,topY*.32),8);
- camera.position.set(mid+dist*.12,cy,z+dist);controls.target.set(mid,Math.max(stage+.8,y0+H*.42),z);controls.maxDistance=dist*1.8;controls.minDistance=Math.max(4,dist*.35);controls.update();
+ let cy=Math.min(Math.max(1.7,topY*.32),8);const camZ=z+dist;if(s.venue==='hall'){const riser=Math.max(0,((camZ-7)/1.05-4)*.32);cy=Math.max(cy,riser+1.35)}
+ camera.position.set(mid+dist*.12,cy,camZ);controls.target.set(mid,Math.max(stage+.8,y0+H*.42),z);controls.maxDistance=dist*1.8;controls.minDistance=Math.max(4,dist*.35);controls.update();
  home={p:camera.position.clone(),t:controls.target.clone()};userMoved=false;
 }
 let home=null;
@@ -269,7 +269,7 @@ function tick(now){if(!visible||document.hidden){running=false;return}
 let lastKey='';
 window.SR3D={ready:true,update(s){const k=JSON.stringify(s);if(k===lastKey)return;lastKey=k;S=s;frame.classList.add('is-3d');build(s);if(s.mode==='show')vid.play().catch(()=>{});loop()},
  snapshot(label){composer.render();const c=document.createElement('canvas');c.width=1600;c.height=900;const x=c.getContext('2d');x.drawImage(canvas,0,0,1600,900);
-  if(label){x.fillStyle='rgba(10,11,13,.78)';x.fillRect(0,840,1600,60);x.fillStyle='#c9a35a';x.font='600 15px Helvetica,Arial,sans-serif';x.textBaseline='middle';x.fillText('LOTUS.  SETUP VIEW',26,870);x.fillStyle='#eee9df';x.font='500 17px "Hiragino Sans","Noto Sans JP",sans-serif';x.fillText(label,220,870)}
+  if(label){x.fillStyle='rgba(10,11,13,.78)';x.fillRect(0,840,1600,60);x.fillStyle='#c9a35a';x.font='600 15px Helvetica,Arial,sans-serif';x.textBaseline='middle';x.fillText('LOTUS VISUAL  SETUP VIEW',26,870);x.fillStyle='#eee9df';x.font='500 17px "Hiragino Sans","Noto Sans JP",sans-serif';x.fillText(label,220,870)}
   return c}};
 window.dispatchEvent(new Event('sr3d-ready'));
 }

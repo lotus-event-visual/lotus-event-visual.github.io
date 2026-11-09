@@ -124,3 +124,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  document.querySelectorAll('a[href^="products.html"]').forEach(function(a){var h=a.getAttribute('href');var hash=h.indexOf('#')>-1?h.slice(h.indexOf('#')):'#guide';a.setAttribute('href','rental.html'+hash);});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',merge);else merge();})();
+
+/* ご依頼の流れページを外す・LOTUS VISUAL 表記 (Friday 2026-11-10) */
+(function(){function wf(){
+ document.querySelectorAll('#site-nav a[href^="workflow.html"], .footer-links a[href^="workflow.html"], .quick-nav a[href^="workflow.html"]').forEach(function(a){a.remove();});
+ document.querySelectorAll('a[href^="workflow.html"]').forEach(function(a){a.setAttribute('href','contact.html');});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wf);else wf();})();

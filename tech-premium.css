@@ -1,0 +1,38 @@
+/* 技術提供 — premium (Friday 2026-11-10) */
+.tp-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.tp-flow li{padding:32px 24px 32px 0;border-right:1px solid var(--line)}
+.tp-flow li+li{padding-left:24px}.tp-flow li:last-child{border-right:0}
+.tp-flow b{display:block;font-family:var(--num);font-weight:300;font-size:46px;line-height:1;color:transparent;-webkit-text-stroke:1px var(--gold);margin-bottom:16px}
+.tp-flow strong{display:block;font-family:var(--serif);font-weight:500;font-size:22px;margin-bottom:8px;color:var(--ink)}
+.tp-flow span{color:var(--mute);font-size:14px;line-height:1.9}
+.tp-jump{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 56px}
+.tp-jump a{padding:10px 18px;border:1px solid var(--line);text-decoration:none;font-size:13px;letter-spacing:.06em;transition:all .2s}
+.tp-jump a:hover{border-color:var(--gold);color:var(--gold)}
+.tp-phase{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(40px,5vw,72px) 0;border-top:1px solid var(--line);scroll-margin-top:90px}
+.tp-phase:nth-of-type(even) figure{order:2}
+.tp-phase figure{margin:0;aspect-ratio:3/2;overflow:hidden}
+.tp-phase img{display:block;width:100%;height:100%;object-fit:cover;max-width:none;filter:saturate(.9)}
+.tp-phase .tp-no{display:flex;align-items:baseline;gap:16px;margin:0 0 14px;font-size:11px;letter-spacing:.32em;color:var(--gold)}
+.tp-phase .tp-no b{font-family:var(--num);font-weight:300;font-size:56px;letter-spacing:0;line-height:.8;color:transparent;-webkit-text-stroke:1px var(--gold)}
+.tp-phase h3{font-size:clamp(24px,2.6vw,34px)!important;line-height:1.5!important;margin:0 0 6px!important}
+.tp-phase .tp-sub{font-family:var(--serif);color:var(--gold2,#e2c48a);font-size:17px;margin:0 0 14px}
+.tp-phase p{color:var(--mute);line-height:2;margin:0 0 18px}
+.tp-phase details{border-top:1px solid var(--line)}
+.tp-phase summary{cursor:pointer;padding:14px 0;font-size:14px;color:var(--gold);letter-spacing:.06em;list-style:none}
+.tp-phase summary::-webkit-details-marker{display:none}
+.tp-phase summary::after{content:" ＋"}.tp-phase details[open] summary::after{content:" −"}
+.tp-phase dl{margin:0 0 10px}.tp-phase dl div{padding:12px 0;border-top:1px dashed var(--line)}
+.tp-phase dt{font-size:13px;color:var(--ink);margin-bottom:4px;font-weight:600}.tp-phase dd{margin:0;font-size:13.5px;color:var(--mute);line-height:1.95}
+.tp-scope{margin:40px 0 0;padding:22px 26px;border:1px solid var(--line);color:var(--mute);font-size:13.5px;line-height:1.95}
+.tp-cases{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tp-case{position:relative;display:block;aspect-ratio:3/4;overflow:hidden;text-decoration:none;isolation:isolate;border:1px solid var(--line)}
+.tp-case img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;z-index:-2;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.tp-case::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.88))}
+.tp-case:hover img{transform:scale(1.07)}
+.tp-case-in{position:absolute;left:20px;right:20px;bottom:20px}
+.tp-case b{font-family:var(--num);font-weight:300;font-size:38px;color:var(--gold);line-height:1}
+.tp-case small{display:block;font-size:10px;letter-spacing:.28em;color:var(--gold);margin:8px 0 6px}
+.tp-case strong{display:block;font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.5;color:var(--ink)}
+.tp-case span{display:block;margin-top:8px;font-size:12px;color:#cfc8bb;line-height:1.7}
+@media(max-width:960px){.tp-flow{grid-template-columns:1fr 1fr}.tp-flow li:nth-child(2){border-right:0}.tp-flow li:nth-child(3){padding-left:0;border-top:1px solid var(--line)}.tp-flow li:nth-child(4){border-top:1px solid var(--line)}.tp-phase{grid-template-columns:1fr}.tp-phase:nth-of-type(even) figure{order:0}.tp-cases{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.tp-flow{grid-template-columns:1fr}.tp-flow li,.tp-flow li+li{padding:24px 0;border-right:0;border-top:1px solid var(--line)}.tp-cases{grid-template-columns:1fr}.tp-case{aspect-ratio:4/3}}
