@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /workflow.html
+Sitemap: https://lotus-event-visual.github.io/sitemap.xml
