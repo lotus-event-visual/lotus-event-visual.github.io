@@ -1,0 +1,82 @@
+/* LOTUS クリーンケアサービス v3 — 落ち着いた配色・親しみやすいレイアウト(Friday 2026-11-10) */
+body.cc-fun{--v3-bg:#FAF8F4;--v3-card:#FFFFFF;--v3-line:#ECE6DD;--v3-ink:#26394D;--v3-sub:#5C6F82;--v3-ac:#C47A63;--v3-acd:#A5624E;--v3-blue:#3F7590;--v3-sand:#F3EDE3;--v3-mist:#EEF3F5;background:var(--v3-bg)!important}
+body.cc-fun main.cc{background:transparent!important}
+body.cc-fun .cc .eyebrow{background:transparent!important;color:var(--v3-ac)!important;padding:0!important;border-radius:0!important;font-size:.78rem!important;letter-spacing:.18em!important;font-weight:700!important;display:inline-flex!important;align-items:center;gap:10px}
+body.cc-fun .cc .eyebrow::before{content:"";width:22px;height:2px;background:var(--v3-ac);display:inline-block}
+body.cc-fun .cc h1{color:var(--v3-ink)!important;letter-spacing:.01em;line-height:1.4!important}
+body.cc-fun .cc h2{color:var(--v3-ink)!important;font-size:clamp(25px,3vw,36px)!important;line-height:1.45!important;letter-spacing:.01em}
+body.cc-fun .cc .fr-head h2::after,body.cc-fun .cc h2::after{background:var(--v3-ac)!important;opacity:.55}
+body.cc-fun .cc p,body.cc-fun .cc li{color:var(--v3-sub)}
+body.cc-fun .cc-block{padding-top:clamp(56px,7vw,96px)!important}
+/* cards */
+body.cc-fun .cc-pricecards li,body.cc-fun .care-plans article,body.cc-fun .wy-g li,body.cc-fun .care-why-grid article,body.cc-fun .rm-scope article,body.cc-fun .rm-why article,body.cc-fun .rm-flow li,body.cc-fun .dt-reasons article,body.cc-fun .dt-worries li,body.cc-fun .dt-flow li{background:var(--v3-card)!important;border:1px solid var(--v3-line)!important;border-top:1px solid var(--v3-line)!important;border-radius:20px!important;box-shadow:0 10px 30px rgba(38,57,77,.06)!important}
+body.cc-fun .cc-pricecards li::before,body.cc-fun .cc-pricecards li::after{display:none!important}
+body.cc-fun .cc-pricecards small{color:var(--v3-blue)!important;font-weight:700!important}
+body.cc-fun .cc-pricecards a{background:var(--v3-mist)!important;color:var(--v3-blue)!important}
+/* buttons */
+body.cc-fun .cc-btn,body.cc-fun .rm-btn,body.cc-fun .dt-btn:not(.ghost){background:var(--v3-ac)!important;box-shadow:none!important;border-radius:999px!important;color:#fff!important;transition:background .2s,transform .2s!important}
+body.cc-fun .cc-btn:hover,body.cc-fun .rm-btn:hover,body.cc-fun .dt-btn:not(.ghost):hover{background:var(--v3-acd)!important;transform:translateY(-1px)}
+body.cc-fun .cc-btn-ghost,body.cc-fun .dt-btn.ghost{background:transparent!important;color:var(--v3-ink)!important;border:1.5px solid var(--v3-ink)!important;box-shadow:none!important}
+/* tables */
+body.cc-fun .cc-price{border-collapse:collapse;width:100%;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(38,57,77,.05)}
+body.cc-fun .cc-price th{color:var(--v3-ink)!important;font-weight:700;text-align:left}
+body.cc-fun .cc-price th,body.cc-fun .cc-price td{padding:16px 18px!important;border-bottom:1px solid var(--v3-line)!important}
+body.cc-fun .cc-price td:nth-child(2){color:var(--v3-acd)!important;font-weight:700!important;font-size:1.02rem!important;white-space:nowrap}
+body.cc-fun .cc-price td:nth-child(3){color:var(--v3-sub)!important;font-size:.9rem}
+/* dark block -> sand */
+body.cc-fun .cc-dark,body.cc-fun #care-way{background:var(--v3-sand)!important;color:var(--v3-ink)!important;border-radius:28px!important}
+body.cc-fun #care-way h2{color:var(--v3-ink)!important}
+body.cc-fun .care-points li{background:#fff!important;border:1px solid var(--v3-line)!important;border-radius:18px!important}
+body.cc-fun .care-points b{color:var(--v3-ac)!important}
+body.cc-fun .care-points strong{color:var(--v3-ink)!important}
+body.cc-fun .care-points p{color:var(--v3-sub)!important}
+/* sticky bar */
+body.cc-fun .cc-sticky{background:rgba(250,248,244,.94)!important;backdrop-filter:blur(8px);border-top:1px solid var(--v3-line)!important}
+/* hero */
+body.cc-fun .care-hero-pick{background:#fff!important;border:1px solid var(--v3-line)!important}
+body.cc-fun .v3-cta{display:flex;flex-wrap:wrap;gap:12px;margin:8px 0 26px}
+body.cc-fun .v3-cta a{display:inline-flex;align-items:center;gap:8px;padding:15px 26px;border-radius:999px;font-weight:700;text-decoration:none;font-size:1rem}
+body.cc-fun .v3-cta .p{background:var(--v3-ac);color:#fff!important}
+body.cc-fun .v3-cta .p:hover{background:var(--v3-acd)}
+body.cc-fun .v3-cta .s{border:1.5px solid var(--v3-ink);color:var(--v3-ink)!important;background:#fff}
+body.cc-fun .v3-promise{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:0 0 22px}
+body.cc-fun .v3-promise li{background:#fff;border:1px solid var(--v3-line);border-radius:999px;padding:8px 16px;font-size:.92rem;color:var(--v3-ink)!important;font-weight:700}
+body.cc-fun .v3-promise li b{color:var(--v3-ac)}
+/* worries */
+body.cc-fun .v3-worries{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;list-style:none;padding:0;margin:0}
+body.cc-fun .v3-worries li{background:#fff;border:1px solid var(--v3-line);border-radius:20px;padding:22px 22px 20px;box-shadow:0 10px 30px rgba(38,57,77,.05);display:flex;flex-direction:column;gap:8px}
+body.cc-fun .v3-worries li a{color:inherit;text-decoration:none;display:flex;flex-direction:column;gap:8px;height:100%}
+body.cc-fun .v3-ic{width:48px;height:48px;border-radius:14px;background:var(--v3-sand);display:grid;place-items:center}
+body.cc-fun .v3-ic svg{width:26px;height:26px;stroke:var(--v3-ac);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+body.cc-fun .v3-worries strong{color:var(--v3-ink)!important;font-size:1.06rem;line-height:1.55}
+body.cc-fun .v3-worries p{margin:0;font-size:.92rem;line-height:1.85}
+body.cc-fun .v3-worries em{font-style:normal;margin-top:auto;color:var(--v3-blue);font-weight:700;font-size:.9rem}
+/* flow */
+body.cc-fun .v3-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;list-style:none;padding:0;margin:0;counter-reset:f}
+body.cc-fun .v3-flow li{background:#fff;border:1px solid var(--v3-line);border-radius:18px;padding:20px 18px;position:relative}
+body.cc-fun .v3-flow li::before{counter-increment:f;content:"0" counter(f);display:block;font-size:1.5rem;font-weight:800;color:var(--v3-ac);margin-bottom:6px;letter-spacing:.04em}
+body.cc-fun .v3-flow strong{display:block;color:var(--v3-ink)!important;margin-bottom:6px}
+body.cc-fun .v3-flow p{margin:0;font-size:.9rem;line-height:1.8}
+/* faq */
+body.cc-fun .v3-faq details{background:#fff;border:1px solid var(--v3-line);border-radius:16px;padding:18px 22px;margin-bottom:10px}
+body.cc-fun .v3-faq summary{cursor:pointer;font-weight:700;color:var(--v3-ink);list-style:none;display:flex;gap:12px;align-items:baseline}
+body.cc-fun .v3-faq summary::-webkit-details-marker{display:none}
+body.cc-fun .v3-faq summary::before{content:"Q";color:var(--v3-ac);font-weight:800}
+body.cc-fun .v3-faq p{margin:12px 0 0 26px;line-height:1.95}
+/* closing cta */
+body.cc-fun .v3-close{background:var(--v3-ink);border-radius:28px;padding:clamp(32px,5vw,60px);display:grid;grid-template-columns:minmax(0,1.3fr) auto;gap:22px;align-items:center}
+body.cc-fun .v3-close h2{color:#fff!important;margin:0 0 10px}
+body.cc-fun .v3-close h2::after{display:none}
+body.cc-fun .v3-close p{color:#D9E1E7!important;margin:0;line-height:1.95}
+body.cc-fun .v3-close a{background:var(--v3-ac);color:#fff!important;padding:16px 28px;border-radius:999px;font-weight:700;text-decoration:none;white-space:nowrap}
+@media(max-width:980px){body.cc-fun .v3-worries{grid-template-columns:repeat(2,minmax(0,1fr))}body.cc-fun .v3-flow{grid-template-columns:repeat(2,minmax(0,1fr))}body.cc-fun .v3-close{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){body.cc-fun .v3-worries,body.cc-fun .v3-flow{grid-template-columns:minmax(0,1fr)}}
+body.cc-fun .care-pack-in{background:var(--v3-sand)!important;border-radius:28px!important}
+body.cc-fun .care-big,body.cc-fun .care-big b{color:var(--v3-ink)!important}
+body.cc-fun .care-big b{color:var(--v3-acd)!important}
+body.cc-fun .care-plans small{color:var(--v3-ac)!important;font-weight:800;letter-spacing:.12em}
+body.cc-fun .care-plans strong{color:var(--v3-ink)!important}
+body.cc-fun .care-why-grid b{color:var(--v3-ac)!important}
+body.cc-fun .care-kinds li{background:#fff!important;border:1px solid var(--v3-line)!important;color:var(--v3-sub)!important}
+body.cc-fun .cc-samu{border-left-color:var(--v3-ac)!important;background:#fff!important}
+body.cc-fun .cc-tabs a,body.cc-fun .cc-switch a{border-color:var(--v3-line)!important}
