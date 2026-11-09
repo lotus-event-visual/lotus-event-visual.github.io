@@ -1,0 +1,11 @@
+/* 介護・福祉施設ページ専用の配色: 緑(安心・癒し)を土台に、温かいオレンジを行動ボタンだけに */
+body.cc-fun.cc-care{
+--v3-bg:#F7F9F4;--v3-card:#FFFFFF;--v3-line:#E1E9DD;--v3-ink:#263B35;--v3-sub:#55685F;--v3-ac:#C8641B;--v3-acd:#A9500F;--v3-blue:#3C8368;--v3-sand:#F1F5E9;--v3-mist:#EAF3EE;
+--sky:#5FA588;--sky-deep:#3C8368;--sky-pale:#EAF3EE;--sky-mist:#F6FAF7;--lemon:#F3EBCF;--coral:#C8641B;--coral-deep:#A9500F;--navy:#234F44;--navy-soft:#55685F;
+--ad-red:#D2691E;--ad-org:#F0A030;--ad-cream:#FFF8EC;--ad-yel:#FFE9A8;--ad-ink:#1F3A33;
+background:var(--v3-bg)!important}
+body.cc-care .ad-quote a,body.cc-care .ad .go{background:linear-gradient(180deg,#DC7A2C,#C8641B)!important;box-shadow:0 4px 0 #9A4A12,0 10px 20px rgba(200,100,27,.25)}
+body.cc-care .ad-quote a:hover{box-shadow:0 2px 0 #9A4A12,0 6px 14px rgba(200,100,27,.25)}
+body.cc-care .ad-sub small,body.cc-care .ad-places small,body.cc-care .ad .price span small,body.cc-care .ad-quote p small{color:#55685F!important}
+body.cc-care .ad-tabs button{color:#55685F!important}
+body.cc-care .ad-places b,body.cc-care .ad-sub b{color:#1F3A33!important}
