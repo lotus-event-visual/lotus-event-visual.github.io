@@ -1,1 +1,15 @@
-.cc-menu-scope{box-sizing:border-box;max-width:76rem;margin:2rem auto;padding:clamp(1rem,3vw,2.5rem);color:#17392e;background:#f5f8f3;border-radius:1.2rem;font-family:system-ui,sans-serif;line-height:1.8;overflow-wrap:anywhere}.cc-menu-scope *{box-sizing:border-box;min-width:0}.cc-menu-scope h2{font-size:clamp(1.4rem,4vw,2.2rem);line-height:1.4}.cc-menu-scope article{padding:1.2rem;margin:1rem 0;background:#fff;border:1px solid #b9cdbf;border-radius:.7rem;break-inside:avoid}.cc-menu-scope h3{margin:0 0 .8rem;font-size:1.2rem}.cc-menu-scope p{margin:.6rem 0}.cc-menu-scope a{display:inline-block;max-width:100%;padding:.7rem 1rem;color:#fff;background:#245c45;border-radius:.4rem;text-decoration:underline;text-underline-offset:.2em}.cc-menu-scope a:focus-visible{outline:3px solid #ae5200;outline-offset:4px}.cc-menu-scope b{color:#17392e}@media(min-width:64rem){.cc-menu-scope article{padding:1.5rem}}@media print{.cc-menu-scope{max-width:none;margin:0;padding:0;background:#fff;color:#000}.cc-menu-scope article{border-color:#777}.cc-menu-scope a{color:#000;background:none;padding:0}.cc-menu-scope a:after{content:'（清掃専用相談ページ）';font-size:.85em}}
+/* 場所と作業内容から(Friday 2026-11-09 23:30 上質化) */
+.cc-menu-scope{box-sizing:border-box;max-width:76rem;margin:clamp(40px,5vw,72px) auto;padding:clamp(28px,4vw,56px);color:#1E3A55;background:linear-gradient(180deg,#F4FAFE,#EAF6FD);border-radius:28px;line-height:1.85;overflow-wrap:anywhere}
+.cc-menu-scope *{box-sizing:border-box;min-width:0}
+.cc-menu-scope>h2{font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1.45;margin:0 0 .6rem;color:#173452}
+.cc-menu-scope>p{color:#4A6278;max-width:46em}
+.cc-menu-scope{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.cc-menu-scope>h2,.cc-menu-scope>p{grid-column:1/-1}
+.cc-menu-scope article{background:#fff;border-radius:20px;padding:18px 20px 22px;box-shadow:0 8px 24px rgba(30,90,140,.08);margin:0;display:flex;flex-direction:column}
+.cc-menu-scope .ccm-photo{display:block;max-width:none!important;width:calc(100% + 40px);margin:-18px -20px 16px;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:20px 20px 0 0}
+.cc-menu-scope h3{margin:0 0 .6rem;font-size:1.15rem;color:#1F5F9A}
+.cc-menu-scope article p{margin:.35rem 0;font-size:.92rem;color:#3E566C}
+.cc-menu-scope b{color:#1F5F9A}
+.cc-menu-scope a{display:inline-block;padding:.85rem 1.4rem;color:#fff;background:#FF6B57;border-radius:999px;text-decoration:none;font-weight:700}
+.cc-menu-scope a:focus-visible{outline:3px solid #1F5F9A;outline-offset:4px}
+@media print{.cc-menu-scope{display:block;background:#fff}.cc-menu-scope .ccm-photo{display:none}}
