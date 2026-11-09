@@ -1,0 +1,80 @@
+/* journal lower half — premium editorial (Friday 2026-11-09) */
+:root{--jp-bg:#0b0d0f;--jp-bg2:#121518;--jp-ink:#eee9df;--jp-mute:#a8a195;--jp-gold:#c9a35a;--jp-line:rgba(201,163,90,.28);--jp-serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--jp-num:"Cormorant Garamond","Times New Roman",serif}
+#history.jp-dark,#future.jp-future{background:var(--jp-bg);color:var(--jp-ink);box-shadow:0 0 0 100vmax var(--jp-bg);clip-path:inset(0 -100vmax);padding-top:120px;padding-bottom:120px;margin-top:0}
+#history.jp-dark{border-top:1px solid var(--jp-line)}
+.jp-dark .story-heading,.jp-future .story-heading,.jp-market .story-heading{margin-bottom:64px}
+.jp-dark .story-number,.jp-future .story-number,.jp-market .story-number{font-family:var(--jp-num)!important;font-weight:300!important;font-size:clamp(64px,8vw,112px)!important;line-height:.9!important;color:transparent!important;-webkit-text-stroke:1px var(--jp-gold);opacity:.9}
+.jp-dark .eyebrow,.jp-future .eyebrow,.jp-market .eyebrow,.jp-end .eyebrow{color:var(--jp-gold)!important;letter-spacing:.32em!important}
+.jp-dark h2,.jp-future h2,.jp-market h2,.jp-end h2{font-family:var(--jp-serif)!important;font-weight:500!important;color:var(--jp-ink)!important;letter-spacing:.04em}
+.jp-dark .story-heading p:not(.eyebrow),.jp-future .story-heading p:not(.eyebrow),.jp-market .story-heading p:not(.eyebrow){color:var(--jp-mute)!important;line-height:2}
+/* history */
+.jp-dark .history-timeline{gap:clamp(18px,2.4vw,36px)}
+.jp-dark .history-timeline article{position:relative}
+.jp-photo{margin:0;position:relative;overflow:hidden;aspect-ratio:4/5;background:#000}
+.jp-photo img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.05);transform:scale(1.02);transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .6s}
+.jp-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.78) 100%);pointer-events:none}
+.jp-dark article:hover .jp-photo img,.jp-future article:hover .jp-photo img{transform:scale(1.07);filter:saturate(1) contrast(1.05)}
+.jp-dark .history-year{position:absolute;left:22px;top:0;margin:0!important;aspect-ratio:auto;transform:translateY(calc(min(100%,0px)));font-family:var(--jp-num)!important;font-weight:300!important;letter-spacing:0!important;font-size:clamp(56px,6vw,88px)!important;color:var(--jp-ink)!important;z-index:2;pointer-events:none}
+.jp-dark .history-timeline article{display:flex;flex-direction:column}
+.jp-dark .history-timeline article .history-year{position:relative;left:auto;top:auto;margin:-1.05em 0 0 22px!important;line-height:1!important}
+.jp-dark .history-year small{display:block;font-family:inherit;font-size:11px!important;letter-spacing:.32em!important;color:var(--jp-gold)!important;margin-top:18px!important}
+.jp-dark .history-timeline h3{font-family:var(--jp-serif);font-weight:500;color:var(--jp-ink);font-size:22px;margin-top:22px;padding-top:22px;border-top:1px solid var(--jp-line)}
+.jp-dark .history-timeline p:not(.history-year){color:var(--jp-mute);line-height:2;font-size:14px}
+.jp-dark .reading-details,.jp-future .reading-details,.jp-market .reading-details{border-color:var(--jp-line)!important;background:transparent!important;color:var(--jp-ink)!important}
+.jp-dark .reading-details summary,.jp-future .reading-details summary,.jp-market .reading-details summary{color:var(--jp-ink)!important}
+.jp-dark .reading-details a,.jp-future .reading-details a,.jp-market .reading-details a,.jp-market .source-note a{color:var(--jp-gold)!important}
+.jp-dark .story-bridge{margin-top:64px;padding:40px 44px;border:1px solid var(--jp-line);background:linear-gradient(120deg,rgba(201,163,90,.08),rgba(201,163,90,0));color:var(--jp-ink)}
+.jp-dark .story-bridge span{color:var(--jp-gold);letter-spacing:.2em;font-size:12px}
+.jp-dark .story-bridge p{font-family:var(--jp-serif);font-size:20px;line-height:1.9;color:var(--jp-ink)}
+.jp-dark .text-link,.jp-future .text-link,.jp-end .text-link{color:var(--jp-gold)!important;border-color:var(--jp-gold)!important}
+/* market */
+.jp-market{position:relative;background:#0f1215 url(assets/photo/j-mice.webp) center/cover no-repeat;color:var(--jp-ink)}
+.jp-market::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,13,15,.94),rgba(11,13,15,.86) 40%,rgba(11,13,15,.96))}
+.jp-market>.shell{position:relative;padding-top:120px;padding-bottom:120px}
+.jp-market .market-stat p{color:var(--jp-mute)!important}
+.jp-market .market-stat strong{font-family:var(--jp-num)!important;font-weight:300!important;color:var(--jp-gold)!important;font-size:clamp(64px,8vw,120px)!important;letter-spacing:-.01em}
+.jp-market .market-stat strong span{font-family:var(--jp-serif);font-size:.32em;color:var(--jp-ink);margin:0 .15em}
+.jp-market .market-chart{background:rgba(255,255,255,.03)!important;border:1px solid var(--jp-line);color:var(--jp-ink)}
+.jp-market .market-chart figcaption,.jp-market .chart-row span,.jp-market .chart-axis,.jp-market .chart-row b{color:var(--jp-mute)!important}
+.jp-market .bar-track{background:rgba(255,255,255,.06)!important;height:10px}
+.jp-market .bar-track i{background:linear-gradient(90deg,#8a6a2f,var(--jp-gold))!important}
+.jp-market .source-note,.jp-market .market-insight p{color:var(--jp-mute)!important}
+.jp-market .market-insight{background:transparent!important;border-left:1px solid var(--jp-gold)!important}
+.jp-market .market-insight h3{font-family:var(--jp-serif);color:var(--jp-ink)}
+.jp-market .mice-grid div{background:rgba(255,255,255,.04)!important;border:1px solid var(--jp-line)}
+.jp-market .mice-grid b{color:var(--jp-gold)!important;font-family:var(--jp-num)}
+.jp-market details div,.jp-market details p,.jp-market details strong{color:var(--jp-ink)}
+/* future */
+#future.jp-future{background:var(--jp-bg2);box-shadow:0 0 0 100vmax var(--jp-bg2)}
+.jp-future .future-grid{gap:clamp(18px,2.4vw,36px)}
+.jp-future .future-grid article{display:flex!important;flex-direction:column;background:transparent!important;border:0!important;padding:0!important;color:var(--jp-ink)}
+.jp-future .jp-photo{aspect-ratio:3/2;margin-bottom:26px}
+.jp-future small{color:var(--jp-gold)!important;letter-spacing:.28em}
+.jp-future h3{font-family:var(--jp-serif);font-weight:500;color:var(--jp-ink)!important;font-size:22px;margin-top:10px}
+.jp-future .future-grid p{color:var(--jp-mute)!important;line-height:2;font-size:14px}
+.jp-future .future-question{margin-top:auto!important;padding-top:20px;border-top:1px solid var(--jp-line)!important;color:var(--jp-ink)!important;font-family:var(--jp-serif);font-size:15px!important;font-weight:500!important}
+.jp-future .reading-details li{color:var(--jp-mute)}
+/* end */
+.jp-end{position:relative;overflow:hidden;min-height:560px;display:flex;align-items:flex-end;padding:0!important;margin:0!important;background:#000!important;color:var(--jp-ink)}
+.jp-end-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55}
+.jp-end::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.85),rgba(0,0,0,.25) 70%),linear-gradient(0deg,rgba(0,0,0,.6),transparent 50%);z-index:1}
+.jp-end-inner{position:relative;z-index:2;padding-top:140px;padding-bottom:110px}
+.jp-end h2{font-size:clamp(30px,4vw,52px)!important;line-height:1.6!important}
+.jp-end p:not(.eyebrow){color:#d8d2c6!important;font-size:15px!important;line-height:2;max-width:34em}
+.jp-end-inner>div{display:flex;gap:36px;margin-top:30px;flex-wrap:wrap}
+@media(max-width:860px){
+ .jp-dark .history-timeline{grid-template-columns:1fr!important;gap:56px}
+ .jp-dark .history-timeline article>*{grid-column:auto!important;grid-row:auto!important}
+ .jp-photo{aspect-ratio:4/3}
+ .jp-future .future-grid{grid-template-columns:1fr!important;gap:56px}
+ .jp-future .future-grid article>*{grid-column:auto!important;grid-row:auto!important}
+ #history.jp-dark,#future.jp-future{padding-top:80px;padding-bottom:80px}
+ .jp-market>.shell{padding-top:80px;padding-bottom:80px}
+ .jp-dark .story-bridge{padding:28px 24px}
+ .jp-dark .story-bridge p{font-size:17px}
+ .jp-end{min-height:520px}
+ .jp-end-inner{padding-top:110px;padding-bottom:72px}
+ .jp-end-inner>div{flex-direction:column;gap:16px}
+}
+.jp-end>.jp-end-inner{display:block!important;margin-top:0!important}
+.jp-end h2{max-width:14em}
