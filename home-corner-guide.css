@@ -6,4 +6,4 @@
 .hero-corner-guide strong{display:block;font-size:14px;font-weight:600}
 .hero-corner-guide b{font-weight:400;opacity:.85}
 .hero-corner-guide:hover,.hero-corner-guide:focus-visible{background:rgba(10,14,18,.8);outline:2px solid #c9a35a;outline-offset:2px}
-@media(max-width:720px){.hero-corner-guide{display:none}}
+@media(max-width:720px){.hero-corner-guide{position:static;width:fit-content;margin:0 0 14px auto;padding:6px 10px;gap:8px}.hero-corner-guide img{width:56px;height:32px}.hero-corner-guide strong{font-size:13px}}

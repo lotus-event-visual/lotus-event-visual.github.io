@@ -29,3 +29,42 @@
 .sbg #sbg .sbg-proc #sbg-black[aria-pressed=true]{background:#ff5470!important;border-color:#ff5470!important;color:#fff!important}
 .sbg .sbg-proc output{color:#dbe4ea}
 #sbg .sbg-proc output{color:#d9e2e7}#sbg .sbg-row button{box-shadow:none;background-image:none}
+/* retro game console (2135) */
+#sbg .sbg-row,#sbg .sbg-stats,#sbg .sbg-proc{font-family:"DotGothic16","Press Start 2P",ui-monospace,monospace!important;letter-spacing:.04em}
+#sbg .sbg-controls,#sbg>.sbg-row{background:#10142a!important}
+#sbg .sbg-row{padding:12px;margin-top:14px;background:#10142a;border:4px solid #000;box-shadow:inset 0 0 0 3px #3b4cca,6px 6px 0 #000;border-radius:0!important;color:#f8f8f8}
+#sbg .sbg-row button{border-radius:0!important;border:3px solid #000!important;background:#e8e8e8!important;color:#111!important;font:inherit!important;font-size:14px!important;font-weight:400!important;box-shadow:inset -3px -3px 0 #9a9a9a,inset 3px 3px 0 #fff,4px 4px 0 #000!important;text-transform:uppercase;transition:none!important}
+#sbg .sbg-row button:hover{background:#fff!important}
+#sbg .sbg-row button:active,#sbg .sbg-row button[aria-pressed=true]{transform:translate(4px,4px);box-shadow:inset 3px 3px 0 #9a9a9a,0 0 0 #000!important;background:#ffd84a!important}
+#sbg .sbg-row button[aria-pressed=true]::before{content:"▶ ";color:#c00}
+#sbg .sbg-start{background:#e43b44!important;color:#fff!important;box-shadow:inset -3px -3px 0 #8a1c22,inset 3px 3px 0 #ff8a90,4px 4px 0 #000!important}
+#sbg .sbg-row label,#sbg .sbg-row output,#sbg .sbg-row span{color:#f8f8f8!important;font:inherit!important}
+#sbg .sbg-row output{background:#000;color:#5cff5c!important;padding:4px 8px;border:2px solid #5cff5c;min-width:4.5em;text-align:right}
+#sbg input[type=range]{-webkit-appearance:none;appearance:none;height:14px;background:repeating-linear-gradient(90deg,#5cff5c 0 10px,#0b3d0b 10px 14px)!important;border:3px solid #000;box-shadow:3px 3px 0 #000;border-radius:0!important;accent-color:#ffd84a}
+#sbg input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:26px;background:#ffd84a;border:3px solid #000;border-radius:0;box-shadow:inset -3px -3px 0 #b8901a;cursor:pointer}
+#sbg input[type=range]::-moz-range-thumb{width:16px;height:24px;background:#ffd84a;border:3px solid #000;border-radius:0;cursor:pointer}
+#sbg .sbg-stats{background:#000!important;color:#5cff5c!important;border:4px solid #000;box-shadow:inset 0 0 0 2px #5cff5c,6px 6px 0 #000;border-radius:0!important;padding:10px 14px!important;text-shadow:0 0 6px rgba(92,255,92,.6)}
+#sbg .sbg-stats *{color:inherit!important;font:inherit!important}
+#sbg .sbg-proc{border-radius:0!important;background:#10142a!important;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 2px,transparent 2px 4px)!important;border:4px solid #000!important;box-shadow:inset 0 0 0 3px #f8f8f8,inset 0 0 0 6px #000,6px 6px 0 #000!important;padding:18px!important;color:#f8f8f8!important}
+#sbg .sbg-proc h3,#sbg .sbg-proc strong,#sbg .sbg-proc p{font-family:inherit!important;color:#f8f8f8!important}
+#sbg .sbg-proc .sbg-row{box-shadow:none;border:0;background:transparent;padding:0}
+#sbg .sbg-stage{border-radius:0!important;border:4px solid #000;box-shadow:6px 6px 0 #000;image-rendering:pixelated}
+/* retro game console (2135) */
+#sbg .sbg-row,#sbg .sbg-stats,#sbg .sbg-proc{font-family:"DotGothic16","Press Start 2P",ui-monospace,monospace!important;letter-spacing:.04em}
+#sbg>.sbg-row,#sbg .sbg-stage~.sbg-row{padding:12px;background:#10142a;border:4px solid #000;box-shadow:inset 0 0 0 3px #3b4cca,6px 6px 0 #000;border-radius:0!important;color:#f8f8f8}
+#sbg .sbg-row button{border-radius:0!important;border:3px solid #000!important;background:#e8e8e8!important;color:#111!important;font:inherit!important;font-size:14px!important;font-weight:400!important;box-shadow:inset -3px -3px 0 #9a9a9a,inset 3px 3px 0 #fff,4px 4px 0 #000!important;transition:none!important}
+#sbg .sbg-row button:hover{background:#fff!important}
+#sbg .sbg-row button:active,#sbg .sbg-row button[aria-pressed=true]{transform:translate(4px,4px);box-shadow:inset 3px 3px 0 #9a9a9a!important;background:#ffd84a!important}
+#sbg .sbg-row button[aria-pressed=true]::before{content:"▶ ";color:#c00}
+#sbg .sbg-row .sbg-start{background:#e43b44!important;color:#fff!important;box-shadow:inset -3px -3px 0 #8a1c22,inset 3px 3px 0 #ff8a90,4px 4px 0 #000!important}
+#sbg .sbg-row label,#sbg .sbg-row output,#sbg .sbg-label{color:#f8f8f8!important;font-family:inherit!important}
+#sbg .sbg-row output{background:#000;color:#5cff5c!important;padding:4px 8px;border:2px solid #5cff5c;min-width:4.5em;text-align:right}
+#sbg input[type=range]{-webkit-appearance:none;appearance:none;height:14px;background:repeating-linear-gradient(90deg,#5cff5c 0 10px,#0b3d0b 10px 14px)!important;border:3px solid #000;box-shadow:3px 3px 0 #000;border-radius:0!important}
+#sbg input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:26px;background:#ffd84a;border:3px solid #000;border-radius:0;box-shadow:inset -3px -3px 0 #b8901a;cursor:pointer}
+#sbg input[type=range]::-moz-range-thumb{width:16px;height:24px;background:#ffd84a;border:3px solid #000;border-radius:0;cursor:pointer}
+#sbg .sbg-stats{background:#000!important;color:#5cff5c!important;border:4px solid #000;box-shadow:inset 0 0 0 2px #5cff5c,6px 6px 0 #000;border-radius:0!important;padding:10px 14px!important;text-shadow:0 0 6px rgba(92,255,92,.6)}
+#sbg .sbg-stats *{color:inherit!important;font-family:inherit!important}
+#sbg .sbg-proc{border-radius:0!important;background-color:#10142a!important;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 2px,transparent 2px 4px)!important;border:4px solid #000!important;box-shadow:inset 0 0 0 3px #f8f8f8,inset 0 0 0 6px #000,6px 6px 0 #000!important;padding:20px!important;color:#f8f8f8!important}
+#sbg .sbg-proc *{font-family:inherit!important}
+#sbg .sbg-proc .sbg-row{box-shadow:none!important;border:0!important;background:transparent!important;padding:0!important}
+#sbg .sbg-stage{border-radius:0!important;border:4px solid #000;box-shadow:6px 6px 0 #000}
