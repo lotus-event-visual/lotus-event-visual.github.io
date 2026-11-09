@@ -131,3 +131,11 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  document.querySelectorAll('a[href^="workflow.html"]').forEach(function(a){a.setAttribute('href','contact.html');});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wf);else wf();})();
+/* 採用情報をメニューとフッターに追加 (Friday 2026-11-10) */
+(function(){function rc(){
+ var nav=document.querySelector('#site-nav .menu-links');
+ if(nav&&!nav.querySelector('a[href^="recruit.html"]')){var a=document.createElement('a');a.href='recruit.html';a.innerHTML='<small>RECRUIT</small><span>採用情報</span><b aria-hidden="true">↗</b>';var ab=nav.querySelector('a[href^="about.html"]');nav.insertBefore(a,ab||null);}
+ var ft=document.querySelector('.footer-links');
+ if(ft&&!ft.querySelector('a[href^="recruit.html"]')){var f=document.createElement('a');f.href='recruit.html';f.innerHTML='採用情報<span aria-hidden="true">↗</span>';var fb=ft.querySelector('a[href^="about.html"]');ft.insertBefore(f,fb||null);}
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rc);else rc();})();
