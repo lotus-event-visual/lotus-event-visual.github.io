@@ -4,6 +4,7 @@ const cv=document.getElementById('sbg-canvas');if(!cv)return;const g=cv.getConte
 const $=id=>document.getElementById(id);
 const W=1200,H=675,FLOOR=560,RACKX=1035;
 const mq=matchMedia('(prefers-reduced-motion: reduce)');
+const BG=new Image();BG.src='assets/brand/lotus-space-four-rows-poster.jpg';BG.onload=()=>{if(!st.playing)draw()};
 const st={w:4,mode:'hang',t:0,playing:false,done:false,last:0,input:'HDMI',pattern:'gradient',bright:80,black:false,shown:false};
 const PH=[['準備',0,1.2],['組み上げ',1.2,7.2],['配線',7.2,8.3],['仕上げ',8.3,9.1],['点灯',9.1,10]];
 const LINES={hang:['トラス、水平OK？','ハンギングバー、ロック確認','1段目から下へつなげて','締め付け、声かけて','信号線、上から順に','画面を上げます、離れて','点灯いきます'],
@@ -17,6 +18,7 @@ function hall(t){
  g.fillStyle=grad(0,0,0,H,[[0,'#06090d'],[.6,'#121a22'],[1,'#05080b']]);g.fillRect(0,0,W,H);
  // back wall panels
  for(let x=0;x<W;x+=120){g.fillStyle=x%240?'#0c1218':'#0e151c';g.fillRect(x,40,118,FLOOR-40)}
+ if(BG.complete&&BG.naturalWidth){const ih=W*BG.naturalHeight/BG.naturalWidth;g.save();g.globalAlpha=.85;g.drawImage(BG,0,-30,W,ih);g.restore();const f=g.createLinearGradient(0,0,0,FLOOR);f.addColorStop(0,'rgba(6,9,13,.15)');f.addColorStop(.32,'rgba(6,9,13,.55)');f.addColorStop(.5,'rgba(6,9,13,1)');f.addColorStop(1,'rgba(6,9,13,1)');g.fillStyle=f;g.fillRect(0,0,W,FLOOR)}
  // truss
  g.fillStyle='#2a2f35';g.fillRect(40,56,W-80,10);g.fillRect(40,84,W-80,6);
  g.strokeStyle='#3c434a';g.lineWidth=2;for(let x=40;x<W-40;x+=28){g.beginPath();g.moveTo(x,66);g.lineTo(x+14,84);g.lineTo(x+28,66);g.stroke()}
@@ -33,23 +35,33 @@ function hall(t){
  g.strokeStyle='#ffffff0d';g.lineWidth=1;for(let i=1;i<8;i++){const y=FLOOR+i*i*2.1;g.beginPath();g.moveTo(0,y);g.lineTo(W,y);g.stroke()}
  for(let x=-600;x<W+600;x+=80){g.beginPath();g.moveTo(W/2+(x-W/2)*.35,FLOOR);g.lineTo(x,H);g.stroke()}
 }
-function person(x,y,s,o){ // y = feet; s = px per metre
- const h=1.7*s,hel=o.helmet||'#f2f2ee',shirt=o.shirt||'#15181b';g.save();g.translate(x,y);if(o.flip)g.scale(-1,1);
- g.fillStyle='#00000055';g.beginPath();g.ellipse(0,2,h*.16,h*.03,0,0,7);g.fill();
- const step=o.walk?Math.sin(o.walk)*h*.06:0;
- g.strokeStyle='#1d2126';g.lineCap='round';g.lineWidth=h*.075;
- g.beginPath();g.moveTo(-h*.04,-h*.47);g.lineTo(-h*.05-step,0);g.moveTo(h*.04,-h*.47);g.lineTo(h*.05+step,0);g.stroke();
- g.fillStyle=shirt;rr(-h*.11,-h*.82,h*.22,h*.38,h*.05);g.fill();
- if(o.logo){g.save();if(o.flip)g.scale(-1,1);g.fillStyle='#fff';g.font=`600 ${Math.max(5,h*.04)}px system-ui`;g.textAlign='center';g.fillText('LOTUS.',(o.flip?-1:1)*h*.04,-h*.7);g.restore()}
- g.strokeStyle=shirt;g.lineWidth=h*.06;g.beginPath();
- if(o.carry){g.moveTo(-h*.1,-h*.76);g.lineTo(-h*.16,-h*.62);g.lineTo(-h*.08,-h*.56);g.moveTo(h*.1,-h*.76);g.lineTo(h*.17,-h*.62);g.lineTo(h*.1,-h*.56)}
- else if(o.point){g.moveTo(-h*.1,-h*.76);g.lineTo(-h*.14,-h*.5);g.moveTo(h*.1,-h*.76);g.lineTo(h*.32,-h*.86)}
- else{g.moveTo(-h*.1,-h*.76);g.lineTo(-h*.14,-h*.5);g.moveTo(h*.1,-h*.76);g.lineTo(h*.14,-h*.5)}g.stroke();
- g.fillStyle='#d9b79c';g.beginPath();g.arc(0,-h*.9,h*.07,0,7);g.fill();
- g.fillStyle=hel;g.beginPath();g.arc(0,-h*.92,h*.078,Math.PI,0);g.fill();g.fillRect(-h*.095,-h*.925,h*.19,h*.016);
- if(o.headset){g.strokeStyle='#111';g.lineWidth=h*.012;g.beginPath();g.arc(0,-h*.9,h*.085,Math.PI*1.05,Math.PI*1.95);g.stroke();g.beginPath();g.moveTo(h*.07,-h*.88);g.lineTo(h*.05,-h*.84);g.stroke()}
- if(o.board){g.fillStyle='#d8d2c4';g.fillRect(-h*.2,-h*.62,h*.1,h*.13)}
- if(o.carry){g.fillStyle='#0b0d10';g.fillRect(-h*.15,-h*.82,h*.3,h*.3);g.strokeStyle='#3a4148';g.lineWidth=1;g.strokeRect(-h*.15,-h*.82,h*.3,h*.3)}
+const TORSO=new Path2D('M-.19 .31Q-.2 .27 -.12 .25L-.045 .225Q0 .25 .045 .225L.12 .25Q.2 .27 .19 .31L.17 .62Q.16 .8 .155 .96L-.155 .96Q-.16 .8 -.17 .62Z');
+const PELVIS=new Path2D('M-.155 .94L.155 .94L.15 1.04L-.15 1.04Z');
+function limb(x0,y0,x1,y1,x2,y2,w,col){g.strokeStyle=col;g.lineWidth=w;g.lineCap='round';g.lineJoin='round';g.beginPath();g.moveTo(x0,y0);g.quadraticCurveTo(x1,y1,x2,y2);g.stroke()}
+function person(x,y,s,o){ // y = feet in px; s = px per metre; figure drawn in metres, head at 0, feet at 1.7
+ g.save();g.translate(x,y-1.7*s);g.scale(s,s);if(o.flip)g.scale(-1,1);
+ g.fillStyle='rgba(0,0,0,.55)';g.beginPath();g.ellipse(0,1.7,.3,.03,0,0,7);g.fill();
+ const sw=o.walk?Math.sin(o.walk)*.13:0,body='#141a21',rim='rgba(184,220,255,.5)';
+ // legs (rim then body)
+ for(const [c,dx] of [[rim,-.012],[body,0]]){limb(-.07+dx,1.0,-.075+dx-sw*.4,1.35,-.08+dx-sw,1.66,.105,c);limb(.07+dx,1.0,.075+dx+sw*.4,1.35,.08+dx+sw,1.66,.105,c)}
+ g.fillStyle='#0a0d11';g.beginPath();g.ellipse(-.085-sw,1.685,.075,.027,0,0,7);g.fill();g.beginPath();g.ellipse(.085+sw,1.685,.075,.027,0,0,7);g.fill();
+ g.save();g.translate(-.012,0);g.fillStyle=rim;g.fill(TORSO);g.restore();
+ g.fillStyle=body;g.fill(TORSO);g.fillStyle='#0f1318';g.fill(PELVIS);
+ // arms
+ const armL=o.carry?[-.24,.48,-.17,.62]:o.point?[-.22,.5,-.215,.84]:[-.235,.5,-.215,.84];
+ const armR=o.carry?[.24,.48,.17,.62]:o.point?[.32,.28,.48,.2]:[.235,.5,.215,.84];
+ limb(-.18-.012,.32,armL[0]-.012,armL[1],armL[2]-.012,armL[3],.075,rim);limb(-.18,.32,armL[0],armL[1],armL[2],armL[3],.075,body);limb(.18,.32,armR[0],armR[1],armR[2],armR[3],.075,body);
+ g.fillStyle='#1b2129';g.beginPath();g.arc(armL[2],armL[3]+.02,.037,0,7);g.fill();g.beginPath();g.arc(armR[2],armR[3]+.02,.037,0,7);g.fill();
+ // neck + head
+ g.fillStyle=body;g.fillRect(-.035,.19,.07,.06);
+ g.fillStyle=rim;g.beginPath();g.ellipse(-.012,.115,.085,.106,0,0,7);g.fill();g.fillStyle='#1a2027';g.beginPath();g.ellipse(0,.115,.083,.104,0,0,7);g.fill();
+ // helmet
+ g.fillStyle=o.helmet||'#e9ebe6';g.beginPath();g.ellipse(0,.075,.1,.075,0,Math.PI,0);g.fill();g.fillRect(-.115,.07,.23,.016);
+ g.fillStyle='rgba(255,255,255,.35)';g.beginPath();g.ellipse(-.03,.04,.035,.018,-.4,0,7);g.fill();
+ if(o.headset){g.strokeStyle='#050608';g.lineWidth=.014;g.beginPath();g.arc(0,.11,.095,Math.PI*1.1,Math.PI*1.9);g.stroke();g.beginPath();g.moveTo(.08,.14);g.quadraticCurveTo(.07,.2,.03,.21);g.stroke()}
+ if(o.board){g.fillStyle='#cfc7b6';g.save();g.rotate(-.2);g.fillRect(-.33,.6,.12,.16);g.restore()}
+ if(o.logo){g.save();if(o.flip)g.scale(-1,1);g.fillStyle='rgba(255,255,255,.85)';g.font='600 .04px system-ui';g.textAlign='center';g.fillText('LOTUS.',(o.flip?-1:1)*.08,.36);g.restore()}
+ if(o.carry){g.fillStyle='#07090c';g.fillRect(-.26,.36,.52,.52);g.strokeStyle='#39424b';g.lineWidth=.01;g.strokeRect(-.26,.36,.52,.52);g.fillStyle='rgba(255,255,255,.06)';for(let k=1;k<6;k++)g.fillRect(-.26+k*.087,.38,.004,.48)}
  g.restore()}
 function bubble(x,y,text){g.font='600 17px system-ui';const tw=g.measureText(text).width+28;const bx=Math.min(W-tw-10,Math.max(10,x-20)),by=y-58;
  g.fillStyle='#fffdf6';rr(bx,by,tw,38,10);g.fill();g.beginPath();g.moveTo(x,by+38);g.lineTo(x+12,by+38);g.lineTo(x+4,by+50);g.fill();g.fillStyle='#14212a';g.textAlign='left';g.fillText(text,bx+14,by+25)}
@@ -91,11 +103,11 @@ function draw(){
   g.strokeStyle='#5ad1ff';g.beginPath();g.moveTo(sx+pw*.9,sy+ph);g.lineTo(lerp(sx+pw*.9,rx,cab),lerp(sy+ph,FLOOR-14,cab));g.stroke();g.setLineDash([])}
  // crew
  const busy=T>.2&&T<8.4;for(let i=0;i<3;i++){const ph2=(T*1.1+i*.7)%2,go=ph2<1,u=go?ease(ph2):ease(2-ph2);
-  const target=sx+(i+.5)*pw/3,from=busy?sx-1.2*S:sx+(i+.5)*pw/3;const x=busy?lerp(from,target,u):from;
-  person(x,FLOOR,S,{walk:busy?T*9+i:0,carry:busy&&go&&T>1.2&&T<7.2,flip:busy&&!go,logo:true})}
+  const target=sx+(i+.5)*pw/3,from=busy?sx-1.2*S:Math.max(150,sx-1.3*S)+i*.62*S;const x=busy?lerp(from,target,u):from;
+  person(x,FLOOR,S,{walk:busy?T*9+i:0,carry:busy&&go&&T>1.2&&T<7.2,flip:busy&&!go})}
  // director + operator
- const dx=Math.max(60,sx-2.7*S);person(dx,FLOOR,S,{headset:true,board:true,point:true,helmet:'#ffd84a',logo:true});
- person(rx+S*.75,FLOOR,S,{logo:true,flip:true});
+ const dx=Math.max(60,sx-2.7*S);person(dx,FLOOR,S,{headset:true,board:true,point:true,helmet:'#ffd84a'});
+ person(rx+S*.75,FLOOR,S,{flip:true});
  const pi=Math.min(LINES[st.mode].length-1,Math.floor(T/10*LINES[st.mode].length));if(st.playing||!st.done)bubble(dx+10,FLOOR-1.75*S,LINES[st.mode][pi]);
  // HUD
  g.fillStyle='#000000aa';rr(18,16,300,34,8);g.fill();g.fillStyle='#fff';g.font='600 15px system-ui';g.textAlign='left';

@@ -44,8 +44,7 @@ function stageSVG(state,id='lotus-stage') {
 <linearGradient id="${id}-ribbon"><stop stop-color="#39ddd7"/><stop offset=".45" stop-color="#a0cff8"/><stop offset=".72" stop-color="#a38aff"/><stop offset="1" stop-color="#f0aa88"/></linearGradient>
 <linearGradient id="${id}-person" x2="1" y2="0"><stop stop-color="#a4adb8"/><stop offset=".55" stop-color="#e6e0d4"/><stop offset="1" stop-color="#88929f"/></linearGradient>
 <clipPath id="${id}-clip"><rect x="${x}" y="${y}" width="${w}" height="${h}"/></clipPath>
-</defs><rect width="1000" height="580" fill="url(#${id}-room)"/>
-<path d="M50 450H950M90 475H910" stroke="#7b889b" stroke-opacity=".23"/>
+<linearGradient id="${id}-dim" x2="0" y2="1"><stop stop-color="#05070b" stop-opacity=".78"/><stop offset=".72" stop-color="#05070b" stop-opacity=".62"/><stop offset="1" stop-color="#05070b" stop-opacity=".9"/></linearGradient><linearGradient id="${id}-skin" x2="1" y2="0"><stop stop-color="#0c1016"/><stop offset=".6" stop-color="#161c24"/><stop offset="1" stop-color="#232b35"/></linearGradient><linearGradient id="${id}-refl" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".22"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><linearGradient id="${id}-topfade" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".2" stop-color="#fff" stop-opacity=".85"/><stop offset=".36" stop-color="#fff" stop-opacity="0"/></linearGradient><mask id="${id}-topmask"><rect width="1000" height="580" fill="url(#${id}-topfade)"/></mask><mask id="${id}-rmask"><rect x="0" y="450" width="1000" height="130" fill="url(#${id}-refl)"/></mask></defs><rect width="1000" height="580" fill="url(#${id}-room)"/><image href="assets/brand/lotus-space-four-rows-poster.jpg" x="0" y="-40" width="1000" height="560" preserveAspectRatio="xMidYMin slice" opacity=".95" mask="url(#${id}-topmask)"/><rect x="0" y="450" width="1000" height="130" fill="#07090d"/><rect width="1000" height="580" fill="url(#${id}-dim)"/><path d="M0 450H1000" stroke="#c9d6e6" stroke-opacity=".18"/>
 <rect x="${x-3}" y="${y-3}" width="${w+6}" height="${h+6}" fill="#0b1019" stroke="#738397" stroke-width="1"/>
 <g clip-path="url(#${id}-clip)"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#${id}-image)"/>
 <g transform="translate(${x} ${y}) scale(${w/800} ${h/400})"><g class="ls-ribbons" fill="none" stroke="url(#${id}-ribbon)">
@@ -55,13 +54,25 @@ function stageSVG(state,id='lotus-stage') {
 <path d="M-120 342C100 452 190 32 400 162S680 412 980 52" stroke-width="1.5" opacity=".8"/>
 <path d="M-100 100C190 -100 310 430 560 210S800 50 990 190" stroke-width="2" opacity=".6"/>
 </g></g></g>
-<g fill="none" stroke="#e1ebff" stroke-width=".65" stroke-opacity=".2">${grid}</g>
-<g transform="translate(${g.personX} ${450-g.personHeight}) scale(${s})" fill="url(#${id}-person)">
-<ellipse cx=".17" cy=".115" rx=".087" ry=".115"/><path d="M.1 .25Q.17 .28 .24 .25L.34 .34 .39 .78Q.4 .84 .35 .86L.28 .47 .28 .88 .27 1.22 .26 1.67 .17 1.7 .14 1.21 .11 .91 .1 1.22 .075 1.7 -.015 1.7 .015 1.18 .025 .85 .04 .47 -.04 .86Q-.09 .85 -.075 .78L-.015 .35Z"/>
+<g fill="none" stroke="#e1ebff" stroke-width=".65" stroke-opacity=".2">${grid}</g><g mask="url(#${id}-rmask)" opacity=".55"><g transform="translate(0 900) scale(1 -1)"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#${id}-image)"/></g></g><ellipse cx="${x+w/2}" cy="452" rx="${w*.55}" ry="10" fill="#9ab8ff" opacity=".08"/>
+<g transform="translate(${g.personX+.17*s} ${450-g.personHeight}) scale(${s})">
+<ellipse cx="0" cy="1.7" rx=".32" ry=".035" fill="#000" opacity=".6"/>
+<g fill="#b8dcff" opacity=".55" transform="translate(-.012 0)"><ellipse cx="0" cy=".115" rx=".085" ry=".108"/><path d="M-.19 .31Q-.2 .27 -.12 .25L-.045 .225Q0 .25 .045 .225L.12 .25Q.2 .27 .19 .31L.17 .62Q.16 .8 .155 .96L-.155 .96Q-.16 .8 -.17 .62Z"/><path d="M-.15 .94L-.135 1.67L-.03 1.67L-.01 1.0L.01 1.0L.03 1.67L.135 1.67L.15 .94Z"/></g>
+<g fill="url(#${id}-skin)">
+<path d="M-.15 .94L-.135 1.665L-.03 1.665L-.01 1.0L.01 1.0L.03 1.665L.135 1.665L.15 .94Z"/>
+<ellipse cx="-.085" cy="1.685" rx=".075" ry=".026"/><ellipse cx=".085" cy="1.685" rx=".075" ry=".026"/>
+<path d="M-.19 .31Q-.2 .27 -.12 .25L-.045 .225Q0 .25 .045 .225L.12 .25Q.2 .27 .19 .31L.17 .62Q.16 .8 .155 .96L-.155 .96Q-.16 .8 -.17 .62Z"/>
+<rect x="-.035" y=".19" width=".07" height=".06" rx=".02"/>
+<ellipse cx="0" cy=".115" rx=".083" ry=".106"/>
+</g>
+<g fill="none" stroke="url(#${id}-skin)" stroke-linecap="round" stroke-width=".072"><path d="M-.18 .32Q-.235 .5 -.225 .64L-.215 .84"/><path d="M.18 .32Q.235 .5 .225 .64L.215 .84"/></g>
+<path d="M-.18 .32Q-.235 .5 -.225 .64L-.215 .84" fill="none" stroke="#b8dcff" stroke-opacity=".35" stroke-width=".012" transform="translate(-.034 0)" stroke-linecap="round"/>
+<g fill="#151b22"><circle cx="-.215" cy=".865" r=".038"/><circle cx=".215" cy=".865" r=".038"/></g>
+<path d="M-.083 .1Q-.08 .005 0 .005Q.08 .005 .083 .1Q.06 .045 0 .045Q-.06 .045 -.083 .1Z" fill="#07090c"/>
 </g>
 <g stroke="#b1baca" stroke-width="1" fill="none">${line(x,487,x+w,487)}${line(x,479,x,495)}${line(x+w,479,x+w,495)}${line(x-27,y,x-27,450)}${line(x-33,y,x-21,y)}${line(x-33,450,x-21,450)}</g>
 <g fill="#eae7e1" font-family="system-ui,sans-serif" font-size="27" text-anchor="middle"><text x="${x+w/2}" y="524">${format(g.width)} m</text><text transform="translate(${x-43} ${y+h/2}) rotate(-90)">${format(g.height)} m</text></g>
-<text x="${g.personX+.15*s}" y="489" fill="#b7bfca" font-family="system-ui,sans-serif" font-size="23" text-anchor="middle">1.7 m</text>
+<text x="${g.personX+.17*s}" y="489" fill="#b7bfca" font-family="system-ui,sans-serif" font-size="23" text-anchor="middle">1.7 m</text>
 <text x="50" y="550" fill="#9ca8ba" font-family="system-ui,sans-serif" font-size="19" letter-spacing="2">LOTUS / STAGE STUDY</text></svg>`;
 }
 /** Host should be a new empty element, not the legacy stage-visual children. */
@@ -84,7 +95,7 @@ function mountEstimateStage(host,initialState){
  function update(state){
   if(video){video.pause();video.removeAttribute('src');video.load();video=null;}
   const g=stageGeometry(state);art.innerHTML=stageSVG(state,id);
-  info.textContent=g.empty?(g.kind==='unselected'?'画面の種類を選ぶ':'画面なし'):g.unsized?'画面の機種・サイズを選んで相談':`${format(g.width)} × ${format(g.height)} m${g.panels?' ・ '+g.panels+'枚':''} ／ オリジナルCG・演出イメージ`;
+  info.textContent=g.empty?(g.kind==='unselected'?'画面の種類を選ぶ':'画面なし'):g.unsized?'画面の機種・サイズを選んで相談':`${format(g.width)} × ${format(g.height)} m${g.panels?' ・ '+g.panels+'枚':''}`;
   if(g.kind==='led'&&!g.empty&&!g.unsized){
    video=doc.createElement('video');const current=video;
    current.className='ls-estimate-video';current.muted=true;current.defaultMuted=true;current.loop=true;current.playsInline=true;current.preload='none';

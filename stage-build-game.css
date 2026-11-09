@@ -4,11 +4,11 @@
 .sbg-stage canvas{display:block;width:100%;height:auto;aspect-ratio:1200/675}
 .sbg-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:16px}
 .sbg-row .sbg-label{font-size:13px;color:#5d625b;min-width:64px}
-.sbg-row button{min-height:44px;padding:8px 16px;border-radius:10px;border:1px solid #9aa39b;background:#fffdf7;color:#1f2a24;font:600 14px system-ui;cursor:pointer}
-.sbg-row button[aria-pressed=true]{background:#1f3a34;color:#fff;border-color:#1f3a34}
+#sbg .sbg-row button{min-height:44px;padding:8px 16px;border-radius:10px;border:1px solid #9aa39b;background:#fffdf7;color:#1f2a24;font:600 14px system-ui;cursor:pointer}
+#sbg .sbg-row button[aria-pressed=true]{background:#1f3a34;color:#fff;border-color:#1f3a34}
 .sbg-row input[type=range]{flex:1 1 220px;min-width:0;accent-color:#a65f24}
 .sbg-row output{font:600 15px system-ui;color:#1f2a24}
-.sbg-start{background:#a65f24!important;border-color:#a65f24!important;color:#fff!important;padding:10px 22px!important}
+#sbg .sbg-start{background:#a65f24!important;border-color:#a65f24!important;color:#fff!important;padding:10px 22px!important}
 .sbg-stats{font-size:13px;line-height:1.8;color:#4c524b;margin:10px 0 0}
 .sbg-proc{margin-top:18px;padding:16px;border-radius:12px;background:linear-gradient(180deg,#1b2026,#0d1013);color:#d9e2e7;box-shadow:inset 0 1px 0 #ffffff14}
 .sbg-proc-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
@@ -16,15 +16,16 @@
 .sbg-proc-head span{font-size:12px;color:#9fb0b9}
 .sbg-proc .sbg-row{margin-top:10px}
 .sbg-proc .sbg-row .sbg-label{color:#9fb0b9}
-.sbg-proc .sbg-row button{background:#262d34;color:#dbe4ea;border-color:#3a434c}
-.sbg-proc .sbg-row button[aria-pressed=true]{background:#4fd2ff;color:#06131a;border-color:#4fd2ff}
+.sbg-proc #sbg .sbg-row button{background:#262d34;color:#dbe4ea;border-color:#3a434c}
+.sbg-proc #sbg .sbg-row button[aria-pressed=true]{background:#4fd2ff;color:#06131a;border-color:#4fd2ff}
 .sbg-proc:not([data-ready]) .sbg-row{opacity:.45;pointer-events:none}
-.sbg-proc #sbg-black[aria-pressed=true]{background:#ff5470;border-color:#ff5470;color:#fff}
-@media(max-width:600px){.sbg-row button{flex:1 1 auto;padding:8px 10px;font-size:13px}.sbg-row .sbg-label{min-width:100%}.sbg-proc{padding:12px}}
-.sbg .sbg-row button{background:#fffdf7!important;color:#1f2a24!important;border-color:#9aa39b!important;box-shadow:none!important}
-.sbg .sbg-row button[aria-pressed=true]{background:#1f3a34!important;color:#fff!important;border-color:#1f3a34!important}
-.sbg .sbg-row .sbg-start{background:#a65f24!important;border-color:#a65f24!important;color:#fff!important}
-.sbg .sbg-proc .sbg-row button{background:#262d34!important;color:#dbe4ea!important;border-color:#3a434c!important}
-.sbg .sbg-proc .sbg-row button[aria-pressed=true]{background:#4fd2ff!important;color:#06131a!important;border-color:#4fd2ff!important}
-.sbg .sbg-proc #sbg-black[aria-pressed=true]{background:#ff5470!important;border-color:#ff5470!important;color:#fff!important}
+#sbg .sbg-proc #sbg-black[aria-pressed=true]{background:#ff5470;border-color:#ff5470;color:#fff}
+@media(max-width:600px){#sbg .sbg-row button{flex:1 1 auto;padding:8px 10px;font-size:13px}.sbg-row .sbg-label{min-width:100%}.sbg-proc{padding:12px}}
+.sbg #sbg .sbg-row button{background:#fffdf7!important;color:#1f2a24!important;border-color:#9aa39b!important;box-shadow:none!important}
+.sbg #sbg .sbg-row button[aria-pressed=true]{background:#1f3a34!important;color:#fff!important;border-color:#1f3a34!important}
+.sbg .sbg-row #sbg .sbg-start{background:#a65f24!important;border-color:#a65f24!important;color:#fff!important}
+.sbg .sbg-proc #sbg .sbg-row button{background:#262d34!important;color:#dbe4ea!important;border-color:#3a434c!important}
+.sbg .sbg-proc #sbg .sbg-row button[aria-pressed=true]{background:#4fd2ff!important;color:#06131a!important;border-color:#4fd2ff!important}
+.sbg #sbg .sbg-proc #sbg-black[aria-pressed=true]{background:#ff5470!important;border-color:#ff5470!important;color:#fff!important}
 .sbg .sbg-proc output{color:#dbe4ea}
+#sbg .sbg-proc output{color:#d9e2e7}#sbg .sbg-row button{box-shadow:none;background-image:none}
