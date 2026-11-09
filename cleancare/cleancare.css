@@ -94,3 +94,38 @@
 .cc-shelf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .cc-shelf-grid a{display:flex;flex-direction:column;gap:6px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);text-decoration:none;color:var(--ink)}
 .cc-shelf-grid small{font-size:.75rem;color:var(--muted);letter-spacing:.04em}.cc-shelf-grid strong{line-height:1.5}.cc-shelf-grid span{font-size:.85rem;color:var(--muted)}
+
+/* ---- cleaning-LP components (2026-11-09) ---- */
+.cc-site{--cc-accent:#2f7d5b;--cc-accent-ink:#1f5a41;--cc-warm:#fff7ea;--cc-sun:#e6a23c}
+.cc-hero2{background:linear-gradient(180deg,var(--cc-warm),transparent 70%);border-radius:var(--radius);padding-left:clamp(18px,4vw,40px);padding-right:clamp(18px,4vw,40px)}
+.cc-hero2 h1{color:var(--cc-accent-ink)}
+.cc-site .cc-btn{background:var(--cc-accent);border-color:var(--cc-accent);color:#fff;font-weight:600;box-shadow:0 6px 16px rgba(47,125,91,.18)}
+.cc-site .cc-btn:hover{background:var(--cc-accent-ink)}
+.cc-site .cc-btn-ghost{background:transparent;color:var(--cc-accent-ink);box-shadow:none}
+.cc-badges{list-style:none;margin:22px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.cc-badges li{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.cc-badges b{font-size:1.15rem;color:var(--cc-accent-ink)}.cc-badges span{font-size:.82rem;color:var(--muted)}
+.cc-pricecards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.cc-pricecards li{background:#fff;border:1px solid var(--line);border-top:4px solid var(--cc-accent);border-radius:var(--radius);padding:20px 18px 16px;display:flex;flex-direction:column;gap:8px}
+.cc-pricecards small{font-size:.82rem;letter-spacing:.06em;color:var(--muted)}
+.cc-pricecards strong{font-size:2rem;line-height:1.1;color:var(--cc-accent-ink);font-variant-numeric:tabular-nums}
+.cc-pricecards strong em{font-style:normal;font-size:.9rem;color:var(--ink);margin-left:4px;font-weight:500}
+.cc-pricecards p{margin:0;font-size:.9rem;line-height:1.8;color:#4a454e;flex:1}
+.cc-pricecards a{align-self:flex-start;font-size:.9rem;color:var(--cc-accent-ink);border-bottom:1px solid var(--cc-accent-ink);text-decoration:none;font-weight:600}
+.cc-pricecard-ask{border-top-color:var(--cc-sun)!important}.cc-pricecard-ask strong{font-size:1.4rem;color:var(--ink)}
+.cc-sets .cc-list li{border-left:4px solid var(--cc-sun)}
+.cc-area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.cc-area-grid div{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.cc-area-grid strong{display:block;font-size:1.15rem;color:var(--cc-accent-ink)}.cc-area-grid span{font-size:.9rem;color:var(--muted)}
+.cc-faq details{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:0 18px;margin-bottom:10px}
+.cc-faq summary{cursor:pointer;padding:16px 0;font-weight:600;list-style:none;position:relative;padding-right:28px}
+.cc-faq summary::-webkit-details-marker{display:none}
+.cc-faq summary::after{content:"+";position:absolute;right:0;top:14px;font-size:1.3rem;color:var(--cc-accent)}
+.cc-faq details[open] summary::after{content:"−"}
+.cc-faq p{margin:0 0 16px;line-height:1.9;color:#4a454e;font-size:.95rem}
+.cc-sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;align-items:center;justify-content:center;gap:14px;padding:10px 16px;background:rgba(255,255,255,.96);border-top:1px solid var(--line);backdrop-filter:blur(6px)}
+.cc-sticky span{font-size:.88rem;color:var(--muted)}
+.cc-sticky .cc-btn{padding:10px 18px;font-size:.9rem;background:#2f7d5b;border-color:#2f7d5b;color:#fff;font-weight:600}
+body:has(.cc-sticky) .site-footer{padding-bottom:72px}
+@media(max-width:520px){.cc-sticky span{display:none}.cc-sticky .cc-btn{width:100%;text-align:center}}
+@media(prefers-reduced-motion:no-preference){.cc-pricecards li{transition:transform .2s}.cc-pricecards li:hover{transform:translateY(-2px)}}
