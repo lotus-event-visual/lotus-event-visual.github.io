@@ -164,3 +164,4 @@ body.cc-fun .cc p,body.cc-fun .cc li{color:#4f6070}
 body.cc-fun h1,body.cc-fun h2,body.cc-fun h3,body.cc-fun strong,body.cc-fun .cm-name,body.cc-fun .dt-head h2,body.cc-fun .rm h2{word-break:auto-phrase;text-wrap:balance;line-break:strict}
 body.cc-fun p,body.cc-fun li{word-break:auto-phrase;text-wrap:pretty;line-break:strict}
 body.cc-fun .nw{display:inline-block}
+body.cc-fun .cc-read article p,body.cc-fun .cc-read article li{word-break:normal;text-wrap:pretty;line-height:2}body.cc-fun .cc-read article p{margin:0 0 1.15em}
