@@ -233,3 +233,9 @@ html body#top .rc .rcg-port.is-on{border-color:var(--c)!important;box-shadow:0 0
 .rcg-board{max-width:min(100%,calc(var(--w) * 76px + 20px));margin-inline:auto}
 html body#top .rc .rcg-port{width:auto!important;flex:0 0 auto}
 @media(max-width:560px){.rcg-ports{gap:6px}.rcg-port span{width:36px!important}html body#top .rc .rcg-port{padding:6px 9px!important}}
+/* films v2: 自動再生・キャプションは下 */
+.rc-films figure{display:flex;flex-direction:column;background:var(--bg2)}
+.rc-films .rc-vid{aspect-ratio:16/9;overflow:hidden;background:#000}
+.rc-films video{width:100%;height:100%;object-fit:cover;display:block}
+.rc-films figcaption{position:static!important;background:none!important;padding:16px 20px 20px!important;color:var(--mute)!important;line-height:1.8}
+.rc-films figcaption b{color:var(--ink)!important}

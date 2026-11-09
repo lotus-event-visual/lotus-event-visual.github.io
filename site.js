@@ -139,3 +139,13 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  if(ft&&!ft.querySelector('a[href^="recruit.html"]')){var f=document.createElement('a');f.href='recruit.html';f.innerHTML='採用情報<span aria-hidden="true">↗</span>';var fb=ft.querySelector('a[href^="about.html"]');ft.insertBefore(f,fb||null);}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rc);else rc();})();
+/* ロゴ表記を LOTUS VISUAL に (Friday 2026-11-10 本人指示) */
+(function(){function wm(){
+ if(!document.getElementById('wm-lv')){var st=document.createElement('style');st.id='wm-lv';st.textContent='.fr-day{overflow-x:clip;max-width:100vw}.fr-day-strip{max-width:100%}.wordmark .wm-v{color:inherit!important;margin-left:.22em;letter-spacing:-.06em}@media(max-width:640px){.site-header .wordmark{font-size:26px!important}}';document.head.appendChild(st);}
+ if(/\/cleancare\//.test(location.pathname))return;document.querySelectorAll('a.wordmark').forEach(function(a){var sp=a.querySelector(':scope > span');if(sp&&sp.textContent.trim()==='.'&&!a.querySelector('.wm-v')){var v=document.createElement('span');v.className='wm-v';v.textContent='VISUAL';a.insertBefore(v,sp);a.setAttribute('aria-label','LOTUS VISUAL ホーム');}});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wm);else wm();})();
+
+/* 機材は定価・個別お見積り表示 (Friday 2026-11-10 本人指示) */
+(function(){function q(){var b=document.getElementById('quotation');if(!b)return;var st=b.querySelector('strong'),p=b.querySelector('p'),sm=b.querySelector('small');if(st)st.textContent='定価・個別お見積り';if(p)p.textContent='日程・数量・構成に合わせてお見積りします。お気軽にご依頼ください。';if(sm)sm.textContent='期間・付属品・搬入出・人員の範囲は、お見積りに明記します。';}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(q,50)});else setTimeout(q,50);})();

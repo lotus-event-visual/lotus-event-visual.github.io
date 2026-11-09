@@ -1,7 +1,7 @@
 /* LOTUS proposed standard prices only. No supplier source data or availability claim. */
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
-const catalog=[{"model": "roland-v160hd", "unit": "台", "dailyAmount": 60000}, {"model": "roland-p20hd", "unit": "台", "dailyAmount": 25000}, {"model": "barco-imagepro4k", "unit": "台", "dailyAmount": 320000}, {"model": "panasonic-rq25kj", "unit": "台", "dailyAmount": 800000}, {"model": "hyperdeck-studio-hd-plus", "unit": "台", "dailyAmount": 10000}, {"model": "roland-vc1dl", "unit": "台", "dailyAmount": 12000}, {"model": "videoassist7-12ghdr", "unit": "台", "dailyAmount": 12000}, {"model": "teranex-av", "unit": "台", "dailyAmount": 15000}, {"model": "visualproductions-timecore", "unit": "台", "dailyAmount": 10000}, {"model": "roe-dm26", "unit": "枚", "dailyAmount": 60000}, {"model": "lotus-technical-staff", "unit": "人", "dailyAmount": 60000}];
+const catalog=[]; /* 本人 11/10 02:13「金額のせなくていい・定価・個別お見積り」 */
 function resolve(line,days,rates=catalog){
  if(days!==1)return null;
  const rows=rates.filter(r=>r.model===line.model&&r.unit===line.unit);
