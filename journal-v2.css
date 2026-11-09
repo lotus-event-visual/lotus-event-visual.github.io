@@ -2,7 +2,7 @@
 .jv2{--ink:#1b2a22;--paper:#f6f3ec;--accent:#8a6a2b;--line:#d9d2c3;color:var(--ink)}
 .jv2 .jv2-hero{position:relative;margin:0 0 40px;border-radius:10px;overflow:hidden;background:#111}
 .jv2 .jv2-hero img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
-.jv2 .jv2-hero figcaption{position:static;margin:0;padding:12px 16px;font-size:12px;color:#f6f3ec;background:#233b30;line-height:1.7;letter-spacing:.02em;overflow-wrap:anywhere}
+.jv2 .jv2-hero figcaption{position:absolute;right:12px;bottom:10px;font-size:11px;color:rgba(255,255,255,.75);letter-spacing:.04em}
 .jv2 .jv2-kicker{font-size:12px;letter-spacing:.18em;color:var(--accent);margin:0 0 14px}
 .jv2 h1{font-size:clamp(30px,5.2vw,54px);line-height:1.25;letter-spacing:-.03em;margin:0 0 18px}
 .jv2 .jv2-lead{font-size:clamp(17px,1.6vw,21px);line-height:1.9;max-width:36em;margin:0 0 10px}

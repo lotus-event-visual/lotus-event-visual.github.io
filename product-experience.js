@@ -48,14 +48,14 @@
   dialog.setAttribute('aria-describedby', 'product-photo-caption');
   const head = node('div', 'product-photo-dialog-head');
   const title = node('h2', '', '機材の画像'); title.id = 'product-photo-title';
-  const close = node('button', 'product-photo-close', '閉じる ×');
+  const close = node('button', 'product-photo-close lotus-control lotus-control--compact', '閉じる ×');
   close.type = 'button'; close.setAttribute('autofocus', '');
   const viewport = node('div', 'product-photo-viewport');
   viewport.tabIndex = 0; viewport.setAttribute('aria-label', '拡大画像。原寸表示ではスクロールできます。');
   const image = node('img', 'product-photo-full');
   const foot = node('div', 'product-photo-dialog-foot');
   const caption = node('p', '', ''); caption.id = 'product-photo-caption';
-  const zoom = node('button', 'product-photo-zoom', '原寸で見る');
+  const zoom = node('button', 'product-photo-zoom lotus-control lotus-control--secondary', '原寸で見る');
   zoom.type = 'button'; zoom.setAttribute('aria-pressed', 'false');
   const source = node('div', 'product-photo-source');
   const direct = node('a', 'product-photo-direct', '画像を直接開く ↗');

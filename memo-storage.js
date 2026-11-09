@@ -72,7 +72,7 @@
   document.querySelector('#memo-result').hidden=true;document.querySelector('#memo-output').value='';document.querySelector('#copy-status').textContent='';document.querySelector('#brief-status').textContent='';document.querySelector('#brief-context').hidden=true;document.querySelector('#clear-confirm').hidden=true;
   history.replaceState(null,'',location.pathname);
  }
- function ask(action,id,label){pending={action,id,snapshot:action==='all'?localStorage.getItem(key):null};prompt.textContent=label;okay.textContent=action==='load'?'このメモを読み込む':'削除する';confirm.hidden=false;cancel.focus();}
+ function ask(action,id,label){pending={action,id,snapshot:action==='all'?localStorage.getItem(key):null};prompt.textContent=label;okay.textContent=action==='load'?'このメモを読み込む':'削除する';okay.classList.toggle('lotus-control--danger',action!=='load');okay.classList.toggle('lotus-control--primary',action==='load');okay.classList.remove('lotus-control--secondary');confirm.hidden=false;cancel.focus();}
  function dismiss(){pending=null;confirm.hidden=true;document.querySelector('#save-browser-memo').focus();}
  const locked=action=>{if(!navigator.locks?.request){status.textContent='このブラウザーでは安全な保存操作を利用できません。メモのコピーをご利用ください。';return Promise.resolve();}return navigator.locks.request(key,{mode:'exclusive'},action).catch(error);};
  document.querySelector('#save-browser-memo').addEventListener('click',()=>{const draft=capture();if(!validDraft(draft)){status.textContent='入力が長すぎる項目があります。内容を短くしてから保存してください。';return;}return locked(()=>{

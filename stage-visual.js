@@ -109,7 +109,7 @@ function mountStage(host,initialState) {
   const art=doc.createElement('div');art.className='ls-stage-art';
   const footer=doc.createElement('div');footer.className='ls-stage-footer';
   const info=doc.createElement('p');info.textContent='画面プレビュー';
-  const button=doc.createElement('button');button.type='button';button.textContent='演出を見る';button.setAttribute('aria-pressed','false');
+  const button=doc.createElement('button');button.type='button';button.className='lotus-control lotus-control--compact';button.textContent='演出を見る';button.setAttribute('aria-pressed','false');
   const status=doc.createElement('span');status.className='ls-stage-status';status.setAttribute('role','status');
   footer.append(info,button,status);root.append(art,footer);host.append(root);
   let timer=null,running=false;const motion=win.matchMedia('(prefers-reduced-motion: reduce)');
