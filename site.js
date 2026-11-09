@@ -113,3 +113,14 @@ if(signalRoles){
  choices.forEach((b,i)=>b.addEventListener('click',()=>selectRole(i)));
  selectRole(0);bar.hidden=false;
 }
+
+/* メニューの機材マニュアル表記 (Friday 2026-11-09) */
+(function(){function relabel(){document.querySelectorAll('#site-nav a[href*="lotus-equipment-guide"]').forEach(function(a){a.setAttribute('aria-label','LOTUSプロアドバイザー向け 機材マニュアル');a.innerHTML='<small>EQUIPMENT MANUAL</small><span>LOTUSプロアドバイザー向け</span><b aria-hidden="true">↗</b>';});}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',relabel);else relabel();})();
+
+/* 機材ガイドを機材レンタルに統合 (Friday 2026-11-09) */
+(function(){function merge(){
+ document.querySelectorAll('#site-nav a[href^="products.html"], .footer-links a[href^="products.html"]').forEach(function(a){if(!a.hash||a.getAttribute('href')==='products.html')a.remove();});
+ document.querySelectorAll('a[href^="products.html"]').forEach(function(a){var h=a.getAttribute('href');var hash=h.indexOf('#')>-1?h.slice(h.indexOf('#')):'#guide';a.setAttribute('href','rental.html'+hash);});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',merge);else merge();})();
