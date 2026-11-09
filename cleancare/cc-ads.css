@@ -99,3 +99,5 @@ html body#top.cc-fun .ad-tabs button{min-height:0!important;box-shadow:none!impo
 html body#top.cc-fun .ad-tabs button[aria-selected="true"]{background:var(--ad-ink)!important;color:#fff!important}
 body.cc-fun .ad-places b{color:var(--ad-ink)!important}body.cc-fun .ad-places small{color:#5C6F82!important}body.cc-fun .ad-sub b{color:var(--ad-ink)!important}
 @media(max-width:860px){body.cc-fun .ad-places a{padding-top:40px}}
+body.cc-fun .ad-places.kinds a{padding-top:24px}body.cc-fun .ad-places.kinds b{font-size:15.5px}
+@media(min-width:861px){body.cc-fun .ad .tx{top:12.5%}body.cc-fun .ad .big{font-size:clamp(24px,3.6vw,50px)}body.cc-fun .ad .price b{font-size:clamp(46px,7.6vw,108px)}body.cc-fun .ad .note{margin-bottom:10px}}
