@@ -80,3 +80,24 @@ body .cc-impact h1{font-size:clamp(22px,2.3vw,32px)!important;line-height:1.35!i
 .ci-tiles a{padding:10px 14px;border-radius:16px}
 .ci-tiles a strong{font-size:21px}
 @media(max-width:820px){.cc-impact .ci-pic{min-height:190px}.cc-impact .ci-cta a{width:auto;flex:1 1 auto}}
+/* 代表の現場経験(11/10 本人「1000件以上」「年間1000件」) */
+.ci-proof{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px 32px;align-items:center;margin:0 auto 30px;background:#fff;border:1px solid #E6E1D6;border-radius:22px;padding:clamp(18px,2.4vw,30px);box-shadow:0 10px 28px rgba(31,50,71,.07)}
+.ci-proof .ci-proof-kick{margin:0 0 6px;font-size:12.5px;font-weight:800;letter-spacing:.06em;color:#C8641B!important}
+.ci-proof h2{margin:0 0 8px;font-size:clamp(20px,2.1vw,27px)!important;line-height:1.4;color:#1F3A33!important;-webkit-text-fill-color:#1F3A33!important}
+.ci-proof .ci-proof-head p:not(.ci-proof-kick){margin:0 0 10px;font-size:14.5px;line-height:1.8;color:#3E5249!important}
+.ci-proof .ci-proof-head a{font-weight:800;font-size:14px;color:#A9500F!important;text-decoration:none}
+.ci-proof-stats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ci-proof-stats li{background:#FFF6E6;border-radius:16px;padding:14px 10px;text-align:center;display:flex;flex-direction:column;gap:6px;justify-content:center}
+.ci-proof-stats b{font-size:clamp(26px,2.8vw,36px);line-height:1.05;font-weight:800;color:#C8641B!important;white-space:nowrap}
+.ci-proof-stats b i{font-style:normal;font-size:13px;margin-left:3px;color:#1F3A33!important}
+.ci-proof-stats span{font-size:12.5px;line-height:1.5;font-weight:700;color:#3E5249!important}
+.ci-proof-note{grid-column:1/-1;margin:0;font-size:11.5px;color:#6A7C74!important}
+body.cc-care .ci-proof-stats li{background:#EEF5EF}
+body.cc-care .ci-proof-stats b{color:#2F6E58!important}
+@media(max-width:820px){.ci-proof{grid-template-columns:1fr}.ci-proof-stats{gap:8px}.ci-proof-stats li{padding:12px 6px}.ci-proof-stats b{font-size:24px}.ci-proof-stats span{font-size:11.5px}}
+@media(max-width:820px){.cc-impact{grid-template-columns:1fr}.cc-impact .ci-pic{min-height:200px;order:-1}.ci-proof-stats b{font-size:22px;white-space:normal}.ci-proof-stats b i{display:block;margin:2px 0 0}.ci-tiles a strong{font-size:19px}}
+
+.ci-proof-partner{grid-column:1/-1;margin:0;padding:10px 14px;border-radius:12px;background:#F3F6F9;font-size:14px;font-weight:700;color:#2B3F52!important}
+.ci-proof-partner b{color:#C8641B!important}
+body.cc-care .ci-proof-partner{background:#EEF5EF}
+.dt .ci-proof{margin-top:26px}
