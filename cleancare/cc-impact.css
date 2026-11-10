@@ -47,3 +47,36 @@ body .ci-tiles a strong{color:#C8641B!important}
 body .ci-tiles a small,body .ci-tiles a strong em{color:#55685F!important}
 body .cc-impact h1{-webkit-text-fill-color:#fff!important;background:none!important;text-shadow:0 2px 0 rgba(0,0,0,.15)}
 body .cc-impact h1 em{-webkit-text-fill-color:#FFC857!important}
+.ci-data .ci-facts{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ci-data .ci-facts li{background:#fff;border:1px solid #E1E9DD;border-radius:22px;padding:22px 24px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 28px rgba(35,79,68,.08)}
+.ci-data .ci-num{font-weight:800;font-size:18px;color:#3C8368!important}
+.ci-data .ci-num b{font-size:46px;line-height:1;color:#C8641B!important;margin:0 4px}
+.ci-data .ci-facts strong{font-size:20px;color:#1F3A33!important;line-height:1.45}
+.ci-data .ci-facts p{margin:0;color:#3E5249!important;line-height:1.8;font-size:15px}
+.ci-data .ci-facts>li>a{align-self:flex-start;background:#FFF4DD;color:#A9500F!important;font-weight:800;border-radius:999px;padding:8px 16px;text-decoration:none;margin-top:4px}
+.ci-data .ci-facts small{font-size:11.5px;color:#6A7C74!important;line-height:1.6;margin-top:auto}
+.ci-data .ci-facts small a{color:#3C8368!important}
+@media(max-width:820px){.ci-data .ci-facts{grid-template-columns:1fr}}
+/* 11/10 本人「デカすぎる」→ 全体を小さく */
+.cc-impact{margin:14px auto 26px;border-radius:22px;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
+.cc-impact .ci-copy{padding:clamp(20px,2.6vw,36px);gap:10px}
+.cc-impact .ci-tag{font-size:12.5px;padding:4px 12px}
+body .cc-impact h1{font-size:clamp(22px,2.3vw,32px)!important;line-height:1.35!important}
+.cc-impact .ci-sub{font-size:14.5px;line-height:1.7}
+.cc-impact .ci-price{margin:0}
+.cc-impact .ci-price small{font-size:13px}
+.cc-impact .ci-price b{font-size:clamp(40px,4.4vw,58px);text-shadow:0 3px 0 rgba(0,0,0,.15)}
+.cc-impact .ci-price span{font-size:clamp(17px,1.8vw,22px);padding-bottom:5px}
+.cc-impact .ci-price i{padding-bottom:7px;font-size:12.5px}
+.cc-impact ul.ci-pts{gap:6px}
+.cc-impact ul.ci-pts li{font-size:14.5px}
+.cc-impact ul.ci-pts li::before{flex-basis:20px;height:20px;font-size:12px}
+.cc-impact .ci-cta a{min-height:46px;padding:0 22px;font-size:15.5px}
+.cc-impact .ci-pic{min-height:0}
+.cc-impact .ci-pic img{object-position:30% 40%}
+.cc-impact .ci-badge{right:12px;bottom:12px;padding:8px 12px;font-size:12.5px;border-radius:14px}
+.cc-impact .ci-badge b{font-size:16px}
+.ci-tiles{margin:-8px auto 26px;gap:10px}
+.ci-tiles a{padding:10px 14px;border-radius:16px}
+.ci-tiles a strong{font-size:21px}
+@media(max-width:820px){.cc-impact .ci-pic{min-height:190px}.cc-impact .ci-cta a{width:auto;flex:1 1 auto}}
