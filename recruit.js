@@ -50,7 +50,7 @@ function entry(){
     if(!g('name')){msg2('お名前を入れてください。');return;}
     if(!g('contact')){msg2('電話番号かメールアドレスを入れてください。');return;}
     var body=['【採用への応募・相談】','お名前:'+g('name'),'連絡先:'+g('contact'),'希望の形:'+(kinds.join('・')||'相談したい'),'映像・イベントの経験:'+(g('exp')||'—'),'',g('msg')||'',''].join('\n');
-    location.href='mailto:lotus@lotusgroupholdings.com,office@lotusgroupholdings.com?subject='+encodeURIComponent('【採用】映像設営スタッフへの応募・相談('+g('name')+')')+'&body='+encodeURIComponent(body);
+    location.href='mailto:office@lotusgroupholdings.com?subject='+encodeURIComponent('【採用】映像設営スタッフへの応募・相談('+g('name')+')')+'&body='+encodeURIComponent(body);
     msg2('メールアプリが開きます。そのまま送信してください。');
   });
   function msg2(t){$('#rc-fmsg').textContent=t;}

@@ -1,6 +1,6 @@
 (()=>{
 'use strict';
-const recipient='lotus@lotusgroupholdings.com,office@lotusgroupholdings.com';
+const recipient='office@lotusgroupholdings.com';
 function draftFor(text){
  const base='mailto:'+recipient+'?subject='+encodeURIComponent('イベント映像・技術協力の相談');
  const full=base+'&body='+encodeURIComponent(text);
