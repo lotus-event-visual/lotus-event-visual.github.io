@@ -141,7 +141,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rc);else rc();})();
 /* ロゴ表記を LOTUS VISUAL に (Friday 2026-11-10 本人指示) */
 (function(){function wm(){
- if(!document.getElementById('wm-lv')){var st=document.createElement('style');st.id='wm-lv';st.textContent='.fr-day{overflow-x:clip;max-width:100vw}.fr-day-strip{max-width:100%}.wordmark .wm-v{color:inherit!important;margin-left:.22em;letter-spacing:-.06em}@media(max-width:640px){.site-header .wordmark{font-size:26px!important}}';document.head.appendChild(st);}
+ if(!document.getElementById('wm-lv')){var st=document.createElement('style');st.id='wm-lv';st.textContent='.fr-day{overflow-x:clip;max-width:100vw}.fr-day-strip{max-width:100%}.wordmark .wm-v{color:inherit!important;margin-left:.22em;letter-spacing:-.06em}@media(max-width:640px){.site-header .wordmark{font-size:26px!important}}@media(max-width:360px){.site-footer .wordmark{font-size:38px!important}}';document.head.appendChild(st);}
  if(/\/cleancare\//.test(location.pathname))return;document.querySelectorAll('a.wordmark').forEach(function(a){var sp=a.querySelector(':scope > span');if(sp&&sp.textContent.trim()==='.'&&!a.querySelector('.wm-v')){var v=document.createElement('span');v.className='wm-v';v.textContent='VISUAL';a.insertBefore(v,sp);a.setAttribute('aria-label','LOTUS VISUAL ホーム');}});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wm);else wm();})();
