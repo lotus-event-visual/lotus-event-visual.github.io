@@ -126,3 +126,8 @@ body.cc-care .ci-proof-partner{background:#EEF5EF}
  main .cc-menu-scope{grid-template-columns:minmax(0,1fr);padding:22px 16px}
  main .cc-table,main .cc-price{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
+
+/* 320 幅:介護施設ページ末尾の相談ボタンを枠内で折り返す(11/11 09:2x、ジャービス MANUAL-0000UTC の実測より) */
+@media (max-width:360px){
+ body.cc-fun .v3-close a{white-space:normal;min-width:0;max-width:100%;text-align:center}
+}

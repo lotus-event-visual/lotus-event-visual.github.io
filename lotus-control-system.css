@@ -28,3 +28,9 @@ html body#top .process-controls .process-action{margin-left:auto!important;color
 
 html body#top .process-controls .lotus-control.lotus-control.lotus-control{flex-direction:row!important;justify-content:flex-start!important;min-height:64px!important}
 html body#top .process-controls .lotus-control strong{margin:0!important;text-align:left!important}
+
+/* 320 幅:ヘッダーの「メニュー」が 1 字ずつ縦に折り返すのを防ぐ(11/11 09:2x、ジャービス MANUAL-0000UTC の実測より) */
+@media (max-width:360px){
+ .site-header .menu-toggle{padding-left:0;gap:6px}
+ .site-header .menu-label{white-space:nowrap}
+}
