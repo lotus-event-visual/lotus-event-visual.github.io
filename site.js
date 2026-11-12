@@ -146,6 +146,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wm);else wm();})();
 
-/* 機材は定価・個別お見積り表示 (Friday 2026-11-10 本人指示) */
-(function(){function q(){var b=document.getElementById('quotation');if(!b)return;var st=b.querySelector('strong'),p=b.querySelector('p'),sm=b.querySelector('small');if(st)st.textContent='定価・個別お見積り';if(p)p.textContent='日程・数量・構成に合わせてお見積りします。お気軽にご依頼ください。';if(sm)sm.textContent='期間・付属品・搬入出・人員の範囲は、お見積りに明記します。';}
+/* 機材は定価・個別お見積り表示 (Friday 2026-11-10 本人指示)。概算のある機材は除く(11/13) */
+(function(){function q(){var b=document.getElementById('quotation');if(!b)return;var R=window.LotusPublicRentalRates;if(R&&R.catalog&&R.catalog.some(function(r){return r.model===b.dataset.rateModel;}))return; /* 11/13 本人 11/10 23:54「概算…他社から調べて類似で掲載」:概算のある機材は上書きしない */var st=b.querySelector('strong'),p=b.querySelector('p'),sm=b.querySelector('small');if(st)st.textContent='定価・個別お見積り';if(p)p.textContent='日程・数量・構成に合わせてお見積りします。お気軽にご依頼ください。';if(sm)sm.textContent='期間・付属品・搬入出・人員の範囲は、お見積りに明記します。';}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(q,50)});else setTimeout(q,50);})();
