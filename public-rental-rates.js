@@ -7,7 +7,10 @@ const catalog=[ /* 本人 11/10 23:54「概算も金額どのみち他社から�
  {model:'hyperdeck-studio-hd-plus',unit:'台',dailyAmount:7500},
  {model:'videoassist7-12ghdr',unit:'台',dailyAmount:4300},
  {model:'teranex-av',unit:'台',dailyAmount:15000},
- {model:'roland-vc1dl',unit:'台',dailyAmount:5000}
+ {model:'roland-vc1dl',unit:'台',dailyAmount:5000},
+ {model:'barco-imagepro4k',unit:'台',dailyAmount:87000},
+ {model:'panasonic-rq25kj',unit:'台',dailyAmount:840000},
+ {model:'panasonic-pt-vmz71',unit:'台',dailyAmount:57000}
 ];
 function resolve(line,days,rates=catalog){
  if(days!==1)return null;
