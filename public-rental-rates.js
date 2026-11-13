@@ -12,7 +12,11 @@ const catalog=[
  {model:'panasonic-rq25kj',unit:'台',dailyAmount:840000},
  {model:'panasonic-pt-vmz71',unit:'台',dailyAmount:57000},
  {model:'visualproductions-timecore',unit:'台',dailyAmount:10500},
- {model:'roe-dm26',unit:'枚',dailyAmount:33000}
+ {model:'roe-dm26',unit:'枚',dailyAmount:33000},
+ {model:'barco-imagepro-ii',unit:'台',dailyAmount:53000},
+ {model:'barco-imagepro-ii-jr',unit:'台',dailyAmount:53000},
+ {model:'aja-gen10',unit:'台',dailyAmount:2800},
+ {model:'decimator-mdhx',unit:'台',dailyAmount:4000}
 ];
 function resolve(line,days,rates=catalog){
  if(days!==1)return null;
