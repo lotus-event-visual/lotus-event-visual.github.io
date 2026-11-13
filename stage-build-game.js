@@ -1,4 +1,4 @@
-/* LOTUS stage build game (Friday 2026-11-09). Canvas 1200x675, metres -> px via S. */
+/* LOTUS stage build game. Canvas 1200x675, metres -> px via S. */
 (()=>{'use strict';
 const cv=document.getElementById('sbg-canvas');if(!cv)return;const g=cv.getContext('2d');if(!g)return;
 const $=id=>document.getElementById(id);

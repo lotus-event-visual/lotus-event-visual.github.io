@@ -1,4 +1,4 @@
-/* LOTUS クリーンケアサービス v3 — 落ち着いた配色・親しみやすいレイアウト(Friday 2026-11-10) */
+/* LOTUS クリーンケアサービス v3 — 落ち着いた配色・親しみやすいレイアウト */
 body.cc-fun{--v3-bg:#FAF8F4;--v3-card:#FFFFFF;--v3-line:#ECE6DD;--v3-ink:#26394D;--v3-sub:#5C6F82;--v3-ac:#C47A63;--v3-acd:#A5624E;--v3-blue:#3F7590;--v3-sand:#F3EDE3;--v3-mist:#EEF3F5;background:var(--v3-bg)!important}
 body.cc-fun main.cc{background:transparent!important}
 body.cc-fun .cc .eyebrow{background:transparent!important;color:var(--v3-ac)!important;padding:0!important;border-radius:0!important;font-size:.78rem!important;letter-spacing:.18em!important;font-weight:700!important;display:inline-flex!important;align-items:center;gap:10px}

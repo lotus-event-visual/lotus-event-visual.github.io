@@ -1,4 +1,4 @@
-/* journal lower half — premium editorial (Friday 2026-11-09) */
+/* journal lower half — premium editorial */
 :root{--jp-bg:#0b0d0f;--jp-bg2:#121518;--jp-ink:#eee9df;--jp-mute:#a8a195;--jp-gold:#c9a35a;--jp-line:rgba(201,163,90,.28);--jp-serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--jp-num:"Cormorant Garamond","Times New Roman",serif}
 #history.jp-dark,#future.jp-future{background:var(--jp-bg);color:var(--jp-ink);box-shadow:0 0 0 100vmax var(--jp-bg);clip-path:inset(0 -100vmax);padding-top:120px;padding-bottom:120px;margin-top:0}
 #history.jp-dark{border-top:1px solid var(--jp-line)}

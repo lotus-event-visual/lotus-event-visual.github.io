@@ -1,4 +1,4 @@
-/* 採用ページ — recruit (Friday 2026-11-10) */
+/* 採用ページ — recruit */
 .rc{--bg:#07090b;--bg2:#0f1316;--ink:#f1ece2;--mute:#a8a093;--gold:#c9a35a;--gold2:#e9cb8e;--led:#43e0c2;--line:rgba(201,163,90,.26);--serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--num:"Cormorant Garamond","Times New Roman",serif;background:var(--bg);color:var(--ink);overflow-x:clip}
 .rc a{color:inherit}
 .rc h1,.rc h2,.rc h3{font-family:var(--serif)!important;font-weight:500!important;color:var(--ink)!important;letter-spacing:.04em}

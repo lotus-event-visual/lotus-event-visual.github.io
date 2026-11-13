@@ -1,4 +1,4 @@
-/* 採用ページ — ゲーム・クイズ・応募メモ (Friday 2026-11-10) */
+/* 採用ページ — ゲーム・クイズ・応募メモ */
 (function(){
 'use strict';
 function $(s,r){return (r||document).querySelector(s);}

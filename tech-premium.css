@@ -1,4 +1,4 @@
-/* 技術提供 — premium (Friday 2026-11-10) */
+/* 技術提供 — premium */
 .tp-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
 .tp-flow li{padding:32px 24px 32px 0;border-right:1px solid var(--line)}
 .tp-flow li+li{padding-left:24px}.tp-flow li:last-child{border-right:0}

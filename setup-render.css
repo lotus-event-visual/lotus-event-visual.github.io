@@ -1,4 +1,4 @@
-/* 設営イメージ (Friday 2026-11-09) */
+/* 設営イメージ */
 .setup-render{margin-top:clamp(48px,6vw,88px)!important;margin-bottom:clamp(48px,6vw,88px)!important}
 .setup-render .sr-head{display:grid;grid-template-columns:1fr auto;gap:16px 40px;align-items:end;margin-bottom:22px}
 .setup-render .eyebrow{letter-spacing:.28em}

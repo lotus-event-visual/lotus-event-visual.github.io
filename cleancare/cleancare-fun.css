@@ -154,7 +154,7 @@ body.cc-fun .cc-three li{background:var(--white);border-radius:var(--r-md);box-s
 }
 @media(prefers-reduced-motion:reduce){body.cc-fun .cc-btn,body.cc-fun .cc-targets a{transition:none}}
 
-/* 11/10 03:40 本人「全体の色味がよくない」→ 落ち着いた配色に統一 */
+/* 落ち着いた配色に統一 */
 body.cc-fun .cc-pricecards strong{color:var(--navy)!important;font-size:1.55rem!important;line-height:1.35!important}
 body.cc-fun .care-menu .cm-name{font-size:1.2rem!important;color:var(--navy)!important}
 body.cc-fun .care-menu .cm-price,body.cc-fun .cc-pricecards em.cm-price{color:var(--coral-deep)!important;font-style:normal;font-weight:700;font-size:.98rem}

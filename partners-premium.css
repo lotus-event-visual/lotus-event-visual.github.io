@@ -1,4 +1,4 @@
-/* お得意様(映像会社・制作会社様)向け — partners (Friday 2026-11-10) */
+/* お得意様(映像会社・制作会社様)向け — partners */
 .pt{--bg:#0a0c0e;--bg2:#111417;--ink:#efe9de;--mute:#a59d90;--gold:#c9a35a;--gold2:#e2c48a;--line:rgba(201,163,90,.26);--serif:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;--num:"Cormorant Garamond","Times New Roman",serif;background:var(--bg);color:var(--ink);overflow-x:clip}
 .pt a{color:inherit}
 .pt h1,.pt h2,.pt h3{font-family:var(--serif)!important;font-weight:500!important;color:var(--ink)!important;letter-spacing:.04em}

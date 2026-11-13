@@ -1,4 +1,4 @@
-/* 設営イメージ — selections → in-browser render (Friday 2026-11-09). No network, no storage. */
+/* 設営イメージ — selections → in-browser render. No network, no storage. */
 (()=>{'use strict';
 const root=document.getElementById('setup-render');if(!root)return;
 const cv=root.querySelector('canvas'),ctx=cv.getContext('2d');

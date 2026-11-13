@@ -1,4 +1,4 @@
-/* 技術提供事例 — premium hero & story (Friday 2026-11-10) */
+/* 技術提供事例 — premium hero & story */
 .cp .cx-intro,.cp .projection-intro{display:none!important}
 .cp-hero{--ink:#efe9de;--mute:#b3ab9e;--gold:#c9a35a;position:relative;min-height:min(86vh,820px);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;background:#0a0c0e;color:var(--ink);margin:0}
 .cp-hero::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--cp-photo) center/cover no-repeat;transform:scale(1.04);animation:cpZoom 18s ease-out forwards}

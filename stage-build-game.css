@@ -1,4 +1,4 @@
-/* Stage build game (Friday 2026-11-09) */
+/* Stage build game */
 .sbg{margin-top:8px}
 .sbg-stage{position:relative;overflow:hidden;border-radius:14px;background:#06090d;box-shadow:0 18px 48px #0a18252e}
 .sbg-stage canvas{display:block;width:100%;height:auto;aspect-ratio:1200/675}

@@ -57,7 +57,7 @@ body .cc-impact h1 em{-webkit-text-fill-color:#FFC857!important}
 .ci-data .ci-facts small{font-size:11.5px;color:#6A7C74!important;line-height:1.6;margin-top:auto}
 .ci-data .ci-facts small a{color:#3C8368!important}
 @media(max-width:820px){.ci-data .ci-facts{grid-template-columns:1fr}}
-/* 11/10 本人「デカすぎる」→ 全体を小さく */
+/* 全体を小さく */
 .cc-impact{margin:14px auto 26px;border-radius:22px;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
 .cc-impact .ci-copy{padding:clamp(20px,2.6vw,36px);gap:10px}
 .cc-impact .ci-tag{font-size:12.5px;padding:4px 12px}
@@ -80,7 +80,7 @@ body .cc-impact h1{font-size:clamp(22px,2.3vw,32px)!important;line-height:1.35!i
 .ci-tiles a{padding:10px 14px;border-radius:16px}
 .ci-tiles a strong{font-size:21px}
 @media(max-width:820px){.cc-impact .ci-pic{min-height:190px}.cc-impact .ci-cta a{width:auto;flex:1 1 auto}}
-/* 代表の現場経験(11/10 本人「1000件以上」「年間1000件」) */
+/* 代表の現場経験 */
 .ci-proof{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px 32px;align-items:center;margin:0 auto 30px;background:#fff;border:1px solid #E6E1D6;border-radius:22px;padding:clamp(18px,2.4vw,30px);box-shadow:0 10px 28px rgba(31,50,71,.07)}
 .ci-proof .ci-proof-kick{margin:0 0 6px;font-size:12.5px;font-weight:800;letter-spacing:.06em;color:#C8641B!important}
 .ci-proof h2{margin:0 0 8px;font-size:clamp(20px,2.1vw,27px)!important;line-height:1.4;color:#1F3A33!important;-webkit-text-fill-color:#1F3A33!important}
@@ -102,7 +102,7 @@ body.cc-care .ci-proof-stats b{color:#2F6E58!important}
 body.cc-care .ci-proof-partner{background:#EEF5EF}
 .dt .ci-proof{margin-top:26px}
 
-/* 11/10 本人「高齢者や医療従事者を病気から守る熱い信念」 */
+
 .ci-mission{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:22px 34px;align-items:center;margin:0 auto 26px}
 .ci-mission-kick{margin:0 0 6px;font-size:12.5px;font-weight:800;letter-spacing:.08em;color:#C8641B!important}
 .ci-mission h2{margin:0 0 10px;font-size:clamp(21px,2.3vw,30px)!important;line-height:1.4;color:#1F3A33!important;-webkit-text-fill-color:#1F3A33!important}
@@ -121,13 +121,13 @@ body.cc-care .ci-proof-partner{background:#EEF5EF}
 .rd-ad a{white-space:nowrap;font-weight:800;font-size:13.5px;color:#fff!important;background:#C8641B;border-radius:999px;padding:9px 16px;text-decoration:none}
 @media(max-width:820px){.ci-mission{grid-template-columns:1fr}.ci-pillars li{grid-template-columns:1fr;gap:2px}.rd-ad{grid-template-columns:auto minmax(0,1fr)}.rd-ad a{grid-column:1/-1;text-align:center}}
 
-/* 320 幅の横はみ出し対策(フライデー Q 11/11 07:2x):最小 300px の列を 1 列に、表は枠の中で横スクロール */
+/* 320 幅の横はみ出し対策:最小 300px の列を 1 列に、表は枠の中で横スクロール */
 @media (max-width:360px){
  main .cc-menu-scope{grid-template-columns:minmax(0,1fr);padding:22px 16px}
  main .cc-table,main .cc-price{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
 
-/* 320 幅:介護施設ページ末尾の相談ボタンを枠内で折り返す(11/11 09:2x、ジャービス MANUAL-0000UTC の実測より) */
+/* 320 幅:介護施設ページ末尾の相談ボタンを枠内で折り返す */
 @media (max-width:360px){
  body.cc-fun .v3-close a{white-space:normal;min-width:0;max-width:100%;text-align:center}
 }

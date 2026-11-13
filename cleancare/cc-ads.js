@@ -1,4 +1,4 @@
-/* クリーンケア 広告バナー・タブ  Friday 2026-11-10 */
+/* クリーンケア 広告バナー・タブ */
 (function(){
 var w=document.querySelector('.ad-wrap');
 if(w){var t=w.querySelector('.ad-track'),s=[].slice.call(t.querySelectorAll('.ad')),d=w.querySelector('.ad-dots'),cur=0,timer=null;

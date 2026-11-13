@@ -1,4 +1,4 @@
-/* 設営イメージ 3D — three.js リアルタイム CG (Friday 2026-11-09)
+/* 設営イメージ 3D — three.js リアルタイム CG
    入力は外部へ送信しない。three.js は jsDelivr から読み込む。失敗時は 2D 描画のまま。 */
 import * as THREE from 'three';
 import {EffectComposer} from 'three/addons/postprocessing/EffectComposer.js';
