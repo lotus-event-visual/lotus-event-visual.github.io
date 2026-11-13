@@ -30,3 +30,6 @@
 
 /* Keep the original case available without navigating the draft tab away. */
 .brief-context #brief-case-reference{max-width:100%;min-height:44px;overflow-wrap:anywhere}
+
+/* 305px 幅でヘッダーのメニューがはみ出さないように(11/14) */
+@media (max-width:340px){.site-header{gap:8px!important}.site-header .wordmark{font-size:21px!important}}
