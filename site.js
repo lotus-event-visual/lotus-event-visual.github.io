@@ -114,24 +114,24 @@ if(signalRoles){
  selectRole(0);bar.hidden=false;
 }
 
-/* メニューの機材マニュアル表記 (Friday 2026-11-09) */
+/* メニューの機材マニュアル表記 */
 (function(){function relabel(){document.querySelectorAll('#site-nav a[href*="lotus-equipment-guide"]').forEach(function(a){a.setAttribute('aria-label','LOTUSプロアドバイザー向け 機材マニュアル');a.innerHTML='<small>EQUIPMENT MANUAL</small><span>LOTUSプロアドバイザー向け</span><b aria-hidden="true">↗</b>';});}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',relabel);else relabel();})();
 
-/* 機材ガイドを機材レンタルに統合 (Friday 2026-11-09) */
+/* 機材ガイドを機材レンタルに統合 */
 (function(){function merge(){
  document.querySelectorAll('#site-nav a[href^="products.html"], .footer-links a[href^="products.html"]').forEach(function(a){if(!a.hash||a.getAttribute('href')==='products.html')a.remove();});
  document.querySelectorAll('a[href^="products.html"]').forEach(function(a){var h=a.getAttribute('href');var hash=h.indexOf('#')>-1?h.slice(h.indexOf('#')):'#guide';a.setAttribute('href','rental.html'+hash);});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',merge);else merge();})();
 
-/* ご依頼の流れページを外す・LOTUS VISUAL 表記 (Friday 2026-11-10) */
+/* ご依頼の流れページを外す・LOTUS VISUAL 表記 */
 (function(){function wf(){
  document.querySelectorAll('#site-nav a[href^="workflow.html"], .footer-links a[href^="workflow.html"], .quick-nav a[href^="workflow.html"]').forEach(function(a){a.remove();});
  document.querySelectorAll('a[href^="workflow.html"]').forEach(function(a){a.setAttribute('href','contact.html');});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wf);else wf();})();
-/* 採用情報をメニューとフッターに追加 (Friday 2026-11-10) */
+/* 採用情報をメニューとフッターに追加 */
 (function(){function rc(){
  var nav=document.querySelector('#site-nav .menu-links');
  if(nav&&!nav.querySelector('a[href^="recruit.html"]')){var a=document.createElement('a');a.href='recruit.html';a.innerHTML='<small>RECRUIT</small><span>採用情報</span><b aria-hidden="true">↗</b>';var ab=nav.querySelector('a[href^="about.html"]');nav.insertBefore(a,ab||null);}
@@ -139,13 +139,13 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  if(ft&&!ft.querySelector('a[href^="recruit.html"]')){var f=document.createElement('a');f.href='recruit.html';f.innerHTML='採用情報<span aria-hidden="true">↗</span>';var fb=ft.querySelector('a[href^="about.html"]');ft.insertBefore(f,fb||null);}
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',rc);else rc();})();
-/* ロゴ表記を LOTUS VISUAL に (Friday 2026-11-10 本人指示) */
+/* ロゴ表記を LOTUS VISUAL に */
 (function(){function wm(){
  if(!document.getElementById('wm-lv')){var st=document.createElement('style');st.id='wm-lv';st.textContent='.fr-day{overflow-x:clip;max-width:100vw}.fr-day-strip{max-width:100%}.wordmark .wm-v{color:inherit!important;margin-left:.22em;letter-spacing:-.06em}@media(max-width:640px){.site-header .wordmark{font-size:26px!important}}@media(max-width:360px){.site-footer .wordmark{font-size:38px!important}}';document.head.appendChild(st);}
  if(/\/cleancare\//.test(location.pathname))return;document.querySelectorAll('a.wordmark').forEach(function(a){var sp=a.querySelector(':scope > span');if(sp&&sp.textContent.trim()==='.'&&!a.querySelector('.wm-v')){var v=document.createElement('span');v.className='wm-v';v.textContent='VISUAL';a.insertBefore(v,sp);a.setAttribute('aria-label','LOTUS VISUAL ホーム');}});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',wm);else wm();})();
 
-/* 機材は定価・個別お見積り表示 (Friday 2026-11-10 本人指示)。概算のある機材は除く(11/13) */
-(function(){function q(){var b=document.getElementById('quotation');if(!b)return;var R=window.LotusPublicRentalRates;if(R&&R.catalog&&R.catalog.some(function(r){return r.model===b.dataset.rateModel;}))return; /* 11/13 本人 11/10 23:54「概算…他社から調べて類似で掲載」:概算のある機材は上書きしない */var st=b.querySelector('strong'),p=b.querySelector('p'),sm=b.querySelector('small');if(st)st.textContent='定価・個別お見積り';if(p)p.textContent='日程・数量・構成に合わせてお見積りします。お気軽にご依頼ください。';if(sm)sm.textContent='期間・付属品・搬入出・人員の範囲は、お見積りに明記します。';}
+/* 機材は定価・個別お見積り表示。概算のある機材は除く */
+(function(){function q(){var b=document.getElementById('quotation');if(!b)return;var R=window.LotusPublicRentalRates;if(R&&R.catalog&&R.catalog.some(function(r){return r.model===b.dataset.rateModel;}))return;var st=b.querySelector('strong'),p=b.querySelector('p'),sm=b.querySelector('small');if(st)st.textContent='定価・個別お見積り';if(p)p.textContent='日程・数量・構成に合わせてお見積りします。お気軽にご依頼ください。';if(sm)sm.textContent='期間・付属品・搬入出・人員の範囲は、お見積りに明記します。';}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(q,50)});else setTimeout(q,50);})();

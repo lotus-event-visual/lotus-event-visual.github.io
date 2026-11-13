@@ -1,7 +1,7 @@
 /* LOTUS proposed standard prices only. No supplier source data or availability claim. */
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
-const catalog=[ /* 本人 11/10 23:54「概算も金額どのみち他社から調べて類似で掲載…概算出ないなら意味なくない？」(02:13 の「個別お見積り」を上書き)。決め方:他社の公開レンタル料金 3 件以上の 1 日料金を税別にそろえた平均 × 1.05〜1.10 の範囲で、1,000 円単位の最小の額(範囲に無ければ 500 円、次に 100 円単位)。根拠は 会話の貯蔵庫\decisions\機材の概算金額-他社調査.md */
+const catalog=[
  {model:'roland-v160hd',unit:'台',dailyAmount:58000},
  {model:'roland-p20hd',unit:'台',dailyAmount:11500},
  {model:'hyperdeck-studio-hd-plus',unit:'台',dailyAmount:7500},
