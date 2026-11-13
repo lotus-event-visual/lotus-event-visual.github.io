@@ -10,7 +10,9 @@ const catalog=[
  {model:'roland-vc1dl',unit:'台',dailyAmount:5000},
  {model:'barco-imagepro4k',unit:'台',dailyAmount:87000},
  {model:'panasonic-rq25kj',unit:'台',dailyAmount:840000},
- {model:'panasonic-pt-vmz71',unit:'台',dailyAmount:57000}
+ {model:'panasonic-pt-vmz71',unit:'台',dailyAmount:57000},
+ {model:'visualproductions-timecore',unit:'台',dailyAmount:10500},
+ {model:'roe-dm26',unit:'枚',dailyAmount:33000}
 ];
 function resolve(line,days,rates=catalog){
  if(days!==1)return null;
