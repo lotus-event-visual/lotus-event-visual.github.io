@@ -2,6 +2,10 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {model:'imagenics-dvh14a',unit:'台',dailyAmount:6500,confirmed:true},
+ {model:'iodata-cwq341sdbf',unit:'台',dailyAmount:21000,confirmed:true},
+ {model:'disguise-vx4plus',unit:'台',dailyAmount:578000,confirmed:true},
+ {model:'novastar-mx40pro',unit:'台',dailyAmount:63000,confirmed:true},
  {model:'smartscope-duo4k',unit:'台',dailyAmount:11000,confirmed:true},
  {model:'videohub40-12g',unit:'台',dailyAmount:48000,confirmed:true},
  {model:'novastar-cvt10pro',unit:'台',dailyAmount:21000,confirmed:true},
