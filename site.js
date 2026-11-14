@@ -84,7 +84,7 @@ if(form){
   const attempt=++copyAttempt,text=output.value;
   if(result.hidden||!text.trim())return;
   const current=()=>attempt===copyAttempt&&!result.hidden&&output.value===text;
-  try{await navigator.clipboard.writeText(text);if(current())copyStatus.textContent='コピーしました。外部への送信は行われていません。'}catch{if(!current())return;output.focus();output.select();copyStatus.textContent='自動コピーが利用できません。メモを選択しました。端末のコピー操作をご利用ください。'}
+  try{await navigator.clipboard.writeText(text);if(current())copyStatus.textContent='コピーしました。'}catch{if(!current())return;output.focus();output.select();copyStatus.textContent='自動コピーが利用できません。メモを選択しました。端末のコピー操作をご利用ください。'}
  });
  document.querySelector('#clear-memo').addEventListener('click',()=>{clearConfirm.hidden=false;document.querySelector('#cancel-clear').focus()});
  const cancelClear=()=>{clearConfirm.hidden=true;document.querySelector('#clear-memo').focus()};

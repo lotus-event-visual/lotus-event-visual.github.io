@@ -77,7 +77,7 @@
  const locked=action=>{if(!navigator.locks?.request){status.textContent='このブラウザーでは安全な保存操作を利用できません。メモのコピーをご利用ください。';return Promise.resolve();}return navigator.locks.request(key,{mode:'exclusive'},action).catch(error);};
  document.querySelector('#save-browser-memo').addEventListener('click',()=>{const draft=capture();if(!validDraft(draft)){status.textContent='入力が長すぎる項目があります。内容を短くしてから保存してください。';return;}return locked(()=>{
   try{const memos=read();if(memos.length>=10){status.textContent='保存は10件までです。不要な保存メモを削除してから保存してください。';return;}
-   const m={id:crypto.randomUUID(),savedAt:new Date().toISOString(),draft};write([m,...memos]);render([m,...memos],m.id);confirm.hidden=true;pending=null;status.textContent=JSON.stringify(capture())===JSON.stringify(draft)?'このブラウザーに保存しました。LOTUSへは送信されていません。':'保存ボタンを押した時の内容を保存しました。その後の変更も残す場合は、もう一度保存してください。LOTUSへは送信されていません。';
+   const m={id:crypto.randomUUID(),savedAt:new Date().toISOString(),draft};write([m,...memos]);render([m,...memos],m.id);confirm.hidden=true;pending=null;status.textContent=JSON.stringify(capture())===JSON.stringify(draft)?'このブラウザーに保存しました。':'保存ボタンを押した時の内容を保存しました。その後の変更も残す場合は、もう一度保存してください。';
   }catch{error();}
  });});
  document.querySelector('#load-browser-memo').addEventListener('click',()=>{try{const m=read().find(x=>x.id===select.value);if(!m){status.textContent='読み込む保存メモを選んでください。';return;}ask('load',m.id,'今の入力を「'+title(m)+'」に置き換えます。未保存の変更は失われます。読み込みますか？');}catch{error();}});

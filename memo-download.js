@@ -21,7 +21,7 @@
    document.body.appendChild(link);
    link.click();
    // Initiation is observable; the browser's completed save is not.
-   status.textContent='保存操作を開始しました。端末の保存先やダウンロード一覧をご確認ください。LOTUSへの送信は行われていません。';
+   status.textContent='保存操作を開始しました。端末の保存先やダウンロード一覧をご確認ください。';
   }catch{
    output.focus();output.select();
    status.textContent='ファイル保存を開始できませんでした。メモを選択しました。端末のコピー操作をご利用ください。';
