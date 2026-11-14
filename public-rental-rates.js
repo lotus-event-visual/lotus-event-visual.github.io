@@ -2,6 +2,7 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {model:'roland-vr120hd',unit:'台',dailyAmount:27000,confirmed:true},
  {model:'roland-v160hd',unit:'台',dailyAmount:58000},
  {model:'roland-p20hd',unit:'台',dailyAmount:11500},
  {model:'hyperdeck-studio-hd-plus',unit:'台',dailyAmount:7500},
