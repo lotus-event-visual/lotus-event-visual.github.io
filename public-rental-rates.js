@@ -2,6 +2,9 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {model:'smartscope-duo4k',unit:'台',dailyAmount:11000,confirmed:true},
+ {model:'videohub40-12g',unit:'台',dailyAmount:48000,confirmed:true},
+ {model:'novastar-cvt10pro',unit:'台',dailyAmount:21000,confirmed:true},
  {model:'roland-vr120hd',unit:'台',dailyAmount:27000,confirmed:true},
  {model:'roland-v160hd',unit:'台',dailyAmount:58000},
  {model:'roland-p20hd',unit:'台',dailyAmount:11500},
