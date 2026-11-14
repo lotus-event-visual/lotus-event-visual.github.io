@@ -16,7 +16,10 @@ const catalog=[
  {model:'barco-imagepro-ii',unit:'台',dailyAmount:53000},
  {model:'barco-imagepro-ii-jr',unit:'台',dailyAmount:53000},
  {model:'aja-gen10',unit:'台',dailyAmount:2800},
- {model:'decimator-mdhx',unit:'台',dailyAmount:4000}
+ {model:'decimator-mdhx',unit:'台',dailyAmount:4000},
+ {model:'adtechno-lcd1015s',unit:'台',dailyAmount:6500},
+ {model:'adtechno-uh1561s',unit:'台',dailyAmount:15000},
+ {model:'adtechno-uh1560',unit:'台',dailyAmount:9500}
 ];
 function resolve(line,days,rates=catalog){
  if(days!==1)return null;
