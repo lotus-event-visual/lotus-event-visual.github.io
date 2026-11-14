@@ -19,16 +19,21 @@ const catalog=[
  {model:'decimator-mdhx',unit:'台',dailyAmount:4000},
  {model:'adtechno-lcd1015s',unit:'台',dailyAmount:6500},
  {model:'adtechno-uh1561s',unit:'台',dailyAmount:15000},
- {model:'adtechno-uh1560',unit:'台',dailyAmount:9500}
+ {model:'adtechno-uh1560',unit:'台',dailyAmount:9500},
+ {model:'leyard-clm10m3',unit:'枚',dailyAmount:48000,confirmed:true},
+ {model:'leyard-cli39-clt',unit:'枚',dailyAmount:32000,confirmed:true},
+ {model:'leyard-clo39',unit:'枚',dailyAmount:37000,confirmed:true},
+ {model:'epson-ev115',unit:'台',dailyAmount:21000,confirmed:true},
+ {model:'sharp-pnp506',unit:'台',dailyAmount:63000,confirmed:true}
 ];
 function resolve(line,days,rates=catalog){
  if(days!==1)return null;
  const rows=rates.filter(r=>r.model===line.model&&r.unit===line.unit);
  if(rows.length!==1)return null;
  const r=rows[0];if(!Number.isSafeInteger(r.dailyAmount)||r.dailyAmount<0)return null;
- return {amount:r.dailyAmount,tax:'exclusive',unit:r.unit,days:1,provider:'LOTUS',periodLabel:'1利用日',checkedAt:'2026-11-13',exclusions:r.unit==='人'?'担当範囲・拘束時間・深夜延長・旅費宿泊は個別見積':'機材単体。運搬・設営撤去・人員・レンズ等の付属品は別途'};
+ return {confirmed:!!r.confirmed,amount:r.dailyAmount,tax:'exclusive',unit:r.unit,days:1,provider:'LOTUS',periodLabel:'1利用日',checkedAt:'2026-11-13',exclusions:r.unit==='人'?'担当範囲・拘束時間・深夜延長・旅費宿泊は個別見積':'機材単体。運搬・設営撤去・人員・レンズ等の付属品は別途'};
 }
-function summary(q){return q?`概算：1${q.unit}・1利用日 ${q.amount.toLocaleString('ja-JP')}円（税別）。${q.exclusions}。料金は正式見積りで確定します。複数日・業者様・ツアーは条件に応じて個別にお見積りします。`:'料金は個別にお見積りします。';}
+function summary(q){if(q&&q.confirmed)return `レンタル料金：1${q.unit}・1利用日 ${q.amount.toLocaleString('ja-JP')}円（税別）。${q.exclusions}。複数日・業者様・ツアーは個別にお見積りします。`;return q?`概算：1${q.unit}・1利用日 ${q.amount.toLocaleString('ja-JP')}円（税別）。${q.exclusions}。料金は正式見積りで確定します。複数日・業者様・ツアーは条件に応じて個別にお見積りします。`:'料金は個別にお見積りします。';}
 function apply(line,rates=catalog){const out={...line};if(out.priceSource==='manual'){out.publicRate=null;return out;}const q=resolve(out,out.days,rates);out.price=q?q.amount:null;out.priceSource=q?'lotus-standard':null;out.publicRate=q;return out;}
 return {resolve,summary,apply,catalog};
 });
