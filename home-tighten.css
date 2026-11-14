@@ -9,3 +9,6 @@ main>section .fr-head{margin-bottom:20px}
 main>section .fr-head h2{margin-bottom:10px}
 @media(max-width:720px){.home-hero .hero-inner .hero-business-actions{margin-top:20px}main>.fr-try,main>.fr-day,main>.fr-journal,main>.fr-services,main>.fr-contact{padding-top:32px!important}}
 .home-hero.gentle-hero{min-height:0!important;height:auto!important}.home-hero .hero-inner{min-height:0!important;height:auto!important}
+/* Owner (旧チャット 11/9): トップの段ごとの余白をせまく。概算の帯と「触れてみる」の上下を詰める */
+#est-band.est-band{padding-top:clamp(48px,5vw,72px)!important;padding-bottom:clamp(48px,5vw,72px)!important;margin-top:clamp(24px,3vw,40px)!important;margin-bottom:clamp(24px,3vw,40px)!important}
+#fr-try.fr-try{padding-top:clamp(48px,5vw,72px)!important;padding-bottom:clamp(40px,4vw,56px)!important}
