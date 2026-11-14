@@ -2,6 +2,7 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {model:'christie-boxer-4k30',unit:'台',dailyAmount:1260000,confirmed:true},
  {model:'imagenics-dvh14a',unit:'台',dailyAmount:6500,confirmed:true},
  {model:'iodata-cwq341sdbf',unit:'台',dailyAmount:21000,confirmed:true},
  {model:'disguise-vx4plus',unit:'台',dailyAmount:578000,confirmed:true},
