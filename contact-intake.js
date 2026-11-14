@@ -17,8 +17,8 @@ button.addEventListener('click',()=>{
  const draft=draftFor(output.value);
  window.location.href=draft.href;
  status.textContent=draft.bodyIncluded
- ? 'メールアプリを開く操作を行いました。まだ送信していません。アプリ内で宛先・内容・ご連絡先を確認して送信してください。このサイトでは送信・受信を確認できません。'
- : '内容が長いため、宛先と件名だけをメールアプリへ渡します。「メモをコピー」で本文を貼り付けて送信してください。このサイトからは送信していません。';
+ ? 'メールアプリを開きました。アプリで宛先・内容・ご連絡先を確かめて、送信してください。'
+ : '内容が長いため、宛先と件名だけをメールアプリへ渡します。「メモをコピー」で本文を貼り付けて送信してください。';
 });
 for(const id of ['review-memo','confirm-clear'])document.getElementById(id)?.addEventListener('click',()=>{status.textContent='';});
 })();

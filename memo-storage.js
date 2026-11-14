@@ -44,7 +44,7 @@
     const saved=memos.some(m=>m.draft.type===d.type&&Object.keys(limits).every(k=>m.draft[k]===d[k])&&m.draft.stage.length===d.stage.length&&m.draft.stage.every(s=>d.stage.includes(s)));
     const blank=d.type==='event'&&!d.stage.length&&Object.keys(limits).every(k=>!d[k].trim());
     state=saved?'saved':blank?'empty':'unsaved';
-    label=saved?'今の入力と同じ内容を、このブラウザーに保存しています。LOTUSへは未送信です。':blank?'残したい内容は「このブラウザーに保存」で保存できます。':'今の入力は、このブラウザーには保存されていません。残す場合は「このブラウザーに保存」を押してください。';
+    label=saved?'今の入力と同じ内容を、このブラウザーに保存しています。':blank?'残したい内容は「このブラウザーに保存」で保存できます。':'残す場合は「このブラウザーに保存」を押してください。';
    }
   }catch{/* A storage error must never leave a previous saved indication visible. */}
   draftState.hidden=false;draftState.className='draft-save-state draft-save-state--'+state;
