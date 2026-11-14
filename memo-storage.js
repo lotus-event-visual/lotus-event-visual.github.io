@@ -59,7 +59,7 @@
   if(!m)return;
   const d=m.draft,val=k=>d[k].trim()?d[k]:'未記入';
   previewDate.textContent='保存日時：'+new Date(m.savedAt).toLocaleString('ja-JP');
-  previewText.value=['LOTUS ご相談メモ（保存内容）','種別：'+(d.type==='partner'?'技術協力・協業のご相談':'イベント映像のご相談'),'日程・時間：'+val('date'),'会場・場所：'+val('venue'),'イベントの内容：'+val('purpose'),'ご相談したい内容：'+(d.stage.join('、')||'未記入'),'','ご相談内容：',val('message'),'','※ このメモは未送信です。予約・発注は行われていません。'].join('\n');
+  previewText.value=['LOTUS ご相談メモ（保存内容）','種別：'+(d.type==='partner'?'技術協力・協業のご相談':'イベント映像のご相談'),'日程・時間：'+val('date'),'会場・場所：'+val('venue'),'イベントの内容：'+val('purpose'),'ご相談したい内容：'+(d.stage.join('、')||'未記入'),'','ご相談内容：',val('message')].join('\n');
  }
  function render(memos,selected=''){
   select.replaceChildren();const first=document.createElement('option');first.value='';first.textContent=memos.length?'保存メモを選ぶ（'+memos.length+'件）':'保存したメモはありません';select.append(first);

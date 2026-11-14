@@ -75,7 +75,7 @@ if(form){
  editable.forEach(el=>{el.addEventListener('input',invalidate);el.addEventListener('change',invalidate)});
  document.querySelector('#review-memo').addEventListener('click',e=>{
   e.preventDefault();const d=new FormData();editable.forEach(el=>{if(el.name && (el.type!=='checkbox' && el.type!=='radio' || el.checked))d.append(el.name,el.value)});const val=k=>String(d.get(k)||'').trim()||'未定';
-  output.value=['LOTUS ご相談メモ','種別：'+(d.get('type')==='partner'?'技術協力・協業のご相談':'イベント映像のご相談'),'日程・時間：'+val('date'),'会場・場所：'+val('venue'),'イベントの内容：'+val('purpose'),'ご相談したい内容：'+(d.getAll('stage').join('、')||'未定'),'','ご相談内容：',val('message'),'','※ このメモは未送信です。予約・発注は行われていません。'].join('\n');
+  output.value=['LOTUS ご相談メモ','種別：'+(d.get('type')==='partner'?'技術協力・協業のご相談':'イベント映像のご相談'),'日程・時間：'+val('date'),'会場・場所：'+val('venue'),'イベントの内容：'+val('purpose'),'ご相談したい内容：'+(d.getAll('stage').join('、')||'未定'),'','ご相談内容：',val('message')].join('\n');
   result.hidden=false;copyStatus.textContent='';status.textContent='';clearConfirm.hidden=true;result.focus({preventScroll:true});result.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
  });
  document.querySelector('#edit-memo').addEventListener('click',()=>{form.querySelector('input[name="type"]:checked').focus();form.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'})});
