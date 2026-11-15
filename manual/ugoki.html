@@ -507,6 +507,7 @@ x.addEventListener('click',pick);if(document.readyState==='loading')document.add
     <ul class="chk">
       <li><input type="checkbox" id="s39a"><label for="s39a">カムロックはアースから先に差す</label></li>
       <li><input type="checkbox" id="s39b"><label for="s39b">引き回す前に、立ち下ろしのルートと長さを確かめる（二度手間を防ぐ）</label></li>
+      <li><input type="checkbox" id="m11-c06"><label for="m11-c06">劇場の立ち下ろしルートは、ほかのバトンのケーブルと干渉しないか事前に確認する。</label></li>
       <li><input type="checkbox" id="s39c"><label for="s39c">ケーブルは地面につけず、トラスや土台に這わせる</label></li>
       <li><input type="checkbox" id="s39d"><label for="s39d">面ごとに順番に引き回し、撤去でばらしやすい所を通す。まとめてからピックし、ピックはシンプルにする</label></li>
       <li><input type="checkbox" id="s39e"><label for="s39e">仮引きの時から、本引きしやすい通し方にする</label></li>
@@ -538,7 +539,9 @@ x.addEventListener('click',pick);if(document.readyState==='loading')document.add
       <li><input type="checkbox" id="s40d"><label for="s40d">白い線が出たら差し直し、だめならタイル交換。一部の段だけ点かない時はケーブルをつなぎ直す</label></li>
       <li><input type="checkbox" id="s40f"><label for="s40f">光の信号が不安定な時は、光コネクタを一度抜き差し・入れ替えして様子を見る。直ったら記録して責任者へ伝える</label></li>
       <li><input type="checkbox" id="s40h"><label for="s40h">画がかくつく・ノイズが出る時は、信号の道を1本ずつ替えて、どこが原因かを探す</label></li>
+      <li><input type="checkbox" id="m11-c01"><label for="m11-c01">最後のタイルまで信号が届かない時は、信号ケーブルの長さも確認する。</label></li>
       <li><input type="checkbox" id="s40j"><label for="s40j">直らない時は、自分で設定を変え続けず、機材交換を責任者に相談する</label></li>
+      <li><input type="checkbox" id="m11-c02"><label for="m11-c02">プロセッサーの動作が想定と違う時は、前の設定が残っていないか確認する。</label></li>
       <li><input type="checkbox" id="s40k"><label for="s40k">他セクションがLEDを触ったあとは、異常がないか確かめる</label></li>
     </ul>
     </details>
@@ -552,6 +555,7 @@ x.addEventListener('click',pick);if(document.readyState==='loading')document.add
     <ul class="chk">
       <li><input type="checkbox" id="s7a"><label for="s7a">自分たちのケース・カーゴ・工具を、他セクションの作業場所に残さない</label></li>
       <li><input type="checkbox" id="s7b"><label for="s7b">本番タッパで、全画面の割当・欠け・ズレ・ちらつきを見る</label></li>
+      <li><input type="checkbox" id="m11-c03"><label for="m11-c03">色がおかしい時は、テストパターンだけでなく、送られてきた素材と実際の画面を見比べて確認する。</label></li>
       <li><input type="checkbox" id="s7c"><label for="s7c">シュート中に、予備の場所・NG品の記入・ケース整理・トラブル時の手順を確認する</label></li>
       <li><input type="checkbox" id="s7d"><label for="s7d">RH前に「何か起きたら誰が何をするか」をチーフと確認する</label></li>
       <li><input type="checkbox" id="s8a"><label for="s8a">撤去のとき取り出しやすい順で戻す</label></li>
@@ -735,6 +739,7 @@ x.addEventListener('click',pick);if(document.readyState==='loading')document.add
       <li><input type="checkbox" id="w4a"><label for="w4a">ピックリストで出庫し、本体・付属品・ケーブルの数量を照合する</label></li>
       <li><input type="checkbox" id="w4b"><label for="w4b">機材リストを見て、足りない物・押さえていない物（信号ケーブル・金具類を含む）を提案する</label></li>
       <li><input type="checkbox" id="w4c"><label for="w4c">ケーブルを巻き直し、行先ラベル・バミリを付ける（上手・下手・センターでバミリが違う）</label></li>
+      <li><input type="checkbox" id="m11-c05"><label for="m11-c05">使うケーブルの長さは、現場に持ち出す前の準備段階で確認する。</label></li>
       <li><input type="checkbox" id="w4d"><label for="w4d">必要な機材は仮組みして、映ることを確かめる</label></li>
       <li><input type="checkbox" id="w4e"><label for="w4e">現場で出す順を考えてケースに詰める</label></li>
       <li><input type="checkbox" id="w4f"><label for="w4f">返却は「数量 → 付属品 → 状態」の順で確かめ、不足や気になる点を記録する</label></li>
@@ -742,6 +747,7 @@ x.addEventListener('click',pick);if(document.readyState==='loading')document.add
       <li><input type="checkbox" id="w33b"><label for="w33b">プロセッサーの設定は前日までに済ませる。2台以上使う時は、同期するかも倉庫で確かめる</label></li>
       <li><input type="checkbox" id="w33c"><label for="w33c">予備タイルにも先にデータを送る。前の現場と制御のしかたが変わる時は送り直す</label></li>
       <li><input type="checkbox" id="w33d"><label for="w33d">ツアーの前は倉庫で仮組みし、ケーブルを落とす位置にバミリする。色バミリには用途も書き、配線図にも書く</label></li>
+      <li><input type="checkbox" id="m11-c04"><label for="m11-c04">メッシュLEDは、その現場の番号と色の割り当てを事前に確認する。</label></li>
       <li><input type="checkbox" id="w33e"><label for="w33e">初めての金具・慣れない機材は、現場に行く前に倉庫で練習する。久しぶりの機材は交換のしかたを前日に復習する</label></li>
       <li><input type="checkbox" id="w33f"><label for="w33f">仮組みで見つけた違い（磁石がぶつかるなど）は、本番前に全員へ伝える</label></li>
     </ul>
