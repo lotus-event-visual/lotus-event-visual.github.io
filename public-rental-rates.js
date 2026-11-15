@@ -2,6 +2,12 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {model:'hollyland-solidcom-c1-pro-6s',unit:'組',dailyAmount:12000,confirmed:true,checkedAt:'2026-11-15'},
+ {model:'panasonic-aw-rp150gj',unit:'台',dailyAmount:27000,confirmed:true,checkedAt:'2026-11-15'},
+ {model:'barco-encore3',unit:'台',dailyAmount:648000,confirmed:true,checkedAt:'2026-11-15'},
+ {model:'brompton-sx40',unit:'台',dailyAmount:193000,confirmed:true,checkedAt:'2026-11-15'},
+ {model:'brompton-tessera-xd',unit:'台',dailyAmount:48000,confirmed:true,checkedAt:'2026-11-15'},
+ {model:'brompton-tessera-s8',unit:'台',dailyAmount:158000,confirmed:true,checkedAt:'2026-11-15'},
  {"model":"imagenics-hevu41","unit":"台","dailyAmount":34000,"confirmed":true,"checkedAt":"2026-11-16","exclusions":"機材単体。運搬・設営撤去・人員は別途"},
  {"model":"imagenics-dmc4k","unit":"台","dailyAmount":2700,"confirmed":true,"checkedAt":"2026-11-16","exclusions":"機材単体。運搬・設営撤去・人員は別途"},
  {"model":"imagenics-dvh17a","unit":"台","dailyAmount":10500,"confirmed":true,"checkedAt":"2026-11-15","exclusions":"分配器単体。運搬・設営撤去・人員は別途"},
