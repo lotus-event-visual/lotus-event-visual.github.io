@@ -2,6 +2,7 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {model:'korg-nanokontrol2',unit:'台',dailyAmount:700,confirmed:true,checkedAt:'2026-11-16',exclusions:'機材単体。運搬・設営撤去・人員は別途'},
  {model:'hollyland-solidcom-c1-pro-6s',unit:'組',dailyAmount:12000,confirmed:true,checkedAt:'2026-11-15'},
  {model:'panasonic-aw-rp150gj',unit:'台',dailyAmount:27000,confirmed:true,checkedAt:'2026-11-15'},
  {model:'barco-encore3',unit:'台',dailyAmount:648000,confirmed:true,checkedAt:'2026-11-15'},
