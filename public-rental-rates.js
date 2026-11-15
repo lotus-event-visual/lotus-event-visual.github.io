@@ -2,6 +2,10 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {"model":"imagenics-hevu41","unit":"台","dailyAmount":34000,"confirmed":true,"checkedAt":"2026-11-16","exclusions":"機材単体。運搬・設営撤去・人員は別途"},
+ {"model":"imagenics-dmc4k","unit":"台","dailyAmount":2700,"confirmed":true,"checkedAt":"2026-11-16","exclusions":"機材単体。運搬・設営撤去・人員は別途"},
+ {"model":"imagenics-dvh17a","unit":"台","dailyAmount":10500,"confirmed":true,"checkedAt":"2026-11-15","exclusions":"分配器単体。運搬・設営撤去・人員は別途"},
+ {"model":"panasonic-aw-ue150k","unit":"台","dailyAmount":48000,"confirmed":true,"checkedAt":"2026-11-15","exclusions":"カメラ単体。コントローラー・運搬・設営撤去・人員は別途"},
  {model:'panasonic-et-c1t700',unit:'本',dailyAmount:19000,confirmed:true},
  {model:'panasonic-et-c1w400',unit:'本',dailyAmount:25000,confirmed:true},
  {model:'panasonic-et-c1w300',unit:'本',dailyAmount:24000,confirmed:true},
@@ -47,7 +51,7 @@ function resolve(line,days,rates=catalog){
  const rows=rates.filter(r=>r.model===line.model&&r.unit===line.unit);
  if(rows.length!==1)return null;
  const r=rows[0];if(!Number.isSafeInteger(r.dailyAmount)||r.dailyAmount<0)return null;
- return {confirmed:!!r.confirmed,amount:r.dailyAmount,tax:'exclusive',unit:r.unit,days:1,provider:'LOTUS',periodLabel:'1利用日',checkedAt:'2026-11-13',exclusions:r.unit==='人'?'担当範囲・拘束時間・深夜延長・旅費宿泊は個別見積':'機材単体。運搬・設営撤去・人員・レンズ等の付属品は別途'};
+ return {confirmed:!!r.confirmed,amount:r.dailyAmount,tax:'exclusive',unit:r.unit,days:1,provider:'LOTUS',periodLabel:'1利用日',checkedAt:r.checkedAt||'2026-11-13',exclusions:r.exclusions||(r.unit==='人'?'担当範囲・拘束時間・深夜延長・旅費宿泊は個別見積':'機材単体。運搬・設営撤去・人員・レンズ等の付属品は別途')};
 }
 function summary(q){if(q&&q.confirmed)return `レンタル料金：1${q.unit}・1利用日 ${q.amount.toLocaleString('ja-JP')}円（税別）。${q.exclusions}。複数日・業者様・ツアーは個別にお見積りします。`;return q?`概算：1${q.unit}・1利用日 ${q.amount.toLocaleString('ja-JP')}円（税別）。${q.exclusions}。料金は正式見積りで確定します。複数日・業者様・ツアーは条件に応じて個別にお見積りします。`:'料金は個別にお見積りします。';}
 function apply(line,rates=catalog){const out={...line};if(out.priceSource==='manual'){out.publicRate=null;return out;}const q=resolve(out,out.days,rates);out.price=q?q.amount:null;out.priceSource=q?'lotus-standard':null;out.publicRate=q;return out;}
