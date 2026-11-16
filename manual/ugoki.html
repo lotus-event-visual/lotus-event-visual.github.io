@@ -534,7 +534,7 @@ x.addEventListener('click',pick);if(document.readyState==='loading')document.add
     <p class="key">全部組むまで待たない。NGは分けて、バミリに「案件・日付・症状」。</p>
     <div class="box safe"><b>SAFETY</b>光らせる前に、高い所で作業している人（他セクションも）へ必ず声をかける。</div>
     <div class="box safe"><b>覚えること</b>「LEDがRGBで光った」と「本番系統で本番画が出た」は別の確認。オペ卓→光/SDI→プロセッサー→LEDのどこかが違えば本番画は出ない。</div>
-    <details class="more"><summary>くわしく<span>チェック 19</span></summary>
+    <details class="more"><summary>くわしく<span>チェック 23</span></summary>
     <ul class="chk">
       <li><input type="checkbox" id="s6a"><label for="s6a">3段ほど組めた所でRGBを出してNGを探す</label></li>
       <li><input type="checkbox" id="s6b"><label for="s6b">アマ刺しなど接続部を再チェックする</label></li>
@@ -555,6 +555,10 @@ x.addEventListener('click',pick);if(document.readyState==='loading')document.add
       <li><input type="checkbox" id="s40j"><label for="s40j">直らない時は、自分で設定を変え続けず、機材交換を責任者に相談する</label></li>
       <li><input type="checkbox" id="m11-c02"><label for="m11-c02">プロセッサーの動作が想定と違う時は、前の設定が残っていないか確認する。</label></li>
       <li><input type="checkbox" id="s40k"><label for="s40k">他セクションがLEDを触ったあとは、異常がないか確かめる</label></li>
+      <li><input type="checkbox" id="ugoki-resolved-20261117-1"><label for="ugoki-resolved-20261117-1">Z5をiSetで調整する。iSetはLED制御ソフトの名称で、客席の目線という意味ではない。表示位置と大きさはテスト映像で合わせる。</label></li>
+      <li><input type="checkbox" id="ugoki-resolved-20261117-2"><label for="ugoki-resolved-20261117-2">信号を受けない時は、送出側と受け側の解像度・p/i・フレームレートを対応させる。参考：1080/60pのPC信号をImagePRO IIで1080/59.94iへ変換し、受信できた実例がある。全系統を同じ数値に固定しない。</label></li>
+      <li><input type="checkbox" id="ugoki-resolved-20261117-3"><label for="ugoki-resolved-20261117-3">Z5の出力はNetworkかFiberのどちらかを選ぶ。同じZ5から両方式を混在させる構成にしない。Fiber 1はPORT 1〜10、Fiber 2はPORT 11〜20に対応する。</label></li>
+      <li><input type="checkbox" id="ugoki-resolved-20261117-4"><label for="ugoki-resolved-20261117-4">Z5の拡大・縮小で輪郭が荒れる時は、同じ素材で外部スケーラーの結果と比較する。参考：SDI入力の拡縮で円形の線が粗く見え、ImagePROでのリサイズを選んだ実例がある。Z5にスケーリング機能がないという意味ではない。</label></li>
     </ul>
     </details>
   </div></article>
