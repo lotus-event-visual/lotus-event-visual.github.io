@@ -117,13 +117,13 @@ const BY={};DATA.forEach(d=>{BY[d.id]=d;d.k=norm([d.maker==='要確認'?'':d.mak
 const S={cat:'all',task:-1,q:'',fq:false,fp:false,fh:false};
 const qv=v=>v==='要確認'?'<span class="qv">要確認</span>':esc(v).replace(/要確認/g,'<span class="qv">要確認</span>');
 const name=d=>(d.maker&&d.maker!=='要確認'?d.maker+' ':'')+d.model;
-function pic(d,cls){return d.thumb?`<img class="ph" src="thumbs/${d.thumb}.webp" width="640" height="480" loading="lazy" alt="${esc(name(d))}">`:`<span class="noph"><b>${CS[d.cat]}</b>写真なし</span>`}
+function pic(d,cls){return d.thumb?`<img class="ph" src="thumbs/${d.thumb}.webp" width="640" height="480" loading="lazy" alt="${esc(name(d))}">`:d.warehousePhotos?.length?`<img class="ph" src="warehouse-photos/${esc(d.warehousePhotos[0].file)}" width="640" height="480" loading="lazy" alt="${esc(name(d))} 倉庫実機写真">`:`<span class="noph"><b>${CS[d.cat]}</b>写真なし</span>`}
 function match(d){
  if(S.q)return d.k.includes(S.q);
  if(!d.pz&&!S.fh)return false;
  if(S.task>=0){const t=TASKS[S.task];if(t[1]==='cat'?d.cat!==t[2]:!d.tags.includes(t[2]))return false}
  else if(S.cat!=='all'&&d.cat!==S.cat)return false;
- if(S.fq&&!d.q)return false; if(S.fp&&d.thumb)return false; return true}
+ if(S.fq&&!d.q)return false; if(S.fp&&(d.thumb||d.warehousePhotos?.length))return false; return true}
 function draw(){
  const base=DATA.filter(d=>d.pz||S.fh);
  $('#tabs').innerHTML=[['all','すべて']].concat(Object.entries(CATN)).map(([k,v])=>`<button role="tab" data-c="${k}" aria-selected="${S.task<0&&!S.q&&S.cat===k}">${v}<b>${k==='all'?base.length:base.filter(d=>d.cat===k).length}</b></button>`).join('');
