@@ -534,7 +534,7 @@ x.addEventListener('click',pick);if(document.readyState==='loading')document.add
     <p class="key">全部組むまで待たない。NGは分けて、バミリに「案件・日付・症状」。</p>
     <div class="box safe"><b>SAFETY</b>光らせる前に、高い所で作業している人（他セクションも）へ必ず声をかける。</div>
     <div class="box safe"><b>覚えること</b>「LEDがRGBで光った」と「本番系統で本番画が出た」は別の確認。オペ卓→光/SDI→プロセッサー→LEDのどこかが違えば本番画は出ない。</div>
-    <details class="more"><summary>くわしく<span>チェック 23</span></summary>
+    <details class="more"><summary>くわしく<span>チェック 29</span></summary>
     <ul class="chk">
       <li><input type="checkbox" id="s6a"><label for="s6a">3段ほど組めた所でRGBを出してNGを探す</label></li>
       <li><input type="checkbox" id="s6b"><label for="s6b">アマ刺しなど接続部を再チェックする</label></li>
@@ -559,7 +559,13 @@ x.addEventListener('click',pick);if(document.readyState==='loading')document.add
       <li><input type="checkbox" id="ugoki-resolved-20261117-2"><label for="ugoki-resolved-20261117-2">信号を受けない時は、送出側と受け側の解像度・p/i・フレームレートを対応させる。参考：1080/60pのPC信号をImagePRO IIで1080/59.94iへ変換し、受信できた実例がある。全系統を同じ数値に固定しない。</label></li>
       <li><input type="checkbox" id="ugoki-resolved-20261117-3"><label for="ugoki-resolved-20261117-3">Z5の出力はNetworkかFiberのどちらかを選ぶ。同じZ5から両方式を混在させる構成にしない。Fiber 1はPORT 1〜10、Fiber 2はPORT 11〜20に対応する。</label></li>
       <li><input type="checkbox" id="ugoki-resolved-20261117-4"><label for="ugoki-resolved-20261117-4">Z5の拡大・縮小で輪郭が荒れる時は、同じ素材で外部スケーラーの結果と比較する。参考：SDI入力の拡縮で円形の線が粗く見え、ImagePROでのリサイズを選んだ実例がある。Z5にスケーリング機能がないという意味ではない。</label></li>
-    </ul>
+    <li><label><input type="checkbox" id="ugoki-case-20261117-1"> 参考事例｜2025年10月・ポートメッセなごや第3展示館：左右2面をZ5・H10で構成し、iSetでスケーラーを調整。「上と横合わせ」と記録されている。左右の画面と素材の位置合わせを振り返るための事例。</label></li>
+<li><label><input type="checkbox" id="ugoki-case-20261117-2"> 参考事例｜2025年6月・JDIの取扱記録：背面・コネクター周辺をぶつけないよう注意する旨の共有があった。メンテナンスと運搬時の接触防止の事例として扱い、別機種の背面構造や持ち手位置の説明には流用しない。</label></li>
+<li><label><input type="checkbox" id="ugoki-case-20261117-3"> 参考事例｜2025年5月・Kanadevia Hall、CLI3.9／Z5：センターに静止画を表示した際の揺れは、送出側ImagePROの出力をインターレースからプログレッシブへ変更して解消した。揺れを一律に同じ原因とするのではなく、この系統での改善例。</label></li>
+<li><label><input type="checkbox" id="ugoki-case-20261117-4"> 参考事例｜2025年6月・富士スピードウェイ、DM2.6 7×4／S8：16:9の素材を扱う際、Video sourceを16:9にしてから縦に合わせてスケーリングし、左右の余りピクセルから中心を求めた。全素材を16:9へ変更する意味ではない。</label></li>
+<li><label><input type="checkbox" id="ugoki-case-20261117-5"> 参考事例｜2025年6月24日・千葉県東総文化会館の仮組み、CLM10 Type D／Z6：本線の黒部分に赤青のノイズが発生。分配器の迂回・HDMI交換・別プロセッサーでは解消せず、仮組み終了後の別PC直結と内部テストパターンでは発生しなかった。送出側・伝送区間を切り分けた事例で、原因機器の断定ではない。</label></li>
+<li><label><input type="checkbox" id="ugoki-case-20261117-6"> 参考事例｜2024年12月〜2025年2月・4ドームの記録、CLM10M2／Z6Pro：見切れ用映像をiSetで小さくクロップすると画が震えたため、ImagePRO IIを通してリサイズした。対象は見切れ用のHD系統で、ほかの入力・画面にも同じ処理を強制するものではない。</label></li>
+</ul>
     </details>
   </div></article>
   <article class="step" id="st7"><div class="no">STEP<b>7</b></div><div>
