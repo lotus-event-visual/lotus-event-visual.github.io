@@ -140,8 +140,8 @@ function open(id,push){const d=BY[id];if(!d)return;const C=COMMON[d.cat];
  const rel=d.rel.map(r=>BY[r]).filter(Boolean);
  $('#sheet').innerHTML=`<div class="sh"><div><span class="mk">${d.maker==='要確認'?'メーカー 要確認':esc(d.maker||CATN[d.cat])}　${CATN[d.cat]}</span><span class="md" id="dt">${esc(d.model)}</span></div><button class="x" id="x" aria-label="閉じる">×</button></div><div class="sb">
  ${productPhoto(d)}
- ${specification(d)}
  ${warehouseGallery(d)}
+ ${specification(d)}
  <dl class="key"><div><dt>役割</dt><dd>${qv(d.role)}</dd></div><div><dt>入出力</dt><dd>${qv(d.io)}</dd></div><div class="warnrow"><dt>参考</dt><dd>${esc(d.caution)}</dd></div></dl>
  <h3>つなぎ方の流れ</h3>${d.flow.length?`<ol class="flow">${d.flow.map((f,i)=>`<li><b>${i+1}</b>${esc(f)}</li>`).join('')}</ol>`:`<p>${qv('要確認')}　この機材の接続図はまだありません。</p>`}
  <h3>設営の手順<small>${CATN[d.cat]}の共通手順</small></h3><ol class="steps">${C.setup.map(s=>`<li>${qv(s)}</li>`).join('')}</ol>
