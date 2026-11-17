@@ -65,7 +65,7 @@ body.cc-fun .v3-faq summary::before{content:"Q";color:var(--v3-ac);font-weight:8
 body.cc-fun .v3-faq p{margin:12px 0 0 26px;line-height:1.95}
 /* closing cta */
 body.cc-fun .v3-close{background:var(--v3-ink);border-radius:28px;padding:clamp(32px,5vw,60px);display:grid;grid-template-columns:minmax(0,1.3fr) auto;gap:22px;align-items:center}
-body.cc-fun .v3-close h2{color:#fff!important;margin:0 0 10px}
+body.cc-fun .v3-close h2{color:#fff!important;-webkit-text-fill-color:#fff!important;margin:0 0 10px}
 body.cc-fun .v3-close h2::after{display:none}
 body.cc-fun .v3-close p{color:#D9E1E7!important;margin:0;line-height:1.95}
 body.cc-fun .v3-close a{background:var(--v3-ac);color:#fff!important;padding:16px 28px;border-radius:999px;font-weight:700;text-decoration:none;white-space:nowrap}
@@ -80,3 +80,7 @@ body.cc-fun .care-why-grid b{color:var(--v3-ac)!important}
 body.cc-fun .care-kinds li{background:#fff!important;border:1px solid var(--v3-line)!important;color:var(--v3-sub)!important}
 body.cc-fun .cc-samu{border-left-color:var(--v3-ac)!important;background:#fff!important}
 body.cc-fun .cc-tabs a,body.cc-fun .cc-switch a{border-color:var(--v3-line)!important}
+
+/* A quiet entrance to the representative message. */
+body.cc-fun .ci-proof .ci-greeting-link{display:inline-block;margin-top:14px;font-size:13px;font-weight:500;color:#52655c!important;text-decoration:underline;text-underline-offset:3px}
+body.cc-fun .ci-proof .ci-greeting-link:focus-visible{outline:2px solid #52655c;outline-offset:4px}
