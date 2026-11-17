@@ -2,6 +2,8 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {"model":"roe-rubyc26","unit":"枚","dailyAmount":42000,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"500×500mmパネル本体1枚・1利用日。制御機・支持部材・運搬・設営撤去・操作人員は別料金"},
+ {"model":"roe-cb5-half","unit":"枚","dailyAmount":37000,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"600×600mmハーフパネル本体1枚・1利用日。フルパネル・制御機・支持部材・運搬・設営撤去・操作人員は別料金"},
  {"model":"canare-hdm10p-a6","unit":"本","dailyAmount":2100,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"HDM10P-A6（10m）ケーブル本体1本・1利用日。他の長さ・周辺変換器・分配器・運搬・敷設・人員は別料金"},
  {"model":"canare-hdm20p-a6","unit":"本","dailyAmount":2600,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"HDM20P-A6（20m）ケーブル本体1本・1利用日。他の長さ・周辺変換器・分配器・運搬・敷設・人員は別料金"},
  {"model":"canare-hdm50p-a6","unit":"本","dailyAmount":4800,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"HDM50P-A6（50m）ケーブル本体1本・1利用日。他の長さ・周辺変換器・分配器・運搬・敷設・人員は別料金"},
