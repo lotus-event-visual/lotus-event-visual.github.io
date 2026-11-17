@@ -2,6 +2,7 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {"model":"desay-dp26-full","unit":"枚","dailyAmount":42000,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"500×1000mmフル1枚・1利用日。ハーフパネル・制御機・支持部材は別料金。運搬・設営撤去・人員は別途"},
  {"model":"colorlight-h10fn2","unit":"台","dailyAmount":27000,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"本体1台・1利用日。光ケーブル・周辺機器は別途。運搬・設営撤去・人員は別途"},
  {"model":"brightsign-xd236","unit":"台","dailyAmount":9500,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"本体1台・1利用日。記録媒体・コンテンツ制作は別途。運搬・設営撤去・人員は別途"},
  {"model":"aja-kiprogo2","unit":"台","dailyAmount":30000,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"本体1台・1利用日。記録媒体は別途。運搬・設営撤去・人員は別途"},
