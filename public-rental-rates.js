@@ -2,6 +2,7 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.LotusPublicRentalRates=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const catalog=[
+ {"model":"canare-hdm20p-a6","unit":"本","dailyAmount":2600,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"HDM20P-A6（20m）ケーブル本体1本・1利用日。他の長さ・周辺変換器・分配器・運搬・敷設・人員は別料金"},
  {"model":"canare-hdm50p-a6","unit":"本","dailyAmount":4800,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"HDM50P-A6（50m）ケーブル本体1本・1利用日。他の長さ・周辺変換器・分配器・運搬・敷設・人員は別料金"},
  {"model":"canare-hdm100p-a6","unit":"本","dailyAmount":7500,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"HDM100P-A6（100m）ケーブル本体1本・1利用日。他の長さ・周辺変換器・分配器・運搬・敷設・人員は別料金"},
  {"model":"desay-dp26-full","unit":"枚","dailyAmount":42000,"confirmed":false,"checkedAt":"2026-11-17","exclusions":"500×1000mmフル1枚・1利用日。ハーフパネル・制御機・支持部材は別料金。運搬・設営撤去・人員は別途"},
