@@ -115,7 +115,7 @@ const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&'
 const norm=s=>String(s).normalize('NFKC').toLowerCase().replace(/[\s\-.,・/_()（）×*]/g,'');
 const CS={led:'LED',proc:'プロセッサー',pj:'投写',sw:'スイッチャー',sig:'信号',mon:'モニター',pwr:'電源',rig:'設営'};
 const STN={P:'HP に個別ページあり',V:'HP の親ページで掲載',R:'HP は関連ページのみ(本品の説明なし)',N:'HP 未掲載',H:'HP にページあり(原簿外)'};
-const FIELD_CASES={pz058:[{name:'宴会場の円形LED',aliases:'まるい画面 ホテル 円筒形 リングLED',path:'../case-hotel-ring-led.html#cx-role',work:'LOTUS VISUALは円形LEDの設営と、リングを閉じる角度の調整を担当。使用機材：Brompton Tessera XD、ROE Ruby（96枚）。'}]};
+const FIELD_CASES={pz058:[{name:'宴会場の円形LED',aliases:'まるい画面 ホテル 円筒形 リングLED',path:'../case-hotel-ring-led.html#cx-role',work:'円周32枚×3段の円形LED。リングの継ぎ目は角度を調整。使用機材：Brompton Tessera XD、ROE Ruby（96枚）。'}]};
 const BY={};DATA.forEach(d=>{BY[d.id]=d;d.k=norm([d.maker==='要確認'?'':d.maker,d.model,d.orig,d.role,CATN[d.cat],d.tags.join(' '),d.pz?'pz'+d.pz:''].join(' '))});
 const S={cat:'all',task:-1,q:'',fq:false,fp:false,fh:false};
 const qv=v=>v==='要確認'?'<span class="qv">要確認</span>':esc(v).replace(/要確認/g,'<span class="qv">要確認</span>');
