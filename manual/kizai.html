@@ -94,7 +94,7 @@ footer{color:var(--sub);font-size:12px;padding:0 0 30px}
 <body>
 <header><nav id="manual-switch" aria-label="マニュアルと会社サイト" style="padding:6px 16px;background:#17272d;display:flex;align-items:center;justify-content:space-between;gap:8px 20px;flex-wrap:wrap"><a id="manual-company-home" href="/" style="display:inline-flex;align-items:center;min-height:44px;padding:8px 0;color:#d8e3de;text-decoration:underline;text-underline-offset:3px;font:400 12px/1.5 system-ui">← 会社サイトへ戻る</a><a href="/manual/ugoki.html" style="display:inline-block;padding:9px 15px;border:1px solid #cce0a0;border-radius:6px;color:#f3f6ed;text-decoration:none;font:600 14px/1.5 system-ui">動きのマニュアルへ →</a></nav><div class="wrap head">
 <div class="brand">LOTUS VISUAL<small>機材マニュアル</small></div>
-<div class="search" id="sbox"><input id="q" type="search" inputmode="search" autocomplete="off" placeholder="型式で探す 例 dm26" aria-label="型式・メーカーで探す"><button id="qc" aria-label="検索を消す">×</button></div>
+<div class="search" id="sbox"><input id="q" type="search" inputmode="search" autocomplete="off" placeholder="型式・現場名で探す" aria-label="型式・メーカー・現場名で探す"><button id="qc" aria-label="検索を消す">×</button></div>
 </div></header>
 <main class="wrap">
 <h2 class="sec">やりたいことから探す</h2>
@@ -115,13 +115,14 @@ const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&'
 const norm=s=>String(s).normalize('NFKC').toLowerCase().replace(/[\s\-.,・/_()（）×*]/g,'');
 const CS={led:'LED',proc:'プロセッサー',pj:'投写',sw:'スイッチャー',sig:'信号',mon:'モニター',pwr:'電源',rig:'設営'};
 const STN={P:'HP に個別ページあり',V:'HP の親ページで掲載',R:'HP は関連ページのみ(本品の説明なし)',N:'HP 未掲載',H:'HP にページあり(原簿外)'};
+const FIELD_CASES={pz058:[{name:'宴会場の円形LED',aliases:'まるい画面 ホテル 円筒形 リングLED',path:'../case-hotel-ring-led.html#cx-role',work:'LOTUS VISUALは円形LEDの設営と、リングを閉じる角度の調整を担当。使用機材：Brompton Tessera XD、ROE Ruby（96枚）。'}]};
 const BY={};DATA.forEach(d=>{BY[d.id]=d;d.k=norm([d.maker==='要確認'?'':d.maker,d.model,d.orig,d.role,CATN[d.cat],d.tags.join(' '),d.pz?'pz'+d.pz:''].join(' '))});
 const S={cat:'all',task:-1,q:'',fq:false,fp:false,fh:false};
 const qv=v=>v==='要確認'?'<span class="qv">要確認</span>':esc(v).replace(/要確認/g,'<span class="qv">要確認</span>');
 const name=d=>(d.maker&&d.maker!=='要確認'?d.maker+' ':'')+d.model;
 function pic(d,cls){return d.thumb||d.productImage?`<img class="ph" src="${esc(d.productImage||`thumbs/${d.thumb}.webp`)}" width="640" height="480" loading="lazy" alt="${esc(name(d))}">`:d.warehousePhotos?.length?`<img class="ph" src="warehouse-photos/${esc(d.warehousePhotos[0].file)}" width="640" height="480" loading="lazy" alt="${esc(name(d))} 倉庫実機写真">`:`<span class="noph"><b>${CS[d.cat]}</b>写真なし</span>`}
 function match(d){
- if(S.q)return d.k.includes(S.q);
+ if(S.q)return d.k.includes(S.q)||FIELD_CASES[d.id]?.some(c=>norm(c.name+' '+c.aliases).includes(S.q));
  if(!d.pz&&!S.fh)return false;
  if(S.task>=0){const t=TASKS[S.task];if(t[1]==='cat'?d.cat!==t[2]:!d.tags.includes(t[2]))return false}
  else if(S.cat!=='all'&&d.cat!==S.cat)return false;
@@ -146,6 +147,7 @@ function open(id,push){const d=BY[id];if(!d)return;const C=COMMON[d.cat];
  <dl class="key"><div><dt>役割</dt><dd>${qv(d.role)}</dd></div><div><dt>入出力</dt><dd>${qv(d.io)}</dd></div><div class="warnrow"><dt>参考</dt><dd>${esc(d.caution)}</dd></div></dl>
  ${d.id==='pz058'&&BY.pz082?` <details class="connection-flow"><summary>対応プロセッサー・ケーブル</summary><p><b>参考：10G銅線の接続例</b>　<button type="button" data-id="pz082">Tessera SX40（10G出力）</button> → Cat6Aケーブル（対応etherCONまたはRJ45）で直結 → Tessera XD（10G入力）</p>${d.flow.length?`<ol class="flow">${d.flow.map((f,i)=>`<li><b>${i+1}</b>${esc(f)}</li>`).join('')}</ol>`:`<p>${qv('要確認')}　この機材の接続図はまだありません。</p>`}</details>`:` <h3>つなぎ方の流れ</h3>${d.flow.length?`<ol class="flow">${d.flow.map((f,i)=>`<li><b>${i+1}</b>${esc(f)}</li>`).join('')}</ol>`:`<p>${qv('要確認')}　この機材の接続図はまだありません。</p>`}`}
  <h3>設営の手順<small>${CATN[d.cat]}の共通手順</small></h3><ol class="steps">${C.setup.map(s=>`<li>${qv(s)}</li>`).join('')}</ol>
+ ${FIELD_CASES[d.id]?.length?`<details class="field-cases"><summary>過去の現場・資料</summary>${FIELD_CASES[d.id].map(c=>`<p><a href="${esc(c.path)}" target="_blank" rel="noopener noreferrer">${esc(c.name)}</a><br>${esc(c.work)}</p>`).join('')}</details>`:''}
  ${d.checks.length?`<h3>この機材で先に決めること</h3><ul class="chk">${d.checks.map(c=>`<li><b>${esc(c[0])}</b>${esc(c[1])}</li>`).join('')}</ul>`:''}
  <h3>トラブル時の切り分け<small>共通手順。機種固有の操作は要確認</small></h3><table>${C.trouble.map(t=>`<tr><th>${esc(t[0])}</th><td>${qv(t[1])}</td></tr>`).join('')}</table>
  ${rel.length?`<h3>関連機材</h3><div class="rel">${rel.map(r=>`<button data-id="${r.id}">${pic(r)}<span>${esc(name(r))}</span></button>`).join('')}</div>`:''}
