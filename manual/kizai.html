@@ -144,7 +144,7 @@ function open(id,push){const d=BY[id];if(!d)return;const C=COMMON[d.cat];
  ${warehouseGallery(d)}
  ${specification(d)}
  <dl class="key"><div><dt>役割</dt><dd>${qv(d.role)}</dd></div><div><dt>入出力</dt><dd>${qv(d.io)}</dd></div><div class="warnrow"><dt>参考</dt><dd>${esc(d.caution)}</dd></div></dl>
- <h3>つなぎ方の流れ</h3>${d.flow.length?`<ol class="flow">${d.flow.map((f,i)=>`<li><b>${i+1}</b>${esc(f)}</li>`).join('')}</ol>`:`<p>${qv('要確認')}　この機材の接続図はまだありません。</p>`}
+ ${d.id==='pz058'&&BY.pz082?` <details class="connection-flow"><summary>対応プロセッサー・ケーブル</summary><p><b>参考：10G銅線の接続例</b>　<button type="button" data-id="pz082">Tessera SX40（10G出力）</button> → Cat6Aケーブル（対応etherCONまたはRJ45）で直結 → Tessera XD（10G入力）</p>${d.flow.length?`<ol class="flow">${d.flow.map((f,i)=>`<li><b>${i+1}</b>${esc(f)}</li>`).join('')}</ol>`:`<p>${qv('要確認')}　この機材の接続図はまだありません。</p>`}</details>`:` <h3>つなぎ方の流れ</h3>${d.flow.length?`<ol class="flow">${d.flow.map((f,i)=>`<li><b>${i+1}</b>${esc(f)}</li>`).join('')}</ol>`:`<p>${qv('要確認')}　この機材の接続図はまだありません。</p>`}`}
  <h3>設営の手順<small>${CATN[d.cat]}の共通手順</small></h3><ol class="steps">${C.setup.map(s=>`<li>${qv(s)}</li>`).join('')}</ol>
  ${d.checks.length?`<h3>この機材で先に決めること</h3><ul class="chk">${d.checks.map(c=>`<li><b>${esc(c[0])}</b>${esc(c[1])}</li>`).join('')}</ul>`:''}
  <h3>トラブル時の切り分け<small>共通手順。機種固有の操作は要確認</small></h3><table>${C.trouble.map(t=>`<tr><th>${esc(t[0])}</th><td>${qv(t[1])}</td></tr>`).join('')}</table>
