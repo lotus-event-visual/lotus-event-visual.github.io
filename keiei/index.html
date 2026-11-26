@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d0a14">
+<title>LOTUS VISUAL 経営計画 2027–2029|経営司令室</title>
+<meta name="description" content="LOTUS VISUAL の経営計画。3年で売上を約2倍に。チーフ量産、直受注の一式案件、毎月入る売上。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 司令室と同じ色と字:数字は LED の点の字、状態はタリーランプ、線は信号の流れ */
+  color-scheme:dark;
+  --ink:#0d0a14; --panel:#161222; --panel-2:#1e1930; --rule:#2e2747;
+  --text:#f3eef9; --muted:#a199b8;
+  --lotus:#ff5fa0; --cyan:#55d3ea; --vio:#b9a2ff; --amber:#ffc65c;
+  --on:#ff473a; --ready:#3be08c; --off:#5a5372;
+  --f-led:"DotGothic16","Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",monospace;
+  --f-body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:64px}
+html,body{margin:0}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-wrap:anywhere}
+a{color:var(--cyan);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+h1,h2,h3,p{margin:0}
+[hidden]{display:none!important}
+.wrap{max-width:1120px;margin:0 auto;padding:14px 14px 56px;display:grid;gap:16px}
+.led{font-family:var(--f-led);font-variant-numeric:tabular-nums;letter-spacing:.03em}
+
+/* 上の帯 */
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none;color:var(--text)}
+.brand svg{width:38px;height:26px;color:var(--lotus);flex:none}
+.brand b{display:block;font-size:17px;font-weight:900;letter-spacing:.06em;line-height:1.25}
+.brand span{display:block;font-family:var(--f-led);font-size:11px;letter-spacing:.08em;color:var(--muted);line-height:1.4}
+.clock{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--rule);border-radius:999px;padding:6px 14px}
+.clock .lbl{font-size:10px;color:var(--muted);letter-spacing:.1em}
+.tc{font-family:var(--f-led);font-size:18px;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nav{position:sticky;top:0;z-index:20;margin:0 -14px;padding:8px 14px;background:rgba(13,10,20,.94);border-bottom:1px solid var(--rule);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--muted);font-size:13px;font-weight:700;border:1px solid var(--rule);border-radius:999px;padding:6px 13px;background:var(--panel);white-space:nowrap}
+.nav a.cur,.nav a:hover{color:var(--ink);background:var(--text);border-color:var(--text)}
+
+/* 見出しと文 */
+.hero{display:grid;gap:8px}
+.hero h1{font-size:clamp(24px,6.4vw,38px);font-weight:900;line-height:1.3;letter-spacing:.02em}
+.hero p{color:var(--muted);font-size:15px}
+.sec{display:grid;gap:12px;padding-top:6px}
+.sec>h2{display:flex;align-items:baseline;gap:10px;font-size:clamp(19px,5vw,24px);font-weight:900;line-height:1.35;border-top:1px solid var(--rule);padding-top:18px}
+.sec>h2 i{font-family:var(--f-led);font-style:normal;font-weight:400;font-size:13px;color:var(--amber);flex:none;letter-spacing:.06em}
+.sec h3{font-size:16px;font-weight:900;line-height:1.45;margin-top:4px}
+.lead{font-size:clamp(16px,4.4vw,19px);font-weight:700;line-height:1.65}
+.say{border-left:3px solid var(--amber);background:var(--panel);border-radius:0 12px 12px 0;padding:12px 14px;font-size:15px}
+.say b{color:var(--amber)}
+.mut{color:var(--muted);font-size:13px;line-height:1.6}
+ul.pl,ol.pl{margin:0;padding-left:1.25em;display:grid;gap:6px}
+.hl{color:var(--amber);font-weight:900}
+
+/* 数字の札 */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;min-width:0}
+.tile .k{font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.4}
+.tile .v{font-family:var(--f-led);font-size:clamp(20px,6vw,27px);line-height:1.25;font-variant-numeric:tabular-nums;color:var(--amber);text-shadow:0 0 14px rgba(255,198,92,.35)}
+.tile .v small{font-size:.55em;color:var(--muted);text-shadow:none}
+.tile .s{font-size:11px;color:var(--muted);line-height:1.4}
+@media(min-width:720px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* 切り替え */
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:14px;padding:3px;background:var(--panel);gap:2px}
+.seg button{border:0;background:transparent;padding:8px 14px;border-radius:11px;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer;line-height:1.3}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;border:1px solid var(--rule);color:var(--text);background:var(--panel-2);border-radius:999px;padding:3px 10px;line-height:1.5}
+button.chip{cursor:pointer;font-weight:700;padding:6px 12px;font-size:13px}
+button.chip[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+
+/* 系統図(幹から枝へ) */
+.stage{position:relative;overflow:hidden;border:1px solid var(--rule);border-radius:16px;padding:14px 12px 14px;
+  background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.055) 1px,transparent 1.6px) 0 0/9px 9px,linear-gradient(180deg,#181327,#110d1c)}
+.stage-h{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-led);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:10px;position:relative}
+.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wire{fill:none;stroke:var(--c,var(--vio));stroke-linecap:round;stroke-linejoin:round}
+.wire.base{stroke-opacity:.34;stroke-width:1.5}
+.wire.flow{stroke-width:2.4;stroke-dasharray:6 94;stroke-dashoffset:100;animation:flow var(--dur,4s) linear infinite;filter:drop-shadow(0 0 4px var(--c,var(--vio)))}
+.wire.hot{stroke-width:2.6;stroke-opacity:1;filter:drop-shadow(0 0 5px var(--c,var(--vio)))}
+@keyframes flow{to{stroke-dashoffset:0}}
+.tree{position:relative;display:grid;gap:9px}
+.node,.leaf{--c:var(--text);position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;align-items:center;text-align:left;cursor:pointer;
+  border:1px solid var(--c);background:var(--panel);border-radius:12px;padding:9px 30px 9px 10px;min-width:0;width:100%;transition:box-shadow .2s}
+.node .av{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--c);display:grid;place-items:center;color:var(--c);font-family:var(--f-led);font-size:15px;background:var(--ink);flex:none}
+.node .nm{display:block;font-weight:900;font-size:15px;line-height:1.3}
+.node .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.node.root{--c:var(--amber)}
+.node.sink{--c:var(--vio);margin-top:8px}
+.node.head{margin-left:26px;width:calc(100% - 26px)}
+.leaf{margin-left:52px;width:calc(100% - 52px);display:block;border:1px solid var(--rule);border-left:2px solid var(--c);background:var(--panel-2);border-radius:10px;padding:8px 28px 8px 11px}
+.leaf .nm{display:block;font-weight:700;font-size:14px;line-height:1.35}
+.leaf .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.lamp{position:absolute;top:50%;right:10px;margin-top:-5px;width:10px;height:10px;border-radius:50%;background:var(--off)}
+.lamp.ready{background:var(--ready);box-shadow:0 0 8px var(--ready)}
+.lamp.on{background:var(--on);box-shadow:0 0 10px var(--on);animation:blink 1s steps(2,jump-none) infinite}
+.lamp.warn{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.lamp.wait{background:transparent;border:1.5px solid var(--muted)}
+@keyframes blink{50%{opacity:.25}}
+.sel{box-shadow:0 0 0 2px var(--c),0 0 22px -4px var(--c)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:12px;color:var(--muted);position:relative}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .lamp{position:static;margin:0;animation:none;flex:none}
+.duo{display:grid;gap:12px;align-items:start}
+@media(min-width:960px){.duo{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.duo .stick{position:sticky;top:60px}}
+.cap{background:var(--panel);border:1px solid var(--rule);border-radius:16px;padding:14px 16px;display:grid;gap:8px;min-height:120px}
+.cap .ck{font-family:var(--f-led);font-size:12px;color:var(--amber);letter-spacing:.06em}
+.cap .ct{font-size:18px;font-weight:900;line-height:1.4}
+.cap .cb{font-size:15px;line-height:1.7}
+.cap ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:15px}
+.btn{display:inline-flex;align-items:center;gap:6px;justify-self:start;text-decoration:none;font-weight:900;font-size:14px;color:var(--ink);background:var(--text);border:0;border-radius:999px;padding:9px 16px;cursor:pointer;line-height:1.3}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--rule)}
+
+/* 札の並び */
+.grid{display:grid;gap:10px}
+@media(min-width:720px){.grid.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.c3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.box{--c:var(--rule);background:var(--panel);border:1px solid var(--rule);border-top:2px solid var(--c);border-radius:12px;padding:12px 14px;display:grid;gap:6px;align-content:start;min-width:0}
+.box h3{margin:0;font-size:16px}
+.box p,.box li{font-size:14.5px;line-height:1.65}
+.box .tag{font-family:var(--f-led);font-size:11px;color:var(--c);letter-spacing:.06em}
+.box.c-l{--c:var(--lotus)}.box.c-c{--c:var(--cyan)}.box.c-v{--c:var(--vio)}.box.c-a{--c:var(--amber)}.box.c-g{--c:var(--ready)}.box.c-r{--c:var(--on)}
+a.box{text-decoration:none;color:var(--text)}
+a.box:hover{box-shadow:0 0 0 1px var(--c),0 0 20px -6px var(--c)}
+.big{font-family:var(--f-led);font-size:26px;color:var(--amber);line-height:1.2}
+
+/* 表(狭い画面では札になる) */
+.t{width:100%;border-collapse:collapse;font-size:14.5px}
+.t th,.t td{border-bottom:1px solid var(--rule);padding:9px 10px;text-align:left;vertical-align:top;line-height:1.6}
+.t thead th{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;background:var(--panel)}
+.t td.n,.t th.n{font-family:var(--f-led);white-space:nowrap}
+.t tr.sum td{font-weight:900;color:var(--amber)}
+@media(max-width:719px){
+  .t thead{display:none}
+  .t,.t tbody,.t tr,.t td{display:block;width:100%}
+  .t tr{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:8px 12px;margin-bottom:8px}
+  .t td{border:0;padding:3px 0}
+  .t td[data-l]::before{content:attr(data-l);display:block;font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.5}
+  .t td:first-child{font-weight:900;font-size:15.5px}
+}
+
+/* 畳む */
+details.fold{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:0 14px}
+details.fold>summary{cursor:pointer;font-weight:900;padding:11px 0;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:15px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";font-family:var(--f-led);color:var(--muted);flex:none}
+details.fold[open]>summary::after{content:"－"}
+details.fold>.in{padding:0 0 14px;display:grid;gap:8px;font-size:14.5px}
+
+/* そのまま使う文(コピー) */
+.tpl{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;display:grid;gap:6px;min-width:0}
+.tpl .th{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tpl .th b{font-size:13px;color:var(--cyan);font-weight:900;line-height:1.4}
+.tpl .tx{font-size:15.5px;line-height:1.65;white-space:pre-wrap;background:#231c38;border-radius:10px 10px 10px 2px;padding:9px 12px}
+.tpl .tx em{font-style:normal;color:var(--amber);font-weight:700}
+.cp{flex:none;border:1px solid var(--rule);background:var(--panel-2);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap}
+.cp.done{background:var(--ready);border-color:var(--ready);color:#07130c}
+.ok,.ng{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.ok li,.ng li{position:relative;padding:8px 10px 8px 40px;border-radius:10px;background:var(--panel-2);font-size:15px;line-height:1.6}
+.ok li::before,.ng li::before{position:absolute;left:9px;top:8px;font-family:var(--f-led);font-size:12px;line-height:1.9}
+.ok li::before{content:"OK";color:var(--ready)}
+.ng li::before{content:"NG";color:var(--on)}
+.ng li{color:var(--muted)}
+.steps{counter-reset:s;display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;position:relative;padding:9px 12px 9px 46px;background:var(--panel);border:1px solid var(--rule);border-radius:12px;font-size:15px;line-height:1.6}
+.steps li::before{content:counter(s);position:absolute;left:12px;top:9px;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--amber);color:var(--amber);font-family:var(--f-led);font-size:13px;display:grid;place-items:center;line-height:1}
+.steps li small{display:block;color:var(--muted);font-size:13px;line-height:1.55}
+.foot{border-top:1px solid var(--rule);padding-top:16px;color:var(--muted);font-size:12px;line-height:1.7}
+body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.wire.flow{animation:none;stroke-dashoffset:50}.lamp.on{animation:none}html{scroll-behavior:auto}}
+@media print{.nav,.clock,.cp{display:none}body{background:#fff;color:#000}}
+.ktree{display:grid;gap:10px}
+.kroot{justify-self:center;border:1px solid var(--amber);color:var(--amber);border-radius:12px;padding:8px 18px;font-size:20px;background:var(--panel);text-shadow:0 0 14px rgba(255,198,92,.35)}
+.kf{font-family:var(--f-led);font-size:14px!important;color:var(--text);background:var(--panel-2);border-radius:8px;padding:6px 10px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="lotus" viewBox="-40 -34 80 52"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(-72 0 14)"/><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(72 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(-38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z"/></g></symbol></svg>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="#top"><svg aria-hidden="true"><use href="#lotus"/></svg><span><b>LOTUS 経営司令室</b><span>経営計画 2027–2029</span></span></a>
+  <div class="clock"><span class="lbl">JST</span><span class="tc" id="tc">--:--:--</span></div>
+</header>
+<nav class="nav" aria-label="目次">
+  <a href="#ketsuron">結論</a><a href="#shirei">司令室</a><a href="#shindan">診断</a><a href="#suji">数字</a><a href="#s1">チーフ</a><a href="#s2">直受注</a><a href="#s3">毎月の売上</a><a href="#dodai">体制</a><a href="#kyogyo">協業</a><a href="#ai">AI</a><a href="#jikko">実行</a><a href="#risk">リスク</a><a href="#kimeru">意思決定</a>
+</nav>
+
+<section class="hero" id="top">
+  <p class="led" style="color:var(--amber);font-size:13px">LOTUS VISUAL ｜ 経営計画 2027–2029</p>
+  <h1>3年で売上を約2倍に。<br>鍵は「チーフの数」と<br>「上流に届く仕組み」です。</h1>
+  <p>イベント映像・LEDの技術会社として、2029年3月期に売上 約2.2億円・営業利益率 12〜15% を目指す計画です。診断・数字・打ち手・実行表・撤退基準まで、この1ページにまとめました。</p>
+</section>
+
+<section class="sec" id="ketsuron">
+  <h2><i>01</i>結論</h2>
+  <p class="lead">結論から申し上げます。売上の倍化は狙える水準です。ただし「人を出す量」を増やすだけでは届きません。増やす売上の半分以上を、<span class="hl">直受注の一式案件</span>と<span class="hl">毎月入る売上</span>でつくる設計に切り替えます。</p>
+  <div class="grid c3">
+    <div class="box c-l"><span class="tag">提言 1</span><h3>チーフを 5人前後 → 10〜12人へ</h3><p>次の現場の機材を倉庫で先に触る。トラブルを倉庫で再現する。月1回は必ずプロセッサー席に座る。この3つで、5〜8年かかる育成を3年に縮めることを狙います。</p></div>
+    <div class="box c-c"><span class="tag">提言 2</span><h3>直受注の一式案件を 年4〜6件 → 年40件へ</h3><p>機材+設営+当日の映像責任者をまとめてお受けします。取引先のお客様は取りません。取引先が入っていない領域だけを取りにいきます。</p></div>
+    <div class="box c-v"><span class="tag">提言 3</span><h3>毎月入る売上を 年1,200万円つくる</h3><p>常設LEDの年間保守、会場の定期オペ、機材の預かり・検品。人工の繁閑の波を平らにする「底」をつくります。</p></div>
+  </div>
+  <div class="say"><b>土台は2つです。</b> ①常勤の事務担当(以下「毎日事務」)1名。見積の当日返し、実績と請求の突き合わせ、未収の管理を担います。②月次の損益と資金繰りを毎月同じ形で見ること。AIは、見積・営業・請求に寄せます。</div>
+  <h3>今月、最初に動かす3手</h3>
+  <ol class="steps">
+    <li>主要な取引先との役割分担と条件を、書面で確認する<small>口頭の取り決めを1枚にまとめ、行き違いをなくします。</small></li>
+    <li>新設会場へ、増設LEDとオペの応援を小さく提案する<small>既存のお付き合いの中で、ご紹介をお願いする形で進めます。</small></li>
+    <li>段位表と手当の幅を決める<small>初段からチーフまでの5段。入社時に見せられる形にします。</small></li>
+  </ol>
+</section>
+
+<section class="sec" id="shirei">
+  <h2><i>02</i>経営司令室</h2>
+  <p class="mut">目標から打ち手までを1枚の系統図にしました。札を押すと線が光り、「何を・なぜ・最初の一手・続ける基準」が出ます。上の切り替えで、守り案・基準案・上振れ目標の数字に変わります。</p>
+  <div class="seg" role="group" aria-label="計画の案">
+    <button type="button" data-sc="mamori" aria-pressed="false">守り案</button>
+    <button type="button" data-sc="kijun" aria-pressed="true">基準案</button>
+    <button type="button" data-sc="uwa" aria-pressed="false">上振れ目標</button>
+  </div>
+  <div class="tiles" aria-live="polite">
+    <div class="tile"><div class="k">2029年3月期の売上</div><div class="v" id="k1">約2.2億円</div><div class="s" id="k1s">積み上げ 2億1,641万円</div></div>
+    <div class="tile"><div class="k">いまの売上(2026年3月期)比</div><div class="v" id="k2">×1.90</div><div class="s">いま 1億1,362万円</div></div>
+    <div class="tile"><div class="k">直受注の一式案件</div><div class="v" id="k3">年40件</div><div class="s" id="k3s">平均175万円(仮置き)</div></div>
+    <div class="tile"><div class="k">2029年3月期の決算まで</div><div class="v" id="k4">---<small>日</small></div><div class="s">2029年3月31日</div></div>
+  </div>
+  <div class="duo">
+    <div class="stage" id="stage">
+      <svg class="wires" aria-hidden="true" focusable="false"></svg>
+      <div class="stage-h"><span>系統図</span><span id="sc-name">基準案</span></div>
+      <div class="tree">
+        <button type="button" class="node root" data-id="goal"><span class="av">目</span><span><span class="nm" id="goal-nm">売上 約2.2億円・営業利益率 12〜15%</span><span class="rl">2029年3月期の到達点</span></span></button>
+
+        <button type="button" class="node head" style="--c:var(--lotus)" data-id="p1"><span class="av">1</span><span><span class="nm">チーフを10〜12人に</span><span class="rl">直受注はチーフがいないと受けられない</span></span></button>
+        <button type="button" class="leaf" style="--c:var(--lotus)" data-id="p1a"><span class="nm">次の現場の機材を、前の週に倉庫で触る</span><i class="lamp wait"></i></button>
+        <button type="button" class="leaf" style="--c:var(--lotus)" data-id="p1b"><span class="nm">よくあるトラブルを倉庫で再現する</span><i class="lamp wait"></i></button>
+        <button type="button" class="leaf" style="--c:var(--lotus)" data-id="p1c"><span class="nm">月1回、プロセッサー席に座る</span><i class="lamp wait"></i></button>
+        <button type="button" class="leaf" style="--c:var(--lotus)" data-id="p1d"><span class="nm">段位表と手当を先に見せる</span><i class="lamp on"></i></button>
+        <button type="button" class="leaf" style="--c:var(--lotus)" data-id="p1f"><span class="nm">主要な取引先と、役割分担を書面で確認</span><i class="lamp on"></i></button>
+        <button type="button" class="leaf" style="--c:var(--lotus)" data-id="p1e"><span class="nm">スタッフ向けマニュアル(立ち回り・技術のステップ)</span><i class="lamp ready"></i></button>
+
+        <button type="button" class="node head" style="--c:var(--cyan)" data-id="p2"><span class="av">2</span><span><span class="nm">直受注の一式案件を年40件に</span><span class="rl">機材+設営+当日の映像責任者</span></span></button>
+        <button type="button" class="leaf" style="--c:var(--cyan)" data-id="p2a"><span class="nm">取引先が入っていない領域を取る</span><i class="lamp wait"></i></button>
+        <button type="button" class="leaf" style="--c:var(--cyan)" data-id="p2b"><span class="nm">「丸ごと任せられる」4点セット</span><i class="lamp ready"></i></button>
+        <button type="button" class="leaf" style="--c:var(--cyan)" data-id="p2c"><span class="nm">新設会場へ小さく提案する</span><i class="lamp on"></i></button>
+        <button type="button" class="leaf" style="--c:var(--cyan)" data-id="p2d"><span class="nm">営業台帳の照合と、一社ごとの提案</span><i class="lamp ready"></i></button>
+        <button type="button" class="leaf" style="--c:var(--cyan)" data-id="p2e"><span class="nm">紹介制度と、制作・主催が集まる場</span><i class="lamp wait"></i></button>
+
+        <button type="button" class="node head" style="--c:var(--vio)" data-id="p3"><span class="av">3</span><span><span class="nm">毎月入る売上を年1,200万円に</span><span class="rl">人工の波を平らにする「底」</span></span></button>
+        <button type="button" class="leaf" style="--c:var(--vio)" data-id="p3a"><span class="nm">常設LED・サイネージの年間保守</span><i class="lamp wait"></i></button>
+        <button type="button" class="leaf" style="--c:var(--vio)" data-id="p3b"><span class="nm">会場の定期オペ</span><i class="lamp wait"></i></button>
+        <button type="button" class="leaf" style="--c:var(--vio)" data-id="p3c"><span class="nm">機材の預かり・検品・修理</span><i class="lamp wait"></i></button>
+        
+        <button type="button" class="node head" style="--c:var(--ready)" data-id="p4"><span class="av">土</span><span><span class="nm">土台:毎日事務と月次の数字</span><span class="rl">社長に戻ってくる仕事を止める</span></span></button>
+        <button type="button" class="leaf" style="--c:var(--ready)" data-id="p4a"><span class="nm">毎日事務1名</span><i class="lamp wait"></i></button>
+        <button type="button" class="leaf" style="--c:var(--ready)" data-id="p4b"><span class="nm">見積の当日返し</span><i class="lamp ready"></i></button>
+        <button type="button" class="leaf" style="--c:var(--ready)" data-id="p4c"><span class="nm">月次の損益と資金繰り表</span><i class="lamp ready"></i></button>
+        <button type="button" class="leaf" style="--c:var(--ready)" data-id="p4d"><span class="nm">AIを見積・営業・請求へ</span><i class="lamp on"></i></button>
+
+        <button type="button" class="node sink" data-id="kpi"><span class="av">数</span><span><span class="nm">毎月見る3つの数字</span><span class="rl">チーフの人数/直受注の件数と粗利/1人日あたり売上</span></span></button>
+      </div>
+      <div class="legend">
+        <span><i class="lamp on"></i>この30日で動かす</span>
+        <span><i class="lamp ready"></i>準備できた(型・下書き済み)</span>
+        <span><i class="lamp wait"></i>31日目から</span>
+      </div>
+    </div>
+    <div class="cap stick" id="cap" aria-live="polite">
+      <span class="ck" id="cap-k">札を押してください</span>
+      <span class="ct" id="cap-t">押した札の線が光り、打ち手の中身が出ます。</span>
+      <div class="cb" id="cap-b">まずは一番上の「売上 約2.2億円」から押すと、計画の全体像が分かります。</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="shindan">
+  <h2><i>03</i>現状診断</h2>
+  <p class="lead">売上は2期続けて約1.14億円で横ばい。営業利益率は約17%から約7%へ下がりました。人員への投資が先に進み、売上の伸びがまだ追いついていない段階です。</p>
+  <div class="grid c2">
+    <div class="box"><span class="tag" style="color:var(--amber)">売上と営業利益率(3期)</span><div id="trend"></div><p class="mut">販管費は約1,000万円増えました。中心は人件費です。賃借料と外注費は減っています。2024年3月期は税込経理、2025年3月期からは税抜経理です。</p></div>
+    <div class="box"><span class="tag" style="color:var(--amber)">いまの稼ぎ方</span>
+      <ul class="pl">
+        <li>収益源は2つ。技術スタッフの日当(人工)と、LEDなど機材のレンタルです。</li>
+        <li>主戦場はドーム・アリーナのツアーと大型イベント。</li>
+        <li>受注の入口は、既存の14窓口が中心です。</li>
+        <li>LEDの直受注は年4〜6件にとどまります。</li>
+        <li>事務が常勤の体制になっておらず、見積・請求・手配が社長とチーフに集まっています。</li>
+      </ul>
+    </div>
+  </div>
+  <h3>強み・弱み・機会・脅威</h3>
+  <div class="grid c2">
+    <div class="box c-g"><span class="tag">強み</span><ul class="pl"><li>ドーム・アリーナ級の現場を回してきた経験</li><li>最新のLED・プロセッサーの運用力</li><li>倉庫で検品を担ってきた経験</li><li>AIで資料・HP・動画を内製できる体制</li></ul></div>
+    <div class="box c-r"><span class="tag">弱み</span><ul class="pl"><li>チーフが5人前後にとどまる</li><li>制作・主催との直接の接点が薄い</li><li>協力会社として入る案件が中心で、価格を自社で設計できる案件が少ない</li><li>事務が常勤の体制になっていない</li></ul></div>
+    <div class="box c-c"><span class="tag">機会</span><ul class="pl"><li>ライブ市場は2025年に8,564億円(前年比12.6%増)。2035年に1兆1,000億円の見通し</li><li>首都圏で新しいアリーナ・ホールの開業が続く</li><li>業界の技術者は平均53.4歳。若手を早く育てられる会社が採用で勝つ</li></ul></div>
+    <div class="box c-a"><span class="tag">脅威</span><ul class="pl"><li>特定の取引先への売上の集中</li><li>人件費・交通費の上昇</li><li>大型施設は大手メーカーが機材を一括納入する</li><li>事故1件で信用を失う業態</li></ul></div>
+  </div>
+  <h3>なぜ売上が止まったか(なぜを5回)</h3>
+  <ol class="steps">
+    <li>利益が減った<small>人員への投資が先に進み、売上が増えなかった。</small></li>
+    <li>売上が増えない<small>人工の売上は「人数×日数×日当」で上限があり、日当を決めるのは上流。</small></li>
+    <li>値決めできない<small>制作・主催から直接ではなく、協力会社として入る案件が中心。</small></li>
+    <li>上流から直接頼まれない<small>「丸ごと任せれば安心」と言っていただくための、チーフ・提案書・実績の見せ方・窓口がそろっていない。</small></li>
+    <li>チーフが足りない<small>育成が現場任せで、一人前まで5〜8年かかる前提のまま。</small></li>
+  </ol>
+  <div class="say"><b>診断の結論:</b>根本の原因は「チーフの数」と「上流に届く営業の仕組み」の2つです。この計画は、資源をこの2つに集中させます。</div>
+</section>
+
+<section class="sec" id="suji">
+  <h2><i>04</i>目標と数字の設計</h2>
+  <p class="lead">倍化は3本の柱の積み上げで設計します。既存の人工を少し太らせ、増える分の半分以上を「直受注」と「毎月入る売上」でつくります。</p>
+  <div class="box"><span class="tag" style="color:var(--amber)">売上の積み上げ(<span id="br-name">基準案</span>)</span><div id="bridge"></div></div>
+  <table class="t">
+    <thead><tr><th>売上の柱</th><th>いま(2026年3月期)</th><th>2029年3月期(基準案)</th><th>組み立て(仮置き)</th></tr></thead>
+    <tbody>
+      <tr><td>① 既存取引先への人工・オペ・機材</td><td class="n" data-l="いま">1.14億円</td><td class="n" data-l="2029年3月期">1.43億円</td><td data-l="組み立て">稼働 +20%(増員と協力スタッフの手配で増やす想定)× 1人日あたり売上 +5%</td></tr>
+      <tr><td>② 直受注の一式案件の上積み</td><td class="n" data-l="いま">—</td><td class="n" data-l="2029年3月期">0.61億円</td><td data-l="組み立て">年40件へ(+35件)× 平均175万円。既存の実績で検証します</td></tr>
+      <tr><td>③ 毎月入る売上</td><td class="n" data-l="いま">ほぼ0</td><td class="n" data-l="2029年3月期">0.12億円</td><td data-l="組み立て">保守20件 × 月4万円 + 定期オペ</td></tr>
+      <tr class="sum"><td>合計</td><td class="n" data-l="いま">1.14億円</td><td class="n" data-l="2029年3月期">約2.2億円</td><td data-l="組み立て">積み上げ 2億1,641万円</td></tr>
+    </tbody>
+  </table>
+  <div class="grid c3">
+    <div class="box"><span class="tag" style="color:var(--muted)">守り案</span><div class="big">約1.7億円</div><p>①だけが伸び、②の上積みが年10件、③が500万円にとどまる場合。</p></div>
+    <div class="box c-a"><span class="tag">基準案</span><div class="big">約2.2億円</div><p>3本の柱が計画どおり積み上がる場合。この計画の照準です。</p></div>
+    <div class="box"><span class="tag" style="color:var(--muted)">上振れ目標</span><div class="big">約2.3億円</div><p>②を35件のまま平均約214万円にするか、平均175万円のまま43件にした場合。</p></div>
+  </div>
+  <div class="grid c2">
+    <div class="box c-g"><h3>利益:営業利益率 12〜15% の成立条件</h3><p>増える売上の貢献利益率(売上−変動費)が<b>22〜28%</b>で、おおむね12〜15%(11.7〜14.6%)になります。20%にとどまると約11%です(追加の固定費を年500万円と仮置き)。案件ごとの粗利を残し、毎月確かめます。</p></div>
+    <div class="box c-a"><h3>資金:立替が増えます</h3><p>売上が増えると、入金までの立替も増えます。回収60日なら約1,200万円、45日なら約750万円の運転資金が追加で要る試算です。月次の資金繰り表に入れて管理します。</p></div>
+  </div>
+  <details class="fold"><summary>数え方の決まり(二重に数えない)</summary><div class="in">
+    <ul class="pl">
+      <li>いまの取引先の案件が直受注に替わった分は、②に足さず①から抜きます。</li>
+      <li>案件ごとに①〜③のどれか1つだけを付けます。年の途中で始まる保守は月割りで数えます。</li>
+      <li>清掃・不動産・SNSなどの他事業は別採算です。倍化の計画に混ぜません。</li>
+      <li>協力会社の人は、チーフの人数には数えません。</li>
+    </ul></div></details>
+  <h3>毎月見る3つの数字</h3>
+  <div class="grid c3">
+    <div class="box c-l"><span class="tag">数字 1</span><h3>チーフの人数</h3><p>5人前後 → 10〜12人。直受注の受け皿そのものです。</p></div>
+    <div class="box c-c"><span class="tag">数字 2</span><h3>直受注の件数と粗利</h3><p>見積→受注率と、案件ごとの粗利(売上−機材費−人件費−交通宿泊)を残します。</p></div>
+    <div class="box c-v"><span class="tag">数字 3</span><h3>1人日あたり売上</h3><p>作業の実績と請求を毎月突き合わせます。+5% は目安で、請求書から数え直してから合否の線に使います。</p></div>
+  </div>
+  <h3>数字の木(何を動かせば売上が動くか)</h3>
+  <div class="ktree">
+    <div class="kroot led">売上 約2.2億円</div>
+    <div class="grid c3">
+      <div class="box c-l"><span class="tag">① 人工・オペ・機材 1.43億円</span><p class="kf">人日 × 1人日あたり売上</p><ul class="pl"><li>毎月の稼働人日</li><li>実績と請求の差の件数</li><li>チーフの人数</li></ul></div>
+      <div class="box c-c"><span class="tag">② 直受注 +0.61億円</span><p class="kf">見積依頼 × 受注率 × 平均単価</p><ul class="pl"><li>見積依頼の数</li><li>当日返しができた率</li><li>再依頼の率</li></ul></div>
+      <div class="box c-v"><span class="tag">③ 毎月入る売上 0.12億円</span><p class="kf">契約数 × 月額</p><ul class="pl"><li>提案中の件数</li><li>保守の契約数</li><li>解約の件数</li></ul></div>
+    </div>
+    <p class="mut">箇条書きは先に動く数字(先行指標)です。売上は結果なので、月次の会議ではこちらを先に見ます。</p>
+  </div>
+  <h3>利益率の見通し(感度分析)</h3>
+  <table class="t">
+    <thead><tr><th>追加の固定費(年)</th><th>貢献利益率 22%</th><th>25%</th><th>28%</th></tr></thead>
+    <tbody>
+      <tr><td>固定費 +400万円</td><td class="n" data-l="貢献利益率 22%">12.2%</td><td class="n" data-l="25%">13.6%</td><td class="n" data-l="28%">15.1%</td></tr>
+      <tr class="sum"><td>固定費 +500万円(基準の仮置き)</td><td class="n" data-l="貢献利益率 22%">11.7%</td><td class="n" data-l="25%">13.2%</td><td class="n" data-l="28%">14.6%</td></tr>
+      <tr><td>固定費 +720万円</td><td class="n" data-l="貢献利益率 22%">10.7%</td><td class="n" data-l="25%">12.2%</td><td class="n" data-l="28%">13.6%</td></tr>
+    </tbody>
+  </table>
+  <p class="mut">基準案(売上 2億1,641万円)での営業利益率の試算です。追加の固定費は、毎日事務(年300〜480万円)・広告(年60〜120万円)・営業代行(試す場合 年36〜120万円)の合計で年400〜720万円の幅を見ています。貢献利益率が22%を下回る案件を増やさないことが、この計画の利益の生命線です。</p>
+</section>
+<section class="sec" id="s1">
+  <h2><i>05</i>戦略1:チーフを量産する</h2>
+  <p class="lead">5〜8年かかる育成を、3年に縮めることを狙います。鍵は「現場の偶然を待たないこと」です。詰め込みはしません。課題は1現場に1つだけです。</p>
+  <div class="grid c3">
+    <div class="box c-l"><span class="tag">仕掛け 1</span><h3>先に触る</h3><p>次の現場で使う機材を、前の週に倉庫で一度触ってから入ります。</p></div>
+    <div class="box c-l"><span class="tag">仕掛け 2</span><h3>倉庫で再現する</h3><p>よくあるトラブルを倉庫で再現し、入力→プロセッサー→出力の順に切り分ける練習をします。月2回から。</p></div>
+    <div class="box c-l"><span class="tag">仕掛け 3</span><h3>席に座る</h3><p>月に1回は必ず、経験者の横でプロセッサー席に座ります。配置で機会をつくります。</p></div>
+  </div>
+  <h3>段位表(案)</h3>
+  <table class="t">
+    <thead><tr><th>段</th><th>目安</th><th>できるようになること</th><th>合格の確かめ方</th></tr></thead>
+    <tbody>
+      <tr><td>初段(気構え)</td><td data-l="目安">入社〜3か月</td><td data-l="できること">余裕を持った到着、復唱、初報、倉庫の返し方、安全の止めどころ</td><td data-l="確かめ方">先輩が横で見て「自分から動けた」3回</td></tr>
+      <tr><td>1段(よく出る機材)</td><td data-l="目安">3か月〜1年</td><td data-l="できること">倉庫でよく出る機材を、自分で組んで点灯できる</td><td data-l="確かめ方">各機材3回の実演</td></tr>
+      <tr><td>2段(トラブル)</td><td data-l="目安">1〜2年</td><td data-l="できること">よくあるトラブル10種を、入力→プロセッサー→出力の順に切り分ける</td><td data-l="確かめ方">倉庫での再現テストと、本番での席経験12回</td></tr>
+      <tr><td>3段(サブチーフ)</td><td data-l="目安">2年前後</td><td data-l="できること">図面から機材・ケーブル・人数を出す。少人数の現場を回す。後輩に振る</td><td data-l="確かめ方">「チーフ(勉強)」枠で小さな現場を3件</td></tr>
+      <tr class="sum"><td>チーフ</td><td data-l="目安">3年</td><td data-l="できること">現場指揮、クライアント・舞台監督との調整、悪い時の初動、報告</td><td data-l="確かめ方">外注をまとめた本番の成功</td></tr>
+    </tbody>
+  </table>
+  <h3>長く働ける育て方</h3>
+  <ul class="pl">
+    <li><b>課題は1現場1つだけ。</b>報告は若手なら週1回で十分です。長い反省文は求めません。</li>
+    <li><b>褒める時は行動を具体的に。</b>叱る時は「次の合格条件を1つ」だけ決めます。</li>
+    <li><b>段が上がるたびに手当が上がる段位表を、入社時に先に見せます。</b>道のりが見えれば、つらい時期を越える理由になります。</li>
+    <li><b>粘り強さと会社への愛着は「語る」より「見せる」。</b>先輩チーフの失敗談と立ち直りを、少人数の会で共有します。</li>
+  </ul>
+  <p class="mut">2029年3月まで約2年4か月です。全員と面談し、今の段と次の3か月の経験を一緒に決めます。段位表の期間と回数は案です。育成の教材は <a href="../manual/">スタッフ向けマニュアル</a> に公開しています。</p>
+</section>
+
+<section class="sec" id="s2">
+  <h2><i>06</i>戦略2:直受注の一式案件</h2>
+  <p class="lead">上流への入口は「会社」ではなく「現場で会う人」です。技術会社を選ぶのは、制作・演出・舞台監督の方々。LOTUSのチーフは、その方々と毎週のように現場でご一緒しています。</p>
+  <div class="grid c2">
+    <div class="box c-r"><span class="tag">やらないこと(信用を守る線)</span><ul class="pl"><li>取引先の現場で、その取引先のお客様に売り込みません。</li><li>お客様から直接お声がかかったら、受ける前に取引先へ一声かけます。「一緒にやれませんか」の形にします。</li></ul></div>
+    <div class="box c-c"><span class="tag">取りにいく領域</span><ul class="pl"><li>企業イベント・展示会</li><li>リリースイベント・ファンミーティング</li><li>中規模ホール・ライブハウスのツアー</li><li>スポーツ(アリーナ)・自治体</li><li>首都圏の新設会場</li></ul></div>
+  </div>
+  <h3>「丸ごと任せられる」を紙で示す4点セット</h3>
+  <div class="grid c2">
+    <div class="box c-g"><span class="tag">1</span><h3>安全体制シート</h3><p>安全衛生の責任者、資格者の一覧、フルハーネス・高所作業車などの教育、保険。業界のガイドラインに沿った項目です。</p></div>
+    <div class="box c-g"><span class="tag">2</span><h3>実績集</h3><p>会場と機材構成で示します。出演者のお名前は出しません。掲載は先方の許可を取ってから。</p></div>
+    <div class="box c-g"><span class="tag">3</span><h3>見積の当日返し</h3><p>当日は受領と概算、確定は在庫と技術の確認後。過去の見積から型を作成済みです。</p></div>
+    <div class="box c-g"><span class="tag">4</span><h3>本番翌日の報告</h3><p>写真、問題の有無、次回のご提案。再依頼率で効果を測ります。</p></div>
+  </div>
+  <h3>営業の打ち手と「続ける基準」(3か月で判定)</h3>
+  <table class="t">
+    <thead><tr><th>打ち手</th><th>費用の目安</th><th>続ける基準(3か月)</th></tr></thead>
+    <tbody>
+      <tr><td>紹介制度の明文化(お礼は会社あての次回値引きが基本。個人への謝礼は行いません。公的な案件は対象外)</td><td data-l="費用">受注時のみ</td><td data-l="続ける基準">紹介経由の見積依頼 3件</td></tr>
+      <tr><td>本番翌日の完了報告</td><td data-l="費用">事務の手間のみ</td><td data-l="続ける基準">再依頼率</td></tr>
+      <tr><td>施工の早回し動画を週1本(自社の案件と、許可をいただいた現場だけ。ロゴ・人物・演出は映しません)</td><td data-l="費用">AI編集でほぼ0円</td><td data-l="続ける基準">問い合わせ 2件</td></tr>
+      <tr><td>HPの検索対策と実績ページを月4件</td><td data-l="費用">0円</td><td data-l="続ける基準">問い合わせ 2件</td></tr>
+      <tr><td>検索広告(指名に近い語だけ)</td><td data-l="費用">月5〜10万円</td><td data-l="続ける基準">見積依頼 3件・受注 1件</td></tr>
+      <tr><td>営業代行(成果型)</td><td data-l="費用">月3〜10万円</td><td data-l="続ける基準">商談 5件・受注 1件</td></tr>
+      <tr><td>営業台帳への一社ごとの提案(週10社)</td><td data-l="費用">0円</td><td data-l="続ける基準">返信 5件</td></tr>
+    </tbody>
+  </table>
+  <p class="mut">お金が出る打ち手(広告・営業代行)は31日目から。基準を満たさないものは止めます。平均175万円は仮置きで、既存の直受注の実績を1件ずつ並べて検証します。直受注40件には、年120人日ほどのチーフの日が要ります(1件3日で仮置き)。</p>
+</section>
+
+<section class="sec" id="s3">
+  <h2><i>07</i>戦略3:毎月入る売上</h2>
+  <p class="lead">年間保守を1件 月3〜5万円で20件持てば、年700〜1,200万円。人工の繁閑の波を平らにする「底」になります。小さく始めて積み上げます。</p>
+  <div class="grid c3">
+    <div class="box c-v"><h3>常設LED・サイネージの年間保守</h3><p>中小のホール・ライブハウス・店舗・ビルが対象です。大型アリーナ本体は狙いません。屋外は手続きと資格を確かめてから。</p></div>
+    <div class="box c-v"><h3>会場の定期オペ</h3><p>アリーナや新設会場の、試合・公演日のビジョン送出を定期で受けます。</p></div>
+    <div class="box c-v"><h3>機材の預かり・検品・修理</h3><p>南千住の倉庫と、すでに行っている検品業務の延長です。</p></div>
+  </div>
+</section>
+
+<section class="sec" id="dodai">
+  <h2><i>08</i>土台:管理体制</h2>
+  <p class="lead">毎日事務を置く一番の利益は、社長とチーフの時間を営業と現場に戻すことです。新しい台帳は増やしません。すべての作業を1つの「案件番号」でつなぐだけにします。</p>
+  <table class="t">
+    <thead><tr><th>時間帯</th><th>毎日事務がやること</th><th>AIの下ごしらえ</th></tr></thead>
+    <tbody>
+      <tr><td>朝(9〜11時)</td><td data-l="事務">問い合わせ・見積依頼の受付、案件番号の発行、当日の人員・車両の最終確認</td><td data-l="AI">前日までの問い合わせを整理し、「今日返すべきもの」を一覧にする</td></tr>
+      <tr><td>昼(11〜16時)</td><td data-l="事務">見積の当日返し(社長は金額だけ承認)、交通・宿泊の手配、安全書類と資格期限の管理</td><td data-l="AI">過去の見積と機材表から、見積と旅程表の下書き</td></tr>
+      <tr><td>夕方(16〜18時)</td><td data-l="事務">翌日の段取り確認、終わった案件の請求、完了報告の送付</td><td data-l="AI">シフトと見積・請求の食い違いを自動で拾う</td></tr>
+      <tr><td>毎週</td><td data-l="事務">未収の確認、支払と入金の照合、各窓口の次の一手の更新</td><td data-l="AI">営業メールの下書き、施工動画の編集</td></tr>
+      <tr><td>毎月</td><td data-l="事務">税理士への資料、案件別の粗利表、助成金・補助金の申請</td><td data-l="AI">案件別粗利の集計、申請書の下書き</td></tr>
+    </tbody>
+  </table>
+  <div class="grid c3">
+    <div class="box c-g"><span class="tag">目標</span><h3>事務の3つの線</h3><p>受領の連絡と概算は当日(遅くとも翌営業日)。確定の見積は在庫と技術の確認後。請求は3営業日以内。</p></div>
+    <div class="box c-g"><span class="tag">会議(提言)</span><h3>週15分・月60分</h3><p>週次は3つの数字と詰まりだけ。月次は損益・資金繰り・「続ける/止める」の判定。四半期に計画を見直します。</p></div>
+    <div class="box c-a"><span class="tag">資金の決まり</span><h3>3か月分を目標に</h3><p>人件費と外注費の3か月分を残すことを目標にします。2か月分を切ったら、採用と広告を止めます。</p></div>
+  </div>
+  <h3>月次の経営会議の型(60分・提言)</h3>
+  <ol class="steps">
+    <li>3つの数字(10分)<small>チーフの人数、直受注の件数と粗利、1人日あたり売上。先月との差だけを見ます。</small></li>
+    <li>損益と資金繰り(15分)<small>月次の表で、売上・粗利・固定費・残高の見通しを確かめます。</small></li>
+    <li>案件ごとの粗利(15分)<small>直受注を1件ずつ。貢献利益率22%を下回った案件は原因を1行で残します。</small></li>
+    <li>続ける・止めるの判定(10分)<small>営業の打ち手、AIの契約、他事業を「続ける基準」に照らします。</small></li>
+    <li>来月の一手(10分)<small>担当と期限をつけて3つまで。増やしません。</small></li>
+  </ol>
+  <p class="mut">毎日事務の費用は年300〜480万円(仮置き)。まず今の体制で1か月、毎日の当番を試し、数字を見てから募集する進め方もあります。助成金・補助金や各種の許可は、要件を専門家と確かめてから進めます。</p>
+</section>
+<section class="sec" id="kyogyo">
+  <h2><i>09</i>協業と他事業</h2>
+  <p class="lead">協業は、相手の売上を奪わず、相手が「受けきれない・やりたくない」部分をLOTUSが持つ形にすると長続きします。持ち込む前に「相手にとっての得」を一行で言えるかを確かめます。</p>
+  <table class="t">
+    <thead><tr><th>相手</th><th>LOTUSが引き受ける役割</th><th>相手の得</th></tr></thead>
+    <tbody>
+      <tr><td>機材を持つ会社</td><td data-l="LOTUSの役割">当社は現場をまとめるチーフと技術者を出す</td><td data-l="相手の得">機材の稼働が上がる</td></tr>
+      <tr><td>新設会場・施設</td><td data-l="LOTUSの役割">増設LED、ビジョンのオペ、編成変更時の応援</td><td data-l="相手の得">稼働日に合わせて技術者を確保できる</td></tr>
+      <tr><td>不動産管理会社</td><td data-l="LOTUSの役割">管理物件・商業ビルのLED・サイネージの施工と年間保守、内覧動画、空き区画の活用</td><td data-l="相手の得">オーナーへの提案材料が増え、空室対策になる</td></tr>
+      <tr><td>協力会社(技術スタッフ)</td><td data-l="LOTUSの役割">役割分担は先方と相談して決めます</td><td data-l="相手の得">—</td></tr>
+    </tbody>
+  </table>
+  <p class="mut">他事業(清掃・不動産・SNSなど)は別採算で、映像の計画に混ぜません。社長の時間は週3時間以内、投資は上限を決め、月次の数字で続けるかを決めます。</p>
+</section>
+
+<section class="sec" id="ai">
+  <h2><i>10</i>AI投資</h2>
+  <p class="lead">AIへの投資は続ける価値があります。ただし、これまでの使い道はHP・マニュアル・動画に偏っていました。次の90日で、売上に直結する「見積・営業・請求」へ入れ替えます。</p>
+  <ol class="steps">
+    <li>見積の当日返し<small>過去の見積・機材表・単価表から下書き。社長は金額だけ承認します。</small></li>
+    <li>実績と請求の突き合わせ<small>シフトと見積・請求を照らし、差を自動で拾います。</small></li>
+    <li>営業メールと提案書<small>一社ごとに書き分けます。送信は社長の承認後です。</small></li>
+    <li>安全体制シートと実績集の更新<small>資格の期限管理も含めます。</small></li>
+    <li>育成の教材と、倉庫の再現練習の稽古表</li>
+    <li>補助金・助成金の申請書の下書き</li>
+  </ol>
+  <div class="grid c2">
+    <div class="box c-g"><h3>続けるかの判定(毎月)</h3><p>社長・チーフの時間を月10時間以上浮かせたか。受注に1件以上つながったか。2か月続けてどちらも満たさない契約は止めます。</p></div>
+    <div class="box c-r"><h3>AIに単独で決めさせないこと</h3><p>安全・電源・法務・発注・価格・勤怠・社員の評価。この7つは必ず人が決めます。</p></div>
+  </div>
+</section>
+
+<section class="sec" id="jikko">
+  <h2><i>11</i>実行計画</h2>
+  <h3>3年の工程表</h3>
+  <table class="t">
+    <thead><tr><th>柱</th><th>〜2027年3月:仕組みをつくる</th><th>2028年3月期:型を回す</th><th>2029年3月期:成果を出す</th></tr></thead>
+    <tbody>
+      <tr><td>チーフ</td><td data-l="〜2027年3月">段位表を決め、全員と面談。倉庫の再現練習を月2回</td><td data-l="2028年3月期">7〜8人。月1回の席経験が定着</td><td data-l="2029年3月期">10〜12人</td></tr>
+      <tr><td>直受注</td><td data-l="〜2027年3月">4点セットを実案件で通す。1件を完了</td><td data-l="2028年3月期">年15〜20件。紹介と再依頼が回り始める</td><td data-l="2029年3月期">年40件</td></tr>
+      <tr><td>毎月入る売上</td><td data-l="〜2027年3月">保守の試験1件</td><td data-l="2028年3月期">保守8件</td><td data-l="2029年3月期">保守20件+定期オペ</td></tr>
+      <tr><td>土台</td><td data-l="〜2027年3月">毎日事務を始める。月次の表を回す</td><td data-l="2028年3月期">全案件を案件番号でつなぐ。月次の会議が定着</td><td data-l="2029年3月期">新設会場の常駐オペなど、次の伸びしろを準備する</td></tr>
+      <tr class="sum"><td>売上</td><td data-l="〜2027年3月">仕組みをつくる期間(売上は前期並みを見込む)</td><td data-l="2028年3月期">約1.5〜1.6億円</td><td data-l="2029年3月期">約2.2億円</td></tr>
+    </tbody>
+  </table>
+  <p class="mut">2028年3月期の数字は、到達点から逆算した目安(提言)です。月次の実績で、四半期ごとに見直します。</p>
+  <h3>最初の90日</h3>
+  <p class="lead">最初の30日は「お金をかけずに準備できるもの」だけ。お金が出るもの(広告・採用)は31日目から、数字を見ながら増やします。</p>
+  <div class="seg" role="group" aria-label="期間">
+    <button type="button" data-ph="1" aria-pressed="true">1〜30日</button>
+    <button type="button" data-ph="2" aria-pressed="false">31〜60日</button>
+    <button type="button" data-ph="3" aria-pressed="false">61〜90日</button>
+  </div>
+  <div id="plan" class="grid"></div>
+  <div class="legend">
+    <span><i class="lamp ready"></i>型・下書きができた</span>
+    <span><i class="lamp on"></i>この30日で動かす</span>
+    <span><i class="lamp wait"></i>これから</span>
+  </div>
+</section>
+
+<section class="sec" id="risk">
+  <h2><i>12</i>リスクと撤退基準</h2>
+  <p class="lead">大きなリスクは「既存の取引先との信頼を損なうこと」と「増収に伴う運転資金の増加」の2つです。どちらも、売上を追う前に手を打てます。</p>
+  <table class="t">
+    <thead><tr><th>リスク</th><th>兆し</th><th>打ち手</th><th>止める・引く線</th></tr></thead>
+    <tbody>
+      <tr><td>既存の取引先との信頼</td><td data-l="兆し">先方のお客様から直接のお声がけがあった</td><td data-l="打ち手">直受注は「取引先が入っていない領域」だけ。声がかかったら先に相談</td><td data-l="引く線">取引先から懸念が出たら、その領域の営業を止めて話し合う</td></tr>
+      <tr><td>増収に伴う運転資金の増加</td><td data-l="兆し">入金前の給与・外注払いが重なる</td><td data-l="打ち手">人件費・外注費3か月分の残高を目標にし、月次の資金繰り表で先に見る</td><td data-l="引く線">残高が2か月分を切ったら採用・広告を止める</td></tr>
+      <tr><td>チーフ候補の離職・燃え尽き</td><td data-l="兆し">報告や相談が減る、表情や口数が変わる</td><td data-l="打ち手">課題は1現場1つ、週1の短い報告だけ、段位と手当を先に見せる</td><td data-l="引く線">担当が抜ける前に、代わりの人の実演を済ませる</td></tr>
+      <tr><td>現場の事故(落下・通電)</td><td data-l="兆し">同じ種類のヒヤリハットが続く</td><td data-l="打ち手">外す前のロック確認、段ごとの点灯、電源・荷重は仕様書と責任者で決める</td><td data-l="引く線">事故は1件でも作業を止め、原因と手順を見直す。同じ種類のヒヤリハットが2回出たら標準手順を改める</td></tr>
+      <tr><td>新規事業への時間の分散</td><td data-l="兆し">社長の営業時間が週5時間を切る</td><td data-l="打ち手">他事業は週3時間まで。運転はAIに</td><td data-l="引く線">「続ける基準」を3か月満たさない事業は止める</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sec" id="kimeru">
+  <h2><i>13</i>次の意思決定</h2>
+  <p class="lead">計画を動かすために、まず次の4点を決めます。どれも1行で決められる形にしてあります。</p>
+  <ol class="steps">
+    <li>段位表の手当の幅<small>初段からチーフまでの5段。金額の幅だけ決めれば、入社時に見せられます。</small></li>
+    <li>毎日事務の進め方<small>募集が先か、今の体制で1か月の当番の試しが先か。</small></li>
+    <li>一人ひとりの「次の3か月」<small>面談で、今の段と次に積む経験を決めます。</small></li>
+    <li>広告・営業代行の上限額<small>31日目から使う月額の上限。</small></li>
+  </ol>
+</section>
+
+<section class="sec" id="zentei">
+  <h2><i>14</i>前提と出典</h2>
+  <ul class="pl mut">
+    <li>数字は、社内の決算書(3期分)・シフト表・過去の見積・業務の記録をもとにしています。「仮置き」と書いた数字は、実績で検証して置き換えます。</li>
+    <li>市場の数字:ライブ・エンタテインメント市場(ぴあ総研)、スタッフの実態調査(芸団協)、アリーナの新設動向(各社の公表)。</li>
+    <li>この公開版には、個人のお名前、取引先のお名前、個別の契約条件、借入や預金の内訳は載せていません。</li>
+    <li>作成:2026年11月 株式会社LOTUS。月次の実績で更新します。</li>
+  </ul>
+</section>
+
+<footer class="foot">株式会社LOTUS ｜ LOTUS VISUAL 経営計画 2027–2029</footer>
+</div>
+
+<script>
+/* 共通:時計・コピー・系統図の線 */
+var LK=(function(){
+'use strict';
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function p2(n){return String(n).padStart(2,'0')}
+function clock(el){
+  if(!el)return;
+  function draw(){var d=new Date(Date.now()+9*3600e3);el.textContent=p2(d.getUTCHours())+':'+p2(d.getUTCMinutes())+':'+p2(d.getUTCSeconds())}
+  draw();setInterval(draw,1000);
+}
+function copyText(t,btn){
+  function ok(){if(!btn)return;var o=btn.textContent;btn.textContent='コピーした';btn.classList.add('done');setTimeout(function(){btn.textContent=o;btn.classList.remove('done')},1400)}
+  function fb(){try{var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();ok()}catch(e){}}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}catch(e){fb()}
+}
+document.addEventListener('click',function(ev){
+  var b=ev.target.closest('.cp');if(!b)return;
+  var box=b.closest('[data-copy]');var t=box?box.getAttribute('data-copy'):'';
+  if(!t){var x=b.closest('.tpl');if(x)t=x.querySelector('.tx').textContent}
+  copyText(t,b);
+});
+/* 幹から枝へ:.tree の中の .root → .head → .leaf → .sink を線でつなぐ */
+function tree(stage,onPick){
+  var svg=stage.querySelector('.wires'),NS='http://www.w3.org/2000/svg',hot=null,sel=null;
+  function R(el,o){var r=el.getBoundingClientRect();return{l:r.left-o.left,t:r.top-o.top,r:r.right-o.left,b:r.bottom-o.top,cy:(r.top+r.bottom)/2-o.top}}
+  function P(d,cls,c,len){var p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);if(len)p.setAttribute('pathLength','100');if(c)p.style.setProperty('--c',c);svg.appendChild(p);return p}
+  function col(el){return getComputedStyle(el).getPropertyValue('--c').trim()||'#b9a2ff'}
+  function layout(){
+    var o=svg.getBoundingClientRect();if(!o.width)return;
+    svg.setAttribute('viewBox','0 0 '+o.width+' '+o.height);
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    var root=stage.querySelector('.root'),sink=stage.querySelector('.sink');if(!root)return;
+    var rr=R(root,o),tx=rr.l+17,endY=sink?R(sink,o).t:rr.b;
+    var heads=[].slice.call(stage.querySelectorAll('.head'));
+    if(!sink&&heads.length)endY=R(heads[heads.length-1],o).cy;
+    var trunk='M'+tx+' '+rr.b+'V'+endY;
+    P(trunk,'wire base',col(root));P(trunk,'wire flow',col(root),true).style.setProperty('--dur','5s');
+    heads.forEach(function(h,i){
+      var hr=R(h,o),c=col(h);
+      P('M'+tx+' '+hr.cy+'H'+hr.l,'wire base',c);
+      var leaves=[];var n=h.nextElementSibling;while(n&&n.classList.contains('leaf')){leaves.push(n);n=n.nextElementSibling}
+      if(leaves.length){
+        var bx=hr.l+17,last=R(leaves[leaves.length-1],o);
+        var bus='M'+bx+' '+hr.b+'V'+last.cy;
+        P(bus,'wire base',c);var f=P(bus,'wire flow',c,true);f.style.setProperty('--dur',(3+i*.6)+'s');
+        leaves.forEach(function(lf){var lr=R(lf,o);P('M'+bx+' '+lr.cy+'H'+lr.l,'wire base',c)});
+      }
+    });
+    if(hot)drawHot(hot,o,tx,rr);
+  }
+  function drawHot(el,o,tx,rr){
+    var c=col(el),d='';
+    if(el.classList.contains('root')||el.classList.contains('sink')){var sk=stage.querySelector('.sink');d='M'+tx+' '+rr.b+'V'+(sk?R(sk,o).t:rr.b)}
+    else{
+      var h=el.classList.contains('head')?el:null;
+      if(!h){h=el.previousElementSibling;while(h&&!h.classList.contains('head'))h=h.previousElementSibling}
+      if(!h)return;var hr=R(h,o);
+      d='M'+tx+' '+rr.b+'V'+hr.cy+'H'+hr.l;
+      if(el!==h){var lr=R(el,o),bx=hr.l+17;d+='M'+bx+' '+hr.b+'V'+lr.cy+'H'+lr.l}
+    }
+    P(d,'wire hot',c);
+  }
+  stage.addEventListener('click',function(ev){
+    var b=ev.target.closest('[data-id]');if(!b||!stage.contains(b))return;
+    if(sel)sel.classList.remove('sel');sel=b;b.classList.add('sel');hot=b;layout();
+    if(onPick)onPick(b.getAttribute('data-id'),b);
+  });
+  var q=0;function re(){if(q)return;q=requestAnimationFrame(function(){q=0;layout()})}
+  if(window.ResizeObserver)new ResizeObserver(re).observe(stage);
+  window.addEventListener('resize',re);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(re);
+  layout();
+  return{layout:layout,pick:function(id){var b=stage.querySelector('[data-id="'+id+'"]');if(b)b.click()}};
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+return{clock:clock,tree:tree,copy:copyText,esc:esc,reduce:reduce};
+})();
+</script>
+<script>
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s)};
+LK.clock($('#tc'));
+/* 決算までの日数 */
+(function(){var end=Date.UTC(2029,2,31,15,0,0);/* 2029-04-01 00:00 JST */
+  var d=Math.max(0,Math.ceil((end-Date.now())/864e5));$('#k4').innerHTML=d+'<small>日</small>'})();
+
+/* 案の切り替え */
+var NOW=1.1362;
+var SC={
+ mamori:{name:'守り案',label:'約1.7億円',sub:'積み上げ 約1億6,570万円',a:.2954,b:.175,c:.05,k3:'年15件前後',k3s:'上積みは年10件',goal:'売上 約1.7億円(守り案)'},
+ kijun:{name:'基準案',label:'約2.2億円',sub:'積み上げ 2億1,641万円',a:.2954,b:.6125,c:.12,k3:'年40件',k3s:'平均175万円(仮置き)',goal:'売上 約2.2億円・営業利益率 12〜15%'},
+ uwa:{name:'上振れ目標',label:'約2.3億円',sub:'直受注の平均を約214万円に',a:.2954,b:.749,c:.12,k3:'年40件',k3s:'平均約214万円、または上積みを43件',goal:'売上 約2.3億円(上振れ目標)'}
+};
+function oku(v){return v.toFixed(2)+'億'}
+function bridge(s){
+  var W=340,H=210,base=178,top=18,max=2.5,k=(base-top)/max;
+  var tot=NOW+s.a+s.b+s.c;
+  var cols=[
+    {l:'いま',v0:0,v1:NOW,c:'var(--muted)',t:oku(NOW)},
+    {l:'①既存',v0:NOW,v1:NOW+s.a,c:'var(--lotus)',t:'+'+s.a.toFixed(2)},
+    {l:'②直受注',v0:NOW+s.a,v1:NOW+s.a+s.b,c:'var(--cyan)',t:'+'+s.b.toFixed(2)},
+    {l:'③毎月',v0:NOW+s.a+s.b,v1:tot,c:'var(--vio)',t:'+'+s.c.toFixed(2)},
+    {l:'2029年',v0:0,v1:tot,c:'var(--amber)',t:oku(tot)}
+  ];
+  var bw=44,gap=(W-bw*5)/6,x=gap,h='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="売上の積み上げ図。いま'+oku(NOW)+'円から'+oku(tot)+'円へ" style="width:100%;height:auto;display:block">';
+  h+='<line x1="0" y1="'+base+'" x2="'+W+'" y2="'+base+'" stroke="var(--rule)"/>';
+  cols.forEach(function(c,i){
+    var y1=base-c.v1*k,y0=base-c.v0*k;
+    h+='<rect x="'+x.toFixed(1)+'" y="'+y1.toFixed(1)+'" width="'+bw+'" height="'+Math.max(2,y0-y1).toFixed(1)+'" rx="4" fill="'+c.c+'" opacity="'+(i===0?'.55':'1')+'"/>';
+    h+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(y1-6).toFixed(1)+'" text-anchor="middle" font-family="DotGothic16,monospace" font-size="12" fill="var(--text)">'+c.t+'</text>';
+    h+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(base+16)+'" text-anchor="middle" font-size="11" fill="var(--muted)">'+c.l+'</text>';
+    if(i<3){h+='<line x1="'+(x+bw).toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+(x+bw+gap).toFixed(1)+'" y2="'+y1.toFixed(1)+'" stroke="var(--rule)" stroke-dasharray="2 3"/>'}
+    x+=bw+gap;
+  });
+  h+='<text x="'+W+'" y="'+(H-2)+'" text-anchor="end" font-size="10" fill="var(--muted)">単位:億円</text></svg>';
+  $('#bridge').innerHTML=h;
+}
+function setSc(id){
+  var s=SC[id];
+  document.querySelectorAll('[data-sc]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.sc===id))});
+  $('#k1').textContent=s.label;$('#k1s').textContent=s.sub;
+  $('#k2').textContent='×'+((NOW+s.a+s.b+s.c)/NOW).toFixed(2);
+  $('#k3').textContent=s.k3;$('#k3s').textContent=s.k3s;
+  $('#sc-name').textContent=s.name;$('#br-name').textContent=s.name;$('#goal-nm').textContent=s.goal;
+  bridge(s);
+}
+document.querySelectorAll('[data-sc]').forEach(function(b){b.addEventListener('click',function(){setSc(b.dataset.sc)})});
+
+/* 3期の推移 */
+(function(){
+  var d=[{y:'2024年3月期',s:.7756,m:24.5},{y:'2025年3月期',s:1.1429,m:16.6},{y:'2026年3月期',s:1.1362,m:6.9}];
+  var W=340,H=180,base=138,k=52,bw=58,gap=(W-bw*3)/4,x=gap,pts=[],h='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="売上は0.78億円、1.14億円、1.14億円。営業利益率は24.5%、16.6%、6.9%" style="width:100%;height:auto;display:block">';
+  h+='<line x1="0" y1="'+base+'" x2="'+W+'" y2="'+base+'" stroke="var(--rule)"/>';
+  d.forEach(function(r){
+    var y=base-r.s*k;
+    h+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+bw+'" height="'+(r.s*k).toFixed(1)+'" rx="4" fill="var(--vio)" opacity=".5"/>';
+    h+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(base-8)+'" text-anchor="middle" font-family="DotGothic16,monospace" font-size="12" fill="var(--text)">'+r.s.toFixed(2)+'億</text>';
+    h+='<text x="'+(x+bw/2).toFixed(1)+'" y="'+(base+16)+'" text-anchor="middle" font-size="10.5" fill="var(--muted)">'+r.y+'</text>';
+    pts.push([x+bw/2,72-r.m*1.9,r.m]);x+=bw+gap;
+  });
+  h+='<polyline points="'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1)}).join(' ')+'" fill="none" stroke="var(--amber)" stroke-width="2.2"/>';
+  pts.forEach(function(p){h+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="4" fill="var(--amber)"/><text x="'+p[0].toFixed(1)+'" y="'+(p[1]-9).toFixed(1)+'" text-anchor="middle" font-family="DotGothic16,monospace" font-size="12" fill="var(--amber)">'+p[2]+'%</text>'});
+  h+='<text x="0" y="'+(H-2)+'" font-size="10" fill="var(--muted)">棒:売上 / 線:営業利益率</text></svg>';
+  $('#trend').innerHTML=h;
+})();
+
+/* 系統図の中身 */
+var CAP={
+ goal:['到達点','2029年3月期に売上 約2.2億円','いまの約2倍です。市場の伸びだけでは3年で1.1〜1.3倍にしかなりません。取り分を上げるために、3本の柱と土台に資源を集中します。',['柱1:チーフを10〜12人に','柱2:直受注の一式案件を年40件に','柱3:毎月入る売上を年1,200万円に','土台:毎日事務と月次の数字']],
+ p1:['柱1','チーフを10〜12人に','直受注の一式案件は、現場を任せられるチーフがいないとお受けできません。倍化の受け皿そのものです。',['いま:5人前後','2028年3月期:7〜8人(目安)','2029年3月期:10〜12人']],
+ p1a:['柱1・仕掛け','次の現場の機材を、前の週に倉庫で触る','入った現場で覚えたことだけが力になる今の形を変えます。現場の前に一度触るだけで、当日の理解が変わります。',['最初の一手:次の現場の機材表を前週に共有','測り方:触った機材の記録(未経験/補助付き/実演/説明できる)']],
+ p1b:['柱1・仕掛け','よくあるトラブルを倉庫で再現する','本番で初めて出会うから時間がかかります。倉庫で再現し、入力→プロセッサー→出力の順に切り分ける型を体に入れます。',['最初の一手:月2回の再現練習を始める(31日目から)','測り方:再現テストの合格数']],
+ p1c:['柱1・仕掛け','月1回、プロセッサー席に座る','席の経験は配置でつくれます。経験者の横で月1回。2段の合格条件は本番での席経験12回です。',['最初の一手:翌月のシフトで席の日を先に決める','測り方:席の回数']],
+ p1d:['柱1・この30日','段位表と手当を先に見せる','初段からチーフまでの5段と、段ごとの手当。道のりが見えることが、つらい時期を越える理由になります。',['最初の一手:手当の幅を決める','その後:全員と面談し、今の段と次の3か月を決める']],
+ p1f:['柱1・この30日','主要な取引先と、役割分担を書面で確認','チーフが現場をまとめる形を増やすには、役割分担と条件の行き違いをなくすことが先です。',['最初の一手:口頭の取り決めを1枚にまとめる']],
+ p1e:['柱1・準備できた','スタッフ向けマニュアル','現場でそのまま使う報告の型、場面ごとの言い方、技術の段、トラブルの切り分けを公開しました。',['立ち回りと報告','技術のステップとトラブル'],'../manual/','マニュアルを開く'],
+ p2:['柱2','直受注の一式案件を年40件に','機材+設営+当日の映像責任者を一式でお受けします。値決めができる売上です。粗利は既存の実績で確かめます。',['いま:年4〜6件','2028年3月期:年15〜20件(目安)','2029年3月期:年40件(平均175万円は仮置き)']],
+ p2a:['柱2','取引先が入っていない領域を取る','取引先のお客様は取りません。企業イベント、展示会、中規模ツアー、スポーツ、自治体、新設会場が対象です。',['考え方:1件の深い実績を看板に横展開','測り方:見積依頼の数と受注率']],
+ p2b:['柱2・準備できた','「丸ごと任せられる」4点セット','安全体制シート、実績集、見積の当日返し、本番翌日の報告。この4つを全案件の標準にします。',['型と下書きは作成済み','次:実際の案件1件で通しで使う']],
+ p2c:['柱2・この30日','新設会場へ小さく提案する','首都圏で新しいアリーナ・ホールの開業が続いています。既存のお付き合いの中で、ご紹介をお願いする形で進めます。',['提案の中身:増設LED・ビジョンのオペ・編成変更時の応援','測り方:提案の数と、次の打ち合わせにつながった数']],
+ p2d:['柱2・準備できた','営業台帳の照合と、一社ごとの提案','台帳の会社を、送る前に実際の接触と既存の窓口に照らします。重なる先には送りません。',['照合の手順と表は作成済み','続ける基準:週10社で返信5件(3か月)']],
+ p2e:['柱2','紹介制度と、制作・主催が集まる場','紹介のお礼は会社あての次回値引きを基本にします(個人への謝礼は行いません)。業界の展示会には、まず来場して名刺交換から。',['続ける基準:紹介経由の見積依頼 3件','展示会:1年目は来場、2年目に小ブース']],
+ p3:['柱3','毎月入る売上を年1,200万円に','人工は繁閑の波が大きい売上です。毎月入る売上を「底」として積みます。',['保守20件 × 月4万円 + 定期オペ','2028年3月期:保守8件(目安)']],
+ p3a:['柱3','常設LED・サイネージの年間保守','中小のホール・ライブハウス・店舗・ビルが対象です。不動産管理会社の管理物件が入口になります。',['最初の一手:試験の1棟を選んでいただく','単価:月3〜5万円(仮置き)']],
+ p3b:['柱3','会場の定期オペ','試合・公演日のビジョン送出を定期で受けます。新設会場への提案とつながる打ち手です。',['測り方:定期契約の数と稼働日']],
+ p3c:['柱3','機材の預かり・検品・修理','倉庫と、すでに行っている検品の延長です。いまの倉庫と人で始められます。',['測り方:月額の預かり・検品の売上']],
+ p4:['土台','毎日事務と月次の数字','土台が無いと、増えた仕事が社長とチーフに戻り、営業と育成の時間が消えます。',['毎日事務1名','見積の当日返し','月次の損益と資金繰り','AIを見積・営業・請求へ']],
+ p4a:['土台','毎日事務1名','見積の当日返し、実績と請求の突き合わせ、未収の管理。社長とチーフの時間を営業と現場に戻します。',['進め方:まず今の体制で1か月の当番を試す案もあります','費用:年300〜480万円(仮置き)']],
+ p4b:['土台・準備できた','見積の当日返し','当日は受領と概算、確定は在庫と技術の確認後。過去の見積33件から型を作成済みです。',['次:単価を入れて、実際の依頼1件で使う']],
+ p4c:['土台・準備できた','月次の損益と資金繰り表','入金の時期・給与・返済・納税を1枚で見ます。利益率12〜15%は、この表で毎月確かめます。',['型は作成済み','次:直近の数字を入れる']],
+ p4d:['土台・この30日','AIを見積・営業・請求へ','これまでHP・マニュアル・動画に偏っていた使い道を、売上に直結する業務へ入れ替えます。',['続ける基準:月10時間の時間削減、または受注1件','人が決めること:安全・電源・法務・発注・価格・勤怠・評価']],
+ kpi:['毎月の計器','毎月見る3つの数字','この3つを先に動かします。月次の会議はこの3つから始めます。',['チーフの人数:5人前後 → 10〜12人','直受注の件数と粗利:年4〜6件 → 年40件','1人日あたり売上:+5%(目安)']]
+};
+function showCap(id){
+  var c=CAP[id];if(!c)return;
+  $('#cap-k').textContent=c[0];$('#cap-t').textContent=c[1];
+  var h='<p>'+LK.esc(c[2])+'</p>';
+  if(c[3]&&c[3].length)h+='<ul>'+c[3].map(function(x){return '<li>'+LK.esc(x)+'</li>'}).join('')+'</ul>';
+  if(c[4])h+='<p style="margin-top:8px"><a class="btn" href="'+c[4]+'">'+LK.esc(c[5])+'</a></p>';
+  $('#cap-b').innerHTML=h;
+  if(window.matchMedia('(max-width:959px)').matches){$('#cap').scrollIntoView({behavior:LK.reduce?'auto':'smooth',block:'nearest'})}
+}
+var T=LK.tree($('#stage'),showCap);
+
+/* 90日の実行表 */
+var PLAN={
+ 1:[['ready','安全体制シート・実績集・会社紹介1枚を作る','型と下書きは作成済みです。'],
+    ['ready','見積の当日返しの型を作る','過去の見積33件をもとに作成済みです。'],
+    ['ready','月次の損益と資金繰り表を1枚作る','型は作成済み。直近の数字を入れます。'],
+    ['ready','営業台帳を実際の接触と照らす','照合の手順と表は作成済みです。'],
+    ['on','主要な取引先と、現場責任者(チーフ)を当社が担う時の役割分担を書面で確認する','口頭の取り決めを1枚にまとめます。'],
+    ['on','新設会場へ、増設LEDとオペの応援を小さく提案する','既存のお付き合いの中で、ご紹介をお願いする形で進めます。'],
+    ['on','段位表(初段〜チーフ)と手当の幅を決める',''],
+    ['on','AIの使い道を、見積・営業・請求へ入れ替える','']],
+ 2:[['wait','毎日事務の募集と居場所を決める','今の体制での当番の試しを先にする案もあります。'],
+    ['wait','1案件を「案件番号で受付から入金までつなぐ」5日間の試し運用',''],
+    ['wait','業界の展示会に来場し、制作・主催側と名刺交換','例年1月の開催です。'],
+    ['wait','施工の早回し動画を週1本。検索広告を月5〜10万円で試験開始','動画は自社の案件と、許可をいただいた現場だけ。ロゴ・人物・演出は映しません。'],
+    ['wait','全員と面談し、今の段と次の3か月の経験を決める',''],
+    ['wait','倉庫でのトラブル再現練習を月2回始める',''],
+    ['wait','案件ごとの粗利を残す型を決める','売上−機材費−人件費−交通宿泊を、案件番号ごとに。']],
+ 3:[['wait','直受注の一式案件を1件完了させ、完了報告を実績集に載せる','接点10・商談4・見積3・受注2を目標に、1件完了を最低線とします。'],
+    ['wait','契約の形と各種の許可を、専門家と確かめて整える',''],
+    ['wait','営業代行を3か月試すか決める','広告の数字を見てから判断します。'],
+    ['wait','月次の3つの数字の初回報告',''],
+    ['wait','AIの契約を棚卸しし、続けるかを判定する','']]
+};
+function setPh(n){
+  document.querySelectorAll('[data-ph]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.ph===String(n)))});
+  $('#plan').innerHTML=PLAN[n].map(function(r){
+    return '<div class="leaf" style="margin:0;width:100%;cursor:default;--c:'+(r[0]==='ready'?'var(--ready)':r[0]==='on'?'var(--on)':'var(--rule)')+'"><span class="nm">'+LK.esc(r[1])+'</span>'+(r[2]?'<span class="rl">'+LK.esc(r[2])+'</span>':'')+'<i class="lamp '+r[0]+'"></i></div>';
+  }).join('');
+}
+document.querySelectorAll('[data-ph]').forEach(function(b){b.addEventListener('click',function(){setPh(+b.dataset.ph)})});
+setPh(1);setSc('kijun');
+/* 目次の現在地 */
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.nav a')),map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  if(!window.IntersectionObserver)return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.remove('cur')});var a=map[e.target.id];if(a){a.classList.add('cur');}}})},{rootMargin:'-20% 0px -70% 0px'});
+  Object.keys(map).forEach(function(id){var s=document.getElementById(id);if(s)io.observe(s)});
+})();
+})();
+</script>
+</body>
+</html>
