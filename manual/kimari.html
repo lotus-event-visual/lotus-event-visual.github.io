@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d0a14">
+<title>現場の決まり|LOTUS スタッフ向けマニュアル</title>
+<meta name="description" content="遅れ・破損・異常の時、報告の宛先、入りと終了の報告、本番前チェック、守秘、持ち物。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 司令室と同じ色と字:数字は LED の点の字、状態はタリーランプ、線は信号の流れ */
+  color-scheme:dark;
+  --ink:#0d0a14; --panel:#161222; --panel-2:#1e1930; --rule:#2e2747;
+  --text:#f3eef9; --muted:#a199b8;
+  --lotus:#ff5fa0; --cyan:#55d3ea; --vio:#b9a2ff; --amber:#ffc65c;
+  --on:#ff473a; --ready:#3be08c; --off:#5a5372;
+  --f-led:"DotGothic16","Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",monospace;
+  --f-body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:64px}
+html,body{margin:0}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-wrap:anywhere}
+a{color:var(--cyan);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+h1,h2,h3,p{margin:0}
+[hidden]{display:none!important}
+.wrap{max-width:1120px;margin:0 auto;padding:14px 14px 56px;display:grid;gap:16px}
+.led{font-family:var(--f-led);font-variant-numeric:tabular-nums;letter-spacing:.03em}
+
+/* 上の帯 */
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none;color:var(--text)}
+.brand svg{width:38px;height:26px;color:var(--lotus);flex:none}
+.brand b{display:block;font-size:17px;font-weight:900;letter-spacing:.06em;line-height:1.25}
+.brand span{display:block;font-family:var(--f-led);font-size:11px;letter-spacing:.08em;color:var(--muted);line-height:1.4}
+.clock{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--rule);border-radius:999px;padding:6px 14px}
+.clock .lbl{font-size:10px;color:var(--muted);letter-spacing:.1em}
+.tc{font-family:var(--f-led);font-size:18px;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nav{position:sticky;top:0;z-index:20;margin:0 -14px;padding:8px 14px;background:rgba(13,10,20,.94);border-bottom:1px solid var(--rule);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--muted);font-size:13px;font-weight:700;border:1px solid var(--rule);border-radius:999px;padding:6px 13px;background:var(--panel);white-space:nowrap}
+.nav a.cur,.nav a:hover{color:var(--ink);background:var(--text);border-color:var(--text)}
+
+/* 見出しと文 */
+.hero{display:grid;gap:8px}
+.hero h1{font-size:clamp(24px,6.4vw,38px);font-weight:900;line-height:1.3;letter-spacing:.02em}
+.hero p{color:var(--muted);font-size:15px}
+.sec{display:grid;gap:12px;padding-top:6px}
+.sec>h2{display:flex;align-items:baseline;gap:10px;font-size:clamp(19px,5vw,24px);font-weight:900;line-height:1.35;border-top:1px solid var(--rule);padding-top:18px}
+.sec>h2 i{font-family:var(--f-led);font-style:normal;font-weight:400;font-size:13px;color:var(--amber);flex:none;letter-spacing:.06em}
+.sec h3{font-size:16px;font-weight:900;line-height:1.45;margin-top:4px}
+.lead{font-size:clamp(16px,4.4vw,19px);font-weight:700;line-height:1.65}
+.say{border-left:3px solid var(--amber);background:var(--panel);border-radius:0 12px 12px 0;padding:12px 14px;font-size:15px}
+.say b{color:var(--amber)}
+.mut{color:var(--muted);font-size:13px;line-height:1.6}
+ul.pl,ol.pl{margin:0;padding-left:1.25em;display:grid;gap:6px}
+.hl{color:var(--amber);font-weight:900}
+
+/* 数字の札 */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;min-width:0}
+.tile .k{font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.4}
+.tile .v{font-family:var(--f-led);font-size:clamp(20px,6vw,27px);line-height:1.25;font-variant-numeric:tabular-nums;color:var(--amber);text-shadow:0 0 14px rgba(255,198,92,.35)}
+.tile .v small{font-size:.55em;color:var(--muted);text-shadow:none}
+.tile .s{font-size:11px;color:var(--muted);line-height:1.4}
+@media(min-width:720px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* 切り替え */
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:14px;padding:3px;background:var(--panel);gap:2px}
+.seg button{border:0;background:transparent;padding:8px 14px;border-radius:11px;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer;line-height:1.3}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;border:1px solid var(--rule);color:var(--text);background:var(--panel-2);border-radius:999px;padding:3px 10px;line-height:1.5}
+button.chip{cursor:pointer;font-weight:700;padding:6px 12px;font-size:13px}
+button.chip[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+
+/* 系統図(幹から枝へ) */
+.stage{position:relative;overflow:hidden;border:1px solid var(--rule);border-radius:16px;padding:14px 12px 14px;
+  background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.055) 1px,transparent 1.6px) 0 0/9px 9px,linear-gradient(180deg,#181327,#110d1c)}
+.stage-h{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-led);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:10px;position:relative}
+.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wire{fill:none;stroke:var(--c,var(--vio));stroke-linecap:round;stroke-linejoin:round}
+.wire.base{stroke-opacity:.34;stroke-width:1.5}
+.wire.flow{stroke-width:2.4;stroke-dasharray:6 94;stroke-dashoffset:100;animation:flow var(--dur,4s) linear infinite;filter:drop-shadow(0 0 4px var(--c,var(--vio)))}
+.wire.hot{stroke-width:2.6;stroke-opacity:1;filter:drop-shadow(0 0 5px var(--c,var(--vio)))}
+@keyframes flow{to{stroke-dashoffset:0}}
+.tree{position:relative;display:grid;gap:9px}
+.node,.leaf{--c:var(--text);position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;align-items:center;text-align:left;cursor:pointer;
+  border:1px solid var(--c);background:var(--panel);border-radius:12px;padding:9px 30px 9px 10px;min-width:0;width:100%;transition:box-shadow .2s}
+.node .av{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--c);display:grid;place-items:center;color:var(--c);font-family:var(--f-led);font-size:15px;background:var(--ink);flex:none}
+.node .nm{display:block;font-weight:900;font-size:15px;line-height:1.3}
+.node .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.node.root{--c:var(--amber)}
+.node.sink{--c:var(--vio);margin-top:8px}
+.node.head{margin-left:26px;width:calc(100% - 26px)}
+.leaf{margin-left:52px;width:calc(100% - 52px);display:block;border:1px solid var(--rule);border-left:2px solid var(--c);background:var(--panel-2);border-radius:10px;padding:8px 28px 8px 11px}
+.leaf .nm{display:block;font-weight:700;font-size:14px;line-height:1.35}
+.leaf .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.lamp{position:absolute;top:50%;right:10px;margin-top:-5px;width:10px;height:10px;border-radius:50%;background:var(--off)}
+.lamp.ready{background:var(--ready);box-shadow:0 0 8px var(--ready)}
+.lamp.on{background:var(--on);box-shadow:0 0 10px var(--on);animation:blink 1s steps(2,jump-none) infinite}
+.lamp.warn{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.lamp.wait{background:transparent;border:1.5px solid var(--muted)}
+@keyframes blink{50%{opacity:.25}}
+.sel{box-shadow:0 0 0 2px var(--c),0 0 22px -4px var(--c)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:12px;color:var(--muted);position:relative}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .lamp{position:static;margin:0;animation:none;flex:none}
+.duo{display:grid;gap:12px;align-items:start}
+@media(min-width:960px){.duo{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.duo .stick{position:sticky;top:60px}}
+.cap{background:var(--panel);border:1px solid var(--rule);border-radius:16px;padding:14px 16px;display:grid;gap:8px;min-height:120px}
+.cap .ck{font-family:var(--f-led);font-size:12px;color:var(--amber);letter-spacing:.06em}
+.cap .ct{font-size:18px;font-weight:900;line-height:1.4}
+.cap .cb{font-size:15px;line-height:1.7}
+.cap ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:15px}
+.btn{display:inline-flex;align-items:center;gap:6px;justify-self:start;text-decoration:none;font-weight:900;font-size:14px;color:var(--ink);background:var(--text);border:0;border-radius:999px;padding:9px 16px;cursor:pointer;line-height:1.3}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--rule)}
+
+/* 札の並び */
+.grid{display:grid;gap:10px}
+@media(min-width:720px){.grid.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.c3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.box{--c:var(--rule);background:var(--panel);border:1px solid var(--rule);border-top:2px solid var(--c);border-radius:12px;padding:12px 14px;display:grid;gap:6px;align-content:start;min-width:0}
+.box h3{margin:0;font-size:16px}
+.box p,.box li{font-size:14.5px;line-height:1.65}
+.box .tag{font-family:var(--f-led);font-size:11px;color:var(--c);letter-spacing:.06em}
+.box.c-l{--c:var(--lotus)}.box.c-c{--c:var(--cyan)}.box.c-v{--c:var(--vio)}.box.c-a{--c:var(--amber)}.box.c-g{--c:var(--ready)}.box.c-r{--c:var(--on)}
+a.box{text-decoration:none;color:var(--text)}
+a.box:hover{box-shadow:0 0 0 1px var(--c),0 0 20px -6px var(--c)}
+.big{font-family:var(--f-led);font-size:26px;color:var(--amber);line-height:1.2}
+
+/* 表(狭い画面では札になる) */
+.t{width:100%;border-collapse:collapse;font-size:14.5px}
+.t th,.t td{border-bottom:1px solid var(--rule);padding:9px 10px;text-align:left;vertical-align:top;line-height:1.6}
+.t thead th{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;background:var(--panel)}
+.t td.n,.t th.n{font-family:var(--f-led);white-space:nowrap}
+.t tr.sum td{font-weight:900;color:var(--amber)}
+@media(max-width:719px){
+  .t thead{display:none}
+  .t,.t tbody,.t tr,.t td{display:block;width:100%}
+  .t tr{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:8px 12px;margin-bottom:8px}
+  .t td{border:0;padding:3px 0}
+  .t td[data-l]::before{content:attr(data-l);display:block;font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.5}
+  .t td:first-child{font-weight:900;font-size:15.5px}
+}
+
+/* 畳む */
+details.fold{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:0 14px}
+details.fold>summary{cursor:pointer;font-weight:900;padding:11px 0;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:15px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";font-family:var(--f-led);color:var(--muted);flex:none}
+details.fold[open]>summary::after{content:"－"}
+details.fold>.in{padding:0 0 14px;display:grid;gap:8px;font-size:14.5px}
+
+/* そのまま使う文(コピー) */
+.tpl{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;display:grid;gap:6px;min-width:0}
+.tpl .th{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tpl .th b{font-size:13px;color:var(--cyan);font-weight:900;line-height:1.4}
+.tpl .tx{font-size:15.5px;line-height:1.65;white-space:pre-wrap;background:#231c38;border-radius:10px 10px 10px 2px;padding:9px 12px}
+.tpl .tx em{font-style:normal;color:var(--amber);font-weight:700}
+.cp{flex:none;border:1px solid var(--rule);background:var(--panel-2);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap}
+.cp.done{background:var(--ready);border-color:var(--ready);color:#07130c}
+.ok,.ng{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.ok li,.ng li{position:relative;padding:8px 10px 8px 40px;border-radius:10px;background:var(--panel-2);font-size:15px;line-height:1.6}
+.ok li::before,.ng li::before{position:absolute;left:9px;top:8px;font-family:var(--f-led);font-size:12px;line-height:1.9}
+.ok li::before{content:"OK";color:var(--ready)}
+.ng li::before{content:"NG";color:var(--on)}
+.ng li{color:var(--muted)}
+.steps{counter-reset:s;display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;position:relative;padding:9px 12px 9px 46px;background:var(--panel);border:1px solid var(--rule);border-radius:12px;font-size:15px;line-height:1.6}
+.steps li::before{content:counter(s);position:absolute;left:12px;top:9px;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--amber);color:var(--amber);font-family:var(--f-led);font-size:13px;display:grid;place-items:center;line-height:1}
+.steps li small{display:block;color:var(--muted);font-size:13px;line-height:1.55}
+.foot{border-top:1px solid var(--rule);padding-top:16px;color:var(--muted);font-size:12px;line-height:1.7}
+body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.wire.flow{animation:none;stroke-dashoffset:50}.lamp.on{animation:none}html{scroll-behavior:auto}}
+@media print{.nav,.clock,.cp{display:none}body{background:#fff;color:#000}}
+.kt{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:720px){.kt{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:1080px){.kt{grid-template-columns:repeat(7,minmax(0,1fr))}}
+.kb{--c:var(--lotus);text-align:left;cursor:pointer;background:var(--panel);border:1px solid var(--rule);border-top:2px solid var(--c);border-radius:14px;padding:10px 12px 12px;color:var(--text);display:grid;gap:4px;min-height:84px;align-content:start;font:inherit}
+.kb .no{font-family:"DotGothic16",monospace;font-size:20px;color:var(--c);line-height:1.1}
+.kb .nm{font-weight:700;font-size:14px;line-height:1.4}
+.kb[aria-pressed="true"]{background:var(--panel-2);box-shadow:0 0 0 1px var(--c),0 0 22px -8px var(--c)}
+.kb:focus-visible{outline:2px solid var(--c);outline-offset:2px}
+.kp{--c:var(--lotus);margin-top:14px;scroll-margin-top:64px;background:var(--panel);border:1px solid var(--rule);border-left:2px solid var(--c);border-radius:16px;padding:16px 16px 18px;display:grid;gap:14px}
+.kp h2{font-size:20px;font-weight:900;line-height:1.4;margin:0}
+.kp .ld{color:var(--muted);font-size:15px;margin:0}
+.k3{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-family:"DotGothic16",monospace;font-size:15px;color:var(--c)}
+.k3 b{font-weight:400;border:1px solid var(--c);border-radius:8px;padding:5px 10px;background:rgba(255,255,255,.03);line-height:1.3}
+.k3 i{font-style:normal;color:var(--muted)}
+ol.kr{list-style:none;margin:0;padding:0;display:grid;gap:6px;counter-reset:k}
+ol.kr li{counter-increment:k;position:relative;background:var(--panel-2);border-radius:11px;padding:10px 12px 10px 44px;line-height:1.6}
+ol.kr li::before{content:counter(k);position:absolute;left:12px;top:9px;font-family:"DotGothic16",monospace;font-size:18px;color:var(--c);width:22px;text-align:center}
+ol.kr .r{display:block;font-weight:700;font-size:15.5px}
+ol.kr .w{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.kl{display:flex;flex-wrap:wrap;gap:8px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="lotus" viewBox="-40 -34 80 52"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(-72 0 14)"/><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(72 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(-38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z"/></g></symbol></svg>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="./"><svg aria-hidden="true"><use href="#lotus"/></svg><span><b>現場の決まり</b><span>LOTUS スタッフ向けマニュアル</span></span></a>
+  <div class="clock"><span class="lbl">JST</span><span class="tc" id="tc">--:--:--</span></div>
+</header>
+<nav class="nav" aria-label="目次"><a href="./">入口</a><a href="tachimawari.html">立ち回りと報告</a><a href="gijutsu.html">技術のステップ</a><a href="ugoki.html">動き</a><a href="kizai.html">機材</a></nav>
+
+<section class="hero">
+  <h1>迷ったら、<br>この7枚。</h1>
+  <p>札を押すと、守ることが8行で出ます。現場と倉庫の連絡や注意から拾いました。</p>
+</section>
+
+<section class="sec" id="fuda">
+  <div class="kt" id="kt" role="group" aria-label="決まりの種類"></div>
+  <div class="kp" id="kp" aria-live="polite"></div>
+</section>
+
+<footer class="foot">株式会社LOTUS ｜ LOTUS VISUAL スタッフ向けマニュアル ｜ <a href="./">入口へ戻る</a></footer>
+</div>
+
+<script>window.DATA=[{"id":"kinkyu","title":"遅れ・破損・異常の時","lead":"遅れも破損も異常も、分かったらすぐ言う。","three":["止める","知らせる","独断しない"],"rules":[{"r":"異常時の連絡順は、始まる前にチーフに確かめておく","w":""},{"r":"遅れそうと分かった時点で連絡。理由・到着見込み・先方へ伝えたかまで","w":""},{"r":"遅刻しそうな時は、まず電話。現場はチーフへ、倉庫は倉庫の責任者へ","w":""},{"r":"機材を壊したら、すぐチーフへ。つながらなければ先輩へ","w":"報告が遅れるだけで、会社の信用問題になる。"},{"r":"ミスは早く言う。「事実・影響・次にやること」の順で","w":"隠す・遅らせる・あいまいにすると、問題が大きくなる。"},{"r":"画面の異常は、まず危ない作業を止め、責任者へ時刻・場所・症状・影響","w":""},{"r":"原因の断定や約束を独断でしない。説明する窓口は一つにする","w":""},{"r":"会場のパスをなくしたら、隠さず担当とチーフへ報告する","w":"なくすと、関係者に影響が及ぶ。"}],"links":[["tachimawari.html#g-trouble","トラブルの時の報告の型"],["gijutsu.html#trouble","症状から引くトラブル対応"]]},{"id":"atesaki","title":"報告の宛先と手段","lead":"その場で決めず、決められる相手へ上げる。","three":["その場で決めない","上げる","文字で残す"],"rules":[{"r":"宿泊・人員・機材・時間・作業範囲・金額・安全の範囲が変わる話は、現場で約束せず会社へ確認する","w":""},{"r":"映像会社が上の案件は、まずその担当へ。連絡方法は現場前に決める","w":""},{"r":"NGは番号と症状を倉庫の連絡グループへ。機材シートにも赤字で書く","w":""},{"r":"積みを任されたら担当へ報告。車の番号・積み図どおりか・忘れ物なし","w":""},{"r":"先方へ出す文面や書類は、送る前にチーフか社長に見せる","w":""},{"r":"先方への連絡はまず文章で。メールはチーフをCC、LINEはグループで","w":"電話だけだと、言った言わないが起きる。急ぎの遅れや異常は電話が先。"},{"r":"倉庫の引き継ぎは文字で残し、翌日のリーダーへ電話でも確かめる","w":"引き継ぎがあいまいにならないようにする。"},{"r":"グループでは宛先をはっきり書く。読んだ側はその場で反応を返す","w":"反応が無いと、読んでいない・分かっていないと受け取られる。"}],"links":[["tachimawari.html#g-souko","倉庫の報告の型"]]},{"id":"jikan","title":"入り・終了・延長の報告","lead":"入りから終わりまで、節目ごとに自分から報告する。","three":["着いた","始めた","終わった"],"rules":[{"r":"集合の時間と場所は前日に確かめ、会社の連絡グループへ報告する","w":""},{"r":"着いた・合流した・作業を始めた・終わったを、そのつど報告する","w":"合流できたか分かれば、周りが安心できる。"},{"r":"チーフや社長と同じ現場でも、各自が必ず報告する","w":""},{"r":"間に合わない集合は、間に合う案を添えて早めに言う","w":""},{"r":"終わらない見込みが出たら、その時点で会社へ報告する","w":""},{"r":"終電が迫ったら状況と残り時間を伝え、残るか引継ぎかを確かめる","w":"残るか帰るかは一人で決めず、帰りの手段と翌日の予定も一緒に相談する。帰る人を、やる気がないと見ない。"},{"r":"倉庫は出勤時と終業時に報告。帰る前に全員で集まり引き継ぐ","w":"置いてある物を聞かれて、誰も答えられない状態をなくす。"},{"r":"悪天候の中断は責任者の判断。引き上げる時刻と、次に連絡する時刻を共有する","w":""}],"links":[["tachimawari.html#g-asa","朝の報告の型"],["tachimawari.html#g-owari","終わりの報告の型"]]},{"id":"honbanmae","title":"本番前チェック","lead":"光っただけで終えず、本番の系統で本番の画を見る。","three":["本番の系統","本番の画","一行で報告"],"rules":[{"r":"本番タッパ(本番の高さ)で、全画面の割当・欠け・ズレ・ちらつきを見る","w":""},{"r":"点灯だけで終えず、本番の系統で本番の画を出し、素材と見比べる","w":"卓からLEDまでのどこかが違えば、本番の画は出ない。"},{"r":"メインと予備は、行先とバミリが合っているかを確かめる","w":""},{"r":"予備タイルと直し道具のセットを、画面の裏に置く","w":""},{"r":"電源につながない機器はフル充電と予備機。映像は有線を基本に予備も持つ","w":"無線の映像は途切れることがある。"},{"r":"何か起きたら誰が何をするかを、リハーサル前にチーフと確かめる","w":""},{"r":"避難と通行の道を塞がない","w":""},{"r":"済んだら聞かれる前に一行で報告。抜けた所も自分から書く","w":""}],"links":[["tachimawari.html#g-shikomi","仕込みの報告の型"],["ugoki.html#st7","本番前の動き(くわしく)"]]},{"id":"shuhi","title":"守秘と撮影・携帯","lead":"日程や資料を外へ出さず、疑われる動きもしない。","three":["撮らない","出さない","置かない"],"rules":[{"r":"必要のない資料の写真を、リハーサル中に撮らない","w":"現場での動きは、出演者側や制作側から見られている。"},{"r":"現場の写真・資料・日程は、許可なく外に投稿しない","w":"一度広まると取り消せず、信頼をなくす。"},{"r":"監視中は携帯を触らない。それ以外でも、いじれば撮影を疑われる","w":"撮っていなくても、携帯を触っているだけで注意を受ける。"},{"r":"撮影・発信の条件は現場ごと。出た資料は必ず読み、読んだ印を返す","w":""},{"r":"不具合の記録を撮る時も、撮影禁止と作品・人物の扱いは現場ルールで","w":""},{"r":"資料を置きっぱなしにしない。そのままゴミ箱に捨てない","w":""},{"r":"要らなくなった書類は裏紙にせず、シュレッダーにかける(保管が要る書類は除く)","w":""},{"r":"直接相談された仕事は、会社へ確認する。案件や情報を、無断で自分や社外の人のために使わない","w":""}],"links":[]},{"id":"mochimono","title":"持ち物と服装","lead":"着る物は、その日の現場と取引先に合わせる。","three":["現場に合わせる","先に出せる","先に伝える"],"rules":[{"r":"その現場に関係のない取引先・出演者の名前入りの服を着ない","w":""},{"r":"現場でもらったスタッフTシャツを売らない","w":""},{"r":"指定の服が足りない時は、自分から申し出る","w":""},{"r":"フードをかぶって作業しない","w":"視野が狭くなって危ない。"},{"r":"ヘルメットとインカムは最後に積み、最初に出せるようにする","w":"着いてすぐヘルメットが要る会場がある。"},{"r":"会場のパスは、どこにあるかをいつも確かめておく","w":"なくすと、関係者に影響が及ぶ。"},{"r":"チーフは、持ち物・集合時刻・場所・資料を協力スタッフにも先に伝える","w":""},{"r":"チーフは、入館に要る名簿・申請書・資格証・安全書類を先にそろえる","w":""}],"links":[]},{"id":"taicho","title":"眠気・交代・持ち場","lead":"眠い時・疲れている時は、交代を申し出る。","three":["申し出る","引き継ぐ","離れる前に言う"],"rules":[{"r":"監視中に居眠りをしない","w":"プロセッサーの前に居る時も、周りから見られている。"},{"r":"眠い時・疲れている時は、自分から交代を申し出る","w":""},{"r":"持ち場を離れる前に「どこまで終えたか・未確認の所・誰に渡したか」を言う","w":""},{"r":"交代しただけで、作業を完了扱いにしない","w":""},{"r":"監視の持ち場を手伝いで離れたい時は、先にチーフへ相談する","w":"手を広げると、異常にすぐ応じられなくなる。"},{"r":"仮眠は、場所と時間をチーフに相談する","w":"寝ている姿は、出演者側からも見られている。"},{"r":"眠い・疲れた時は、態度に出る前に言葉で伝える","w":""},{"r":"チーフは、自分が居ない時の代行者と相談先を先に決めておく","w":""}],"links":[["ugoki.html#st7","本番中の監視(くわしく)"]]}];</script>
+<script>
+/* 共通:時計・コピー・系統図の線 */
+var LK=(function(){
+'use strict';
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function p2(n){return String(n).padStart(2,'0')}
+function clock(el){
+  if(!el)return;
+  function draw(){var d=new Date(Date.now()+9*3600e3);el.textContent=p2(d.getUTCHours())+':'+p2(d.getUTCMinutes())+':'+p2(d.getUTCSeconds())}
+  draw();setInterval(draw,1000);
+}
+function copyText(t,btn){
+  function ok(){if(!btn)return;var o=btn.textContent;btn.textContent='コピーした';btn.classList.add('done');setTimeout(function(){btn.textContent=o;btn.classList.remove('done')},1400)}
+  function fb(){try{var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();ok()}catch(e){}}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}catch(e){fb()}
+}
+document.addEventListener('click',function(ev){
+  var b=ev.target.closest('.cp');if(!b)return;
+  var box=b.closest('[data-copy]');var t=box?box.getAttribute('data-copy'):'';
+  if(!t){var x=b.closest('.tpl');if(x)t=x.querySelector('.tx').textContent}
+  copyText(t,b);
+});
+/* 幹から枝へ:.tree の中の .root → .head → .leaf → .sink を線でつなぐ */
+function tree(stage,onPick){
+  var svg=stage.querySelector('.wires'),NS='http://www.w3.org/2000/svg',hot=null,sel=null;
+  function R(el,o){var r=el.getBoundingClientRect();return{l:r.left-o.left,t:r.top-o.top,r:r.right-o.left,b:r.bottom-o.top,cy:(r.top+r.bottom)/2-o.top}}
+  function P(d,cls,c,len){var p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);if(len)p.setAttribute('pathLength','100');if(c)p.style.setProperty('--c',c);svg.appendChild(p);return p}
+  function col(el){return getComputedStyle(el).getPropertyValue('--c').trim()||'#b9a2ff'}
+  function layout(){
+    var o=svg.getBoundingClientRect();if(!o.width)return;
+    svg.setAttribute('viewBox','0 0 '+o.width+' '+o.height);
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    var root=stage.querySelector('.root'),sink=stage.querySelector('.sink');if(!root)return;
+    var rr=R(root,o),tx=rr.l+17,endY=sink?R(sink,o).t:rr.b;
+    var heads=[].slice.call(stage.querySelectorAll('.head'));
+    if(!sink&&heads.length)endY=R(heads[heads.length-1],o).cy;
+    var trunk='M'+tx+' '+rr.b+'V'+endY;
+    P(trunk,'wire base',col(root));P(trunk,'wire flow',col(root),true).style.setProperty('--dur','5s');
+    heads.forEach(function(h,i){
+      var hr=R(h,o),c=col(h);
+      P('M'+tx+' '+hr.cy+'H'+hr.l,'wire base',c);
+      var leaves=[];var n=h.nextElementSibling;while(n&&n.classList.contains('leaf')){leaves.push(n);n=n.nextElementSibling}
+      if(leaves.length){
+        var bx=hr.l+17,last=R(leaves[leaves.length-1],o);
+        var bus='M'+bx+' '+hr.b+'V'+last.cy;
+        P(bus,'wire base',c);var f=P(bus,'wire flow',c,true);f.style.setProperty('--dur',(3+i*.6)+'s');
+        leaves.forEach(function(lf){var lr=R(lf,o);P('M'+bx+' '+lr.cy+'H'+lr.l,'wire base',c)});
+      }
+    });
+    if(hot)drawHot(hot,o,tx,rr);
+  }
+  function drawHot(el,o,tx,rr){
+    var c=col(el),d='';
+    if(el.classList.contains('root')||el.classList.contains('sink')){var sk=stage.querySelector('.sink');d='M'+tx+' '+rr.b+'V'+(sk?R(sk,o).t:rr.b)}
+    else{
+      var h=el.classList.contains('head')?el:null;
+      if(!h){h=el.previousElementSibling;while(h&&!h.classList.contains('head'))h=h.previousElementSibling}
+      if(!h)return;var hr=R(h,o);
+      d='M'+tx+' '+rr.b+'V'+hr.cy+'H'+hr.l;
+      if(el!==h){var lr=R(el,o),bx=hr.l+17;d+='M'+bx+' '+hr.b+'V'+lr.cy+'H'+lr.l}
+    }
+    P(d,'wire hot',c);
+  }
+  stage.addEventListener('click',function(ev){
+    var b=ev.target.closest('[data-id]');if(!b||!stage.contains(b))return;
+    if(sel)sel.classList.remove('sel');sel=b;b.classList.add('sel');hot=b;layout();
+    if(onPick)onPick(b.getAttribute('data-id'),b);
+  });
+  var q=0;function re(){if(q)return;q=requestAnimationFrame(function(){q=0;layout()})}
+  if(window.ResizeObserver)new ResizeObserver(re).observe(stage);
+  window.addEventListener('resize',re);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(re);
+  layout();
+  return{layout:layout,pick:function(id){var b=stage.querySelector('[data-id="'+id+'"]');if(b)b.click()}};
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+return{clock:clock,tree:tree,copy:copyText,esc:esc,reduce:reduce};
+})();
+</script>
+<script>
+LK.clock(document.getElementById('tc'));
+(function(){
+  var D=window.DATA||[],kt=document.getElementById('kt'),kp=document.getElementById('kp');
+  var COL=['var(--on)','var(--amber)','var(--ready)','var(--cyan)','var(--vio)','var(--lotus)','var(--cyan)'];
+  kt.innerHTML=D.map(function(t,i){
+    return '<button type="button" class="kb" style="--c:'+COL[i]+'" data-k="'+t.id+'" aria-pressed="false"><span class="no">0'+(i+1)+'</span><span class="nm">'+LK.esc(t.title)+'</span></button>';
+  }).join('');
+  function draw(id,scroll){
+    var i=0;D.forEach(function(t,n){if(t.id===id)i=n});var t=D[i];
+    kt.querySelectorAll('.kb').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.k===t.id))});
+    kp.style.setProperty('--c',COL[i]);
+    kp.innerHTML='<h2>'+LK.esc(t.title)+'</h2><p class="ld">'+LK.esc(t.lead)+'</p>'+
+      '<div class="k3" aria-label="ひとことで">'+t.three.map(function(x){return '<b>'+LK.esc(x)+'</b>'}).join('<i>→</i>')+'</div>'+
+      '<ol class="kr">'+t.rules.map(function(r){return '<li><span class="r">'+LK.esc(r.r)+'</span>'+(r.w?'<span class="w">'+LK.esc(r.w)+'</span>':'')+'</li>'}).join('')+'</ol>'+
+      (t.links.length?'<div class="kl">'+t.links.map(function(l,n){return '<a class="btn'+(n?' ghost':'')+'" href="'+l[0]+'">'+LK.esc(l[1])+'</a>'}).join('')+'</div>':'');
+    if(scroll)kp.scrollIntoView({block:'start'});
+  }
+  kt.addEventListener('click',function(e){var b=e.target.closest('.kb');if(!b)return;history.replaceState(null,'','#k-'+b.dataset.k);draw(b.dataset.k,true)});
+  function route(){var m=(location.hash||'').match(/^#k-(\w+)$/);draw(m?m[1]:D[0].id,!!m)}
+  window.addEventListener('hashchange',route);route();
+})();
+</script>
+</body>
+</html>

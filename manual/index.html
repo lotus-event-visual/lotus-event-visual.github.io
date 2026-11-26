@@ -183,6 +183,17 @@ body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
 .gw rect{animation:gw 6s ease-in-out infinite}
 @keyframes gw{0%,100%{opacity:.55}50%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.fl,.gw rect{animation:none}}
+
+.hy{display:grid;gap:6px;margin-top:14px}
+.hyr{display:grid;grid-template-columns:7.5em minmax(0,1fr) auto;column-gap:14px;align-items:center;text-decoration:none;color:var(--text);background:var(--panel);border:1px solid var(--rule);border-left:2px solid var(--c,var(--lotus));border-radius:12px;padding:10px 14px}
+.hyr:hover,.hyr:focus-visible{box-shadow:0 0 0 1px var(--c,var(--lotus)),0 0 18px -8px var(--c,var(--lotus))}
+.hyr .hw{font-family:"DotGothic16",monospace;font-size:12px;color:var(--c,var(--lotus));line-height:1.4}
+.hyr .ht{font-weight:700;font-size:15px;line-height:1.45;display:block}
+.hyr .hk{display:block;color:var(--muted);font-size:13px;line-height:1.55;margin-top:2px}
+.hyr .hm{font-size:11px;color:var(--muted);white-space:nowrap;text-align:right;line-height:1.5}
+@media (max-width:640px){.hyr{grid-template-columns:minmax(0,1fr);row-gap:2px;padding:10px 12px}.hyr .hm{text-align:left}}
+
+@media (min-width:720px){a.box.wide{grid-column:1/-1}}
 </style>
 </head>
 <body>
@@ -200,8 +211,9 @@ body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
 </section>
 
 <section class="grid c2" aria-label="マニュアルの入口">
-  <a class="box c-l" href="tachimawari.html"><span class="tag">まずここ</span><h3>立ち回りと報告</h3><p>LINEの報告の型をそのままコピー。相手と場面ごとの言い方。</p><span class="btn">開く</span></a>
+  <a class="box c-l wide" href="tachimawari.html"><span class="tag">まずここ</span><h3>立ち回りと報告</h3><p>LINEの報告の型をそのままコピー。相手と場面ごとの言い方。</p><span class="btn">開く</span></a>
   <a class="box c-c" href="gijutsu.html"><span class="tag">技術</span><h3>技術のステップとトラブル</h3><p>覚える順番(10ステップ)と、症状から引くトラブル対応。</p><span class="btn">開く</span></a>
+  <a class="box c-g" href="kimari.html"><span class="tag">決まり</span><h3>現場の決まり</h3><p>遅れ・破損・異常の時、報告の宛先、守秘、持ち物。7枚の札で引く。</p><span class="btn ghost">開く</span></a>
   <a class="box c-v" href="ugoki.html"><span class="tag">動き</span><h3>動きのマニュアル</h3><p>現場と倉庫の動き方。</p><span class="btn ghost">開く</span></a>
   <a class="box c-a" href="kizai.html"><span class="tag">機材</span><h3>機材マニュアル</h3><p>機材ごとの仕様・つなぎ方・注意。</p><span class="btn ghost">開く</span></a>
 </section>
@@ -246,9 +258,21 @@ body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
   </div>
 </section>
 
+<section class="sec" id="hayami">
+  <h2><i>早</i>動き方の早見</h2>
+  <p class="mut">場面ごとに1行。押すと、その場面のくわしい手順とチェックが開きます。</p>
+  <div class="seg" id="hy-seg" role="group" aria-label="役を選ぶ">
+    <button type="button" data-hy="staff" aria-pressed="true">作業スタッフ</button>
+    <button type="button" data-hy="ware" aria-pressed="false">倉庫</button>
+    <button type="button" data-hy="chief" aria-pressed="false">チーフ</button>
+  </div>
+  <div class="hy" id="hy"></div>
+</section>
+
 <footer class="foot">株式会社LOTUS ｜ LOTUS VISUAL スタッフ向けマニュアル</footer>
 </div>
 
+<script>window.DATA={"staff":[{"id":"st0","when":"初日から・技術より先に","title":"受け答え ― 本気度・気概・雰囲気・立ち振る舞い","key":"技術はあとから付く。返事・挨拶・自分の状況を言うことは、今日からできる。","chk":11,"ph":0},{"id":"st1","when":"朝・到着","title":"現着・挨拶","key":"集合の20分前に着いて、自分から挨拶。チーフに今日の持ち場を聞く。","chk":6,"ph":0},{"id":"st2","when":"搬入","title":"まず機材を降ろす","key":"頼む時は「何を・何台・どこへ」。伝わったかは返事と動きで確かめる。","chk":6,"ph":0},{"id":"st3","when":"搬入のあと","title":"溜め場を作る","key":"置ける場所ではなく、「10分後に誰がどこで使うか」で置く。","chk":5,"ph":2},{"id":"st4","when":"設営の前","title":"外注さん・バイトさんに先に教える","key":"始まる前に、金具・向き・完成形・危ない所を見せる。","chk":7,"ph":0},{"id":"st5","when":"設営","title":"LED設営 ― 全員が同じ作業をしない","key":"金具・LED・配線を分担。誰かが先回りして「ケーブル待ち」を作らない。","chk":12,"ph":0},{"id":"st11","when":"吊る現場","title":"吊りLED ― ロックは自分の目で","key":"外す前は毎回、自分の目でロックを確認。支える人とロックを外す人を分ける。","chk":11,"ph":6},{"id":"st12","when":"自立の現場","title":"自立LED ― 1段ずつ水平と通り","key":"1段組んだら、水平と通り（まっすぐか）とセンターを見てから次の段へ。","chk":7,"ph":6},{"id":"st13","when":"床LEDの現場","title":"床LED ― センターと基準列を先に","key":"最初にセンターと基準の1列を決める。基準を決めたら軸を変えない。","chk":7,"ph":8},{"id":"st14","when":"屋外の現場","title":"屋外 ― 雨養生と揺れ止め","key":"屋外は雨養生と揺れ止めを必ず。養生の物も、固定の物も多めに持って行く。","chk":8,"ph":0},{"id":"st15","when":"配線の時","title":"配線 ― 撤去まで考えて這わせる","key":"引く前にルートと長さを確かめる。面ごとに順番に、ばらしやすい所を通す。","chk":14,"ph":7},{"id":"st6","when":"設営の途中","title":"3段組んだら点灯チェック","key":"全部組むまで待たない。NGは分けて、バミリに「案件・日付・症状」。","chk":29,"ph":0},{"id":"st7","when":"本番前","title":"縁切り → トラスUP → 本番タッパ → 本番画","key":"他セクションの場所に物を残さない。RH前に「何か起きたら誰が何をするか」を決める。","chk":23,"ph":0},{"id":"st8","when":"撤去","title":"撤去・片付け","key":"動かす前に「動かします」。最後は工具・金具の置き忘れと、周りの掃除。","chk":18,"ph":0},{"id":"st9","when":"いつでも","title":"動き方で注意されること","key":"技術より動き方で言われる。「何もしていない人」に見えていないか。","chk":7,"ph":0},{"id":"st10","when":"いつでも","title":"現場で決めてはいけないこと","key":"宿泊・人員・機材・時間・作業範囲・金額・安全の範囲は、その場で決めない。","chk":0,"ph":0}],"ware":[{"id":"wt0","when":"毎日・倉庫に来たら","title":"倉庫のコミュニケーション","key":"倉庫の連絡は「流して、返す」。動かした・終わった・閉めたを、聞かれる前に。","chk":8,"ph":0},{"id":"wt1","when":"毎日","title":"倉庫整理・貸出返却","key":"動かしたら必ず流す（置場・時刻・担当・「対応済み」）。物は決まった場所へ戻す。","chk":16,"ph":0},{"id":"wt2","when":"積み・降ろしの日","title":"積み降ろし","key":"積み図を頭に入れてから始める。ゲートは必ず声を出してから動かす。","chk":7,"ph":0},{"id":"wt3","when":"機材が戻ってきたら","title":"メンテナンス・修理","key":"NGは正常品と絶対に混ぜない。症状と範囲を書いて、次の担当へ渡す。","chk":12,"ph":0},{"id":"wt4","when":"現場の前日まで","title":"現場準備","key":"ピックリストで照合し、現場で出す順に詰める。必要なら仮組みして映るか確かめる。","chk":15,"ph":0},{"id":"wt5","when":"いつでも","title":"倉庫で困ったら","key":"抱え込まずに上長へ。「できません」で終わらせない。","chk":0,"ph":0}],"chief":[{"id":"ct0","when":"いつでも","title":"チーフのコミュニケーションと心構え","key":"現場の空気はチーフの声で決まる。指示は具体的に、注意は合格条件まで、返事は期限つきで。","chk":8,"ph":0},{"id":"ct1","when":"受注した時","title":"受注・現場情報","key":"作業範囲と金額、会場のルールと入り方をそろえる。","chk":4,"ph":0},{"id":"ct2","when":"現場の前","title":"図面・技術資料","key":"図面は数量のためでなく、施工順とケーブルルートを人に伝えるために作る。","chk":10,"ph":0},{"id":"ct3","when":"現場の前","title":"人員・移動","key":"誰が・どこに・何時に。異常時の連絡順まで決める。","chk":5,"ph":0},{"id":"ct4","when":"前日まで","title":"倉庫・搬入準備","key":"積み図は紙で配る。ケーブルのバミリ方法を倉庫と合わせる。","chk":5,"ph":0},{"id":"ct5","when":"前日","title":"開始前の最終確認","key":"未確定を残さない。安全条件が分からなければ止めて相談。","chk":7,"ph":0},{"id":"ct6","when":"現場の前〜当日","title":"何人要るかを出し、一人ずつに仕事を渡す","key":"工程ごとに人数を出して足す。一人ずつに「担当・持ち場・終わったら次」を渡す。","chk":10,"ph":0},{"id":"ct7","when":"図面の段階","title":"ケーブルルートを決める","key":"ルートは図面で決めて、現場で迷わせない。","chk":7,"ph":0},{"id":"ct8","when":"現場の前〜当日","title":"現場で話をつける相手","key":"舞監・鳶・他セクション・電源と、施工の順番と取り合いを先に合わせる。","chk":8,"ph":0},{"id":"ct9","when":"映像会社が上の時","title":"映像会社が上にいる案件","key":"主催・制作側や舞監と直接決めず、まず映像会社の担当を通す。","chk":4,"ph":0},{"id":"ct10","when":"当日","title":"チーフが現場でやること","key":"打ち合わせにはLOTUSの案を持って行く。連絡は、受け取りの返事をすぐ。答えは確かめてから。","chk":13,"ph":0},{"id":"ct11","when":"いつでも","title":"人を育てる","key":"注意は具体的に、次の合格条件まで言う。人格は否定しない。","chk":6,"ph":0}]};</script>
 <script>
 /* 共通:時計・コピー・系統図の線 */
 var LK=(function(){
@@ -368,7 +392,7 @@ var CAP={
  dashi:['番号を見て出す','機材出し・準備',['頼まれたら、足りない情報(担当・仕込む物・図面)をその場で聞き返す','前回の現場の情報を先に確かめる','使ったことのない機材は、現場の前に一度触る'],'gijutsu.html#dan','技術のステップを見る','ugoki.html#ware','動きのマニュアル(倉庫)'],
  kenpin:['症状と番号を残す','検品・NGの管理',['機材番号・症状・試したこと・結果を書く','現場で出たトラブルは、倉庫で再現して残す','NGの山は、戻す便に「NGが1山あります」と先に伝える'],'tachimawari.html#g-souko','NG報告の型','kizai.html','機材マニュアル'],
  tsumi:['便と人数を先に伝える','積み込み・戻し',['トラックは「何の便・到着の見込み・自分の動き・要る人数」を送る','バラし完了は「完了・NG・不足・置き場所・引き継ぎ先」','遅れそうな時は、まず電話。到着の見込みを伝える'],'tachimawari.html#g-souko','トラック・バラしの型','ugoki.html#ware','動きのマニュアル(倉庫)'],
- hokoku:['聞かれる前に送る','会社への報告',['節目は「到着 → 組み終わり → 本線とチャート → 仕込み終了 → 本番前チェック → 撤去完了」','抜けたことも自分から書く','ミスは「事実・影響・次にやること」。言い訳と長い反省文は付けない'],'tachimawari.html#line','報告の型をコピーする']
+ hokoku:['聞かれる前に送る','会社への報告',['節目は「到着 → 組み終わり → 本線とチャート → 仕込み終了 → 本番前チェック → 撤去完了」','抜けたことも自分から書く','ミスは「事実・影響・次にやること」。言い訳と長い反省文は付けない'],'tachimawari.html#line','報告の型をコピーする','kimari.html#k-atesaki','報告の宛先と手段']
 };
 function show(id){
   var c=CAP[id];if(!c)return;
@@ -377,6 +401,21 @@ function show(id){
   if(window.matchMedia('(max-width:959px)').matches){$('#cap').scrollIntoView({behavior:LK.reduce?'auto':'smooth',block:'nearest'})}
 }
 LK.tree($('#stage'),show);
+})();
+
+(function(){
+  var D=window.DATA||{},box=document.getElementById('hy');if(!box)return;
+  var COL={staff:'var(--lotus)',ware:'var(--cyan)',chief:'var(--amber)'};
+  function draw(k){
+    document.querySelectorAll('[data-hy]').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.hy===k))});
+    box.style.setProperty('--c',COL[k]);
+    box.innerHTML=(D[k]||[]).map(function(r){
+      var m=[];if(r.chk)m.push('チェック '+r.chk);if(r.ph)m.push('写真 '+r.ph);
+      return '<a class="hyr" style="--c:'+COL[k]+'" href="ugoki.html#'+r.id+'"><span class="hw">'+LK.esc(r.when)+'</span><span><span class="ht">'+LK.esc(r.title)+'</span><span class="hk">'+LK.esc(r.key)+'</span></span><span class="hm">'+m.join('<br>')+'</span></a>';
+    }).join('');
+  }
+  document.querySelectorAll('[data-hy]').forEach(function(b){b.addEventListener('click',function(){draw(b.dataset.hy)})});
+  draw('staff');
 })();
 </script>
 </body>
