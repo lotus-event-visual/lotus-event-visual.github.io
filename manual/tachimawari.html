@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d0a14">
+<title>立ち回りと報告|LOTUS スタッフ向けマニュアル</title>
+<meta name="description" content="現場でそのまま使う報告の型と、場面ごとの言い方。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 司令室と同じ色と字:数字は LED の点の字、状態はタリーランプ、線は信号の流れ */
+  color-scheme:dark;
+  --ink:#0d0a14; --panel:#161222; --panel-2:#1e1930; --rule:#2e2747;
+  --text:#f3eef9; --muted:#a199b8;
+  --lotus:#ff5fa0; --cyan:#55d3ea; --vio:#b9a2ff; --amber:#ffc65c;
+  --on:#ff473a; --ready:#3be08c; --off:#5a5372;
+  --f-led:"DotGothic16","Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",monospace;
+  --f-body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:64px}
+html,body{margin:0}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-wrap:anywhere}
+a{color:var(--cyan);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+h1,h2,h3,p{margin:0}
+[hidden]{display:none!important}
+.wrap{max-width:1120px;margin:0 auto;padding:14px 14px 56px;display:grid;gap:16px}
+.led{font-family:var(--f-led);font-variant-numeric:tabular-nums;letter-spacing:.03em}
+
+/* 上の帯 */
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none;color:var(--text)}
+.brand svg{width:38px;height:26px;color:var(--lotus);flex:none}
+.brand b{display:block;font-size:17px;font-weight:900;letter-spacing:.06em;line-height:1.25}
+.brand span{display:block;font-family:var(--f-led);font-size:11px;letter-spacing:.08em;color:var(--muted);line-height:1.4}
+.clock{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--rule);border-radius:999px;padding:6px 14px}
+.clock .lbl{font-size:10px;color:var(--muted);letter-spacing:.1em}
+.tc{font-family:var(--f-led);font-size:18px;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nav{position:sticky;top:0;z-index:20;margin:0 -14px;padding:8px 14px;background:rgba(13,10,20,.94);border-bottom:1px solid var(--rule);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--muted);font-size:13px;font-weight:700;border:1px solid var(--rule);border-radius:999px;padding:6px 13px;background:var(--panel);white-space:nowrap}
+.nav a.cur,.nav a:hover{color:var(--ink);background:var(--text);border-color:var(--text)}
+
+/* 見出しと文 */
+.hero{display:grid;gap:8px}
+.hero h1{font-size:clamp(24px,6.4vw,38px);font-weight:900;line-height:1.3;letter-spacing:.02em}
+.hero p{color:var(--muted);font-size:15px}
+.sec{display:grid;gap:12px;padding-top:6px}
+.sec>h2{display:flex;align-items:baseline;gap:10px;font-size:clamp(19px,5vw,24px);font-weight:900;line-height:1.35;border-top:1px solid var(--rule);padding-top:18px}
+.sec>h2 i{font-family:var(--f-led);font-style:normal;font-weight:400;font-size:13px;color:var(--amber);flex:none;letter-spacing:.06em}
+.sec h3{font-size:16px;font-weight:900;line-height:1.45;margin-top:4px}
+.lead{font-size:clamp(16px,4.4vw,19px);font-weight:700;line-height:1.65}
+.say{border-left:3px solid var(--amber);background:var(--panel);border-radius:0 12px 12px 0;padding:12px 14px;font-size:15px}
+.say b{color:var(--amber)}
+.mut{color:var(--muted);font-size:13px;line-height:1.6}
+ul.pl,ol.pl{margin:0;padding-left:1.25em;display:grid;gap:6px}
+.hl{color:var(--amber);font-weight:900}
+
+/* 数字の札 */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;min-width:0}
+.tile .k{font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.4}
+.tile .v{font-family:var(--f-led);font-size:clamp(20px,6vw,27px);line-height:1.25;font-variant-numeric:tabular-nums;color:var(--amber);text-shadow:0 0 14px rgba(255,198,92,.35)}
+.tile .v small{font-size:.55em;color:var(--muted);text-shadow:none}
+.tile .s{font-size:11px;color:var(--muted);line-height:1.4}
+@media(min-width:720px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* 切り替え */
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:14px;padding:3px;background:var(--panel);gap:2px}
+.seg button{border:0;background:transparent;padding:8px 14px;border-radius:11px;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer;line-height:1.3}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;border:1px solid var(--rule);color:var(--text);background:var(--panel-2);border-radius:999px;padding:3px 10px;line-height:1.5}
+button.chip{cursor:pointer;font-weight:700;padding:6px 12px;font-size:13px}
+button.chip[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+
+/* 系統図(幹から枝へ) */
+.stage{position:relative;overflow:hidden;border:1px solid var(--rule);border-radius:16px;padding:14px 12px 14px;
+  background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.055) 1px,transparent 1.6px) 0 0/9px 9px,linear-gradient(180deg,#181327,#110d1c)}
+.stage-h{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-led);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:10px;position:relative}
+.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wire{fill:none;stroke:var(--c,var(--vio));stroke-linecap:round;stroke-linejoin:round}
+.wire.base{stroke-opacity:.34;stroke-width:1.5}
+.wire.flow{stroke-width:2.4;stroke-dasharray:6 94;stroke-dashoffset:100;animation:flow var(--dur,4s) linear infinite;filter:drop-shadow(0 0 4px var(--c,var(--vio)))}
+.wire.hot{stroke-width:2.6;stroke-opacity:1;filter:drop-shadow(0 0 5px var(--c,var(--vio)))}
+@keyframes flow{to{stroke-dashoffset:0}}
+.tree{position:relative;display:grid;gap:9px}
+.node,.leaf{--c:var(--text);position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;align-items:center;text-align:left;cursor:pointer;
+  border:1px solid var(--c);background:var(--panel);border-radius:12px;padding:9px 30px 9px 10px;min-width:0;width:100%;transition:box-shadow .2s}
+.node .av{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--c);display:grid;place-items:center;color:var(--c);font-family:var(--f-led);font-size:15px;background:var(--ink);flex:none}
+.node .nm{display:block;font-weight:900;font-size:15px;line-height:1.3}
+.node .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.node.root{--c:var(--amber)}
+.node.sink{--c:var(--vio);margin-top:8px}
+.node.head{margin-left:26px;width:calc(100% - 26px)}
+.leaf{margin-left:52px;width:calc(100% - 52px);display:block;border:1px solid var(--rule);border-left:2px solid var(--c);background:var(--panel-2);border-radius:10px;padding:8px 28px 8px 11px}
+.leaf .nm{display:block;font-weight:700;font-size:14px;line-height:1.35}
+.leaf .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.lamp{position:absolute;top:50%;right:10px;margin-top:-5px;width:10px;height:10px;border-radius:50%;background:var(--off)}
+.lamp.ready{background:var(--ready);box-shadow:0 0 8px var(--ready)}
+.lamp.on{background:var(--on);box-shadow:0 0 10px var(--on);animation:blink 1s steps(2,jump-none) infinite}
+.lamp.warn{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.lamp.wait{background:transparent;border:1.5px solid var(--muted)}
+@keyframes blink{50%{opacity:.25}}
+.sel{box-shadow:0 0 0 2px var(--c),0 0 22px -4px var(--c)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:12px;color:var(--muted);position:relative}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .lamp{position:static;margin:0;animation:none;flex:none}
+.duo{display:grid;gap:12px;align-items:start}
+@media(min-width:960px){.duo{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.duo .stick{position:sticky;top:60px}}
+.cap{background:var(--panel);border:1px solid var(--rule);border-radius:16px;padding:14px 16px;display:grid;gap:8px;min-height:120px}
+.cap .ck{font-family:var(--f-led);font-size:12px;color:var(--amber);letter-spacing:.06em}
+.cap .ct{font-size:18px;font-weight:900;line-height:1.4}
+.cap .cb{font-size:15px;line-height:1.7}
+.cap ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:15px}
+.btn{display:inline-flex;align-items:center;gap:6px;justify-self:start;text-decoration:none;font-weight:900;font-size:14px;color:var(--ink);background:var(--text);border:0;border-radius:999px;padding:9px 16px;cursor:pointer;line-height:1.3}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--rule)}
+
+/* 札の並び */
+.grid{display:grid;gap:10px}
+@media(min-width:720px){.grid.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.c3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.box{--c:var(--rule);background:var(--panel);border:1px solid var(--rule);border-top:2px solid var(--c);border-radius:12px;padding:12px 14px;display:grid;gap:6px;align-content:start;min-width:0}
+.box h3{margin:0;font-size:16px}
+.box p,.box li{font-size:14.5px;line-height:1.65}
+.box .tag{font-family:var(--f-led);font-size:11px;color:var(--c);letter-spacing:.06em}
+.box.c-l{--c:var(--lotus)}.box.c-c{--c:var(--cyan)}.box.c-v{--c:var(--vio)}.box.c-a{--c:var(--amber)}.box.c-g{--c:var(--ready)}.box.c-r{--c:var(--on)}
+a.box{text-decoration:none;color:var(--text)}
+a.box:hover{box-shadow:0 0 0 1px var(--c),0 0 20px -6px var(--c)}
+.big{font-family:var(--f-led);font-size:26px;color:var(--amber);line-height:1.2}
+
+/* 表(狭い画面では札になる) */
+.t{width:100%;border-collapse:collapse;font-size:14.5px}
+.t th,.t td{border-bottom:1px solid var(--rule);padding:9px 10px;text-align:left;vertical-align:top;line-height:1.6}
+.t thead th{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;background:var(--panel)}
+.t td.n,.t th.n{font-family:var(--f-led);white-space:nowrap}
+.t tr.sum td{font-weight:900;color:var(--amber)}
+@media(max-width:719px){
+  .t thead{display:none}
+  .t,.t tbody,.t tr,.t td{display:block;width:100%}
+  .t tr{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:8px 12px;margin-bottom:8px}
+  .t td{border:0;padding:3px 0}
+  .t td[data-l]::before{content:attr(data-l);display:block;font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.5}
+  .t td:first-child{font-weight:900;font-size:15.5px}
+}
+
+/* 畳む */
+details.fold{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:0 14px}
+details.fold>summary{cursor:pointer;font-weight:900;padding:11px 0;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:15px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";font-family:var(--f-led);color:var(--muted);flex:none}
+details.fold[open]>summary::after{content:"－"}
+details.fold>.in{padding:0 0 14px;display:grid;gap:8px;font-size:14.5px}
+
+/* そのまま使う文(コピー) */
+.tpl{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;display:grid;gap:6px;min-width:0}
+.tpl .th{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tpl .th b{font-size:13px;color:var(--cyan);font-weight:900;line-height:1.4}
+.tpl .tx{font-size:15.5px;line-height:1.65;white-space:pre-wrap;background:#231c38;border-radius:10px 10px 10px 2px;padding:9px 12px}
+.tpl .tx em{font-style:normal;color:var(--amber);font-weight:700}
+.cp{flex:none;border:1px solid var(--rule);background:var(--panel-2);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap}
+.cp.done{background:var(--ready);border-color:var(--ready);color:#07130c}
+.ok,.ng{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.ok li,.ng li{position:relative;padding:8px 10px 8px 40px;border-radius:10px;background:var(--panel-2);font-size:15px;line-height:1.6}
+.ok li::before,.ng li::before{position:absolute;left:9px;top:8px;font-family:var(--f-led);font-size:12px;line-height:1.9}
+.ok li::before{content:"OK";color:var(--ready)}
+.ng li::before{content:"NG";color:var(--on)}
+.ng li{color:var(--muted)}
+.steps{counter-reset:s;display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;position:relative;padding:9px 12px 9px 46px;background:var(--panel);border:1px solid var(--rule);border-radius:12px;font-size:15px;line-height:1.6}
+.steps li::before{content:counter(s);position:absolute;left:12px;top:9px;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--amber);color:var(--amber);font-family:var(--f-led);font-size:13px;display:grid;place-items:center;line-height:1}
+.steps li small{display:block;color:var(--muted);font-size:13px;line-height:1.55}
+.foot{border-top:1px solid var(--rule);padding-top:16px;color:var(--muted);font-size:12px;line-height:1.7}
+body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.wire.flow{animation:none;stroke-dashoffset:50}.lamp.on{animation:none}html{scroll-behavior:auto}}
+@media print{.nav,.clock,.cp{display:none}body{background:#fff;color:#000}}
+.ban{display:grid;grid-template-columns:auto repeat(3,minmax(0,1fr));gap:6px;align-items:stretch}
+.ban .hd{font-size:12px;color:var(--muted);font-weight:700;text-align:center;padding:2px 0;line-height:1.4}
+.ban .rw{font-size:13px;font-weight:900;display:flex;align-items:center;line-height:1.35;padding-right:4px;max-width:5.4em}
+.ban button{--c:var(--ready);position:relative;border:1px solid var(--rule);border-top:2px solid var(--c);background:var(--panel);border-radius:10px;padding:10px 6px 9px;cursor:pointer;display:grid;gap:3px;justify-items:center;min-height:62px}
+.ban button .lamp{position:static;margin:0}
+.ban button span{font-size:12px;color:var(--muted);line-height:1.3}
+.ban button[data-s="good"]{--c:var(--amber)}.ban button[data-s="bad"]{--c:var(--on)}
+.ban button[aria-pressed="true"]{background:var(--panel-2);box-shadow:0 0 0 2px var(--c),0 0 20px -6px var(--c)}
+.ban button[aria-pressed="true"] span{color:var(--text);font-weight:900}
+.pane{background:var(--panel);border:1px solid var(--rule);border-radius:16px;padding:14px 14px 16px;display:grid;gap:12px}
+.pane .who{font-family:var(--f-led);font-size:12px;color:var(--amber);letter-spacing:.06em}
+.pane h3{margin:0;font-size:13px;color:var(--muted);letter-spacing:.06em}
+.say1{display:flex;gap:8px;align-items:flex-start;justify-content:space-between}
+.say1 span{min-width:0}
+.case{border-left:2px solid var(--vio);padding:2px 0 2px 12px;display:grid;gap:2px}
+.case b{font-size:14.5px}.case p{font-size:14px;line-height:1.65}.case .ls{color:var(--amber)}
+.fig{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:10px 8px 6px}
+.fig svg{display:block;width:100%;height:auto}
+.fig .cap{all:unset;display:block;font-size:12px;color:var(--muted);text-align:center;padding-top:2px}
+.fl{stroke-dasharray:8 92;stroke-dashoffset:100;animation:flow 4.5s linear infinite}
+@media(prefers-reduced-motion:reduce){.fl{animation:none}}
+.tpl .ta{display:flex;gap:8px;flex-wrap:wrap}
+.cp2{border:1px solid var(--rule);background:var(--panel-2);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:900;cursor:pointer;white-space:nowrap}
+.cp2.done{background:var(--ready);border-color:var(--ready);color:#07130c}
+.cp2.ln{background:#06c755;border-color:#06c755;color:#04210f;text-decoration:none;display:inline-flex;align-items:center}
+.bl{font:inherit;color:var(--amber);font-weight:700;background:rgba(255,198,92,.08);border:0;border-bottom:2px solid var(--amber);border-radius:6px 6px 0 0;width:2.8em;min-width:2.4em;max-width:100%;padding:0 4px;margin:0 2px;text-align:center}
+.bl::placeholder{color:var(--amber);opacity:.75;font-weight:500;font-size:.82em}
+.bl.need{border-bottom-color:var(--on);background:rgba(255,71,58,.16)}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="lotus" viewBox="-40 -34 80 52"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(-72 0 14)"/><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(72 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(-38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z"/></g></symbol></svg>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="./"><svg aria-hidden="true"><use href="#lotus"/></svg><span><b>立ち回りと報告</b><span>LOTUS スタッフ向けマニュアル</span></span></a>
+  <div class="clock"><span class="lbl">JST</span><span class="tc" id="tc">--:--:--</span></div>
+</header>
+<nav class="nav" aria-label="目次"><a href="./">入口</a><a href="#line">報告の型</a><a href="#ban">場面で引く</a><a href="#first">最初の3か月</a><a href="#daiji">大事にしていること</a><a href="gijutsu.html">技術のステップ</a></nav>
+
+<section class="hero">
+  <h1>報告は、<br>聞かれる前に一行。</h1>
+  <p>色のついた所に言葉を入れて「LINEで送る」。それだけで報告になります。</p>
+</section>
+
+<section class="sec" id="line">
+  <h2><i>1</i>そのまま使う:LINEの報告</h2>
+  <div class="fig" id="fushi" role="img" aria-label="報告の節目:到着、組み終わり、本線とチャート、仕込み終了、本番前チェック、撤去完了"></div>
+  <div class="chips" id="lg" role="group" aria-label="場面"></div>
+  <div class="grid c2" id="lt"></div>
+  <details class="fold"><summary>報告に入れること(迷った時)</summary><div class="in" id="rp"></div></details>
+</section>
+
+<section class="sec" id="ban">
+  <h2><i>2</i>場面で引く:相手 × 状況</h2>
+  <p class="mut">いまの相手と状況の札を押す。やること3つと、言い方の例が出ます。</p>
+  <div class="ban" id="grid" role="group" aria-label="相手と状況"></div>
+  <div class="pane" id="pane" aria-live="polite"></div>
+</section>
+
+<section class="sec" id="first">
+  <h2><i>3</i>最初の3か月</h2>
+  <p class="mut">技術より先に、ここから。先輩はここを見ています。</p>
+  <div class="grid c2" id="bg"></div>
+</section>
+
+<section class="sec" id="daiji">
+  <h2><i>4</i>LOTUSが大事にしていること</h2>
+  <div class="grid c2" id="pr"></div>
+  <details class="fold"><summary>叱られた時・褒められた時・会社の方針</summary><div class="in" id="wd"></div></details>
+</section>
+
+<footer class="foot">株式会社LOTUS ｜ LOTUS VISUAL スタッフ向けマニュアル ｜ <a href="./">入口へ戻る</a></footer>
+</div>
+
+<script>window.DATA={"principles":[{"title":"困る前に先に動く","body":"クライアントが困ってから動くのでは遅い。困りそうなことを先に見つけて、先に手を打つ。"},{"title":"遅れる前に組み替える","body":"遅れが分かってからではなく、遅れそうな段階で人の配置と作業の順番を変える。自分たちの工程で次のセクションを止めない。"},{"title":"振って、結果まで見る","body":"全部を自分でやろうとしない。人に仕事を振り、結果を確かめる所までを自分の仕事にする。"},{"title":"報告は現場の状態で","body":"自分が今日何をしたかではなく、現場が今どういう状態で、予定通り終わるのかを伝える。問題があるなら、何が必要かまで言う。"},{"title":"名前を覚えてもらう","body":"現場の責任者には自分から挨拶し、返事と反応を良くする。他セクションの人とも話す。取引先のお客様への売り込みはしない。"},{"title":"倉庫の仲間を手伝う","body":"機材パートナーの社員や倉庫のメンバーが困っていたら、率先して手伝う。普段から顔を出して、話せる関係を作っておく。"},{"title":"聞かれる前に用意する","body":"何度も聞かれることは、次から聞かれる前に資料にして出す。"},{"title":"声掛けは一つずつ","body":"良かった行動を具体的に伝え、困りごとを一つ聞き、次にやることを一つだけ決める。課題を一度に積みすぎない。"}],"cells":[{"target":"chief","scene":"normal","lead":"指示は復唱し、自分の状況は聞かれる前に自分から言う。","do":["指示は、担当範囲・図面の版・型番と数・順番・終わりの条件まで復唱する","いま何をしていて、何が分からないかを自分から伝える","残材・空ケースの置き場・次の資材を先に整え、チーフを動かさないようにする","チーフの段取りを汲んで、アルバイトへの説明と配置を先に決めておく","機材の集め方とバミり方は、始める前にチーフに相談する","提案は、タイミングを見てから出す","期限は時刻で答え、間に合わない時はその時刻より前に知らせる","組み終わり・本線とチャート・仕込み終了の節目ごとに一行で報告する"],"ok":["センター下手4列、図面は最新版、V8S 12枚をレールに2段ずつ、点灯確認まで、で合っていますか","いま長引きの結線が終わりました。次は空ケースを下手袖に寄せます。先にやることがあれば言ってください","下手サービス組み終わり、点灯チェックまで終了しました。次は本線とチャートです","その資料は私の方で作成します。来週の頭までにこのグループへ送ります","明日は9:30に倉庫集合、そのあと車で現地に向かいます。先方グループの連絡を写します","12時までに提出します"],"ng":["「分かりました」だけで復唱しない","黙って別の作業に移る","前の現場と同じやり方で勝手に集める","チーフも知っているはず、と報告を省く"],"cases":[{"title":"節目ごとの一行報告","lesson":"聞かれる前に出ているから、問い返しが一度も無い。撮り忘れなどの抜けも、自分から書いて出す。"},{"title":"期限は時刻で答える","lesson":"聞かれる前に、何時までに出すかを時刻で言う。間に合わないなら、その時刻より前に言う。"},{"title":"「誰がやる？」に手を挙げる","lesson":"担当が決まっていない仕事は、誰もやらないまま残る。引き取る時は、何をいつまでにやるかも一緒に返す。"},{"title":"足りない情報を聞き返す","lesson":"「進んでいません」で終わらせない。進めるのに足りない物を並べて、その場で聞き返す。"},{"title":"間に合わない時は代案を","lesson":"「無理です」だけで止めず、条件つきでできる案を出す。決めるのはチーフに任せる。"},{"title":"システム担当は離れない","lesson":"プロセッサー前は、何もしていないように見える大事な仕事。手伝いに動きたい時は、離れてよいかをチーフに聞いてから動く。"},{"title":"誰の指示で動くかを言う","lesson":"誰の指示で動き、どこへ報告するかを作業の前に自分から言う。形を指定されたら、その形のまま返す。"},{"title":"チーフを動かさない先回り","lesson":"指示を待たずに、チーフの負担が減る所を自分で探して動く。"},{"title":"やり方はチーフごとに違う","lesson":"前の現場のやり方を持ち込まず、まず聞く。提案は、相手が忙しくない時に出す。"}]},{"target":"chief","scene":"good","lead":"礼を言い、何が効いたかを一言で残して次に生かす。","do":["礼を言い、何が効いたかを一言で残す","手伝ってくれた人の名前を出して感謝を伝える","うまくいった形を、次の会場の準備にそのまま入れる","浮かれず、監視やプロセッサー前の持ち場を守る","次に試すことを一つだけ決める","任せてもらえた時は、短い一言で意欲を返す"],"ok":["ありがとうございます。仮組みで落とし位置をバミっておいたのが効きました。次の会場も同じ形で準備します","倉庫で検証してくださった皆さんのおかげです。ありがとうございました","追加分、無事に届きました。ありがとうございます","次の準備で、担当を一つ持たせてください。挑戦してみます","励みになります。一つずつ確実にしていきます"],"ng":["「たまたまです」で終わらせる","手伝ってくれた人に触れずに済ませる","褒められて気が緩み、持ち場を離れる"],"cases":[{"title":"助けられたことを書き残す","lesson":"うまくいった時は、誰の何が効いたかを言葉にして残す。"},{"title":"届いたら礼を返す","lesson":"届いた報告と礼を、一度に返す。"},{"title":"褒められたのは見えた行動","lesson":"褒め言葉は短く、見えた行動を指している。頼まれごとが増えるのは、信頼されている印。"},{"title":"途中経過が配置を決める","lesson":"自分の一報で、チーフは人の動かし方を決めている。聞かれた理由まで汲んで、早く返す。"},{"title":"不足は代案と一緒に早く","lesson":"足りない物は、期間と代案を一緒に上げる。本番のずっと前に出しているから手が打てる。"},{"title":"固まった後の振り返り","lesson":"固まったら「いま何をすればよいですか」と一言聞く。終わった後の振り返りを、次の動きに変える。"},{"title":"「まとめて共有」と先に言う","lesson":"終わったことと、まとめを後で出すことを、先に一言入れる。"}]},{"target":"chief","scene":"bad","lead":"気づいたらすぐ、事実・影響・次にやることを短く伝える。","do":["ミスに気づいたら、直す前にまず知らせる","何を・どこで・いつ、影響、自分が次にやること、の順で短く話す","二人から違う指示を受けたら、自分で選ばず案件の責任者に聞く","遅れそうな時点で、何が・何分・理由・代わりの順番を伝える","機材の不具合は、現場で使えていても症状と番号を報告する","持ち場を離れる前に、終わった所・未確認の所・誰に渡したかを言い残す","遅刻しそうな時は、まず電話で連絡する","決まっていない事も、いつ分かるかを添えて先に出す"],"ok":["Z5、シフトの番号と違う個体を積んでいました。確認不足です。正しい番号の物への差し替えは15時に終わります","自分は下手INと理解していました。図面のここです。違っていたら直します","センターの水平出しで20分押しています。上手サービスに先に2人回します。よろしいですか","降ろしの時間がまだ出ていません。前日の夕方に確定します。確定したら人数と一緒に連絡します","申し訳ありません、遅れます。いま家を出ました。到着は9:40の見込みです。先方の担当の方には電話で伝えました","Z6の液晶が割れていました。動作は問題ありません。現場では使えていますが、戻ったら確認をお願いします"],"ng":["「たぶん大丈夫だと思ったので」と言い訳から入る","何も言わずに自分で直す","相手が先輩だからと黙って合わせる","間に合わせようと黙って急ぐ","長い反省文を書いて終わりにする"],"cases":[{"title":"番号違いの持ち出し","lesson":"詫びは短く、言い訳なし。謝った後に、原因と次の防ぎ方まで出して終わる。"},{"title":"頼まれていない提出","lesson":"外へ出る書類は、誰に頼まれたか・誰が出すかを確かめてから。迷ったら、出す前に一言聞く。"},{"title":"作業日を逆算し直す","lesson":"自分の作業は、次の工程の確認より前に置く。言い直されたら、すぐ直す。"},{"title":"知っているはずで省いた","lesson":"同じグループに居ても、見ているとは限らない。先方から来た集合時刻は、会社のグループにも写す。"},{"title":"人の予定を推測で言った","lesson":"人の予定に触れる前に、まずシフトを開く。確かめたい時は、断定せず質問にする。"},{"title":"「どうなった？」と聞かれた","lesson":"決まっていなくても、まだ決まっていない・いつ分かるか・それまでに自分がすることを先に出す。"},{"title":"差し間違いで作業が中断","lesson":"直前に変わった所は、作業の前に全員でそろえる。"},{"title":"黙って合わせて配線違い","lesson":"相手が先輩でも、自分の理解を口に出して確かめる。"},{"title":"不具合報告の手本","lesson":"現場で使えていても黙らない。症状・今使えているか・戻ったら見てほしい点まで書く。"}]},{"target":"client","scene":"normal","lead":"着いたら自分から挨拶し、相手のやり方を先に聞く。","do":["着いたら自分から挨拶し、他セクションにも挨拶に回る","取引先の進め方(順番・確認のしかた)を、当社のチーフが先に聞いて全員に伝える","舞台監督には自分から聞きに行く","ケーブルの導線を変える時は、舞台監督に一言伝えてから引く","作業が終わったら「終わりました」を言いに行く","チャートと本線は、早めにもらう約束をする","倉庫では決まりを先に守り、始める前に「してもよいですか」と聞く","返す物は数と状態を書き、置き場所は番地で伝える"],"ok":["LOTUSの(自分の名前)です。本日LEDを担当します。チェックは4段ごとでよろしいですか。御社のいつもの順番があれば合わせます","下手の光ケーブル、昨日と導線を変えて袖の上を通します。転換の邪魔になりませんか","下手サービス、点灯確認まで終わりました。次はセンターの長引きです","検証していたZ6proとH10、問題なさそうなので、バラしてもよろしいでしょうか。エラーパケットも0のままです","外枠フレームに割れている所があります。ピンが刺さる箇所ではありませんが、NGにしますか。いったんNGとして分けてあります","準備が終わりました。積み降ろしなど、手伝えることはありますか"],"ng":["自社のやり方を説明なしに始める","聞かれるまで進み具合を言わない","社内だけの呼び方や数え方を先方に使う","測っていない数字を推測で答える","その現場に関係のない取引先のTシャツを着る"],"cases":[{"title":"初めての取引先の現場","lesson":"仕込みやチェックの進め方は会社ごとに違う。当社のチーフが先に聞いて、全員に伝える。"},{"title":"舞台監督には自分から","lesson":"聞かれるのを待たない。導線を変える前に、必ず一言伝える。"},{"title":"質問には根拠まで返す","lesson":"誰に確かめたか、実物を見たかまで言うと、次の質問が減る。運用の質問はチーフが引き取る。"},{"title":"測っていないと正直に言う","lesson":"推測で数字を言わない。次に測って、いつまでに送るかまで付けるとなお良い。"},{"title":"社内の数え方が通じない","lesson":"先方とは、一般的な名前と数え方で話す。笑い話で済んでも、数の取り違えにつながりうる。"},{"title":"積み込み完了の報告","lesson":"最初の報告に、全車両・各車の中身・探しそうな物の場所まで入れる。"},{"title":"作り方と返事の目安を約束","lesson":"誰が作り誰が確かめるか・返事の目安・変わる可能性を、先に伝えておく。"},{"title":"帰る前の一声と挨拶","lesson":"倉庫は場所をお借りしている所。帰る前の一声と挨拶までが仕事。"},{"title":"社名シールは理由で覚える","lesson":"作業としてではなく、理由で覚える。まっすぐ貼り、曲がったら貼り直す。"}]},{"target":"client","scene":"good","lead":"相手の目線で一歩先を提案し、信頼を次の現場へつなぐ。","do":["クライアントの目線で見て、一歩先の提案を自分から出す","褒められたら、相手のやり方から学んだ点を返す","関係ができた相手には、次の案件で詰まりそうな所を聞く","デモは、相手が確かめたい内容を先に想像して準備する","頼まれた確認は、聞かれる前に途中経過を出す","取引先担当者の調整をそばで見て学ぶ","ご馳走になったら、その日のうちに会社のグループへ報告する"],"ok":["色は客席上段からも見てきました。黒が少し浮くので、Brightnessを一段下げた版も用意しています。見比べますか","角度プレートが届きました。角度は問題ありません。裏表が分かるように、前回と同じ矢印の印を付けておきます","次の案件で、機材や人数、準備のどこが詰まりそうか、聞かせていただけますか","色の合わせ方、そばで見せていただいてもよろしいですか","本日、先方の担当の方にお昼をご馳走になりました。ご報告です"],"ng":["「その後どうですか」と聞かれるまで経過を出さない","人の現場で、自社の別の仕事を売り込む","ご馳走になったことを会社に伝えない"],"cases":[{"title":"褒められたのは先に動く人","lesson":"褒められたのは技術ではなく、先に動くことと、人が避ける作業に入ること。"},{"title":"前の現場が次を楽にする","lesson":"信頼は人だけでなく会社にも付く。自分の現場の出来が、仲間の次の現場を楽にする。"},{"title":"色調整は自分から提案","lesson":"言われるのを待たず、相手の目線で見て案を出す。"},{"title":"離れていても解決まで","lesson":"現場にいなくても、解決まで付き合う。"},{"title":"そばで見て学ぶ","lesson":"関係ができた相手のやり方は、そばで見て自分の物にする。"},{"title":"届いた報告は一度に全部","lesson":"聞かれた時点で、途中経過が遅い。報告は、確かめた結果と次の動きまで一度に出す。"},{"title":"ご馳走になったら報告","lesson":"誰に・何を・いつ、だけでよい。その日のうちに出す。"},{"title":"喜ばれる物まで準備する","lesson":"準備の確認に、相手が喜ぶ物は何かを一つ入れる。"}]},{"target":"client","scene":"bad","lead":"事実と確認中の範囲を伝え、原因や約束を独断で言わない。","do":["危ない作業を止め、責任者へ時刻・場所・症状・今の影響を伝える","相手の申告と、自分が見た事実を分けて話す","確認中の範囲と、次に報告する時刻を知らせる","原因や補償を独断で約束せず、窓口を一つにする","仕様変更には、できること・かかる時間・影響を返す","知らないことは知ったふりをせず「教えてください」と頼む","相手側の問題でも相手のせいと言わず、事実と試したことだけ話す","破損を見つけたら、その日のうちに写真つきで窓口へ報告する"],"ok":["14:20から下手サービスの映像がかくついています。メインLEDは正常です。いまシステム側から経路を1本ずつ替えて確認しています。15分後に状況をお伝えします","ルーフだけ別に色を触る件、プロセッサーを1台分けます。30分ください。予備が1台減ります","スケーリングの設定を取り違えていました。16:9に設定してから合わせ直します。手順を教えていただけますか","原因は確認中です。本番中に同じ症状が出た場合は、LANを挿し直してソフトを立ち上げ直します。所要は約1分です","降ろしの時に、タイルケース1台のキャッチロックが割れているのを見つけました。写真を送ります。いつ割れたかは分かりません。ケースは分けてあります","下手フロア3列目、映像が出ていません。いま信号の経路を確認しています。1分後に報告します"],"ng":["「たぶんケーブルです」と断定する","無断でプロセッサーを再起動する","複数人がばらばらに説明する","「大丈夫です、やります」と影響を言わずに受ける","先方が聞いている回線で「やばい」「映らない」と口にする"],"cases":[{"title":"リハ中の映像のかくつき","lesson":"慌てず、一本ずつ切り分ける。途中の状況は、責任者に時刻つきで伝える。"},{"title":"原因と本番の対策を問われた","lesson":"先方が欲しいのは、なぜ起きたかと、本番で起きたらどうするかの二つ。その場で断定せず、社内の詳しい人に確かめてから返す。"},{"title":"替えるかどうかは相手が決める","lesson":"交換する・しないを決めるのは相手。こちらは選択肢と所要時間を出す。"},{"title":"急な仕様変更","lesson":"仕様変更は来る前提で備えておく。受ける時は、できること・かかる時間・影響を先に返す。"},{"title":"設定を知らなかった","lesson":"知ったふりをしない。教わったことは、その日のうちに復習して残す。"},{"title":"破損の報告が遅れた","lesson":"報告が遅れるだけで、会社の信用の問題になる。自分の責任か分からなくても、見つけた時点で写真と一緒に上げる。"},{"title":"倉庫の片付けへの注意","lesson":"普段きれいにしていれば、やっていないことまで疑われない。帰る前に全員で集まり、やった作業と引き継ぎを確かめる。"},{"title":"見られている携帯と仮眠","lesson":"撮っていなくても、携帯を触っているだけで疑われる。仮眠は見えない場所で、場所と時間をチーフに相談する。"},{"title":"相手の不満には乗らない","lesson":"愚痴には乗らない。こちらの機材と工程で何が変わるかだけを確かめる。"}]},{"target":"souko","scene":"normal","lead":"頼む時は、数・置き場所・期限・バミリの名前まで書く。","do":["頼む時は、数・置き場所・期限・バミリの名前を書く","引き継ぎは、終わったこと・残り・NG・置き場所の四つで伝える","新人には先に目的と注意点を説明し、納得してから経験させる","協力スタッフには、分かっていそうなことも改めて言う","動く前に役割を決め、どの作業に何人要るかを先に把握する","教える前に、相手がどこまで分かっているかを確かめる","立ち会えない時は、置き場所の目印と写真を添えて頼む","任せたら礼を言う"],"ok":["あさって積みです。CLM10を3ケース、カニを96個お願いします。時間は確定したら連絡します","これは下段から外すと上が落ちます。先に上のロックを見せますね。分からなかったら止めて聞いてください","立ち会えませんが、脚立1脚と電源ボックス1個も積みます。バミリは貼ってあります","資材の総数は撤去の時に確認済みで、機材リストと合っています。片付けだけお願いします","NGは3枚ありますが、入れ替えは不要です。次の積みまで、そのまま溜め置きでお願いします","途中まで組み終えています。部材は近くに溜めてあります。一緒に作業していた人が残っているので、細かい所は聞いてください"],"ng":["「あれ持ってきて」と名前も数も言わない","「前に教えたよね」と突き放す","横柄な言い方で頼む","バラすのか置いておくのかを書かずに降ろしを頼む"],"cases":[{"title":"降ろしを頼む連絡の型","lesson":"受け取る側が迷うのは、バラすのか置くのか・NGをどうするか・誰の物か。三つとも先に書く。"},{"title":"立ち会えない積みの頼み方","lesson":"行けない時は、頼む相手・置き場所・写真・完了報告の宛先をそろえる。"},{"title":"初めての協力スタッフへ","lesson":"最初の連絡で、役割・起こりうること・打ち合わせの時期・聞き先・読む物の五つを渡す。"},{"title":"新人を迎える前日の案内","lesson":"最初に渡すのは技術より、挨拶・返事・定位置・八の字巻き。"},{"title":"引き継ぎは文字と口頭で","lesson":"引き継ぎは文字と口頭の両方でやり、曖昧にしない。"},{"title":"依頼はやる段階まで伝える","lesson":"依頼は、誰から・何を・どの段階でやるかまで伝える。"},{"title":"現場前の事前指導","lesson":"技術だけでなく、動き方と受け答えも事前に教える。一度に詰め込まず、現場ごとに重点を一つ決める。"},{"title":"当たり前のことも伝える","lesson":"「分かっているはず」で省かない。動く前に、役割と注意点を口に出す。"},{"title":"振り返りは現象・原因・対策","lesson":"「頑張ります」で終わらせない。後輩の振り返りを読む時も、この三つがそろっているかを見る。"}]},{"target":"souko","scene":"good","lead":"何が良かったかを具体的に言い、次を一つだけ任せる。","do":["何が良かったかを具体的に伝える","全体の前で礼を言う","次に一つだけ任せる","先方からの褒め言葉は、本人の名前を出して全体に流す","褒める時に、安全の一言を添える","落ち込んだ振り返りには、一、二行で返す","困りごとを一つ聞き、支援先を示す"],"ok":["空ケースを先に蓋と番号でそろえてくれたので、積みが10分早く終わりました。次は溜め場の配置を任せたいです","丁寧にバミってくれていたので作業がしやすく、とても助かりました","今の段階で全部完璧でなくて大丈夫です。一つずつ確実にしていきましょう","先回りして動いてくれたこと、見ている人は必ずいます","先方の担当の方が、指示を出す前に動いてくれていたと褒めていました。積み込みは危ないので、引き続き気を抜かずにいきましょう","差し入れをいただきました。みんなで小休憩にしましょう"],"ng":["「よかったよ」だけで、何が良かったかを言わない","褒めたついでに課題をいくつも積む","先方の褒め言葉を本人に伝えずに止める","相手の自信をなくす言い方をする"],"cases":[{"title":"何が助かったかを言う","lesson":"何が助かったかを具体的に言う。褒める時に、安全の一言を添える。"},{"title":"落ち込んだ時の一言","lesson":"落ち込んでいる時は、今は完璧でなくてよいと伝える。返事は一、二行でよい。"},{"title":"見ている人がいると伝える","lesson":"うまくいった時は、その行動を見ている人がいると伝える。"},{"title":"差し入れは全員に回す","lesson":"小さな礼とねぎらいを、言葉にして全員に回す。"},{"title":"手の空いた時の空ケース整理","lesson":"良かった動きは、何が効いたかと一緒に言葉にして残す。"},{"title":"自信をなくす伝え方をしない","lesson":"細かい所まで引き継ぎ、現場を想定して考えさせる。その姿が後輩の手本になる。"},{"title":"迎える時は任せて支える","lesson":"細かい段取りは任せる。誰の指示に従うかだけは、はっきりさせる。"}]},{"target":"souko","scene":"bad","lead":"人ではなく行動を指摘し、次の合格条件を一つ示す。","do":["人ではなく行動を指摘する","次の合格条件を一つだけ示す","現場で何が起きるか、理由を添えて伝える","全体の場で名指しせず、本人に直接話す","倉庫の決まりを破ったら、その日のうちに本人とチーフで謝りに行く","人が足りない時は、必要な人数を見て、人数と相手を指定して呼ぶ","間違えた連絡は、訂正と書いて全文を出し直す","任せた作業でも、慣れるまではそばに付く"],"ok":["HDMIは8の字で、端子を内側にしてください。ケースの蓋が閉まる量までです。次はこの形で戻してください","ケーブルが切れると現場で映像が出ません。現場のことを思って片付けましょう","LEDばらしは2名、ケーシングは3名で足ります。残りの2名はケーブル回収をお願いします","先ほど声を掛けた4名は、タイルと一緒に降りてきてください","先ほどの連絡を訂正します。正しい内容を全文でもう一度送ります","期限までに返信が無い場合は、該当なしとして進めます。相違なければ反応をお願いします"],"ng":["全体の連絡グループで名指しする","「なんでできないの」と人を責める","「さっきの右は左です」と一部だけ訂正する","分かっているはずと思い込み、任せきりにする"],"cases":[{"title":"理由を添えた注意","lesson":"注意には、現場で何が起きるかという理由を添える。"},{"title":"任せきりで起きた配線ミス","lesson":"理解を確かめただけで離れない。慣れるまではそばに付く。"},{"title":"説明不足でタイルが破損","lesson":"作業の前に、機材ごとの注意点を短く伝える。口だけでなく、バミリでも示す。"},{"title":"二人で謝りに行く","lesson":"謝る時は、本人だけで行かせずチーフも一緒に行く。文字ではなく対面で伝える。"},{"title":"訂正は全文を出し直す","lesson":"一部だけの訂正は、前の文と見比べる手間が出て間違える。向き・数・日付の連絡は、送る前に現物か資料をもう一度見る。"},{"title":"返事が無い時の確かめ方","lesson":"読んだら、その場で反応する。出す側は、返事が無ければこう受け取る、と期限つきで示す。"},{"title":"良い点→事実→期待で伝える","lesson":"良い点→見えた事実→期待の順で伝える。自分に見えていない所もある、と断っておく。"},{"title":"期待しているから言う","lesson":"注意は、自分はこうしていた・期待しているから言う、で挟む。問うのは行動そのものより、事前の相談と報告の抜け。"},{"title":"注意を自分の言葉で渡す","lesson":"受けた注意は、自分の言葉にして後輩へ渡す。自分の失敗として話す。"}]}],"report":{"lead":"自分が何をしたかではなく、現場が今どういう状態で、予定通り終わるのかを伝える。","points":["現場の状態と進み具合(予定数・今日の数・残り)","予定通り終わるか","うまくいっていること","つまずきと、必要なもの","NGは機材番号・数・症状・試したこと・結果","不足は数と、混ざっていそうな先の見込み","置き場所と引き継ぎ先","トラックは何の便か・到着見込み・必要な人数","相談は、分かっていること・分からないこと・自分の案・いつまでに","写真","前日に確かめた集合時刻と場所","到着・合流や作業開始・終了の節目"],"examples":[{"label":"仕込みの節目","text":"LED組み終わり、チェックまで終了しました。本線とチャートも確認できました。仕込みは本日無事に終わり、引き継ぎもできています"},{"label":"チーフから会社へ","text":"仕込みは予定通り終わる見込みです。センターは点灯確認まで終了、下手サービスは水平出しで20分押していますが、人を回して対応しています。写真を送ります"},{"label":"バラし完了","text":"バラし終わりました。CLI3.9のNGが1枚(ドットNG)、入れ替え済みです。システム類は別の案件で使うため、担当者に引き継ぎました"},{"label":"機材の不具合","text":"Z6の液晶が割れていました。動作は問題ありません。4ch電源BOXは小ブレーカーを上げても通電せず、ライトが点きません。どちらも現場では使えていますが、戻ったら確認をお願いします"},{"label":"積み込み完了","text":"積み込み完了しました。2台とも写真を送ります。どちらもLED満載です。スライダー用のケーブルは2台目に積んでいます"},{"label":"まだ決まっていない時","text":"降ろしの時間がまだ出ていません。前日の夕方に確定します。確定したら人数と一緒に連絡します"}]},"words":[{"when":"叱られた時","text":"謝ったら引きずらず、直す所を一つに絞って次に進む。"},{"when":"叱られた時","text":"効かなかった対策を繰り返さず、別の防ぎ方を自分で考える。"},{"when":"叱られた時","text":"問われるのは失敗そのものより、事前の相談と報告があったかどうか。"},{"when":"叱られた時","text":"注意は、直す所を一点に絞って受け取る。ほかはできていると考えてよい。"},{"when":"褒められた時","text":"褒められるのは技術より先に、指示の前に動くことと、人が避ける作業に入ること。"},{"when":"褒められた時","text":"一生懸命やり続けていれば、必ず見てくれている人がいる。"},{"when":"褒められた時","text":"一人の現場の頑張りは会社の信頼になり、仲間の次の現場を楽にする。"},{"when":"方針","text":"普段からきれいにしていれば、やっていないことまで疑われることはない。"},{"when":"方針","text":"やり忘れ・やり残し・分からないままの放置を無くし、最後まで必ず追う。"},{"when":"方針","text":"報告は相手を安心させるためのもので、チーフと同じ現場でも各自が出す。"},{"when":"方針","text":"現場に行く当事者なら、連絡には必ず何かしら反応する。"},{"when":"方針","text":"周りが声を掛け合い、注意し合える現場を自分たちで作る。"}],"beginner":[{"title":"集合の20分前に着く","body":"集合時刻の20分前には着いておく。遅刻は一番信用を無くすので、先輩や取引先より先に居るつもりで動く。"},{"title":"大きな声で挨拶する","body":"現場に着いたら大きな声で挨拶する。先輩や取引先には、目を合わせるか、近くまで行って挨拶する。"},{"title":"返事と反応をすぐ返す","body":"呼ばれたらすぐ返事をし、愛想とリアクションを良くする。連絡を読んだら、その場で反応を付けて読んだことを伝える。"},{"title":"復唱してから動く","body":"指示は、何を・いくつ・どこへ・どこまでを復唱してから動く。「分かりました」だけで動き出さない。"},{"title":"初報はすぐ、短く","body":"ミス・不具合・遅れは、気づいた時点ですぐ伝える。事実、今の動き、次にやることの三つを短く言う。遅刻しそうな時は、まず電話する。"},{"title":"短い一言で本気を見せる","body":"「やらせてください」「挑戦してみます」を口に出す。固まったら、いま何をすればよいかを聞く。"},{"title":"人が避ける作業に入る","body":"皆が嫌がる作業に率先して入り、困っている人を手伝う。使った物は必ず定位置に戻し、言われる前に片付ける。"},{"title":"見られている意識を持つ","body":"携帯を触る・フードを被る・見える場所で眠る。どれも見られている。服は迷ったら自社の物を着て、眠い時は交代を申し出る。"}],"line":[{"g":"朝","label":"現場に着いた","text":"おはようございます。{現場}に{時刻}に着きました(集合{時刻})。"},{"g":"朝","label":"遅れそうな時(まず電話)","text":"申し訳ありません。{数}分ほど遅れます。到着は{時刻}の見込みです。理由は{理由}です。先に電話でもお伝えしました。"},{"g":"朝","label":"チーフが遅れる時","text":"到着が{数}分遅れます。先に積み図と初手の編成を送ります。"},{"g":"仕込み","label":"組み終わり","text":"LED組み終わり、点灯チェックまで終了しました。次は本線とチャートです。"},{"g":"仕込み","label":"本線とチャート","text":"本線とチャートの確認、完了しました。"},{"g":"仕込み","label":"仕込み終了","text":"仕込み、本日無事に終了しました。引き継ぎもできています。"},{"g":"仕込み","label":"本番前チェック","text":"本番前チェック、完了しました。"},{"g":"仕込み","label":"抜けに気づいた時","text":"{何を}の写真を撮り忘れました。{時刻}までに撮って送ります。"},{"g":"仕込み","label":"押している時","text":"{作業}で{数}分押しています。{場所}に先に{人数}人回します。よろしいですか。"},{"g":"トラブル","label":"画面の異常(初報)","text":"{時刻}から{場所}の映像が{症状}です。{正常な所}は正常です。いま{どこ}側から順に確認しています。{数}分後に状況をお伝えします。"},{"g":"トラブル","label":"自分のミス","text":"{何を}を間違えていました。確認不足です。影響は{影響}です。正しくは{正しい内容}、直しは{時刻}に終わります。"},{"g":"トラブル","label":"機材の不具合","text":"{機材と番号}に{症状}があります。現場では使えています。戻った際に確認をお願いします。"},{"g":"トラブル","label":"指示が食い違った時","text":"{名前}さんからは{内容}、{名前}さんからは{内容}と聞いています。どちらで進めますか。"},{"g":"トラブル","label":"相談する時","text":"分かっていること:{内容}。分からないこと:{内容}。自分の案:{案}。{時刻}までに決めたいです。"},{"g":"倉庫","label":"トラック","text":"{便}、{時刻}ごろ到着の見込みです。自分は{作業}をします。降ろしに{人数}人お願いします。"},{"g":"倉庫","label":"バラし完了","text":"バラし完了しました。NGは{枚数}枚(症状:{症状})。不足は{何が何個}(混ざっていそうな所:{場所})。置き場所は{場所}、引き継ぎ先は{名前}さんです。"},{"g":"倉庫","label":"NG・検証","text":"{機材と番号}、{症状}です。{試したこと}を試して{結果}でした。管理表に記載済みです。"},{"g":"倉庫","label":"進み具合","text":"予定{数}台のうち、今日{数}台終わりました。かかった時間は{数}時間、残りは{数}台です。"},{"g":"終わり","label":"チーフから会社へ","text":"現場は{状態}です。予定どおり{時刻}に終わる見込みです。つまずき:{内容}。必要なもの:{内容}。写真を送ります。"},{"g":"終わり","label":"持ち場を離れる時","text":"{どこまで}まで終わっています。未確認は{箇所}です。{名前}さんに引き継ぎました。"},{"g":"終わり","label":"撤去が終わった","text":"撤去、完了しました。NGは{内容}、不足は{内容}です。機材は{便}で戻します。"}]};</script>
+<script>
+/* 共通:時計・コピー・系統図の線 */
+var LK=(function(){
+'use strict';
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function p2(n){return String(n).padStart(2,'0')}
+function clock(el){
+  if(!el)return;
+  function draw(){var d=new Date(Date.now()+9*3600e3);el.textContent=p2(d.getUTCHours())+':'+p2(d.getUTCMinutes())+':'+p2(d.getUTCSeconds())}
+  draw();setInterval(draw,1000);
+}
+function copyText(t,btn){
+  function ok(){if(!btn)return;var o=btn.textContent;btn.textContent='コピーした';btn.classList.add('done');setTimeout(function(){btn.textContent=o;btn.classList.remove('done')},1400)}
+  function fb(){try{var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();ok()}catch(e){}}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}catch(e){fb()}
+}
+document.addEventListener('click',function(ev){
+  var b=ev.target.closest('.cp');if(!b)return;
+  var box=b.closest('[data-copy]');var t=box?box.getAttribute('data-copy'):'';
+  if(!t){var x=b.closest('.tpl');if(x)t=x.querySelector('.tx').textContent}
+  copyText(t,b);
+});
+/* 幹から枝へ:.tree の中の .root → .head → .leaf → .sink を線でつなぐ */
+function tree(stage,onPick){
+  var svg=stage.querySelector('.wires'),NS='http://www.w3.org/2000/svg',hot=null,sel=null;
+  function R(el,o){var r=el.getBoundingClientRect();return{l:r.left-o.left,t:r.top-o.top,r:r.right-o.left,b:r.bottom-o.top,cy:(r.top+r.bottom)/2-o.top}}
+  function P(d,cls,c,len){var p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);if(len)p.setAttribute('pathLength','100');if(c)p.style.setProperty('--c',c);svg.appendChild(p);return p}
+  function col(el){return getComputedStyle(el).getPropertyValue('--c').trim()||'#b9a2ff'}
+  function layout(){
+    var o=svg.getBoundingClientRect();if(!o.width)return;
+    svg.setAttribute('viewBox','0 0 '+o.width+' '+o.height);
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    var root=stage.querySelector('.root'),sink=stage.querySelector('.sink');if(!root)return;
+    var rr=R(root,o),tx=rr.l+17,endY=sink?R(sink,o).t:rr.b;
+    var heads=[].slice.call(stage.querySelectorAll('.head'));
+    if(!sink&&heads.length)endY=R(heads[heads.length-1],o).cy;
+    var trunk='M'+tx+' '+rr.b+'V'+endY;
+    P(trunk,'wire base',col(root));P(trunk,'wire flow',col(root),true).style.setProperty('--dur','5s');
+    heads.forEach(function(h,i){
+      var hr=R(h,o),c=col(h);
+      P('M'+tx+' '+hr.cy+'H'+hr.l,'wire base',c);
+      var leaves=[];var n=h.nextElementSibling;while(n&&n.classList.contains('leaf')){leaves.push(n);n=n.nextElementSibling}
+      if(leaves.length){
+        var bx=hr.l+17,last=R(leaves[leaves.length-1],o);
+        var bus='M'+bx+' '+hr.b+'V'+last.cy;
+        P(bus,'wire base',c);var f=P(bus,'wire flow',c,true);f.style.setProperty('--dur',(3+i*.6)+'s');
+        leaves.forEach(function(lf){var lr=R(lf,o);P('M'+bx+' '+lr.cy+'H'+lr.l,'wire base',c)});
+      }
+    });
+    if(hot)drawHot(hot,o,tx,rr);
+  }
+  function drawHot(el,o,tx,rr){
+    var c=col(el),d='';
+    if(el.classList.contains('root')||el.classList.contains('sink')){var sk=stage.querySelector('.sink');d='M'+tx+' '+rr.b+'V'+(sk?R(sk,o).t:rr.b)}
+    else{
+      var h=el.classList.contains('head')?el:null;
+      if(!h){h=el.previousElementSibling;while(h&&!h.classList.contains('head'))h=h.previousElementSibling}
+      if(!h)return;var hr=R(h,o);
+      d='M'+tx+' '+rr.b+'V'+hr.cy+'H'+hr.l;
+      if(el!==h){var lr=R(el,o),bx=hr.l+17;d+='M'+bx+' '+hr.b+'V'+lr.cy+'H'+lr.l}
+    }
+    P(d,'wire hot',c);
+  }
+  stage.addEventListener('click',function(ev){
+    var b=ev.target.closest('[data-id]');if(!b||!stage.contains(b))return;
+    if(sel)sel.classList.remove('sel');sel=b;b.classList.add('sel');hot=b;layout();
+    if(onPick)onPick(b.getAttribute('data-id'),b);
+  });
+  var q=0;function re(){if(q)return;q=requestAnimationFrame(function(){q=0;layout()})}
+  if(window.ResizeObserver)new ResizeObserver(re).observe(stage);
+  window.addEventListener('resize',re);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(re);
+  layout();
+  return{layout:layout,pick:function(id){var b=stage.querySelector('[data-id="'+id+'"]');if(b)b.click()}};
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+return{clock:clock,tree:tree,copy:copyText,esc:esc,reduce:reduce};
+})();
+</script>
+<script>
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s)},D=window.DATA||{},E=LK.esc;
+LK.clock($('#tc'));
+function mark(t){return E(t).replace(/(◯+|△+)/g,'<em>$1</em>')}
+/* 図:報告の節目 */
+(function(){
+  var L=[['到着'],['組み','終わり'],['本線・','チャート'],['仕込み','終了'],['本番前','チェック'],['撤去','完了']],W=340,x0=30,dx=56,y=24;
+  var h='<svg viewBox="0 0 '+W+' 78" aria-hidden="true"><path d="M'+x0+' '+y+'H'+(x0+dx*5)+'" stroke="var(--rule)" stroke-width="3" fill="none"/><path class="fl" pathLength="100" d="M'+x0+' '+y+'H'+(x0+dx*5)+'" stroke="var(--ready)" stroke-width="3" stroke-linecap="round" fill="none"/>';
+  L.forEach(function(l,i){var x=x0+dx*i;
+    h+='<circle cx="'+x+'" cy="'+y+'" r="9" fill="var(--ink)" stroke="var(--ready)" stroke-width="2"/><text x="'+x+'" y="'+(y+4)+'" text-anchor="middle" font-family="DotGothic16,monospace" font-size="11" fill="var(--ready)">'+(i+1)+'</text>';
+    l.forEach(function(t,j){h+='<text x="'+x+'" y="'+(y+26+j*13)+'" text-anchor="middle" font-size="10.5" font-weight="700" fill="var(--text)">'+t+'</text>'});
+  });
+  h+='</svg><span class="cap">節目のたびに一行。聞かれる前に送る。</span>';
+  document.getElementById('fushi').innerHTML=h;
+})();
+/* 1 LINEの報告 */
+var groups=[];(D.line||[]).forEach(function(x){if(groups.indexOf(x.g)<0)groups.push(x.g)});
+var curG=groups[0];
+var GID={'朝':'asa','仕込み':'shikomi','トラブル':'trouble','倉庫':'souko','終わり':'owari'};
+function fillHTML(t){ /* {名前} を入力欄にする */
+  return E(t).replace(/\{([^}]+)\}/g,function(m,n){return '<input class="bl" type="text" placeholder="'+n+'" aria-label="'+n+'" autocomplete="off" style="width:'+(n.length+1.2)+'em">'});
+}
+function fillText(box,strict){var o='',miss=null;box.querySelector('.tx').childNodes.forEach(function(n){
+  if(n.nodeType===3)o+=n.nodeValue;else{var v=(n.value||'').trim();n.classList.remove('need');if(!v){if(!miss)miss=n;if(strict)n.classList.add('need');o+='◯◯'}else o+=v}});
+  return{text:o,miss:miss}}
+function drawLine(){
+  $('#lg').innerHTML=groups.map(function(g){return '<button type="button" class="chip" data-g="'+E(g)+'" aria-pressed="'+(g===curG)+'">'+E(g)+'</button>'}).join('');
+  $('#lt').innerHTML=(D.line||[]).filter(function(x){return x.g===curG}).map(function(x){
+    return '<div class="tpl" data-fill="1"><div class="th"><b>'+E(x.label)+'</b></div><div class="tx">'+fillHTML(x.text)+'</div><div class="ta"><a class="cp2 ln" data-a="line" href="https://line.me/R/share?text=" target="_blank" rel="noopener">LINEで送る</a><button type="button" class="cp2" data-a="copy">コピー</button></div></div>';
+  }).join('');
+}
+$('#lt').addEventListener('click',function(ev){
+  var b=ev.target.closest('.cp2');if(!b)return;var isLine=b.dataset.a==='line',r=fillText(b.closest('.tpl'),isLine);
+  if(isLine){if(r.miss){ev.preventDefault();r.miss.focus();return}b.href='https://line.me/R/share?text='+encodeURIComponent(r.text)}
+  else LK.copy(r.text,b);
+});
+$('#lt').addEventListener('input',function(ev){var i=ev.target;if(i.classList.contains('bl')){i.classList.remove('need');i.style.width=Math.max(i.placeholder.length+1.2,(i.value.length||0)+1.2)+'em'}});
+$('#lg').addEventListener('click',function(ev){var b=ev.target.closest('[data-g]');if(!b)return;curG=b.dataset.g;drawLine()});
+drawLine();
+var R=D.report||{};
+$('#rp').innerHTML=(R.lead?'<p><b>'+E(R.lead)+'</b></p>':'')+(R.points&&R.points.length?'<ul class="pl">'+R.points.map(function(p){return '<li>'+E(p)+'</li>'}).join('')+'</ul>':'')+
+  (R.examples||[]).map(function(x){return '<div class="tpl" data-copy="'+E(x.text)+'"><div class="th"><b>'+E(x.label)+'</b><button type="button" class="cp">コピー</button></div><div class="tx">'+mark(x.text)+'</div></div>'}).join('');
+
+/* 2 相手 × 状況 */
+var TG=[['chief','チーフ・先輩へ'],['client','クライアントへ'],['souko','倉庫・後輩へ']],SC=[['normal','いつも','ready'],['good','良い時','warn'],['bad','悪い時','on']];
+var cells={};(D.cells||[]).forEach(function(c){cells[c.target+'/'+c.scene]=c});
+var h='<span></span>'+SC.map(function(s){return '<span class="hd">'+s[1]+'</span>'}).join('');
+TG.forEach(function(t){h+='<span class="rw">'+t[1]+'</span>'+SC.map(function(s){return '<button type="button" data-t="'+t[0]+'" data-s="'+s[0]+'" aria-pressed="false" aria-label="'+t[1]+' '+s[1]+'"><i class="lamp '+s[2]+'" style="animation:none"></i><span>'+s[1]+'</span></button>'}).join('')});
+$('#grid').innerHTML=h;
+function pick(t,s,scroll){
+  document.querySelectorAll('#grid button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.t===t&&b.dataset.s===s))});
+  var c=cells[t+'/'+s],tn=TG.filter(function(x){return x[0]===t})[0][1],sn=SC.filter(function(x){return x[0]===s})[0][1];
+  if(!c){$('#pane').innerHTML='<p class="mut">準備中です。</p>';return}
+  var o='<span class="who">'+E(tn)+' ／ '+E(sn)+'</span><p class="lead">'+E(c.lead)+'</p>';
+  function more(arr,n,fn,label){var a=arr.slice(0,n).map(fn).join(''),b=arr.slice(n).map(fn).join('');return [a,b,label]}
+  var d=c.do||[],m=d.slice(0,3),r=d.slice(3);
+  o+='<h3>やること(まず3つ)</h3><ol class="steps">'+m.map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ol>';
+  if(r.length)o+='<details class="fold" style="background:var(--panel-2)"><summary>ほかにやること('+r.length+')</summary><div class="in"><ul class="pl">'+r.map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ul></div></details>';
+  var k=c.ok||[];
+  if(k.length){o+='<h3>言い方の例</h3><ul class="ok">'+k.slice(0,3).map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ul>';
+    if(k.length>3)o+='<details class="fold" style="background:var(--panel-2)"><summary>ほかの例('+(k.length-3)+')</summary><div class="in"><ul class="ok">'+k.slice(3).map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ul></div></details>'}
+  if(c.ng&&c.ng.length)o+='<h3>やりがち</h3><ul class="ng">'+c.ng.slice(0,3).map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ul>';
+  if(c.cases&&c.cases.length)o+='<details class="fold" style="background:var(--panel-2)"><summary>現場からの教訓('+c.cases.length+')</summary><div class="in">'+c.cases.map(function(k2){return '<div class="case"><b>'+E(k2.title)+'</b><p>'+E(k2.lesson)+'</p></div>'}).join('')+'</div></details>';
+  $('#pane').innerHTML=o;
+  if(scroll)$('#pane').scrollIntoView({behavior:LK.reduce?'auto':'smooth',block:'nearest'});
+}
+$('#grid').addEventListener('click',function(ev){var b=ev.target.closest('button[data-t]');if(b)pick(b.dataset.t,b.dataset.s,true)});
+pick('chief','normal',false);
+function route(){var h=location.hash||'',m;
+  if((m=h.match(/^#g-(\w+)$/))){var g=Object.keys(GID).filter(function(k){return GID[k]===m[1]})[0];if(g){curG=g;drawLine();document.getElementById('line').scrollIntoView()}}
+  else if((m=h.match(/^#b-(\w+)-(\w+)$/))&&cells[m[1]+'/'+m[2]]){pick(m[1],m[2],false);document.getElementById('ban').scrollIntoView()}}
+window.addEventListener('hashchange',route);route();
+
+/* 3・4 */
+var cs=['c-l','c-c','c-v','c-a','c-g'];
+$('#bg').innerHTML=(D.beginner||[]).map(function(x,i){return '<div class="box '+cs[i%5]+'"><h3>'+E(x.title)+'</h3><p>'+E(x.body)+'</p></div>'}).join('');
+$('#pr').innerHTML=(D.principles||[]).map(function(x,i){return '<div class="box '+cs[i%5]+'"><h3>'+E(x.title)+'</h3><p>'+E(x.body)+'</p></div>'}).join('');
+var W={};(D.words||[]).forEach(function(w){(W[w.when]=W[w.when]||[]).push(w.text)});
+$('#wd').innerHTML=Object.keys(W).map(function(k){return '<h3 style="font-size:14px;color:var(--amber)">'+E(k)+'</h3><ul class="pl">'+W[k].map(function(t){return '<li>'+E(t)+'</li>'}).join('')+'</ul>'}).join('');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d0a14">
+<title>技術のステップとトラブル|LOTUS スタッフ向けマニュアル</title>
+<meta name="description" content="技術を覚える順番と、症状から引くトラブル対応。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 司令室と同じ色と字:数字は LED の点の字、状態はタリーランプ、線は信号の流れ */
+  color-scheme:dark;
+  --ink:#0d0a14; --panel:#161222; --panel-2:#1e1930; --rule:#2e2747;
+  --text:#f3eef9; --muted:#a199b8;
+  --lotus:#ff5fa0; --cyan:#55d3ea; --vio:#b9a2ff; --amber:#ffc65c;
+  --on:#ff473a; --ready:#3be08c; --off:#5a5372;
+  --f-led:"DotGothic16","Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",monospace;
+  --f-body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:64px}
+html,body{margin:0}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-wrap:anywhere}
+a{color:var(--cyan);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+h1,h2,h3,p{margin:0}
+[hidden]{display:none!important}
+.wrap{max-width:1120px;margin:0 auto;padding:14px 14px 56px;display:grid;gap:16px}
+.led{font-family:var(--f-led);font-variant-numeric:tabular-nums;letter-spacing:.03em}
+
+/* 上の帯 */
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none;color:var(--text)}
+.brand svg{width:38px;height:26px;color:var(--lotus);flex:none}
+.brand b{display:block;font-size:17px;font-weight:900;letter-spacing:.06em;line-height:1.25}
+.brand span{display:block;font-family:var(--f-led);font-size:11px;letter-spacing:.08em;color:var(--muted);line-height:1.4}
+.clock{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--rule);border-radius:999px;padding:6px 14px}
+.clock .lbl{font-size:10px;color:var(--muted);letter-spacing:.1em}
+.tc{font-family:var(--f-led);font-size:18px;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nav{position:sticky;top:0;z-index:20;margin:0 -14px;padding:8px 14px;background:rgba(13,10,20,.94);border-bottom:1px solid var(--rule);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--muted);font-size:13px;font-weight:700;border:1px solid var(--rule);border-radius:999px;padding:6px 13px;background:var(--panel);white-space:nowrap}
+.nav a.cur,.nav a:hover{color:var(--ink);background:var(--text);border-color:var(--text)}
+
+/* 見出しと文 */
+.hero{display:grid;gap:8px}
+.hero h1{font-size:clamp(24px,6.4vw,38px);font-weight:900;line-height:1.3;letter-spacing:.02em}
+.hero p{color:var(--muted);font-size:15px}
+.sec{display:grid;gap:12px;padding-top:6px}
+.sec>h2{display:flex;align-items:baseline;gap:10px;font-size:clamp(19px,5vw,24px);font-weight:900;line-height:1.35;border-top:1px solid var(--rule);padding-top:18px}
+.sec>h2 i{font-family:var(--f-led);font-style:normal;font-weight:400;font-size:13px;color:var(--amber);flex:none;letter-spacing:.06em}
+.sec h3{font-size:16px;font-weight:900;line-height:1.45;margin-top:4px}
+.lead{font-size:clamp(16px,4.4vw,19px);font-weight:700;line-height:1.65}
+.say{border-left:3px solid var(--amber);background:var(--panel);border-radius:0 12px 12px 0;padding:12px 14px;font-size:15px}
+.say b{color:var(--amber)}
+.mut{color:var(--muted);font-size:13px;line-height:1.6}
+ul.pl,ol.pl{margin:0;padding-left:1.25em;display:grid;gap:6px}
+.hl{color:var(--amber);font-weight:900}
+
+/* 数字の札 */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;min-width:0}
+.tile .k{font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.4}
+.tile .v{font-family:var(--f-led);font-size:clamp(20px,6vw,27px);line-height:1.25;font-variant-numeric:tabular-nums;color:var(--amber);text-shadow:0 0 14px rgba(255,198,92,.35)}
+.tile .v small{font-size:.55em;color:var(--muted);text-shadow:none}
+.tile .s{font-size:11px;color:var(--muted);line-height:1.4}
+@media(min-width:720px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* 切り替え */
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:14px;padding:3px;background:var(--panel);gap:2px}
+.seg button{border:0;background:transparent;padding:8px 14px;border-radius:11px;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer;line-height:1.3}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;border:1px solid var(--rule);color:var(--text);background:var(--panel-2);border-radius:999px;padding:3px 10px;line-height:1.5}
+button.chip{cursor:pointer;font-weight:700;padding:6px 12px;font-size:13px}
+button.chip[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+
+/* 系統図(幹から枝へ) */
+.stage{position:relative;overflow:hidden;border:1px solid var(--rule);border-radius:16px;padding:14px 12px 14px;
+  background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.055) 1px,transparent 1.6px) 0 0/9px 9px,linear-gradient(180deg,#181327,#110d1c)}
+.stage-h{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-led);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:10px;position:relative}
+.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wire{fill:none;stroke:var(--c,var(--vio));stroke-linecap:round;stroke-linejoin:round}
+.wire.base{stroke-opacity:.34;stroke-width:1.5}
+.wire.flow{stroke-width:2.4;stroke-dasharray:6 94;stroke-dashoffset:100;animation:flow var(--dur,4s) linear infinite;filter:drop-shadow(0 0 4px var(--c,var(--vio)))}
+.wire.hot{stroke-width:2.6;stroke-opacity:1;filter:drop-shadow(0 0 5px var(--c,var(--vio)))}
+@keyframes flow{to{stroke-dashoffset:0}}
+.tree{position:relative;display:grid;gap:9px}
+.node,.leaf{--c:var(--text);position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;align-items:center;text-align:left;cursor:pointer;
+  border:1px solid var(--c);background:var(--panel);border-radius:12px;padding:9px 30px 9px 10px;min-width:0;width:100%;transition:box-shadow .2s}
+.node .av{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--c);display:grid;place-items:center;color:var(--c);font-family:var(--f-led);font-size:15px;background:var(--ink);flex:none}
+.node .nm{display:block;font-weight:900;font-size:15px;line-height:1.3}
+.node .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.node.root{--c:var(--amber)}
+.node.sink{--c:var(--vio);margin-top:8px}
+.node.head{margin-left:26px;width:calc(100% - 26px)}
+.leaf{margin-left:52px;width:calc(100% - 52px);display:block;border:1px solid var(--rule);border-left:2px solid var(--c);background:var(--panel-2);border-radius:10px;padding:8px 28px 8px 11px}
+.leaf .nm{display:block;font-weight:700;font-size:14px;line-height:1.35}
+.leaf .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.lamp{position:absolute;top:50%;right:10px;margin-top:-5px;width:10px;height:10px;border-radius:50%;background:var(--off)}
+.lamp.ready{background:var(--ready);box-shadow:0 0 8px var(--ready)}
+.lamp.on{background:var(--on);box-shadow:0 0 10px var(--on);animation:blink 1s steps(2,jump-none) infinite}
+.lamp.warn{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.lamp.wait{background:transparent;border:1.5px solid var(--muted)}
+@keyframes blink{50%{opacity:.25}}
+.sel{box-shadow:0 0 0 2px var(--c),0 0 22px -4px var(--c)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:12px;color:var(--muted);position:relative}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .lamp{position:static;margin:0;animation:none;flex:none}
+.duo{display:grid;gap:12px;align-items:start}
+@media(min-width:960px){.duo{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.duo .stick{position:sticky;top:60px}}
+.cap{background:var(--panel);border:1px solid var(--rule);border-radius:16px;padding:14px 16px;display:grid;gap:8px;min-height:120px}
+.cap .ck{font-family:var(--f-led);font-size:12px;color:var(--amber);letter-spacing:.06em}
+.cap .ct{font-size:18px;font-weight:900;line-height:1.4}
+.cap .cb{font-size:15px;line-height:1.7}
+.cap ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:15px}
+.btn{display:inline-flex;align-items:center;gap:6px;justify-self:start;text-decoration:none;font-weight:900;font-size:14px;color:var(--ink);background:var(--text);border:0;border-radius:999px;padding:9px 16px;cursor:pointer;line-height:1.3}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--rule)}
+
+/* 札の並び */
+.grid{display:grid;gap:10px}
+@media(min-width:720px){.grid.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.c3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.box{--c:var(--rule);background:var(--panel);border:1px solid var(--rule);border-top:2px solid var(--c);border-radius:12px;padding:12px 14px;display:grid;gap:6px;align-content:start;min-width:0}
+.box h3{margin:0;font-size:16px}
+.box p,.box li{font-size:14.5px;line-height:1.65}
+.box .tag{font-family:var(--f-led);font-size:11px;color:var(--c);letter-spacing:.06em}
+.box.c-l{--c:var(--lotus)}.box.c-c{--c:var(--cyan)}.box.c-v{--c:var(--vio)}.box.c-a{--c:var(--amber)}.box.c-g{--c:var(--ready)}.box.c-r{--c:var(--on)}
+a.box{text-decoration:none;color:var(--text)}
+a.box:hover{box-shadow:0 0 0 1px var(--c),0 0 20px -6px var(--c)}
+.big{font-family:var(--f-led);font-size:26px;color:var(--amber);line-height:1.2}
+
+/* 表(狭い画面では札になる) */
+.t{width:100%;border-collapse:collapse;font-size:14.5px}
+.t th,.t td{border-bottom:1px solid var(--rule);padding:9px 10px;text-align:left;vertical-align:top;line-height:1.6}
+.t thead th{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;background:var(--panel)}
+.t td.n,.t th.n{font-family:var(--f-led);white-space:nowrap}
+.t tr.sum td{font-weight:900;color:var(--amber)}
+@media(max-width:719px){
+  .t thead{display:none}
+  .t,.t tbody,.t tr,.t td{display:block;width:100%}
+  .t tr{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:8px 12px;margin-bottom:8px}
+  .t td{border:0;padding:3px 0}
+  .t td[data-l]::before{content:attr(data-l);display:block;font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.5}
+  .t td:first-child{font-weight:900;font-size:15.5px}
+}
+
+/* 畳む */
+details.fold{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:0 14px}
+details.fold>summary{cursor:pointer;font-weight:900;padding:11px 0;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:15px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";font-family:var(--f-led);color:var(--muted);flex:none}
+details.fold[open]>summary::after{content:"－"}
+details.fold>.in{padding:0 0 14px;display:grid;gap:8px;font-size:14.5px}
+
+/* そのまま使う文(コピー) */
+.tpl{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;display:grid;gap:6px;min-width:0}
+.tpl .th{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tpl .th b{font-size:13px;color:var(--cyan);font-weight:900;line-height:1.4}
+.tpl .tx{font-size:15.5px;line-height:1.65;white-space:pre-wrap;background:#231c38;border-radius:10px 10px 10px 2px;padding:9px 12px}
+.tpl .tx em{font-style:normal;color:var(--amber);font-weight:700}
+.cp{flex:none;border:1px solid var(--rule);background:var(--panel-2);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap}
+.cp.done{background:var(--ready);border-color:var(--ready);color:#07130c}
+.ok,.ng{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.ok li,.ng li{position:relative;padding:8px 10px 8px 40px;border-radius:10px;background:var(--panel-2);font-size:15px;line-height:1.6}
+.ok li::before,.ng li::before{position:absolute;left:9px;top:8px;font-family:var(--f-led);font-size:12px;line-height:1.9}
+.ok li::before{content:"OK";color:var(--ready)}
+.ng li::before{content:"NG";color:var(--on)}
+.ng li{color:var(--muted)}
+.steps{counter-reset:s;display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;position:relative;padding:9px 12px 9px 46px;background:var(--panel);border:1px solid var(--rule);border-radius:12px;font-size:15px;line-height:1.6}
+.steps li::before{content:counter(s);position:absolute;left:12px;top:9px;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--amber);color:var(--amber);font-family:var(--f-led);font-size:13px;display:grid;place-items:center;line-height:1}
+.steps li small{display:block;color:var(--muted);font-size:13px;line-height:1.55}
+.foot{border-top:1px solid var(--rule);padding-top:16px;color:var(--muted);font-size:12px;line-height:1.7}
+body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.wire.flow{animation:none;stroke-dashoffset:50}.lamp.on{animation:none}html{scroll-behavior:auto}}
+@media print{.nav,.clock,.cp{display:none}body{background:#fff;color:#000}}
+.loop{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;font-weight:700}
+.loop span{border:1px solid var(--rule);background:var(--panel);border-radius:999px;padding:4px 11px}
+.loop i{font-style:normal;color:var(--amber);font-family:var(--f-led)}
+.dan{display:grid;gap:8px}
+.st{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--off);border-radius:12px}
+.st.done{border-left-color:var(--ready)}
+.st>summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 12px}
+.st>summary::-webkit-details-marker{display:none}
+.st .no{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--amber);color:var(--amber);font-family:var(--f-led);font-size:17px;display:grid;place-items:center;line-height:1}
+.st.done .no{border-color:var(--ready);color:var(--ready)}
+.st .tt{display:block;font-weight:900;font-size:16px;line-height:1.35}
+.st .pd{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.st .in{padding:0 12px 12px;display:grid;gap:8px}
+.st .goal{font-size:15px;line-height:1.6}
+.st .tip{font-size:14px;color:var(--muted);border-left:2px solid var(--amber);padding-left:10px;line-height:1.6}
+.chk{display:inline-flex;align-items:center;gap:8px;font-weight:900;font-size:14px;cursor:pointer;border:1px solid var(--rule);border-radius:999px;padding:7px 14px;background:var(--panel-2);justify-self:start}
+.chk input{width:18px;height:18px;accent-color:var(--ready)}
+.chain{display:flex;gap:4px;overflow-x:auto;padding:2px 0 6px;scrollbar-width:none;align-items:stretch}
+.chain::-webkit-scrollbar{display:none}
+.chain button{flex:none;border:1px solid var(--rule);background:var(--panel);border-radius:10px;padding:8px 10px;cursor:pointer;display:grid;gap:1px;justify-items:center;min-width:64px}
+.chain button b{font-size:13px;line-height:1.3}
+.chain button span{font-family:var(--f-led);font-size:11px;color:var(--muted)}
+.chain button[aria-pressed="true"]{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan),0 0 16px -4px var(--cyan)}
+.chain button[aria-pressed="true"] span{color:var(--cyan)}
+.chain .ar{flex:none;align-self:center;color:var(--muted);font-family:var(--f-led);font-size:12px}
+.q{width:100%;background:var(--panel);border:1px solid var(--rule);border-radius:12px;color:var(--text);font:inherit;padding:11px 14px}
+.q::placeholder{color:var(--muted)}
+.tr{background:var(--panel);border:1px solid var(--rule);border-top:2px solid var(--c,var(--rule));border-radius:12px;padding:11px 13px;display:grid;gap:6px;align-content:start}
+.tr .sy{font-weight:900;font-size:16px;line-height:1.45}
+.tr dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;font-size:14.5px;line-height:1.6}
+.tr dt{font-family:var(--f-led);font-size:11px;color:var(--muted);padding-top:3px;white-space:nowrap}
+.tr dd{margin:0}
+.tr dd.pv{color:var(--amber)}
+.cnt{font-family:var(--f-led);font-size:13px;color:var(--muted)}
+.fig{background:var(--panel);border:1px solid var(--rule);border-radius:14px;padding:10px 8px 6px}
+.fig svg{display:block;width:100%;height:auto}
+.fig .cap{all:unset;display:block;font-size:12px;color:var(--muted);text-align:center;padding-top:4px}
+.wr rect{fill:#231c38;animation:lit 9s linear infinite}
+.wr.r0 rect{animation-delay:0s}.wr.r1 rect{animation-delay:1.3s}.wr.r2 rect{animation-delay:2.6s}.wr.r3 rect{animation-delay:3.9s}
+@keyframes lit{0%,4%{fill:#231c38}6%{fill:#fff}10%,78%{fill:var(--c)}84%,100%{fill:#231c38}}
+.wk{opacity:0;animation:wk 9s linear infinite}
+.wk.r0{animation-delay:.6s}.wk.r1{animation-delay:1.9s}.wk.r2{animation-delay:3.2s}.wk.r3{animation-delay:4.5s}
+@keyframes wk{0%,6%{opacity:0}10%,72%{opacity:1}80%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.wr rect{animation:none;fill:var(--c)}.wk{animation:none;opacity:1}}
+.ph{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x proximity}
+.ph figure{flex:none;width:min(62vw,230px);margin:0;scroll-snap-align:start}
+.ph img{display:block;width:100%;height:150px;object-fit:cover;border-radius:10px;border:1px solid var(--rule);background:#000}
+.ph figcaption{font-size:12px;color:var(--muted);padding-top:3px;line-height:1.4}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="lotus" viewBox="-40 -34 80 52"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(-72 0 14)"/><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(72 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(-38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z"/></g></symbol></svg>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="./"><svg aria-hidden="true"><use href="#lotus"/></svg><span><b>技術のステップとトラブル</b><span>LOTUS スタッフ向けマニュアル</span></span></a>
+  <div class="clock"><span class="lbl">JST</span><span class="tc" id="tc">--:--:--</span></div>
+</header>
+<nav class="nav" aria-label="目次"><a href="./">入口</a><a href="#dan">ステップ</a><a href="#trouble">トラブル</a><a href="#kiriwake">切り分け</a><a href="#anzen">安全</a><a href="tachimawari.html">報告の型</a></nav>
+
+<section class="hero">
+  <h1>覚える順番は、<br>決まっている。</h1>
+  <p>倉庫で毎日触る物から。1ステップずつ、同じ1周で進めます。</p>
+  <div class="loop" id="loop"></div>
+  <div class="fig" id="wall" role="img" aria-label="LEDは下の段から1段ずつ点けて、確かめてから次の段へ進む"></div>
+</section>
+
+<section class="sec" id="dan">
+  <h2><i>1</i>自分のステップ</h2>
+  <p class="mut">覚える順番の目安です(期間も目安)。会社の段位とは別に、自分の進み具合を見るために使います。</p>
+  <div class="fig" id="stairs" role="img" aria-label="ステップの階段。できた所が緑に光る"></div>
+  <div class="tiles" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+    <div class="tile"><div class="k">できたステップ</div><div class="v" id="pg">0<small> / 10</small></div><div class="s">この端末に記録されます</div></div>
+    <div class="tile"><div class="k">次にやるステップ</div><div class="v" id="nx" style="font-size:18px;line-height:1.5">—</div><div class="s" id="nxs"></div></div>
+  </div>
+  <div class="dan" id="steps"></div>
+  <details class="fold"><summary>現場が入ったら、順番を入れ替えていい</summary><div class="in" id="swap"></div></details>
+  <details class="fold"><summary>現場でよく出る機材・ことば</summary><div class="in"><ul class="pl" id="freq"></ul></div></details>
+</section>
+
+<section class="sec" id="trouble">
+  <h2><i>2</i>トラブル:症状から引く</h2>
+  <p class="mut">どこがおかしいかを押す。信号の流れの順に並んでいます。</p>
+  <div class="chain" id="chain" role="group" aria-label="どこを疑うか"></div>
+  <div class="chips" id="cats" role="group" aria-label="症状の種類"></div>
+  <input class="q" id="q" type="search" placeholder="ことばで探す(例:H10、ノイズ、ロック)" aria-label="ことばで探す">
+  <div class="cnt" id="cnt"></div>
+  <div class="grid c2" id="list"></div>
+</section>
+
+<section class="sec" id="kiriwake">
+  <h2><i>3</i>切り分けの順番</h2>
+  <ol class="steps" id="iso"></ol>
+</section>
+
+<section class="sec" id="anzen">
+  <h2><i>4</i>必ず守る動き</h2>
+  <div class="box c-r"><ul class="pl" id="safe"></ul><p class="mut">荷重・電源の数字は、仕様書と責任者に確かめる。自分で決めない。</p></div>
+</section>
+
+<footer class="foot">株式会社LOTUS ｜ LOTUS VISUAL スタッフ向けマニュアル ｜ <a href="./">入口へ戻る</a></footer>
+</div>
+
+<script>window.DATA={"loop":["名前が言える","出せる・しまえる","つなげる","点けて確かめる","人に説明できる"],"steps":[{"n":"1","period":"入社〜1か月","title":"運ぶ・置く・しまう","items":["カーゴ/ザル","ケースと蓋・番号","ダンディ(台車)","脚立","バミリ","入庫の4手順","NGの分け方","光ケーブルの掃除"],"goal":"言われた物を倉庫から迷わず出し、決まった場所へ正しく戻せる。","tip":"タイルとケーブルは種類・大きさ・通称まで覚えて、まず先輩どうしの会話についていけるようにする。"},{"n":"2","period":"〜3か月","title":"線と電源の名前と向き","items":["イーサコン/CAT6","光ケーブル(QUAD・DUO・Opticon)","SDI/HDMI/DVI","ODUケーブル","ソカペ","スパイダー","TRUE(トゥルーコン)","カムロック","ビームケーブル","電源ボックス","絶縁トランス(容量の見分け)"],"goal":"ケーブルと電源を名前で呼び分け、向きを間違えずに奥まで挿せる。","tip":"絶縁トランスは容量違いを出し間違えた記録があるから表示を読んでから運び、ソカペは挿した後に甘挿しを手で確かめる。"},{"n":"3","period":"〜6か月","title":"金具と組み方","items":["カニ/黄ガニ","レール","吊り金具・バンパー","突き出し金具","自立金具(田の字・チューリップ・ウエイト)","単管","ラッシング","インシュロック","角度プレート"],"goal":"吊りと自立の金具を名前で出せて、指示どおりに組める。","tip":"自立は水平と画面の通りを見て、1段目だけでなく2段目でも水平を取る。"},{"n":"4","period":"〜6か月","title":"よく出るタイル","items":["DP2.6","DM2.6","CLI3.9/CLO3.9","CLM10(E/F/G/Z)","JDI","ロックの位置","full/half の違い","モジュール交換","ケースの枚数"],"goal":"よく出るタイルを1枚ずつ、ロック・モジュール交換・ケース入れまでできる。","tip":"CLI3.9 と CLO3.9 はNG交換のたびに入れ替わりやすいから、型番を読んでからケースへ戻す。"},{"n":"5","period":"〜1年","title":"点ける","items":["iSet/LED VISION","Z6・Z6 Pro","Z5","S4F","H10","レイアウト","マッピング","パラメーター","Main/BU(メインとバックアップ)","段ごとチェック"],"goal":"プロセッサーからタイルを読み込ませ、段ごとに点灯を確かめられる。","tip":"組み切ってから点けると、直すのにLEDを下げて脚立を出すことになるから、段ごとに点けて確かめる。"},{"n":"6","period":"〜1年半","title":"画を合わせる","items":["ImagePro/ImagePro 4K","VIO4K","スケーリング","チャート合わせ","色調整","黒浮き・白浮き","形式(p/i・59.94/60)"],"goal":"届いた映像を画面の大きさと色に合わせ、形式の違いに気づいて直せる。","tip":"黒が白っぽい時に全機材をリセットしても直らず、送出側のカラースペースを変えて直った記録があるから、まず形式を確かめる。"},{"n":"7","period":"〜2年","title":"ROE系","items":["SX40","Tessera S4","S8","XD","Tessera Remote","CB5","Ruby-C","GP2.6","V8S/V8T"],"goal":"ROE系のタイルとプロセッサーを、正しい順番で立ち上げて点けられる。","tip":"ROE は先にプロセッサー、あとでタイルの順で、メインが立ち上がってからバックアップを挿す。"},{"n":"8","period":"〜2年","title":"床LED","items":["CLF系(床LED)","レール","リフター・花道","マスク","ガンマ","雨養生"],"goal":"床LEDをレールに敷き、向きと外し方を間違えずに点けて撤去できる。","tip":"床タイルは片側から一気に剥がすと脚のネジが折れるから、レールとの間を少しずつ外してから剥がす。"},{"n":"9","period":"〜2年半","title":"同期・送出・オペ","items":["Sync Generator/GENLOCK","Resolume Arena","スイッチャー","歌詞出し","モニターばら撒き"],"goal":"複数の映像の同期を取り、送出と切り替え、モニターへの配りができる。","tip":"分配や同期を2台以上で組む時は、現場でいきなりやらず倉庫で先に検証しておく。"},{"n":"10","period":"〜3年","title":"チーフの計算と資料","items":["タイルのドット数","ピック・レール・ポートの計算","重さ","ケーブル本数","電源配分","積み図","機材リスト","人数"],"goal":"図面から機材・ケーブル・電源の数を出し、積み図と機材リストを作れる。","tip":"数は左右対称だと思い込まずに面ごとに1つずつ出し、ケーブルの長さは準備の段階で精査する。"},{"n":"随時","period":"随時","title":"特殊な機材","items":["ecodot(メッシュ)","チェンスラ(チェーンスライダー)","キネシス","開閉・昇降LED","パワーリフト"],"goal":"特殊な機材の現場が入った時に、扱いと注意点を先に確かめて動ける。","tip":"動く画面はケーブルが挟まらない導線を先に決め、画面の動きを考えて配線する。"}],"swap":["入る現場が決まったら、その機材のステップを先取りしてよい。同じ機材・同じ形の現場のレポートを先に読んで現場感をつける。","撤去だけの参加でも、資料を読んでから入る。","使ったことのないタイル・金具は、現場の前に倉庫で一度触っておく。","現場で出たトラブルは、倉庫で再現してノートに残す。","プロセッサーとオペは、月に1件ほど経験できるように配置で機会を作る(案)。","ステップごとの進み具合は「未経験/補助付き/実演確認/人に説明できる」の4段階で残す(案)。"],"freq":[{"name":"フロア・床LED","note":"床に敷くLEDの総称。倉庫でも現場でも一番多く出る言葉で、置き場の意味で言うこともある。"},{"name":"カーゴ/ザル","note":"運搬に使う入れ物。倉庫の入出庫で毎日のように出る。"},{"name":"プロセッサー","note":"現場のシステムの話の中心。機種の名前(Z6・SX40 など)でも呼ぶ。"},{"name":"バミリ","note":"目印に貼るテープ。ケーブルの両端の印やNGの印で出る。"},{"name":"レール","note":"吊りにも床LEDにも使う。倉庫でも現場でもよく出る。"},{"name":"モニター(ばら撒き含む)","note":"現場であちこちに置くモニター。現場の話で多い。"},{"name":"光ケーブル(Opticon・QUAD・DUO)","note":"信号を送る線。掃除・交換・差し口の話でよく出る。"},{"name":"自立金具(田の字・チューリップ・ウエイト)","note":"吊らずに立てる時の金具。現場で多い言葉。"},{"name":"トラス","note":"吊りの話で出る。現場で多い言葉。"},{"name":"JDI(JDI5.9・JDO3.9)","note":"倉庫のメンテと入出庫でよく出るタイル。背面の扱いに注意。"},{"name":"絶縁トランス","note":"電源の話の最初に出る。倉庫では容量の見分けが要る。"},{"name":"電源ボックス(電ボ・4ch・PDU)","note":"電源を分ける箱。現場の電源の話で出る。"},{"name":"カニ/黄ガニ/クランプ","note":"留める金具。倉庫でも現場でも出る。"},{"name":"SDI(12G含む)","note":"映像の信号線。現場のシステムの話で多い。"},{"name":"H10/H5/H2","note":"光と分配の機材。現場のシステムと、信号トラブルの話で出る。"},{"name":"雨養生・養生","note":"野外と床LEDで出る。濡らさない・乾かして戻すの話。"},{"name":"CLI3.9/CLO3.9","note":"倉庫でよく出るタイル。2つが入れ替わりやすい。"},{"name":"イーサコン/CAT6","note":"タイルへ信号を送る線。差し間違いの話でよく出る。"},{"name":"DP2.6","note":"倉庫のメンテと入出庫でよく出るタイル。"},{"name":"CLM10(E/F/G/Z type)","note":"現場でよく出るタイル。型が替わるとケーブルも替わる。"},{"name":"単管","note":"現場の組みで出る。長さの精査が要る。"},{"name":"HDMI/DVI","note":"入力の線。挿さっている種類を目で見る。"},{"name":"コンバーター/変換","note":"線の種類や形式を変える。数パターン持って行く。"},{"name":"イメプロ(ImagePro II・4K)","note":"スケーリングと形式の変換で出る。"},{"name":"iSet/LED VISION/カラーアダプト","note":"タイルを読み込み、色を合わせる制御ソフト。"}],"isolate":[{"step":"止めるか続けるかを責任者と決める","why":"本番中は無断で触らない決まりで、再起動・設定送信・初期化は責任者の判断だから。"},{"step":"どこまで正常かを見る(テストパターン→別PC直結→本線)","why":"どこから症状が乗るかが分かると、疑う範囲を絞れるから。"},{"step":"物理から見る(甘挿し・差し間違い・ケーブル長・コネクターの汚れ)","why":"設定をあれこれ疑った末に、差し間違いや甘挿しだった記録があるから。"},{"step":"経路を1本ずつ替える","why":"一度に2か所替えると、どちらで変わったのか分からなくなるから。"},{"step":"形式を合わせる(解像度・p/i・59.94/60・カラースペース・フレームレート)","why":"機材をリセットしても直らず、形式を合わせて直った記録があるから。"},{"step":"設定の持ち越しを疑う(前の現場の設定・パラメーターの版・ソフトの Build・同時起動)","why":"前の設定がプロセッサーに残り、PCの変更が反映されなかった記録があるから。"},{"step":"交換は最後にする","why":"交換で直っても、それで原因が確定したことにはならないから。"},{"step":"動画・写真で証拠を残し、番号と症状を倉庫へ伝える","why":"倉庫で再現しないNGは、出た時の状況が分からないと検証できないから。"}],"troubles":[{"cat":"fall","sym":"吊りのタイルを外す時","cause":"交換したタイルは、裏のロックがかからず磁石だけで付いていることがある。","fix":"","prevent":"外す前に毎回ロックを自分の目で見て、交換したタイルはロックまで自分で確かめ、前後に脚立を立てて支える人と外す人を分ける。","where":"tile"},{"cat":"fall","sym":"リフターに組み込むLEDの固定","cause":"インシュロックの止めが甘く、載せる台が狭いと落ちる。","fix":"","prevent":"止め方を最初に全員で統一し、引き寄せるのでなく上に引き上げる形で止める。","where":"rig"},{"cat":"fall","sym":"リフターでケースを重ねて運ぶ時","cause":"","fix":"","prevent":"使うリフターの条件を荷役の責任者に確かめてから載せる。","where":"rig"},{"cat":"fall","sym":"床タイルを剥がしたら脚のネジが折れた","cause":"片側から一気に剥がした。別の型の床と同じ扱いをしていて、外し方の説明が足りなかった。","fix":"レールとタイルの間を少しずつ外してから剥がす。","prevent":"機種ごとの外し方を、作業の前に全員へ説明する。","where":"tile"},{"cat":"fall","sym":"JDI の背面に傷がつく","cause":"背面は傷がつきやすい。","fix":"","prevent":"ぶつけない。持つ場所を決めて持つ。","where":"tile"},{"cat":"souko","sym":"風の強い日の鉄扉","cause":"風であおられて急に閉まる。","fix":"","prevent":"扉は「カチッ」と音がするまで手で閉める。","where":"souko"},{"cat":"wiring","sym":"縦の流れがおかしい","cause":"バックアップとメインの差し間違い。イーサコンを延長した時にバミリを貼り間違えた疑い。","fix":"正しく差し直した。","prevent":"主系・予備系と両端のラベルを、配線図と照らし合わせる。","where":"link"},{"cat":"wiring","sym":"カラーバーが出ず作業が止まった","cause":"イーサコンの差し間違い。結線の担当どうしで認識がそろっていなかった。","fix":"","prevent":"直前の変更は、全員でそろえてから結線する。","where":"link"},{"cat":"wiring","sym":"3段目だけ電源が立ち上がらない","cause":"原因は未確定(テスターでは問題なし、立ち上げ直しでも直らなかった)。","fix":"LEDを下げ、脚立でタイルのケーブルをつなぎ直して解消。","prevent":"段ごとに点灯を確かめてから次の段へ進む。","where":"link"},{"cat":"wiring","sym":"つなぎ忘れが数か所見つかった","cause":"チェックなしで組み進めた。","fix":"","prevent":"ダブルチェックをして、パラメーターは自分の目で確かめる。","where":"link"},{"cat":"wiring","sym":"床の一部モジュールが映らない","cause":"タイル裏の基板コネクターが外れていた。基板が緩むとボーダーラインが出る。","fix":"コネクターを差し直し、基板を押し込んだ。","prevent":"","where":"tile"},{"cat":"wiring","sym":"最後のタイルまで信号が届かない","cause":"信号ケーブルが長すぎた。","fix":"","prevent":"末端が届かない時は、ケーブルの長さを疑う。","where":"link"},{"cat":"wiring","sym":"ソカペや ODU が甘挿しになっている","cause":"奥まで入っていない。ODU は甘挿しが起きやすい。","fix":"設営後の空き時間に確かめた。","prevent":"毎朝、甘挿しチェックをする。","where":"power"},{"cat":"wiring","sym":"上段のNGが、上がると直前で消える","cause":"原因は未確定。高所作業車で上がると消えるため、段を特定できなかった。","fix":"疑わしい2枚とも交換した。","prevent":"エラーは出ている間に動画・画像で証拠を残す。","where":"tile"},{"cat":"signal","sym":"H10 が信号を受けない","cause":"Z5 の出力設定が Network で、光側に出ていなかった(fiber にするとイーサコン側に出ない)。","fix":"両方ともイーサコン出力に変え、基地に H10 を1台足して TX として使った。","prevent":"出力の方式は、図面の段階で確かめる。","where":"processor"},{"cat":"signal","sym":"光の信号が不安定","cause":"原因は未確定。","fix":"光コンバーターの差し口1・2を入れ替えたら安定し、戻しても安定した。","prevent":"原因が分からないまま直った時も、記録して責任者へ伝える。","where":"link"},{"cat":"signal","sym":"プロンプターPCの信号を卓で受けられない","cause":"原因は未確定。","fix":"ImagePro II を足して、1080/60p を 1080/59.94i に変換した。","prevent":"形式を事前に合わせておく。","where":"source"},{"cat":"signal","sym":"12G SDI がノーシグナルになる","cause":"分配器からの距離が長く、信号が減衰した。","fix":"途中に分配器を入れて1区間を短くし、その後は TX/RX で解決した。","prevent":"基地の位置によっては、12G SDI と光の変換を持って行く。","where":"link"},{"cat":"signal","sym":"PCとプロセッサーの接続が切れる","cause":"前の設定がプロセッサーに残り、PCで変えた内容が反映されなかった。","fix":"factory reset して作り直した(初期化は全設定が消えるおそれがあり、責任者の判断でやる)。","prevent":"","where":"processor"},{"cat":"signal","sym":"制御ソフトを2つ開くとタイルを読まない","cause":"iSet と LED VISION を同時に開いていた。","fix":"片方ずつ開いて使う。","prevent":"制御ソフトは、使う片方だけを開く。","where":"processor"},{"cat":"signal","sym":"朝 iSet を立ち上げるとLEDを全部読まない","cause":"バックアップを挿したまま、プロセッサーより先に iSet を立ち上げたという推定(未確定)。","fix":"全電源を落として再起動した。","prevent":"","where":"processor"},{"cat":"signal","sym":"XD 間の接続がつながったり切れたりする","cause":"メインとバックアップを同時に挿して電源を上げた。","fix":"マッピングが済んだ状態でメインだけをつなぎ、立ち上がってからバックアップを挿した。","prevent":"ROE は先にプロセッサー、あとでタイルの順で立ち上げる。","where":"receiver"},{"cat":"signal","sym":"Colorlight で立ち上げ順を間違えやすい","cause":"立ち上げの順番が機種によって逆になる。","fix":"","prevent":"立ち上げ順は機種ごとに責任者へ確かめる。","where":"processor"},{"cat":"signal","sym":"調整用PCがフリーズした","cause":"原因は未確定。","fix":"別のPC(ソフトの版が違う物)に切り替えた。","prevent":"予備のPCを用意し、ソフトの版を記録しておく(iSet は同じ番号でも Build で扱いが違う)。","where":"processor"},{"cat":"signal","sym":"入力ケーブルの見落とし・HD予定が4K設定","cause":"原因は未確定。","fix":"","prevent":"設定を触る前に、物理の経路と求められた仕様を照らし合わせる。","where":"link"},{"cat":"signal","sym":"SDI-光変換の入力が逆、LOOP OUT がちらつく","cause":"入力1・2が入れ替わっていた。ちらつきは接触不良の疑い(未確定)。","fix":"内部の光を入れ替えて戻した。","prevent":"管理表にNGと症状を書く。","where":"link"},{"cat":"picture","sym":"黄色い線と黒浮きが出る","cause":"コンバーターと S4 の組み合わせで出た例がある。","fix":"コンバーターを ImagePro に替えた。","prevent":"","where":"processor"},{"cat":"picture","sym":"ガンマを送っても色味が合わない","cause":"PCに入っていたパラメーターが古かった。full と half の明るさが合わない時も同じ。","fix":"メーカーから新しいパラメーターをもらって書き直し、最新を流した。","prevent":"パラメーターの版を管理する。","where":"processor"},{"cat":"picture","sym":"小さいクロップで画が震える・円の線が汚い","cause":"小さすぎるクロップ、またはプロセッサー(Z5)側でのスケーリング。","fix":"ImagePro などのスケーラーでリサイズした。","prevent":"","where":"processor"},{"cat":"picture","sym":"分配した素材の同期が取れない","cause":"原因は未確定(VIO4K の OUT に同期信号を乗せる設定で解消)。","fix":"VIO4K の OUT に同期信号を乗せた(倉庫で検証)。Sync Generator は through して入れる。素材のずれには GENLOCK と Sync Generator を使う。","prevent":"2台以上で組む時は、事前に倉庫で検証する。","where":"processor"},{"cat":"picture","sym":"バックアップ信号を入れると映像がカクカク","cause":"バックアップ信号が原因。","fix":"バックアップを抜いて解消した。","prevent":"","where":"link"},{"cat":"picture","sym":"カメラの映像がカクカクする","cause":"カメラと映像のフレームレートが合っていなかった。","fix":"フレームレートを統一した。","prevent":"","where":"source"},{"cat":"picture","sym":"黒に赤や青のノイズ・ちらつきが出る","cause":"原因は未確定。別PCの直結とテストパターンでは出ないため、FOH側の出力か光ケーブルと推定。","fix":"分配器を外す→HDMI交換→プロセッサー交換の順に試したが直らなかった。","prevent":"切り分けの順番を決め、試すたびに報告する。","where":"source"},{"cat":"picture","sym":"床タイルが一瞬ちらつく(ボーダーノイズ)","cause":"マスク交換の時のFW更新の後に数枚出た例がある(レシーバー側)。","fix":"タイルごと交換した。","prevent":"","where":"tile"},{"cat":"picture","sym":"S8 の SDI 入力でノイズが出る","cause":"原因は未確定(倉庫の検証では再現しなかった)。","fix":"様子見とした。","prevent":"倉庫で再現しないNGは、どういう状況で出たかを詳しく伝える。","where":"processor"},{"cat":"picture","sym":"暗いシーンで XD 前面の緑の光が目立つ","cause":"XD の前面パネルの光。","fix":"調整用PCから前面パネルを消した(操作は電話で案内)。","prevent":"暗転のある現場では、前面の光が客席から見えないよう黒で養生する。インジケーターを消した時は、撤去前に ON に戻してから電源を落とす。","where":"receiver"},{"cat":"mech","sym":"自立の水平が取れず交換のたびにドットNG","cause":"原因は未確定。","fix":"","prevent":"1段目だけでなく2段目でも水平を取り、直らなければ中断する。","where":"rig"},{"cat":"mech","sym":"外アールで単管の長さが足りない","cause":"持って行った単管の長さが足りなかった。","fix":"現場で継ぎ足した。","prevent":"","where":"rig"},{"cat":"mech","sym":"仮組みで磁石がリフターの縁に当たる","cause":"タイルの磁石の部分がリフターの縁に干渉した。","fix":"当たるタイルの磁石を外し、配線を横渡りから縦渡りに変えた。","prevent":"仮組みで見つけた違いは、全員に共有する。","where":"rig"},{"cat":"plan","sym":"ケーブル長の精査不足で仕込みが遅れた","cause":"準備の段階でケーブルの長さを精査していなかった。","fix":"","prevent":"準備で長さを精査して変換は数パターン持ち、開閉などで動く所は光でなくイーサコンにする。","where":"plan"},{"cat":"plan","sym":"撤去で忘れ物が続いた","cause":"焦って撤去した。","fix":"","prevent":"最終確認の時間を取れるよう、先に相談しておく。","where":"plan"},{"cat":"plan","sym":"工具を積んだ後に吊り替えを頼まれた","cause":"個人の工具まで積み終えた後に依頼が来た。","fix":"","prevent":"残す工具を、積み込みの前に決めておく。","where":"plan"},{"cat":"souko","sym":"絶縁トランスの容量を取り違えた","cause":"容量の違うトランスの取り違え。","fix":"ラベルを貼って区別できるようにした。","prevent":"表示の容量を読んでから出す。","where":"souko"},{"cat":"souko","sym":"二人で確認したのに誤出庫した","cause":"見ていた機材表が旧い版だった。","fix":"","prevent":"書き込みのある原本の機材リストを正にして、出庫と片付けで照合する。","where":"souko"},{"cat":"souko","sym":"借りたケーブルの数が合わない","cause":"借りた物・貸した物の数は、表記と合わないことがある。","fix":"","prevent":"届いたらその場で数え、違えばすぐ報告する。","where":"souko"},{"cat":"souko","sym":"野外から戻ったケースが濡れている","cause":"","fix":"ケースを乾かして拭く。","prevent":"濡れた物は拭いて十分に乾かし、内部への浸水がないかを見てから戻す。","where":"souko"},{"cat":"mech","sym":"野外の雨でコネクターや床が濡れる・結露","cause":"","fix":"","prevent":"野外ではイーサコンの受け口を下に向ける。床の雨養生のやり方はチーフが決める(両端を塞ぐと結露することがある)。","where":"rig"},{"cat":"plan","sym":"高所の交換手段を誰が用意するか曖昧","cause":"担当の境目が変わると、脚立などの用意が抜けることがある。","fix":"画面ごとに交換の方法を先に決めた(作業トラスに乗って昇降/途中まで降ろして長脚立/少し降ろして高所作業車)。","prevent":"高所の手段と道具の持ち主を、最初に文面で決める。","where":"plan"},{"cat":"plan","sym":"本番直前に作業用のトラスが無くなった","cause":"重量の都合で、メンテナンス用のトラスが使えなくなることがある。","fix":"作業を高所作業車に切り替え、動線を会場と舞台側に相談する。","prevent":"交換の計画は第2案まで持ち、高所作業車の台数・置き場・動線を会場と舞台側に確かめる。","where":"plan"},{"cat":"plan","sym":"LEDを降ろしたいが昇降は他社の担当","cause":"昇降が絡むトラスのモーター操作は担当の会社がやる決まりで、こちらでの操作はNG。","fix":"","prevent":"昇降・モーター・吊りの操作は担当の会社に頼み、自分たちでは触らない。","where":"rig"},{"cat":"plan","sym":"ケーブルの作成日を検証日の後に置いた","cause":"作業日の順番の組み違い。","fix":"チーフが「チェックの前に作っておいて」と直した。","prevent":"作る作業の日は、次の検証より前に置く。","where":"plan"},{"cat":"signal","sym":"1ポートの途中から先のタイルを読まない","cause":"タイル1枚のNGと、全体の読み込み不良が重なっていた。プロセッサーが立ち上がる前にタイルの電源を上げた可能性(未確定)。","fix":"全体の再起動→バックアップのプロセッサーに替える→渡りケーブルを替える→タイルを替える、の順に試し、タイル交換で読んだ。メインに戻してレイアウトを書き直し、信号の送出まで確かめてセーブした。","prevent":"途中の1枚から先が読めない時は、その1枚と手前の1枚の出口を早めに疑う。","where":"tile"},{"cat":"signal","sym":"信号からテストパターンに切り替わらない","cause":"セーブの後にPCとプロセッサーの接続がまれに切れる、という見立て(未確定)。LANのランプは両方とも点滅していた。","fix":"LANを抜き差しし、ソフトを立ち上げ直したら出た。","prevent":"ランプが点滅していても操作が届かないことがあるから、プロセッサー本体でできる操作を確かめておく。","where":"processor"},{"cat":"wiring","sym":"読み込んでいるのに正しく光らない","cause":"レイアウトでハーフとフルのポートを間違えて書いていた。","fix":"タイル側の電源とプロセッサーのリセットでは直らなかった。","prevent":"リセットの前にレイアウトの型(フル/ハーフ)とポートを実物と見比べ、混ざる時のパラメーターは同時に送らずそれぞれで送る。","where":"processor"},{"cat":"signal","sym":"バックアップだけにするとタイルを読まない","cause":"原因は未確定。メインを挿している間は気づけなかった。","fix":"","prevent":"メインを抜いた状態でのバックアップ単独チェックを、仕込みのチェックに入れる。","where":"receiver"},{"cat":"wiring","sym":"絵がすぐに出ない","cause":"H10 の信号ケーブルの差し間違い。別の日には、甘挿しで電源と信号を読み込まない所があった。","fix":"","prevent":"設定を疑う前に、差し先と挿さり具合を見る。","where":"receiver"},{"cat":"signal","sym":"カラーバーが出ない(ImagePro 4K)","cause":"つないでいるケーブルが HDMI だと気づいていなかった。","fix":"","prevent":"入力の設定をする前に、実際に挿さっているケーブルの種類を目で見る。","where":"link"},{"cat":"signal","sym":"パラメーター送信中に線を抜きタイルが異常","cause":"パラメーターを送っている最中に、電源や信号の線を抜いた。","fix":"電源やプロセッサーの立ち上げ直しで直ることもある。","prevent":"送る前に「いまから送る、触らないで」と声に出し、終わったら「終わった」と言う。","where":"tile"},{"cat":"plan","sym":"設定を保存せず翌朝やり直しになった","cause":"変えた数値をセーブしないままにした。","fix":"翌朝に設定し直した。","prevent":"退館前の確認に「セーブしたか」を入れ、通電したらプロセッサーの設定がリセットされていないかをすぐ見る。","where":"processor"},{"cat":"signal","sym":"立ち上げ直したらボールLEDが信号を読まない","cause":"原因は未確定(検証は翌日へ持ち越し、結末は記録にない)。","fix":"","prevent":"持ち越す時は「試したこと・まだ試していないこと」を引き継ぎに書く。","where":"tile"},{"cat":"signal","sym":"SDI が入らない個体・機種がある","cause":"同じ型でも SDI が入らなかった個体の例がある。借り物のプロセッサーで SDI を正しく読まない場合もある。モニターは名称の最後の「S」の有無で SDI を読むかが分かる。","fix":"SDI を HDMI に変えるコンバーターを足した。","prevent":"個体が替わったら入力の種類を見直し、借り物のプロセッサーは倉庫で一度入力を通す。","where":"processor"},{"cat":"picture","sym":"設営中にノイズが出た(光の受け口)","cause":"プロセッサーの光ケーブルの受け口が悪かった。","fix":"別の口へ差し替えたら直った。","prevent":"光はケーブルだけでなく受け口も疑い、悪かった口を機材シートに書く。","where":"processor"},{"cat":"souko","sym":"光ケーブルの端面に銀色のキズがある","cause":"端面のキズ。キズのある物はNG。","fix":"NGのバミリを貼り、番号つきで写真を報告した。","prevent":"光の掃除の時に端面を見て、キズのある物はNGに分ける。","where":"link"},{"cat":"signal","sym":"信号がパカつく(type E のタイル)","cause":"原因は未確定(倉庫で再現検証中。結果は記録にない)。","fix":"版を上げたタイルを元の版へ戻し、メーカーから新しいパラメーターをもらう予定とした。","prevent":"タイルの版とパラメーターはメーカーの指示で扱い、版の確認は倉庫の責任者に確かめてからやる。","where":"tile"},{"cat":"picture","sym":"色が合わないタイルが数枚ある","cause":"タイルに残った設定のことがあり、壊れているとは限らない。1枚は calibration データが合っていない見立て(未確定)。","fix":"カラーアジャストとソフトエッジのリセット、カラースペースのファイルの入れ直しで大半は合った。","prevent":"現場ではリセットしてだめならタイルごと交換、原因探しは倉庫でやり、NGは症状別に数えて返す。","where":"tile"},{"cat":"signal","sym":"機構が動く時にLED側でエラーが出る","cause":"機構が動いている間は、LED側にエラーが出る可能性が高い。","fix":"","prevent":"動かす前後でエラーパケットを見比べ、見る頻度を上げる。","where":"link"},{"cat":"signal","sym":"延長が多くエラーの場所を探すのに手間取る","cause":"延長が多いと仕込みやバラシの手間は減るが、トラブルの時に場所を探すのに時間がかかる。","fix":"","prevent":"延長した位置を配線図に書いておく。","where":"link"},{"cat":"mech","sym":"回転・昇降する画面でケーブルが挟まる恐れ","cause":"画面が回転・昇降で動く。","fix":"","prevent":"ケーブルが挟まらない導線を確保し、画面の動きを考えて配線する。","where":"rig"},{"cat":"wiring","sym":"長い本番で甘挿しとピックの緩みが出る","cause":"本番期間が長く、タイルへ伸びるケーブルが甘挿しになり、ピックが緩んできた。","fix":"ソカペなどの甘挿しチェックをした。","prevent":"朝に甘挿しとエラーパケット、本番後にエラー、の2回を日課にする。","where":"link"},{"cat":"power","sym":"スパイダーの1口だけ電源が入らない","cause":"ソカペのNG(スパイダーを替えても変わらず、ソカペの交換で改善)。PDU側の口が原因でないことは倉庫の検証待ち。","fix":"末端のスパイダー→途中のソカペの順に1つずつ替え、ソカペにNGのバミリを貼った。","prevent":"NGの報告には、使っていたPDUの番号と口まで書く。","where":"power"},{"cat":"power","sym":"雨の後、台下が漏電で作業できない","cause":"雨の後の漏電。","fix":"通電の作業は止め、雨養生のチェックだけ行った。","prevent":"漏電している間は通電チェックをせず、濡れた所と養生し直した所を写真で残して責任者に上げ、通電の再開は電源の責任者の判断に従う。","where":"power"},{"cat":"plan","sym":"タイルやプロセッサーの型が直前に替わった","cause":"型が替わると、ケーブル類・絶縁トランスの方式・入力の種類も一緒に替わる。","fix":"ケーブル類とトランスの指定を変え、ほかの案件で押さえていた個体を付け替えた。","prevent":"型が替わったら渡りケーブル・電源の方式・入力の種類・押さえ表を一緒に直し、リストを出し直す。","where":"plan"},{"cat":"wiring","sym":"床LEDのモジュールが点かない・色が違う","cause":"モジュールは向きや場所が違うと点灯しない。マスクの向きが違うと色が違う。","fix":"電源ケーブルを替えた時は配線の順番を守り、テスターで導通→通電の順に確かめた。","prevent":"床の「点かない」はまず向きと位置、色違いはマスクの向きを見る。","where":"tile"},{"cat":"souko","sym":"床LEDの信号ケーブルが挟まれてNGが多発","cause":"ケースへ逆向きに入れると信号ケーブルが奥に入り、挟まれる。","fix":"","prevent":"収納は倉庫が決めた向きで入れ、テープ付きとテープ無しは混ぜない。","where":"souko"},{"cat":"wiring","sym":"メンテ直後のタイルを使う時","cause":"メンテ直後はドットNGが出ることがある。","fix":"大量のモジュールを交換し、追加のモジュールを倉庫から持って来てもらった。","prevent":"メンテ直後のタイルを使う現場は予備モジュールを多めに持ち、仕込み前の点灯チェックを厚くし、協力会社に頼む時も取り扱いを申し送る。","where":"tile"},{"cat":"souko","sym":"修理から戻ったタイルを棚に戻す時","cause":"","fix":"割れや欠けを見つけた物は分けておく。","prevent":"修理から戻った物は、マスクと角を見てから棚へ戻す。","where":"tile"},{"cat":"souko","sym":"型番が同じでも世代の違うタイルがある","cause":"世代の違うタイルが同じケースに混ざることがある。","fix":"","prevent":"見分け方をケースと機材シートに書いておく。","where":"souko"},{"cat":"plan","sym":"渡りケーブルの数が合わない","cause":"タイルの数え間違い。左右対称だと思い込んでいた。","fix":"","prevent":"必要数は図面の枚数から面ごとに1つずつ出し、借りたケーブルは返す前にもう一度確かめる。","where":"plan"},{"cat":"souko","sym":"付属品が足りない・中身が入れ替わる","cause":"ケースの付属品(電源ケーブルなど)が抜けていたり、中身が入れ替わっていることがある。","fix":"","prevent":"番号つきの機材はふたを開けて付属品まで見て、入れ物を替えた時は元のケースの場所を書いて引き継ぐ。","where":"souko"},{"cat":"souko","sym":"似たケーブル・似た金具が混ざっている","cause":"似たケーブルや、長さの違う金具が同じ場所に混ざることがある。","fix":"","prevent":"戻す時は端子の形と長さを見て、現場で挿さらない・届かない時は混入も疑う。","where":"souko"},{"cat":"souko","sym":"ケースのキャッチロックやキャスターが傷む","cause":"キャッチロックの緩みや、キャスターのネジ外れが起きる。","fix":"","prevent":"角や面をそろえ、はみ出したケーブルや金具がないように積み、傷みは見つけた日に写真と番号で報告する。","where":"souko"},{"cat":"souko","sym":"積み込みで荷が動く・上の物が落ちる恐れ","cause":"積み込みは荷が動きやすい。","fix":"","prevent":"ラッシングは上と下で固める。足場の悪い所ではケースを縦方向に押す(固定の本数と積み方は、運送側と倉庫の責任者の指示が正)。","where":"souko"},{"cat":"souko","sym":"片付けで機材の数が合わない","cause":"押さえ忘れのまま持ち出すと探せない。機材表の赤はNGの色なので、案件の色に使うと紛れる。","fix":"","prevent":"集め終わりと積み終わりに機材リストを倉庫へ流し、書き込みのある原本を置いて現場へはコピーを持って行く。","where":"souko"},{"cat":"plan","sym":"退館後のシステム機材の盗難・誤操作の恐れ","cause":"PCなどのシステム機材は盗難の恐れがある。前面のボタンを誤って押せる置き方も危ない。","fix":"","prevent":"退館の時にシステム機材へ黒布をかけ、前面のボタンには Lock をかける。","where":"processor"},{"cat":"plan","sym":"会場ごとにケーブルの長さとルートが変わる","cause":"花道の長さや階段の位置が会場ごとに変わる。","fix":"使った長さとルートを仕込みの報告に残した。劇場では、ケーブルを見えない位置まで引くのにロープを使う。","prevent":"使った長さとルートを報告に残す(その会場の記録で、ほかの会場の目安にはしない)。","where":"plan"}],"safety":["外す前に毎回、ロックを自分の目で見る。交換したタイルはロックまで自分で確かめる。","吊りのタイルを外す時は前後に脚立を立て、支える人と外す人を分ける。","インシュロックで止める時は止め方を最初に全員で統一し、引き寄せるのでなく上に引き上げる形で止める。","高所は低く見える高さでも安全帯を着け、金具は腰より高い位置に掛ける。資格の要る作業は資格のある人だけがやる。","開いているリフターの穴と雨の後は特に危ない。慣れてきた頃こそ初心で動く。","昇降・モーター・吊りの操作は担当の会社だけがやる。LEDを降ろしたい時は頼む。","吊ってよい重さ・つないでよい枚数・電源の容量は、仕様書と責任者に確かめる。資料にあった数字を自分の判断で安全値に使わない。","漏電している間は通電チェックをしない。通電の再開は電源の責任者が決める。","本番中は無断で触らない。再起動・設定送信・初期化は責任者の判断でやる。","リフターでケースを運ぶ時は、使う機械の条件を荷役の責任者に確かめてから載せる。荷台では上に物を載せたまま走らせない。"],"photos":{"2":[{"f":"d32-00698f08.webp","c":"D型 → TRUE1","w":640,"h":480}],"3":[{"f":"d40-69fd8b54.webp","c":"吊り金具(レール用エンド金具)","w":640,"h":480}],"4":[{"f":"d01-5dc7d229.webp","c":"CLI3.9 正面","w":640,"h":480},{"f":"d09-69ac21d5.webp","c":"CLM10 M3 正面","w":480,"h":640}],"7":[{"f":"d03-d105c793.webp","c":"ROE Carbon CB5 正面","w":480,"h":640}],"8":[{"f":"d05-4fa66dbd.webp","c":"CLF5M2(床)正面","w":640,"h":480}]}};</script>
+<script>
+/* 共通:時計・コピー・系統図の線 */
+var LK=(function(){
+'use strict';
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function p2(n){return String(n).padStart(2,'0')}
+function clock(el){
+  if(!el)return;
+  function draw(){var d=new Date(Date.now()+9*3600e3);el.textContent=p2(d.getUTCHours())+':'+p2(d.getUTCMinutes())+':'+p2(d.getUTCSeconds())}
+  draw();setInterval(draw,1000);
+}
+function copyText(t,btn){
+  function ok(){if(!btn)return;var o=btn.textContent;btn.textContent='コピーした';btn.classList.add('done');setTimeout(function(){btn.textContent=o;btn.classList.remove('done')},1400)}
+  function fb(){try{var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();ok()}catch(e){}}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}catch(e){fb()}
+}
+document.addEventListener('click',function(ev){
+  var b=ev.target.closest('.cp');if(!b)return;
+  var box=b.closest('[data-copy]');var t=box?box.getAttribute('data-copy'):'';
+  if(!t){var x=b.closest('.tpl');if(x)t=x.querySelector('.tx').textContent}
+  copyText(t,b);
+});
+/* 幹から枝へ:.tree の中の .root → .head → .leaf → .sink を線でつなぐ */
+function tree(stage,onPick){
+  var svg=stage.querySelector('.wires'),NS='http://www.w3.org/2000/svg',hot=null,sel=null;
+  function R(el,o){var r=el.getBoundingClientRect();return{l:r.left-o.left,t:r.top-o.top,r:r.right-o.left,b:r.bottom-o.top,cy:(r.top+r.bottom)/2-o.top}}
+  function P(d,cls,c,len){var p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);if(len)p.setAttribute('pathLength','100');if(c)p.style.setProperty('--c',c);svg.appendChild(p);return p}
+  function col(el){return getComputedStyle(el).getPropertyValue('--c').trim()||'#b9a2ff'}
+  function layout(){
+    var o=svg.getBoundingClientRect();if(!o.width)return;
+    svg.setAttribute('viewBox','0 0 '+o.width+' '+o.height);
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    var root=stage.querySelector('.root'),sink=stage.querySelector('.sink');if(!root)return;
+    var rr=R(root,o),tx=rr.l+17,endY=sink?R(sink,o).t:rr.b;
+    var heads=[].slice.call(stage.querySelectorAll('.head'));
+    if(!sink&&heads.length)endY=R(heads[heads.length-1],o).cy;
+    var trunk='M'+tx+' '+rr.b+'V'+endY;
+    P(trunk,'wire base',col(root));P(trunk,'wire flow',col(root),true).style.setProperty('--dur','5s');
+    heads.forEach(function(h,i){
+      var hr=R(h,o),c=col(h);
+      P('M'+tx+' '+hr.cy+'H'+hr.l,'wire base',c);
+      var leaves=[];var n=h.nextElementSibling;while(n&&n.classList.contains('leaf')){leaves.push(n);n=n.nextElementSibling}
+      if(leaves.length){
+        var bx=hr.l+17,last=R(leaves[leaves.length-1],o);
+        var bus='M'+bx+' '+hr.b+'V'+last.cy;
+        P(bus,'wire base',c);var f=P(bus,'wire flow',c,true);f.style.setProperty('--dur',(3+i*.6)+'s');
+        leaves.forEach(function(lf){var lr=R(lf,o);P('M'+bx+' '+lr.cy+'H'+lr.l,'wire base',c)});
+      }
+    });
+    if(hot)drawHot(hot,o,tx,rr);
+  }
+  function drawHot(el,o,tx,rr){
+    var c=col(el),d='';
+    if(el.classList.contains('root')||el.classList.contains('sink')){var sk=stage.querySelector('.sink');d='M'+tx+' '+rr.b+'V'+(sk?R(sk,o).t:rr.b)}
+    else{
+      var h=el.classList.contains('head')?el:null;
+      if(!h){h=el.previousElementSibling;while(h&&!h.classList.contains('head'))h=h.previousElementSibling}
+      if(!h)return;var hr=R(h,o);
+      d='M'+tx+' '+rr.b+'V'+hr.cy+'H'+hr.l;
+      if(el!==h){var lr=R(el,o),bx=hr.l+17;d+='M'+bx+' '+hr.b+'V'+lr.cy+'H'+lr.l}
+    }
+    P(d,'wire hot',c);
+  }
+  stage.addEventListener('click',function(ev){
+    var b=ev.target.closest('[data-id]');if(!b||!stage.contains(b))return;
+    if(sel)sel.classList.remove('sel');sel=b;b.classList.add('sel');hot=b;layout();
+    if(onPick)onPick(b.getAttribute('data-id'),b);
+  });
+  var q=0;function re(){if(q)return;q=requestAnimationFrame(function(){q=0;layout()})}
+  if(window.ResizeObserver)new ResizeObserver(re).observe(stage);
+  window.addEventListener('resize',re);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(re);
+  layout();
+  return{layout:layout,pick:function(id){var b=stage.querySelector('[data-id="'+id+'"]');if(b)b.click()}};
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+return{clock:clock,tree:tree,copy:copyText,esc:esc,reduce:reduce};
+})();
+</script>
+<script>
+(function(){
+'use strict';
+var $=function(s){return document.querySelector(s)},D=window.DATA||{},E=LK.esc;
+LK.clock($('#tc'));
+$('#loop').innerHTML=(D.loop||[]).map(function(x,i){return (i?'<i>▸</i>':'')+'<span>'+E(x)+'</span>'}).join('');
+/* 図:段ごとに点ける */
+(function(){
+  var cols=10,rows=4,tw=25,th=20,g=3,x0=34,y0=8,C=['var(--lotus)','#ff8fc0','#8fe0f0','var(--cyan)'];
+  var h='<svg viewBox="0 0 340 112" aria-hidden="true">';
+  for(var r=0;r<rows;r++){ /* r=0 が一番下の段 */
+    var y=y0+(rows-1-r)*(th+g);
+    h+='<g class="wr r'+r+'" style="--c:'+C[r]+'">';
+    for(var c=0;c<cols;c++)h+='<rect x="'+(x0+c*(tw+g)).toFixed(1)+'" y="'+y+'" width="'+tw+'" height="'+th+'" rx="2"/>';
+    h+='</g><text class="wk r'+r+'" x="'+(x0+cols*(tw+g)+6).toFixed(1)+'" y="'+(y+15)+'" font-family="DotGothic16,monospace" font-size="12" fill="var(--ready)">OK</text>';
+    h+='<text x="'+(x0-8).toFixed(1)+'" y="'+(y+14)+'" text-anchor="end" font-family="DotGothic16,monospace" font-size="10" fill="var(--muted)">'+(r+1)+'段</text>';
+  }
+  h+='<line x1="'+x0+'" y1="'+(y0+rows*(th+g)+1)+'" x2="'+(x0+cols*(tw+g)-g)+'" y2="'+(y0+rows*(th+g)+1)+'" stroke="var(--rule)" stroke-width="2"/></svg><span class="cap">下の段から1段ずつ点けて、確かめてから次の段へ。</span>';
+  document.getElementById('wall').innerHTML=h;
+})();
+/* 1 段 */
+var KEY='lotus-dan-v1',done={};
+try{done=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){done={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}}
+var S=D.steps||[],PH=D.photos||{};
+$('#steps').innerHTML=S.map(function(s,i){
+  return '<details class="st" data-n="'+E(s.n)+'"><summary><span class="no">'+E(s.n)+'</span><span><span class="tt">'+E(s.title)+'</span><span class="pd">'+E(s.period)+'</span></span><i class="lamp wait" style="position:static;margin:0"></i></summary><div class="in">'+
+    '<p class="goal">'+E(s.goal)+'</p><div class="chips">'+(s.items||[]).map(function(x){return '<span class="chip">'+E(x)+'</span>'}).join('')+'</div>'+
+    (PH[s.n]?'<div class="ph">'+PH[s.n].map(function(x){return '<figure><img src="dan-photos/'+E(x.f)+'" width="'+x.w+'" height="'+x.h+'" loading="lazy" alt="'+E(x.c)+'"><figcaption>'+E(x.c)+'</figcaption></figure>'}).join('')+'</div>':'')+
+    (s.tip?'<p class="tip">'+E(s.tip)+'</p>':'')+'<label class="chk"><input type="checkbox" data-n="'+E(s.n)+'">ここまでできた</label></div></details>';
+}).join('');
+function paint(){
+  var n=0,next=null;
+  S.forEach(function(s){
+    var el=document.querySelector('.st[data-n="'+s.n+'"]'),ok=!!done[s.n];
+    el.classList.toggle('done',ok);el.querySelector('.lamp').className='lamp '+(ok?'ready':'wait');
+    el.querySelector('input').checked=ok;if(ok)n++;else if(!next)next=s;
+  });
+  var NUM=S.filter(function(s){return /^\d+$/.test(String(s.n))}),nn=NUM.filter(function(s){return done[s.n]}).length;
+  $('#pg').innerHTML=nn+'<small> / '+NUM.length+'</small>';
+  (function(){var N=S.length,bw=24,g=5,x0=(340-(N*(bw+g)-g))/2,h='<svg viewBox="0 0 340 96" aria-hidden="true">';
+    S.forEach(function(s,i){var ok=!!done[s.n],isN=next&&next.n===s.n,bh=14+i*6,x=x0+i*(bw+g),y=78-bh,col=ok?'var(--ready)':isN?'var(--amber)':'var(--off)';
+      h+='<rect x="'+x.toFixed(1)+'" y="'+y+'" width="'+bw+'" height="'+bh+'" rx="3" fill="'+col+'" opacity="'+(ok||isN?1:.45)+'"/><text x="'+(x+bw/2).toFixed(1)+'" y="92" text-anchor="middle" font-family="DotGothic16,monospace" font-size="10" fill="'+(ok||isN?col:'var(--muted)')+'">'+(String(s.n).length>2?'随':s.n)+'</text>'});
+    h+='</svg>';document.getElementById('stairs').innerHTML=h})();
+  $('#nx').textContent=next?next.title:'全部できた';$('#nxs').textContent=next?((/^\d+$/.test(String(next.n))?'ステップ'+next.n:next.n)+' ・ '+next.period):'';
+}
+$('#steps').addEventListener('change',function(ev){var c=ev.target;if(c.matches('input[data-n]')){done[c.dataset.n]=c.checked;if(!c.checked)delete done[c.dataset.n];save();paint()}});
+paint();
+$('#swap').innerHTML='<ul class="pl">'+(D.swap||[]).map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ul>';
+$('#freq').innerHTML=(D.freq||[]).map(function(x){return '<li><b>'+E(x.name)+'</b>'+(x.note?' — '+E(x.note):'')+'</li>'}).join('');
+
+/* 2 トラブル */
+var WH=[['source','送出','PC・スイッチャー'],['processor','プロセッサー','Z6・SX40 ほか'],['link','線','光・イーサ・SDI'],['receiver','受け','H10・分配'],['tile','タイル','モジュール']];
+var WH2=[['power','電源',''],['rig','吊り・床','金具・リフター'],['plan','段取り','図面・連絡'],['souko','倉庫','積み・番号']];
+var CAT={fall:['落下・破損','var(--on)'],wiring:['点かない・配線','var(--amber)'],signal:['信号が来ない・切れる','var(--cyan)'],picture:['画がおかしい','var(--vio)'],mech:['機械・吊り','var(--lotus)'],plan:['段取りの変更','var(--ready)'],power:['電源','var(--amber)'],souko:['倉庫・積み込み','var(--cyan)']};
+var T=D.troubles||[],fw=null,fc=null,fq='';
+function count(k,v){return T.filter(function(t){return t[k]===v}).length}
+function drawF(){
+  $('#chain').innerHTML=WH.map(function(w,i){return (i?'<span class="ar">▸</span>':'')+'<button type="button" data-w="'+w[0]+'" aria-pressed="'+(fw===w[0])+'"><b>'+w[1]+'</b><span>'+count('where',w[0])+'件</span></button>'}).join('')+
+    '<span class="ar">｜</span>'+WH2.map(function(w){return '<button type="button" data-w="'+w[0]+'" aria-pressed="'+(fw===w[0])+'"><b>'+w[1]+'</b><span>'+count('where',w[0])+'件</span></button>'}).join('');
+  $('#cats').innerHTML=Object.keys(CAT).filter(function(k){return count('cat',k)}).map(function(k){return '<button type="button" class="chip" data-c="'+k+'" aria-pressed="'+(fc===k)+'">'+CAT[k][0]+'</button>'}).join('');
+}
+function drawL(){
+  var q=fq.trim().toLowerCase();
+  var r=T.filter(function(t){
+    if(fw&&t.where!==fw)return false;if(fc&&t.cat!==fc)return false;
+    if(q&&(t.sym+' '+t.cause+' '+t.fix+' '+t.prevent).toLowerCase().indexOf(q)<0)return false;return true});
+  if(!fw&&!fc&&!q){$('#cnt').textContent='全 '+T.length+' 件。上の札を押すか、ことばで探してください。下は「点かない・配線」です。';r=T.filter(function(t){return t.cat==='wiring'})}
+  else $('#cnt').textContent=r.length+' 件';
+  $('#list').innerHTML=r.map(function(t){
+    var c=(CAT[t.cat]||['',''])[1];
+    return '<div class="tr" style="--c:'+c+'"><div class="sy">'+E(t.sym)+'</div><dl>'+
+      (t.cause?'<dt>原因</dt><dd>'+E(t.cause)+'</dd>':'')+(t.fix?'<dt>直し方</dt><dd>'+E(t.fix)+'</dd>':'')+(t.prevent?'<dt>次は</dt><dd class="pv">'+E(t.prevent)+'</dd>':'')+'</dl></div>';
+  }).join('')||'<p class="mut">当てはまる事例がありません。ことばを変えてみてください。</p>';
+}
+$('#chain').addEventListener('click',function(ev){var b=ev.target.closest('[data-w]');if(!b)return;fw=fw===b.dataset.w?null:b.dataset.w;drawF();drawL()});
+$('#cats').addEventListener('click',function(ev){var b=ev.target.closest('[data-c]');if(!b)return;fc=fc===b.dataset.c?null:b.dataset.c;drawF();drawL()});
+$('#q').addEventListener('input',function(){fq=this.value;drawL()});
+drawF();drawL();
+/* 3・4 */
+$('#iso').innerHTML=(D.isolate||[]).map(function(x){return '<li>'+E(x.step)+(x.why?'<small>'+E(x.why)+'</small>':'')+'</li>'}).join('');
+$('#safe').innerHTML=(D.safety||[]).map(function(x){return '<li>'+E(x)+'</li>'}).join('');
+})();
+</script>
+</body>
+</html>
