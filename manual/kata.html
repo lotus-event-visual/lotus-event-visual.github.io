@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d0a14">
+<title>そのままやる型|LOTUS スタッフ向けマニュアル</title>
+<meta name="description" content="こうなったら、こう言う・こう動く・こう送る。場面ごとの型。">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* 司令室と同じ色と字:数字は LED の点の字、状態はタリーランプ、線は信号の流れ */
+  color-scheme:dark;
+  --ink:#0d0a14; --panel:#161222; --panel-2:#1e1930; --rule:#2e2747;
+  --text:#f3eef9; --muted:#a199b8;
+  --lotus:#ff5fa0; --cyan:#55d3ea; --vio:#b9a2ff; --amber:#ffc65c;
+  --on:#ff473a; --ready:#3be08c; --off:#5a5372;
+  --f-led:"DotGothic16","Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",monospace;
+  --f-body:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:64px}
+html,body{margin:0}
+body{background:var(--ink);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-wrap:anywhere}
+a{color:var(--cyan);text-underline-offset:3px}
+button{font:inherit;color:inherit}
+button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+h1,h2,h3,p{margin:0}
+[hidden]{display:none!important}
+.wrap{max-width:1120px;margin:0 auto;padding:14px 14px 56px;display:grid;gap:16px}
+.led{font-family:var(--f-led);font-variant-numeric:tabular-nums;letter-spacing:.03em}
+
+/* 上の帯 */
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none;color:var(--text)}
+.brand svg{width:38px;height:26px;color:var(--lotus);flex:none}
+.brand b{display:block;font-size:17px;font-weight:900;letter-spacing:.06em;line-height:1.25}
+.brand span{display:block;font-family:var(--f-led);font-size:11px;letter-spacing:.08em;color:var(--muted);line-height:1.4}
+.clock{display:flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--rule);border-radius:999px;padding:6px 14px}
+.clock .lbl{font-size:10px;color:var(--muted);letter-spacing:.1em}
+.tc{font-family:var(--f-led);font-size:18px;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.nav{position:sticky;top:0;z-index:20;margin:0 -14px;padding:8px 14px;background:rgba(13,10,20,.94);border-bottom:1px solid var(--rule);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{flex:none;text-decoration:none;color:var(--muted);font-size:13px;font-weight:700;border:1px solid var(--rule);border-radius:999px;padding:6px 13px;background:var(--panel);white-space:nowrap}
+.nav a.cur,.nav a:hover{color:var(--ink);background:var(--text);border-color:var(--text)}
+
+/* 見出しと文 */
+.hero{display:grid;gap:8px}
+.hero h1{font-size:clamp(24px,6.4vw,38px);font-weight:900;line-height:1.3;letter-spacing:.02em}
+.hero p{color:var(--muted);font-size:15px}
+.sec{display:grid;gap:12px;padding-top:6px}
+.sec>h2{display:flex;align-items:baseline;gap:10px;font-size:clamp(19px,5vw,24px);font-weight:900;line-height:1.35;border-top:1px solid var(--rule);padding-top:18px}
+.sec>h2 i{font-family:var(--f-led);font-style:normal;font-weight:400;font-size:13px;color:var(--amber);flex:none;letter-spacing:.06em}
+.sec h3{font-size:16px;font-weight:900;line-height:1.45;margin-top:4px}
+.lead{font-size:clamp(16px,4.4vw,19px);font-weight:700;line-height:1.65}
+.say{border-left:3px solid var(--amber);background:var(--panel);border-radius:0 12px 12px 0;padding:12px 14px;font-size:15px}
+.say b{color:var(--amber)}
+.mut{color:var(--muted);font-size:13px;line-height:1.6}
+ul.pl,ol.pl{margin:0;padding-left:1.25em;display:grid;gap:6px}
+.hl{color:var(--amber);font-weight:900}
+
+/* 数字の札 */
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;min-width:0}
+.tile .k{font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.4}
+.tile .v{font-family:var(--f-led);font-size:clamp(20px,6vw,27px);line-height:1.25;font-variant-numeric:tabular-nums;color:var(--amber);text-shadow:0 0 14px rgba(255,198,92,.35)}
+.tile .v small{font-size:.55em;color:var(--muted);text-shadow:none}
+.tile .s{font-size:11px;color:var(--muted);line-height:1.4}
+@media(min-width:720px){.tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* 切り替え */
+.seg{display:inline-flex;flex-wrap:wrap;border:1px solid var(--rule);border-radius:14px;padding:3px;background:var(--panel);gap:2px}
+.seg button{border:0;background:transparent;padding:8px 14px;border-radius:11px;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer;line-height:1.3}
+.seg button[aria-pressed="true"]{background:var(--text);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;border:1px solid var(--rule);color:var(--text);background:var(--panel-2);border-radius:999px;padding:3px 10px;line-height:1.5}
+button.chip{cursor:pointer;font-weight:700;padding:6px 12px;font-size:13px}
+button.chip[aria-pressed="true"]{background:var(--text);color:var(--ink);border-color:var(--text)}
+
+/* 系統図(幹から枝へ) */
+.stage{position:relative;overflow:hidden;border:1px solid var(--rule);border-radius:16px;padding:14px 12px 14px;
+  background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.055) 1px,transparent 1.6px) 0 0/9px 9px,linear-gradient(180deg,#181327,#110d1c)}
+.stage-h{display:flex;justify-content:space-between;gap:8px;font-family:var(--f-led);font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:10px;position:relative}
+.wires{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.wire{fill:none;stroke:var(--c,var(--vio));stroke-linecap:round;stroke-linejoin:round}
+.wire.base{stroke-opacity:.34;stroke-width:1.5}
+.wire.flow{stroke-width:2.4;stroke-dasharray:6 94;stroke-dashoffset:100;animation:flow var(--dur,4s) linear infinite;filter:drop-shadow(0 0 4px var(--c,var(--vio)))}
+.wire.hot{stroke-width:2.6;stroke-opacity:1;filter:drop-shadow(0 0 5px var(--c,var(--vio)))}
+@keyframes flow{to{stroke-dashoffset:0}}
+.tree{position:relative;display:grid;gap:9px}
+.node,.leaf{--c:var(--text);position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:10px;align-items:center;text-align:left;cursor:pointer;
+  border:1px solid var(--c);background:var(--panel);border-radius:12px;padding:9px 30px 9px 10px;min-width:0;width:100%;transition:box-shadow .2s}
+.node .av{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--c);display:grid;place-items:center;color:var(--c);font-family:var(--f-led);font-size:15px;background:var(--ink);flex:none}
+.node .nm{display:block;font-weight:900;font-size:15px;line-height:1.3}
+.node .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.node.root{--c:var(--amber)}
+.node.sink{--c:var(--vio);margin-top:8px}
+.node.head{margin-left:26px;width:calc(100% - 26px)}
+.leaf{margin-left:52px;width:calc(100% - 52px);display:block;border:1px solid var(--rule);border-left:2px solid var(--c);background:var(--panel-2);border-radius:10px;padding:8px 28px 8px 11px}
+.leaf .nm{display:block;font-weight:700;font-size:14px;line-height:1.35}
+.leaf .rl{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.lamp{position:absolute;top:50%;right:10px;margin-top:-5px;width:10px;height:10px;border-radius:50%;background:var(--off)}
+.lamp.ready{background:var(--ready);box-shadow:0 0 8px var(--ready)}
+.lamp.on{background:var(--on);box-shadow:0 0 10px var(--on);animation:blink 1s steps(2,jump-none) infinite}
+.lamp.warn{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+.lamp.wait{background:transparent;border:1.5px solid var(--muted)}
+@keyframes blink{50%{opacity:.25}}
+.sel{box-shadow:0 0 0 2px var(--c),0 0 22px -4px var(--c)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font-size:12px;color:var(--muted);position:relative}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend .lamp{position:static;margin:0;animation:none;flex:none}
+.duo{display:grid;gap:12px;align-items:start}
+@media(min-width:960px){.duo{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.duo .stick{position:sticky;top:60px}}
+.cap{background:var(--panel);border:1px solid var(--rule);border-radius:16px;padding:14px 16px;display:grid;gap:8px;min-height:120px}
+.cap .ck{font-family:var(--f-led);font-size:12px;color:var(--amber);letter-spacing:.06em}
+.cap .ct{font-size:18px;font-weight:900;line-height:1.4}
+.cap .cb{font-size:15px;line-height:1.7}
+.cap ul{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:15px}
+.btn{display:inline-flex;align-items:center;gap:6px;justify-self:start;text-decoration:none;font-weight:900;font-size:14px;color:var(--ink);background:var(--text);border:0;border-radius:999px;padding:9px 16px;cursor:pointer;line-height:1.3}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--rule)}
+
+/* 札の並び */
+.grid{display:grid;gap:10px}
+@media(min-width:720px){.grid.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.c3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.box{--c:var(--rule);background:var(--panel);border:1px solid var(--rule);border-top:2px solid var(--c);border-radius:12px;padding:12px 14px;display:grid;gap:6px;align-content:start;min-width:0}
+.box h3{margin:0;font-size:16px}
+.box p,.box li{font-size:14.5px;line-height:1.65}
+.box .tag{font-family:var(--f-led);font-size:11px;color:var(--c);letter-spacing:.06em}
+.box.c-l{--c:var(--lotus)}.box.c-c{--c:var(--cyan)}.box.c-v{--c:var(--vio)}.box.c-a{--c:var(--amber)}.box.c-g{--c:var(--ready)}.box.c-r{--c:var(--on)}
+a.box{text-decoration:none;color:var(--text)}
+a.box:hover{box-shadow:0 0 0 1px var(--c),0 0 20px -6px var(--c)}
+.big{font-family:var(--f-led);font-size:26px;color:var(--amber);line-height:1.2}
+
+/* 表(狭い画面では札になる) */
+.t{width:100%;border-collapse:collapse;font-size:14.5px}
+.t th,.t td{border-bottom:1px solid var(--rule);padding:9px 10px;text-align:left;vertical-align:top;line-height:1.6}
+.t thead th{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.04em;background:var(--panel)}
+.t td.n,.t th.n{font-family:var(--f-led);white-space:nowrap}
+.t tr.sum td{font-weight:900;color:var(--amber)}
+@media(max-width:719px){
+  .t thead{display:none}
+  .t,.t tbody,.t tr,.t td{display:block;width:100%}
+  .t tr{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:8px 12px;margin-bottom:8px}
+  .t td{border:0;padding:3px 0}
+  .t td[data-l]::before{content:attr(data-l);display:block;font-size:11px;color:var(--muted);letter-spacing:.04em;line-height:1.5}
+  .t td:first-child{font-weight:900;font-size:15.5px}
+}
+
+/* 畳む */
+details.fold{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:0 14px}
+details.fold>summary{cursor:pointer;font-weight:900;padding:11px 0;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:15px}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"＋";font-family:var(--f-led);color:var(--muted);flex:none}
+details.fold[open]>summary::after{content:"－"}
+details.fold>.in{padding:0 0 14px;display:grid;gap:8px;font-size:14.5px}
+
+/* そのまま使う文(コピー) */
+.tpl{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;display:grid;gap:6px;min-width:0}
+.tpl .th{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tpl .th b{font-size:13px;color:var(--cyan);font-weight:900;line-height:1.4}
+.tpl .tx{font-size:15.5px;line-height:1.65;white-space:pre-wrap;background:#231c38;border-radius:10px 10px 10px 2px;padding:9px 12px}
+.tpl .tx em{font-style:normal;color:var(--amber);font-weight:700}
+.cp{flex:none;border:1px solid var(--rule);background:var(--panel-2);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap}
+.cp.done{background:var(--ready);border-color:var(--ready);color:#07130c}
+.ok,.ng{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.ok li,.ng li{position:relative;padding:8px 10px 8px 40px;border-radius:10px;background:var(--panel-2);font-size:15px;line-height:1.6}
+.ok li::before,.ng li::before{position:absolute;left:9px;top:8px;font-family:var(--f-led);font-size:12px;line-height:1.9}
+.ok li::before{content:"OK";color:var(--ready)}
+.ng li::before{content:"NG";color:var(--on)}
+.ng li{color:var(--muted)}
+.steps{counter-reset:s;display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.steps li{counter-increment:s;position:relative;padding:9px 12px 9px 46px;background:var(--panel);border:1px solid var(--rule);border-radius:12px;font-size:15px;line-height:1.6}
+.steps li::before{content:counter(s);position:absolute;left:12px;top:9px;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--amber);color:var(--amber);font-family:var(--f-led);font-size:13px;display:grid;place-items:center;line-height:1}
+.steps li small{display:block;color:var(--muted);font-size:13px;line-height:1.55}
+.foot{border-top:1px solid var(--rule);padding-top:16px;color:var(--muted);font-size:12px;line-height:1.7}
+body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.wire.flow{animation:none;stroke-dashoffset:50}.lamp.on{animation:none}html{scroll-behavior:auto}}
+@media print{.nav,.clock,.cp{display:none}body{background:#fff;color:#000}}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 5px;font-family:"DotGothic16",monospace;font-size:13px;margin-top:4px}
+.flow .f{border:1px solid var(--c);color:var(--c);border-radius:9px;padding:5px 8px;line-height:1.3;background:rgba(255,255,255,.03)}
+.flow i{font-style:normal;color:var(--muted)}
+.f0{--c:var(--amber)}.f1{--c:var(--lotus)}.f2{--c:var(--cyan)}.f3{--c:var(--ready)}
+.kl{display:grid;gap:10px;margin-top:14px}
+@media (min-width:900px){.kl{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}}
+details.kc{background:var(--panel);border:1px solid var(--rule);border-radius:16px;overflow:hidden;scroll-margin-top:64px}
+details.kc[open]{border-color:var(--amber);box-shadow:0 0 22px -12px var(--amber)}
+details.kc summary{list-style:none;cursor:pointer;padding:12px 44px 12px 14px;position:relative;display:grid;gap:3px}
+details.kc summary::-webkit-details-marker{display:none}
+details.kc summary::after{content:"+";position:absolute;right:14px;top:12px;font-family:"DotGothic16",monospace;font-size:20px;color:var(--muted)}
+details.kc[open] summary::after{content:"−"}
+.kc .sc{font-weight:900;font-size:17px;line-height:1.4}
+.kc .wh{font-size:13.5px;color:var(--amber);line-height:1.5}
+.kc .wh::before{content:"こうなったら ";font-family:"DotGothic16",monospace;font-size:11px;color:var(--muted)}
+.kc .bd{padding:0 12px 14px;display:grid;gap:8px}
+.slot{--c:var(--lotus);border-left:2px solid var(--c);background:var(--panel-2);border-radius:10px;padding:9px 12px;display:grid;gap:4px}
+.slot .lb{font-family:"DotGothic16",monospace;font-size:12px;color:var(--c);line-height:1.2}
+.slot .sy{font-size:16.5px;font-weight:700;line-height:1.6}
+.slot .sy::before{content:"「"}.slot .sy::after{content:"」"}
+.slot ol{margin:0;padding-left:1.35em;display:grid;gap:2px;font-size:15.5px;line-height:1.6}
+.slot .tx{font-size:15px;line-height:1.65;white-space:pre-wrap}
+.slot .tx em{font-style:normal;color:var(--amber);font-weight:700}
+.slot .ac{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.slot.s1{--c:var(--lotus)}.slot.s2{--c:var(--cyan)}.slot.s3{--c:var(--ready)}.slot.s4{--c:var(--on)}
+.slot.s4 .ngt{font-size:15px;line-height:1.6}
+.kc .mr{font-size:13px;color:var(--muted);text-underline-offset:2px}
+.slot .sy em{font-style:normal;color:var(--amber)}
+.slot .eg{font-size:12.5px;color:var(--muted);line-height:1.6}
+
+.day{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+@media (min-width:720px){.day{display:flex;align-items:stretch;gap:6px}}
+.day::-webkit-scrollbar{display:none}
+.day i{display:none}
+@media (min-width:720px){.day i{display:block;font-style:normal;color:var(--muted);align-self:center;flex:none;font-size:12px}}
+.day button{flex:1 1 0;min-width:0;display:grid;gap:2px;justify-items:center;background:var(--panel);border:1px solid var(--rule);border-top:2px solid var(--cyan);border-radius:12px;padding:8px 8px 9px;color:var(--text);cursor:pointer;font:inherit}
+.day button b{font-family:"DotGothic16",monospace;font-weight:400;font-size:12px;color:var(--cyan);line-height:1.2}
+.day button span{font-size:13.5px;font-weight:700;line-height:1.3;white-space:nowrap}
+.day button:hover,.day button:focus-visible{box-shadow:0 0 0 1px var(--cyan),0 0 18px -8px var(--cyan);outline:none}
+.sos{display:flex;flex-wrap:wrap;gap:7px}
+.sos button{border:1px solid var(--rule);border-left:2px solid var(--on);background:var(--panel);color:var(--text);border-radius:10px;padding:9px 12px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;line-height:1.3}
+.sos button:hover,.sos button:focus-visible{box-shadow:0 0 0 1px var(--on),0 0 16px -8px var(--on);outline:none}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="lotus" viewBox="-40 -34 80 52"><g fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(-72 0 14)"/><path d="M0 14C-8 6-8-8 0-22C8-8 8 6 0 14Z" transform="rotate(72 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(-38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z" transform="rotate(38 0 14)"/><path d="M0 14C-9 4-9-14 0-30C9-14 9 4 0 14Z"/></g></symbol></svg>
+<div class="wrap">
+<header class="top">
+  <a class="brand" href="./"><svg aria-hidden="true"><use href="#lotus"/></svg><span><b>そのままやる型</b><span>LOTUS スタッフ向けマニュアル</span></span></a>
+  <div class="clock"><span class="lbl">JST</span><span class="tc" id="tc">--:--:--</span></div>
+</header>
+<nav class="nav" aria-label="目次"><a href="./">入口</a><a href="tachimawari.html">報告の型</a><a href="kimari.html">決まり</a><a href="gijutsu.html">技術のステップ</a><a href="ugoki.html">動き</a></nav>
+
+<section class="hero">
+  <h1>こうなったら、<br>こうする。</h1>
+  <p>迷ったら、まずこの型で。場面を押して、そのまま真似する。</p>
+  <div class="flow" aria-label="型の読み方">
+    <span class="f f0">こうなったら</span><i>→</i><span class="f f1">言う</span><i>→</i><span class="f f2">動く</span><i>→</i><span class="f f3">送る</span>
+  </div>
+</section>
+
+<section class="sec" id="today">
+  <h2><i>1</i>今日の流れで引く</h2>
+  <div class="day" role="group" aria-label="1日の流れ">
+    <button type="button" data-t="tsuita"><b>朝</b><span>着いた</span></button><i>→</i>
+    <button type="button" data-t="shiji"><b>指示</b><span>受けた</span></button><i>→</i>
+    <button type="button" data-t="fushime"><b>仕込み</b><span>組み終わり</span></button><i>→</i>
+    <button type="button" data-t="honbanmae"><b>本番前</b><span>チェック</span></button><i>→</i>
+    <button type="button" data-t="mochiba"><b>本番</b><span>持ち場</span></button><i>→</i>
+    <button type="button" data-t="tekkyo"><b>終わり</b><span>撤去</span></button>
+  </div>
+  <h2 style="margin-top:18px"><i>2</i>困った時に引く</h2>
+  <div class="sos" role="group" aria-label="困った時">
+    <button type="button" data-t="okure">遅れそう</button>
+    <button type="button" data-t="wakaranai">分からない</button>
+    <button type="button" data-t="owaranai">終わらなそう</button>
+    <button type="button" data-t="kuichigai">指示が食い違った</button>
+    <button type="button" data-t="miss">ミスをした</button>
+    <button type="button" data-t="kowashita">壊した・NG</button>
+    <button type="button" data-t="gamen">画面の異常</button>
+    <button type="button" data-t="kikareta">聞かれた</button>
+    <button type="button" data-t="shikarareta">叱られた</button>
+  </div>
+</section>
+
+<section class="sec" id="kata">
+  <h2><i>3</i>ぜんぶの型</h2>
+  <div class="chips" id="kc" role="group" aria-label="場面のまとまり"></div>
+  <div class="kl" id="kl"></div>
+</section>
+
+<footer class="foot">株式会社LOTUS ｜ LOTUS VISUAL スタッフ向けマニュアル ｜ <a href="./">入口へ戻る</a></footer>
+</div>
+
+<script>window.DATA={"cards":[{"id":"okure","scene":"遅れそう(遅刻)","group":"朝","when":"集合に遅れそうと分かった時点で","say":"申し訳ありません、遅れます","do":["現場はチーフ、倉庫は責任者へまず電話する","理由・到着見込み・先方へ伝えたかを言う","着いたら、詫びてから持ち場を聞く"],"send":{"line":"遅れそうな時(まず電話)","text":""},"ng":"間に合わせようと黙って急ぐ","more":"tachimawari.html#g-asa"},{"id":"tsuita","scene":"現場に着いた","group":"朝","when":"現場に着いたら","say":"おはようございます、本日LEDを担当します","do":["大きな声で挨拶し、他セクションにも回る","チーフに今日の持ち場を聞く","着いた・合流したをそのつど報告する"],"send":{"line":"現場に着いた","text":""},"ng":"チーフも知っているはず、と報告を省く","more":"ugoki.html#st1"},{"id":"shiji","scene":"指示を受けた","group":"いつでも","when":"チーフから指示を受けたら","say":"◯◯を◯枚、◯◯まで、で合っていますか","do":["呼ばれたらすぐ返事をする","何を・いくつ・どこへ・どこまでを復唱する","期限は時刻で答える"],"send":{"line":"","text":"{内容}、{時刻}までにやります。"},"ng":"「分かりました」だけで動き出す","more":"tachimawari.html#b-chief-normal","eg":"V8S 12枚をレールに2段ずつ、点灯確認まで、で合っていますか"},{"id":"wakaranai","scene":"分からない・聞きたい","group":"いつでも","when":"分からなくて固まったら","say":"◯◯までは分かりました、◯◯が分かりません","do":["何が分からないかを自分から伝える","足りない物を並べて聞き返す","教わったことは、その日のうちに復習して残す"],"send":{"line":"","text":""},"ng":"知ったふりをする","more":"tachimawari.html#b-chief-normal","eg":"向きまでは分かりました、どの穴に通すかが分かりません"},{"id":"teaki","scene":"手が空いた","group":"いつでも","when":"自分の作業が終わって手が空いたら","say":"終わりました、手伝えることはありますか","do":["チーフ(倉庫では上の人)の負担が減る所を探して動く","空ケースを蓋と番号でそろえる","人が避ける作業に入る"],"send":{"line":"","text":"いま{作業}が終わりました。先にやることがあれば言ってください。"},"ng":"「何もしていない人」に見える","more":"ugoki.html#st9"},{"id":"fushime","scene":"組み終わった(節目)","group":"仕込み","when":"組み終わりなど、節目まで終わったら","say":"◯◯、◯◯まで終わりました、次は◯◯です","do":["聞かれる前に一行で報告する","確かめた結果と次の動きまで一度に出す","撮り忘れなどの抜けも自分から書く"],"send":{"line":"組み終わり","text":""},"ng":"黙って別の作業に移る","more":"tachimawari.html#g-shikomi","eg":"下手サービス、点灯確認まで終わりました、次はセンターの長引きです"},{"id":"owaranai","scene":"作業が終わらなそう","group":"仕込み","when":"作業が押して、終わらない見込みが出たら","say":"◯◯で押しています、◯◯に先に◯人回します、よろしいですか","do":["チーフへ、何が・何分・理由・代わりの順番を伝える","条件つきでできる案を出す","決めるのはチーフに任せる"],"send":{"line":"押している時","text":""},"ng":"「無理です」だけで止める","more":"kimari.html#k-jikan","eg":"水平出しで押しています、上手サービスに先に2人回します、よろしいですか"},{"id":"kuichigai","scene":"指示が食い違った","group":"トラブル","when":"二人から違う指示を受けたら","say":"二人から違う指示を聞いています、どちらで進めますか","do":["自分で選ばず案件の責任者に聞く","自分の理解を口に出して確かめる","直前に変わった所は全員でそろえる"],"send":{"line":"指示が食い違った時","text":""},"ng":"相手が先輩だからと黙って合わせる","more":"tachimawari.html#g-trouble"},{"id":"honbanmae","scene":"本番前チェックの時","group":"仕込み","when":"本番前チェックをする時","say":"本番前チェック、完了しました","do":["本番の系統で本番の画を出す","欠け・ズレ・ちらつきを見る","素材と見比べる"],"send":{"line":"本番前チェック","text":""},"ng":"光っただけで終える","more":"kimari.html#k-honbanmae","first":"do"},{"id":"mochiba","scene":"持ち場を離れる","group":"本番","when":"持ち場を離れる・交代する前に","say":"手伝いに動きたいのですが、離れてよいですか","do":["どこまで終えたか・未確認・誰に渡したかを言う","眠い時は自分から交代を申し出る"],"send":{"line":"持ち場を離れる時","text":""},"ng":"交代しただけで、作業を完了扱いにする","more":"kimari.html#k-taicho"},{"id":"gamen","scene":"画面の異常(本番中)","group":"本番","when":"本番中に画面の異常に気づいたら","say":"◯◯、映像が出ていません、いま◯◯を確認しています","do":["危ない作業を止める","責任者へ時刻・場所・症状・影響を伝える","止めるか続けるかを責任者と決める"],"send":{"line":"画面の異常(初報)","text":""},"ng":"無断でプロセッサーを再起動する","more":"gijutsu.html#kiriwake","eg":"下手フロア3列目、映像が出ていません、いま信号の経路を確認しています"},{"id":"miss","scene":"ミスをした","group":"トラブル","when":"自分のミスに気づいたら","say":"◯◯をしていました、確認不足です","do":["直す前にまず知らせる","事実・影響・次にやることの順で話す","原因と次の防ぎ方まで出して終わる"],"send":{"line":"自分のミス","text":""},"ng":"何も言わずに自分で直す","more":"tachimawari.html#b-chief-bad","eg":"シフトの番号と違う個体を積んでいました、確認不足です"},{"id":"kowashita","scene":"壊した・NGを見つけた","group":"トラブル","when":"機材を壊した・NGを見つけたら","say":"◯◯が◯◯なのを見つけました、ケースは分けてあります","do":["現場はチーフ、倉庫は責任者へすぐ言う(つながらなければ先輩へ)","NGは正常品と混ぜずに分ける","NGは機材シートにも赤字で書く"],"send":{"line":"","text":"{機材と番号}に{症状}があります。現場では{使えています・使えません}。戻った際に確認をお願いします。"},"ng":"現場で使えているから、と黙る","more":"kimari.html#k-kinkyu","eg":"キャッチロックが割れているのを見つけました、ケースは分けてあります"},{"id":"kikareta","scene":"先方に聞かれた","group":"いつでも","when":"他セクションや先方に聞かれたら","say":"チーフに確かめてからお答えします","do":["推測で答えず、見た事実だけ話す","その場で決めず、決められる相手へ上げる","確かめたら、必ず戻って答える"],"send":{"line":"","text":"{誰}から{内容}を聞かれました。どう答えますか。"},"ng":"測っていない数字を推測で答える","more":"tachimawari.html#b-client-normal"},{"id":"shikarareta","scene":"叱られた・注意された","group":"いつでも","when":"叱られた・注意されたら","say":"申し訳ありません、すぐ直します","do":["直す所を一点に絞って受け取る","謝ったら引きずらず次に進む","別の防ぎ方を自分で考える"],"send":{"line":"","text":"現象は{現象}、原因は{原因}、対策は{対策}です。"},"ng":"長い反省文を書いて終わりにする","more":"tachimawari.html#b-chief-bad"},{"id":"homerareta","scene":"褒められた","group":"いつでも","when":"褒められた・任せてもらえたら","say":"励みになります、一つずつ確実にしていきます","do":["礼を言い、何が効いたかを一言で残す","手伝ってくれた人の名前を出して感謝を伝える","浮かれず、持ち場を守る"],"send":{"line":"","text":"{何を}してくださった皆さんのおかげです、ありがとうございました。"},"ng":"「たまたまです」で終わらせる","more":"tachimawari.html#b-chief-good"},{"id":"souko","scene":"倉庫:引き継ぐ","group":"倉庫","when":"倉庫で作業を引き継ぐ時","say":"途中まで組み終えています、部材は近くに溜めてあります","do":["終わったこと・残り・NG・置き場所で伝える","文字で残し、電話でも確かめる","動かした物は置場・時刻・担当を流す"],"send":{"line":"","text":"{どこまで}まで終わっています。残りは{残り}、NGは{NG}、置き場所は{置場}です。"},"ng":"置いてある物を聞かれて誰も答えられない","more":"ugoki.html#wt1"},{"id":"tekkyo","scene":"撤去の終わりに","group":"終わり","when":"撤去が終わる時・帰る前に","say":"撤去、完了しました","do":["工具・金具の置き忘れを確かめる","周りを掃除する","帰る前に一声かけて挨拶する"],"send":{"line":"撤去が終わった","text":""},"ng":"やり忘れ・やり残しを放置する","more":"ugoki.html#st8","first":"do"}],"line":[{"g":"朝","label":"現場に着いた","text":"おはようございます。{現場}に{時刻}に着きました(集合{時刻})。"},{"g":"朝","label":"遅れそうな時(まず電話)","text":"申し訳ありません。{数}分ほど遅れます。到着は{時刻}の見込みです。理由は{理由}です。先に電話でもお伝えしました。"},{"g":"仕込み","label":"組み終わり","text":"LED組み終わり、点灯チェックまで終了しました。次は本線とチャートです。"},{"g":"仕込み","label":"本番前チェック","text":"本番前チェック、完了しました。"},{"g":"仕込み","label":"押している時","text":"{作業}で{数}分押しています。{場所}に先に{人数}人回します。よろしいですか。"},{"g":"トラブル","label":"画面の異常(初報)","text":"{時刻}から{場所}の映像が{症状}です。{正常な所}は正常です。いま{どこ}側から順に確認しています。{数}分後に状況をお伝えします。"},{"g":"トラブル","label":"自分のミス","text":"{何を}を間違えていました。確認不足です。影響は{影響}です。正しくは{正しい内容}、直しは{時刻}に終わります。"},{"g":"トラブル","label":"指示が食い違った時","text":"{名前}さんからは{内容}、{名前}さんからは{内容}と聞いています。どちらで進めますか。"},{"g":"終わり","label":"持ち場を離れる時","text":"{どこまで}まで終わっています。未確認は{箇所}です。{名前}さんに引き継ぎました。"},{"g":"終わり","label":"撤去が終わった","text":"撤去、完了しました。NGは{内容}、不足は{内容}です。機材は{便}で戻します。"}]};</script>
+<script>
+/* 共通:時計・コピー・系統図の線 */
+var LK=(function(){
+'use strict';
+var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function p2(n){return String(n).padStart(2,'0')}
+function clock(el){
+  if(!el)return;
+  function draw(){var d=new Date(Date.now()+9*3600e3);el.textContent=p2(d.getUTCHours())+':'+p2(d.getUTCMinutes())+':'+p2(d.getUTCSeconds())}
+  draw();setInterval(draw,1000);
+}
+function copyText(t,btn){
+  function ok(){if(!btn)return;var o=btn.textContent;btn.textContent='コピーした';btn.classList.add('done');setTimeout(function(){btn.textContent=o;btn.classList.remove('done')},1400)}
+  function fb(){try{var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();ok()}catch(e){}}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}catch(e){fb()}
+}
+document.addEventListener('click',function(ev){
+  var b=ev.target.closest('.cp');if(!b)return;
+  var box=b.closest('[data-copy]');var t=box?box.getAttribute('data-copy'):'';
+  if(!t){var x=b.closest('.tpl');if(x)t=x.querySelector('.tx').textContent}
+  copyText(t,b);
+});
+/* 幹から枝へ:.tree の中の .root → .head → .leaf → .sink を線でつなぐ */
+function tree(stage,onPick){
+  var svg=stage.querySelector('.wires'),NS='http://www.w3.org/2000/svg',hot=null,sel=null;
+  function R(el,o){var r=el.getBoundingClientRect();return{l:r.left-o.left,t:r.top-o.top,r:r.right-o.left,b:r.bottom-o.top,cy:(r.top+r.bottom)/2-o.top}}
+  function P(d,cls,c,len){var p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);if(len)p.setAttribute('pathLength','100');if(c)p.style.setProperty('--c',c);svg.appendChild(p);return p}
+  function col(el){return getComputedStyle(el).getPropertyValue('--c').trim()||'#b9a2ff'}
+  function layout(){
+    var o=svg.getBoundingClientRect();if(!o.width)return;
+    svg.setAttribute('viewBox','0 0 '+o.width+' '+o.height);
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    var root=stage.querySelector('.root'),sink=stage.querySelector('.sink');if(!root)return;
+    var rr=R(root,o),tx=rr.l+17,endY=sink?R(sink,o).t:rr.b;
+    var heads=[].slice.call(stage.querySelectorAll('.head'));
+    if(!sink&&heads.length)endY=R(heads[heads.length-1],o).cy;
+    var trunk='M'+tx+' '+rr.b+'V'+endY;
+    P(trunk,'wire base',col(root));P(trunk,'wire flow',col(root),true).style.setProperty('--dur','5s');
+    heads.forEach(function(h,i){
+      var hr=R(h,o),c=col(h);
+      P('M'+tx+' '+hr.cy+'H'+hr.l,'wire base',c);
+      var leaves=[];var n=h.nextElementSibling;while(n&&n.classList.contains('leaf')){leaves.push(n);n=n.nextElementSibling}
+      if(leaves.length){
+        var bx=hr.l+17,last=R(leaves[leaves.length-1],o);
+        var bus='M'+bx+' '+hr.b+'V'+last.cy;
+        P(bus,'wire base',c);var f=P(bus,'wire flow',c,true);f.style.setProperty('--dur',(3+i*.6)+'s');
+        leaves.forEach(function(lf){var lr=R(lf,o);P('M'+bx+' '+lr.cy+'H'+lr.l,'wire base',c)});
+      }
+    });
+    if(hot)drawHot(hot,o,tx,rr);
+  }
+  function drawHot(el,o,tx,rr){
+    var c=col(el),d='';
+    if(el.classList.contains('root')||el.classList.contains('sink')){var sk=stage.querySelector('.sink');d='M'+tx+' '+rr.b+'V'+(sk?R(sk,o).t:rr.b)}
+    else{
+      var h=el.classList.contains('head')?el:null;
+      if(!h){h=el.previousElementSibling;while(h&&!h.classList.contains('head'))h=h.previousElementSibling}
+      if(!h)return;var hr=R(h,o);
+      d='M'+tx+' '+rr.b+'V'+hr.cy+'H'+hr.l;
+      if(el!==h){var lr=R(el,o),bx=hr.l+17;d+='M'+bx+' '+hr.b+'V'+lr.cy+'H'+lr.l}
+    }
+    P(d,'wire hot',c);
+  }
+  stage.addEventListener('click',function(ev){
+    var b=ev.target.closest('[data-id]');if(!b||!stage.contains(b))return;
+    if(sel)sel.classList.remove('sel');sel=b;b.classList.add('sel');hot=b;layout();
+    if(onPick)onPick(b.getAttribute('data-id'),b);
+  });
+  var q=0;function re(){if(q)return;q=requestAnimationFrame(function(){q=0;layout()})}
+  if(window.ResizeObserver)new ResizeObserver(re).observe(stage);
+  window.addEventListener('resize',re);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(re);
+  layout();
+  return{layout:layout,pick:function(id){var b=stage.querySelector('[data-id="'+id+'"]');if(b)b.click()}};
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+return{clock:clock,tree:tree,copy:copyText,esc:esc,reduce:reduce};
+})();
+</script>
+<script>
+LK.clock(document.getElementById('tc'));
+(function(){
+  var D=window.DATA||{},C=D.cards||[],L=D.line||[],E=LK.esc;
+  var GID={'朝':'asa','仕込み':'shikomi','トラブル':'trouble','倉庫':'souko','終わり':'owari'};
+  var ORDER=['朝','仕込み','本番','トラブル','倉庫','終わり','いつでも'];
+  var groups=ORDER.filter(function(g){return C.some(function(c){return c.group===g})});
+  var cur='ぜんぶ';
+  function mark(t){return E(t).replace(/\{([^}]+)\}/g,'<em>{$1}</em>')}
+  function tplOf(c){var k=(c.send&&c.send.line)||'';if(!k)return null;return L.filter(function(x){return x.label===k})[0]||null}
+  function card(c){
+    var t=tplOf(c),send='';
+    var sayH=c.say?'<div class="slot s1"><span class="lb">言う</span><div class="sy">'+E(c.say).replace(/(◯+)/g,'<em>$1</em>')+'</div>'+(c.eg?'<div class="eg">例:'+E(c.eg)+'</div>':'')+'</div>':'';
+    var doH=(c.do||[]).length?'<div class="slot s2"><span class="lb">動く</span><ol>'+c.do.map(function(x){return '<li>'+E(x)+'</li>'}).join('')+'</ol></div>':'';
+    if(t){send='<div class="slot s3"><span class="lb">送る(LINE)</span><div class="tx">'+mark(t.text)+'</div><div class="ac"><a class="btn" href="tachimawari.html#g-'+(GID[t.g]||'asa')+'">この型で送る</a></div></div>'}
+    else if(c.send&&c.send.text){send='<div class="slot s3" data-copy="'+E(c.send.text)+'"><span class="lb">送る</span><div class="tx">'+mark(c.send.text)+'</div><div class="ac"><button type="button" class="cp">コピー</button></div></div>'}
+    return '<details class="kc" id="t-'+E(c.id)+'"><summary><span class="sc">'+E(c.scene)+'</span><span class="wh">'+E(c.when)+'</span></summary><div class="bd">'+
+      (c.first==='do'?doH+sayH:sayH+doH)+
+      send+
+      (c.ng?'<div class="slot s4"><span class="lb">やりがち</span><div class="ngt">'+E(c.ng)+'</div></div>':'')+
+      (c.more?'<a class="mr" href="'+E(c.more)+'">くわしく読む</a>':'')+
+      '</div></details>';
+  }
+  function draw(){
+    document.getElementById('kc').innerHTML=['ぜんぶ'].concat(groups).map(function(g){return '<button type="button" class="chip" data-g="'+g+'" aria-pressed="'+(g===cur)+'">'+g+'</button>'}).join('');
+    document.getElementById('kl').innerHTML=C.filter(function(c){return cur==='ぜんぶ'||c.group===cur}).map(card).join('');
+  }
+  document.getElementById('kc').addEventListener('click',function(e){var b=e.target.closest('[data-g]');if(!b)return;cur=b.dataset.g;draw()});
+  function route(){var m=(location.hash||'').match(/^#t-([\w-]+)$/);if(!m)return;cur='ぜんぶ';draw();var el=document.getElementById('t-'+m[1]);if(el){el.open=true;el.scrollIntoView({block:'start'})}}
+  document.querySelectorAll('[data-t]').forEach(function(b){b.addEventListener('click',function(){history.replaceState(null,'','#t-'+b.dataset.t);route()})});
+  draw();window.addEventListener('hashchange',route);route();
+  if(!location.hash){var f=document.querySelector('details.kc');if(f)f.open=true}
+})();
+</script>
+</body>
+</html>
