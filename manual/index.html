@@ -177,6 +177,8 @@ details.fold>.in{padding:0 0 14px;display:grid;gap:8px;font-size:14.5px}
 body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.wire.flow{animation:none;stroke-dashoffset:50}.lamp.on{animation:none}html{scroll-behavior:auto}}
 @media print{.nav,.clock,.cp{display:none}body{background:#fff;color:#000}}
+
+.nav.sub{position:static;z-index:auto;border-bottom:0;background:transparent;padding-top:4px}
 .fig{background:radial-gradient(circle at 1px 1px,rgba(255,255,255,.055) 1px,transparent 1.6px) 0 0/9px 9px,linear-gradient(180deg,#181327,#110d1c);border:1px solid var(--rule);border-radius:16px;padding:10px 8px 8px}
 .fig svg{display:block;width:100%;height:auto;max-width:640px;margin:0 auto}
 .fl{stroke-dasharray:7 93;stroke-dashoffset:100;animation:flow 3.2s linear infinite}
@@ -215,7 +217,7 @@ body.paused .wire.flow,body.paused .lamp.on{animation-play-state:paused}
   <a class="box c-l" href="tachimawari.html"><span class="tag">報告</span><h3>立ち回りと報告</h3><p>LINEの報告の型をそのままコピー。相手と場面ごとの言い方。</p><span class="btn">開く</span></a>
   <a class="box c-c" href="gijutsu.html"><span class="tag">技術</span><h3>技術のステップとトラブル</h3><p>覚える順番(10ステップ)と、症状から引くトラブル対応。</p><span class="btn">開く</span></a>
   <a class="box c-g" href="kimari.html"><span class="tag">決まり</span><h3>現場の決まり</h3><p>遅れ・破損・異常の時、報告の宛先、守秘、持ち物。7枚の札で引く。</p><span class="btn ghost">開く</span></a>
-  <a class="box c-v" href="ugoki.html"><span class="tag">動き</span><h3>動きのマニュアル</h3><p>現場と倉庫の動き方。</p><span class="btn ghost">開く</span></a>
+  <a class="box c-v" href="ugoki.html"><span class="tag">動き</span><h3>動きのマニュアル</h3><p>作業スタッフ・倉庫・チーフの動き方と、写真で覚える現場の細かい所。</p><span class="btn ghost">開く</span></a>
   <a class="box c-a wide" href="kizai.html"><span class="tag">機材</span><h3>機材マニュアル</h3><p>機材ごとの仕様・つなぎ方・注意。</p><span class="btn ghost">開く</span></a>
 </section>
 
@@ -387,7 +389,7 @@ var CAP={
  client:['決める人','クライアント・舞台監督',['交換する・しないを決めるのは相手。こちらは選択肢と、かかる時間を出す','異常は「時刻・場所・症状・今の影響」で伝える。原因を断定しない','窓口は一つ。ばらばらに説明しない'],'tachimawari.html#b-client-normal','クライアントへの言い方','ugoki.html#chief','動きのマニュアル(チーフ)'],
  chief:['現場の窓口・指揮','チーフ',['遅れてからではなく、遅れそうな時点で人と順番を変える','全部自分でやらない。人に振って、結果を確かめるまでが仕事','会社へは「現場はいまどういう状態か・予定どおり終わるか・何が要るか」を送る'],'tachimawari.html#g-owari','チーフの報告の型','ugoki.html#chief','動きのマニュアル(チーフ)'],
  setup:['組む・つなぐ・バラす','設営・撤去',['指示は復唱してから動く(場所・図面の版・型番と数・順番・終わりの条件)','チーフを動かさない。残材・空ケース・次の資材を先に整える','外す前に、ロックを自分の目で見る'],'tachimawari.html#b-chief-normal','チーフ・先輩への言い方','ugoki.html#staff','動きのマニュアル(作業スタッフ)'],
- proc:['点ける・合わせる','プロセッサー・オペ',['段ごとに点灯を確かめながら進める','主系と予備系は、両端のラベルを配線図と照らす','エラーは動画か写真で残す。持ち場を離れない'],'gijutsu.html#trouble','症状からトラブルを引く','ugoki.html#staff','動きのマニュアル(作業スタッフ)'],
+ proc:['点ける・合わせる','プロセッサー・オペ',['3段ほど組むごとに点灯を確かめながら進める','主系と予備系は、両端のラベルを配線図と照らす','エラーは動画か写真で残す。持ち場を離れない'],'gijutsu.html#trouble','症状からトラブルを引く','ugoki.html#staff','動きのマニュアル(作業スタッフ)'],
  honban:['見張る・すぐ知らせる','本番付き',['本番前チェックを終えたら一行で報告する','異常は時刻・場所・症状・影響を責任者へ。独断で再起動しない','疲れている時は、交代を自分から申し出る'],'tachimawari.html#g-trouble','トラブルの初報の型','ugoki.html#staff','動きのマニュアル(作業スタッフ)'],
  souko:['準備・検品','倉庫',['シフトの番号と、個体の番号を照らして出す','NGは症状と番号を残して分ける','戻ってきた機材は、現場で使えていても気になる点を聞く'],'gijutsu.html#dan','技術のステップを見る','ugoki.html#ware','動きのマニュアル(倉庫)'],
  dashi:['番号を見て出す','機材出し・準備',['頼まれたら、足りない情報(担当・仕込む物・図面)をその場で聞き返す','前回の現場の情報を先に確かめる','使ったことのない機材は、現場の前に一度触る'],'gijutsu.html#dan','技術のステップを見る','ugoki.html#ware','動きのマニュアル(倉庫)'],
