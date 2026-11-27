@@ -157,12 +157,13 @@ details.fold>.in{padding:0 0 14px;display:grid;gap:8px;font-size:14.5px}
 
 /* そのまま使う文(コピー) */
 .tpl{background:var(--panel);border:1px solid var(--rule);border-radius:12px;padding:10px 12px;display:grid;gap:6px;min-width:0}
-.tpl .th{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.tpl .th{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
 .tpl .th b{font-size:13px;color:var(--cyan);font-weight:900;line-height:1.4}
 .tpl .tx{font-size:15.5px;line-height:1.65;white-space:pre-wrap;background:#231c38;border-radius:10px 10px 10px 2px;padding:9px 12px}
 .tpl .tx em{font-style:normal;color:var(--amber);font-weight:700}
 .cp{flex:none;border:1px solid var(--rule);background:var(--panel-2);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:900;cursor:pointer;white-space:nowrap}
 .cp.done{background:var(--ready);border-color:var(--ready);color:#07130c}
+.cp.fail{border-color:var(--on);color:var(--on);white-space:normal;flex:0 1 auto;max-width:100%;text-align:left;line-height:1.5}
 .ok,.ng{display:grid;gap:6px;margin:0;padding:0;list-style:none}
 .ok li,.ng li{position:relative;padding:8px 10px 8px 40px;border-radius:10px;background:var(--panel-2);font-size:15px;line-height:1.6}
 .ok li::before,.ng li::before{position:absolute;left:9px;top:8px;font-family:var(--f-led);font-size:12px;line-height:1.9}
@@ -303,8 +304,11 @@ function clock(el){
   draw();setInterval(draw,1000);
 }
 function copyText(t,btn){
-  function ok(){if(!btn)return;var o=btn.textContent;btn.textContent='コピーした';btn.classList.add('done');setTimeout(function(){btn.textContent=o;btn.classList.remove('done')},1400)}
-  function fb(){try{var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();ok()}catch(e){}}
+  if(btn&&btn.getAttribute('data-lb')==null)btn.setAttribute('data-lb',btn.textContent);
+  function show(c,x,ms){if(!btn)return;clearTimeout(btn._tm);btn.classList.remove('done','fail');btn.classList.add(c);btn.textContent=x;btn._tm=setTimeout(function(){btn.textContent=btn.getAttribute('data-lb');btn.classList.remove(c)},ms)}
+  function ok(){show('done','コピーした',1400)}
+  function ng(){show('fail','コピーできません。この枠の文を長押しで選んでください',6000)}
+  function fb(){var r=false,a=null;try{a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();r=document.execCommand('copy')}catch(e){r=false}if(a&&a.parentNode)a.parentNode.removeChild(a);r?ok():ng()}
   try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}catch(e){fb()}
 }
 document.addEventListener('click',function(ev){
